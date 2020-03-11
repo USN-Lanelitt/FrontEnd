@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(15, 0, 6)
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -54,6 +54,7 @@ export default function Home() {
     <React.Fragment>
       <CssBaseline />
       <main>
+        <hr/>
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
