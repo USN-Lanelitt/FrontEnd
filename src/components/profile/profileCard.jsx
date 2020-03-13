@@ -107,8 +107,9 @@ export default function ProfileCard(){
 
   if (user != null) {
     user.providerData.forEach(function (profile) {
-      email = profile.email;
-      console.log("  Email ID: " + profile.email);
+      email = profile.email
+      console.log("  Email ID: " + profile.email)
+
       fetch('http://127.0.0.1:8000/api/login', {
         method: 'post',
         headers: {
@@ -121,10 +122,11 @@ export default function ProfileCard(){
       })
         .then((Response) => Response.json())
         .then((Result) => {
-          console.log(Result);
-          firstname = Result[0]['firstname'];
-          lastname = Result[0]['lastname'];
-          console.log(firstname + lastname)
+          console.log(Result)
+          firstname = Result[0]['firstname']
+          lastname = Result[0]['lastname']
+          console.log(firstname)
+          console.log(lastname)
         })
     });
   }
@@ -145,8 +147,8 @@ export default function ProfileCard(){
               />
             </StyledBadge>
           </IconButton>
-          <h3 className={styles.heading}>{firstname}</h3>
-          <span className={styles.subheader}>{email}</span>
+          <h3 className={styles.heading}>{"Navn: " + firstname}</h3>
+          <span className={styles.subheader}>{"Epost: " + email}</span>
         </CardContent>
         <Divider light />
         <Box display={"flex"}>
