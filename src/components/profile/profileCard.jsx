@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'clsx';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -11,6 +11,7 @@ import { useGutterBorderedGridStyles } from '@mui-treasury/styles/grid/gutterBor
 import {grey} from "@material-ui/core/colors";
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
+import app from "../../fire";
 
 
 const useStyles = makeStyles(theme => ({
@@ -96,10 +97,37 @@ export default function ProfileCard(){
         borderColor: 'rgba(0, 0, 0, 0.08)',
         height: '50%',
     });
+  
 
+  
+  const user = app.auth().currentUser;
+  let [email] = useState('');
+  let [firstname] = useState('');
+  let [lastname] = useState('');
 
-
-
+  if (user != null) {
+    user.providerData.forEach(function (profile) {
+      email = profile.email;
+      console.log("  Email ID: " + profile.email);
+      fetch('http://127.0.0.1:8000/api/login', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          username: email,
+          password: "19951995"
+        })
+      })
+        .then((Response) => Response.json())
+        .then((Result) => {
+          console.log(Result);
+          firstname = Result[0]['firstname'];
+          lastname = Result[0]['lastname'];
+          console.log(firstname + lastname)
+        })
+    });
+  }
     
     
     return (
@@ -117,8 +145,8 @@ export default function ProfileCard(){
               />
             </StyledBadge>
           </IconButton>
-          <h3 className={styles.heading}>Farhad Ahmadhadi</h3>
-          <span className={styles.subheader}>Admin</span>
+          <h3 className={styles.heading}>{firstname}</h3>
+          <span className={styles.subheader}>{email}</span>
         </CardContent>
         <Divider light />
         <Box display={"flex"}>
