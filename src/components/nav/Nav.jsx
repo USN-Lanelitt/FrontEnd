@@ -1,6 +1,6 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 import clsx from "clsx";
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import EmailIcon from "@material-ui/icons/Email";
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -211,9 +211,9 @@ export default function NavBar(props) {
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const handleProfileMenuOpen = event => {
+    /*const handleProfileMenuOpen = event => {
         setAnchorEl(event.currentTarget);
-    };
+    };*/
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
