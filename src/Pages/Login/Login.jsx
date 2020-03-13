@@ -49,15 +49,37 @@ const Login = ({ history }) => {
     const handleLogin = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
-        try {
-            await app
-                .auth()
-                .signInWithEmailAndPassword(email.value, password.value);
-            history.push("/");
-        } catch (error) {
-            alert(error);
+        if (email.value.length === 0 || password.value.length === 0) {
+            alert("Alle feltene må fylles ut");
         }
-    }, [history]);
+        else {
+            try {
+                await app
+                    .auth()
+                    .signInWithEmailAndPassword(email.value, password.value);
+                history.push("/");
+            } catch (error) {
+                alert("Feil brukernavn og passord");
+
+            }
+        }}, [history]);
+
+    function UserLogin() {
+            fetch('http://127.0.0.1:8000/api/login', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: values.email,
+                    password: values.password
+                })
+            })
+                .then((Response) => Response.json())
+                .then((Result) => {
+                    console.log(Result);
+                })
+        }
 
     const classes = useStyles();
 
@@ -144,6 +166,7 @@ const Login = ({ history }) => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={()=> UserLogin()}
                     >
                         Logg inn
                     </Button>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import clsx from "clsx";
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import EmailIcon from "@material-ui/icons/Email";
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -41,6 +41,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
 import ProfileCard from "../profile/profileCard";
+import Logout from "../login/logout";
 import app from "../../fire";
 
 
@@ -176,6 +177,7 @@ export default function NavBar(props) {
         left: false,
     });
 
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -220,6 +222,7 @@ export default function NavBar(props) {
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
+
     };
 
     const handleMobileMenuOpen = event => {
@@ -227,6 +230,23 @@ export default function NavBar(props) {
     };
 
     const menuId = 'primary-search-account-menu';
+
+
+
+    const [loggedIn, setloggedIn] = React.useState(false);
+
+        app.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                    setloggedIn(true);
+
+            } else {
+                // No user is signed in.
+                setloggedIn(false);
+            }
+        });
+
+
 
     const renderMenu = (
         <Menu
@@ -242,11 +262,13 @@ export default function NavBar(props) {
                 <MenuItem onClick={handleMenuClose}>Min Profil</MenuItem>
             </Link>
 
-            <Link to="/log" style={{ textDecoration: 'none', color: 'black' }}>
-                <MenuItem onClick={handleMenuClose}>Logg på / Registrer</MenuItem>
-            </Link>
+            { !loggedIn ? <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
+                <MenuItem onClick={handleMenuClose}>Logg på</MenuItem>
+            </Link>  : <MenuItem onClick={()=>Logout()}>Logg av</MenuItem>   }
+
         </Menu>
     );
+
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -259,7 +281,7 @@ export default function NavBar(props) {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            {loggedIn && ( <div> <MenuItem>
                 <IconButton aria-label="show 1 new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
                         <MailIcon />
@@ -274,8 +296,9 @@ export default function NavBar(props) {
                     </Badge>
                 </IconButton>
                 <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
+            </MenuItem> </div>)}
+            {!loggedIn ? <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
+                    <MenuItem>
                 <IconButton
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
@@ -284,8 +307,14 @@ export default function NavBar(props) {
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>Profile</p>
-            </MenuItem>
+                <p>Logg på</p>
+            </MenuItem> </Link>:
+            <MenuItem onClick={() => Logout()}>
+                <IconButton aria-label="show 1 new notifications" color="inherit">
+                        <ExitToAppIcon />
+                </IconButton>
+                <p>Logg ut</p>
+            </MenuItem>}
         </Menu>
     );
 
@@ -389,12 +418,6 @@ export default function NavBar(props) {
                     <ListItemText primary="Hjelp" />
                 </ListItem>
 
-                <ListItem button onClick={() => app.auth().signOut()}>
-                    <ListItemIcon>
-                        <ExitToAppIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Logg ut"/>
-                </ListItem>
             </List>
         </div>
     );
@@ -408,15 +431,17 @@ export default function NavBar(props) {
                 })}
             >
                 <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerOpen}
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    {loggedIn && (<div>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerOpen}
+                            className={clsx(classes.menuButton, open && classes.hide)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    </div>)}
                     <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                         <Typography className={classes.title} variant="h5" noWrap>
                             Lånelitt
@@ -438,33 +463,48 @@ export default function NavBar(props) {
 
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <Link to="/admin" style={{ color: "white" }}>
-                            <IconButton  color="inherit">
-                                <Badge color="secondary">
-                                    <SupervisorAccountIcon />
+                        {loggedIn && ( <div>
+                            <Link to="/admin" style={{ color: "white" }}>
+                                <IconButton  color="inherit">
+                                    <Badge color="secondary">
+                                        <SupervisorAccountIcon />
+                                    </Badge>
+                                </IconButton>
+                            </Link>
+                            <IconButton aria-label="show 1 new mails" color="inherit">
+                                <Badge badgeContent={1} color="secondary">
+                                    <MailIcon />
                                 </Badge>
                             </IconButton>
-                        </Link>
-                        <IconButton aria-label="show 1 new mails" color="inherit">
-                            <Badge badgeContent={1} color="secondary">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton aria-label="show 1 new notifications" color="inherit">
-                            <Badge badgeContent={1} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
+                            <IconButton aria-label="show 1 new notifications" color="inherit">
+                                <Badge badgeContent={1} color="secondary">
+                                    <NotificationsIcon />
+                                </Badge>
+                            </IconButton>
+                        </div>)}
+
+                        {!loggedIn ? <Link to="/login" style={{ textDecoration: 'none', color: 'white' }}>
                         <IconButton
                             edge="end"
-                            aria-label="account of current user"
+                            aria-label="Signin"
                             aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
                             <AccountCircle />
                         </IconButton>
+                        </Link> :
+                        <IconButton
+                            edge="end"
+                            aria-label="Logout"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={() => Logout()}
+                            color="inherit"
+                        >
+                            <ExitToAppIcon />
+                        </IconButton>}
+
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton

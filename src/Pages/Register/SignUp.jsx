@@ -1,6 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { withRouter } from "react-router";
 import app from "../../fire";
+import DateFnsUtils from '@date-io/date-fns';
+import 'date-fns';
+import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -55,13 +58,42 @@ const SignUp = ({ history }) => {
                 .auth()
                 .createUserWithEmailAndPassword(email.value, password.value);
             history.push("/login");
+            console.log(history)
         } catch (error) {
             alert(error);
         }
     }, [history]);
 
+    function Register() {
+        fetch('http://127.0.0.1:8000/api/register', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                firstname: values.firstname,
+                middlename: values.middlename,
+                lastname: values.lastname,
+                birthdate: selectedDate,
+                phone: values.phone,
+                email: values.email,
+                password: values.password
+            })
+        })
+            .then((Response) => Response.json())
+            .then((Result) => {
+                alert(Result);
+            })
+    }
+
 
     const classes = useStyles();
+
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
+
+    const handleDateChange = date => {
+        setSelectedDate(date);
+    };
 
     const [values, setValues] = useState({
         firstname: '',
@@ -148,14 +180,20 @@ const SignUp = ({ history }) => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                name="birthdate"
-                                variant="outlined"
-                                fullWidth
-                                type="date"
-                                id="birthdate"
-                                onChange={handleChange('birthdate')}
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <KeyboardDatePicker
+                                    margin="normal"
+                                    id="date-picker-dialog"
+                                    label="Fødselsdato"
+                                    fullWidth
+                                    format="dd/MM/yyyy"
+                                    value={selectedDate}
+                                    onChange={handleDateChange}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
                                 />
+                            </MuiPickersUtilsProvider>
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -215,7 +253,7 @@ const SignUp = ({ history }) => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        //onClick={() => Register()}
+                        onClick={() => Register()}
                     >Opprett konto
                     </Button>
                     <Grid container justify="flex-end">
