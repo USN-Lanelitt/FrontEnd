@@ -12,9 +12,7 @@ import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles({
     card: {
-
         maxWidth: 345
-
     }
 });
 
@@ -29,7 +27,7 @@ const AssetCard = ({title, description, imageUrl, rating}) => {
                     <CardMedia
                         component="img"
                         alt="bilde"
-                        height="140"
+                        height="200"
                         image={imageUrl}
                     />
                     <CardContent>
@@ -47,11 +45,9 @@ const AssetCard = ({title, description, imageUrl, rating}) => {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
-                        Button
+                        åpne
                     </Button>
-                    <Button size="small" color="primary">
-                        button
-                    </Button>
+
                 </CardActions>
             </Card>
         </div>

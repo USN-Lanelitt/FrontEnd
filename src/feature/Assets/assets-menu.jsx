@@ -1,27 +1,46 @@
 import React from 'react';
 import {Container} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import CategoryCard from "../../components/home/category-card";
 import AssetCard from "./asset-card";
 
 const AssetsMenu = () => {
     const menuItems = [
         {
-            title: "Rulleskøyter",
-            description: "Rulleskøyter i str. 35. Lite brukt.",
-            imageUrl: "https://source.unsplash.com/P1N0xvYCgOQ"
+            title: "Header",
+            description: "Kort beskrivelse av produktet som lånes ut.",
+            imageUrl: "https://source.unsplash.com/random"
+        },
+        {
+            title: "Header",
+            description: "Kort beskrivelse av produktet som lånes ut.",
+            imageUrl: "https://source.unsplash.com/random"
+        },
+        {
+            title: "Header",
+            description: "Kort beskrivelse av produktet som lånes ut.",
+            imageUrl: "https://source.unsplash.com/random"
+        },
+        {
+            title: "Header",
+            description: "Kort beskrivelse av produktet som lånes ut.",
+            imageUrl: "https://source.unsplash.com/random"
+        },
+        {
+            title: "Header",
+            description: "Kort beskrivelse av produktet som lånes ut.",
+            imageUrl: "https://source.unsplash.com/random"
         },
 
         {
-            title: "Verktøy",
-            description: "Her kan du se verktøy til utlån",
-            imageUrl: "https://source.unsplash.com//CXlls8jm1VI"
+            title: "Header",
+            description: "Kort beskrivelse av produktet som lånes ut",
+            imageUrl: "https://source.unsplash.com/random"
         }
         ];
     return (
         <Container>
 
-            <Grid container spacing={4} justify="center">
+            <Grid container spacing={3} justify="center">
 
                 {
                     menuItems.map(item => (
