@@ -3,7 +3,7 @@ import {Container} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import AssetCard from "./asset-card";
 
-const AssetsMenu = () => {
+const AssetsList = () => {
     const menuItems = [
         {
             title: "Header",
@@ -58,4 +58,4 @@ const AssetsMenu = () => {
     );
 };
 
-export default AssetsMenu;
+export default AssetsList;

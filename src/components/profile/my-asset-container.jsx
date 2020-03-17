@@ -1,13 +1,10 @@
 import React from 'react';
-import AssetsList from "./assets-list";
-import {makeStyles} from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import HomeMenu from "../../components/home/home-menu";
-import Copyright from "../../components/home/Copyright";
+import AssetsList from "../../feature/Assets/assets-list";
+import MyAssetsList from "./my-assets-list";
+import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -35,14 +32,11 @@ const useStyles = makeStyles(theme => ({
     cardContent: {
         flexGrow: 1,
     },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
-    },
+
 }));
 
 
-const AssetContainer = () => {
+const MyAssetContainer = () => {
     const classes = useStyles();
 
     return (
@@ -54,7 +48,7 @@ const AssetContainer = () => {
                     <h3>Placeholder</h3>
                     <hr/>
                     <Grid container spacing={12}>
-                        <AssetsList/>
+                        <MyAssetsList/>
                     </Grid>
                 </Container>
             </main>
@@ -63,4 +57,4 @@ const AssetContainer = () => {
     );
 };
 
-export default AssetContainer;
+export default MyAssetContainer;
