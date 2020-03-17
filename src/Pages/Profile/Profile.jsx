@@ -9,6 +9,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
+import MyAssetsList from "../../components/profile/my-assets-list";
+import AssetContainer from "../Assets/asset-container";
+import TextField from "@material-ui/core/TextField";
+import HomeMenu from "../../components/home/home-menu";
+import Copyright from "../../components/home/Copyright";
 
 const drawerWidth = 240;
 
@@ -62,60 +67,57 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function Profile() {
     const classes = useStyles();
 
     return (
         <React.Fragment>
-        <div className={classes.root}>
             <CssBaseline />
             <main>
+                <hr/>
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Min Profil
+                            Mine Eiendeler
+                        </Typography>
+                        <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                            Eiendel
                         </Typography>
                     </Container>
                 </div>
 
-                <Container className={classes.cardGrid} maxWidth="l">
-                    <h3>Eiendeler / Kategorier</h3>
+                <Container className={classes.cardGrid} maxWidth="md">
+                    <div>
+                        <TextField
+                            id="outlined-full-width"
+                            label="Søk i din eiendel liste"
+                            style={{ margin: 8 }}
+                            placeholder="Høyttaler"
+                            helperText="Skriv navnet til det du leter etter!"
+                            fullWidth
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                        />
+                    </div>
+                    <h3>Eiendel Kategori</h3>
                     <hr/>
-                    <Grid container spacing={4}>
-                        {cards.map(card => (
-                            <Grid item key={card} xs={12} sm={6} md={4}>
-                                <Card className={classes.card}>
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image="https://source.unsplash.com/random"
-                                        title="Image title"
-                                    />
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Heading
-                                        </Typography>
-                                        <Typography>
-                                            This is a media card. You can use this section to describe the content.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button size="small" color="primary">
-                                            View
-                                        </Button>
-                                        <Button size="small" color="primary">
-                                            Edit
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        ))}
+                    <Grid container spacing={12}>
+                        <AssetContainer/>
                     </Grid>
                 </Container>
             </main>
-        </div>
+            <footer className={classes.footer}>
+                <Typography variant="h6" align="center" gutterBottom>
+                    Lånelitt
+                </Typography>
+                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                    ProgTeam Lånelitt
+                </Typography>
+                <Copyright />
+            </footer>
         </React.Fragment>
     );
 }

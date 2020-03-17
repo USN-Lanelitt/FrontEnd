@@ -9,6 +9,7 @@ import Profile from "./Pages/Profile/Profile";
 import EditProfile from "./Pages/Profile/EditProfile";
 import {AuthProvider} from "./Auth";
 import PrivateRoute from "./PrivateRoute";
+import Scaffold from "./scaffold";
 
 function App(){
     return (
@@ -22,6 +23,7 @@ function App(){
                 <Route path="/signup" component={SignUp} />
                 <PrivateRoute path="/prof" component={Profile} />
                 <PrivateRoute path="/editprof" component={EditProfile} />
+                <Scaffold/>
             </div>
         </Router>
         </AuthProvider>
