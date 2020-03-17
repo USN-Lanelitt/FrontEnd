@@ -102,6 +102,7 @@ export default function ProfileCard(){
   
   const user = app.auth().currentUser;
   let [email] = useState('');
+  let [id] = useState('');
   let [firstname] = useState('');
   let [lastname] = useState('');
 

@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ImgMediaCard from "./friend-card";
 import {makeStyles} from "@material-ui/core/styles";
-import FriendAll from "../../Pages/Friend/friend-all";
+import FriendAll from "../../feature/Friend/friend-all";
 
 const useStyles = makeStyles(theme => ({
 

@@ -78,6 +78,7 @@ const Login = ({ history }) => {
                 .then((Response) => Response.json())
                 .then((Result) => {
                     console.log(Result);
+                    sessionStorage.setItem("userid", Result[0]['id']);
                 })
         }
 
