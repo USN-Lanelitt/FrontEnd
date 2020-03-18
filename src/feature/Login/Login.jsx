@@ -78,7 +78,10 @@ const Login = ({ history }) => {
                 .then((Response) => Response.json())
                 .then((Result) => {
                     console.log(Result);
-                    sessionStorage.setItem("userid", Result[0]['id']);
+                    sessionStorage.setItem('userId', Result[0]['id']);
+                    sessionStorage.setItem('firstname', Result[0]['firstname']);
+                    sessionStorage.setItem('middlename', Result[0]['middlename']);
+                    sessionStorage.setItem('lastname', Result[0]['lastname']);
                 })
         }
 
