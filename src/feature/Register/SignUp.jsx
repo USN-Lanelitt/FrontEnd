@@ -54,9 +54,10 @@ const SignUp = ({ history }) => {
         event.preventDefault();
         const { email, password } = event.target.elements;
         try {
-            await app
+             app
                 .auth()
-                .createUserWithEmailAndPassword(email.value, password.value);
+                .createUserWithEmailAndPassword(email.value, password.value)
+                 .then(() => Register());
             history.push("/login");
             console.log(history)
         } catch (error) {
@@ -82,7 +83,7 @@ const SignUp = ({ history }) => {
         })
             .then((Response) => Response.json())
             .then((Result) => {
-                alert(Result);
+                alert(Result)
             })
     }
 
@@ -253,7 +254,6 @@ const SignUp = ({ history }) => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => Register()}
                     >Opprett konto
                     </Button>
                     <Grid container justify="flex-end">

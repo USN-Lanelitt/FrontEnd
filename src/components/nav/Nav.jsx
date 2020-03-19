@@ -334,7 +334,7 @@ export default function NavBar(props) {
                         Snarveier
                     </ListSubheader>
                 }>
-                <Link to="/friendAll" style={{ textDecoration: 'none', color: 'black' }}>
+                <Link to="/friendlist" style={{ textDecoration: 'none', color: 'black' }}>
                 <ListItem button>
                     <ListItemIcon>
                         <PeopleIcon />

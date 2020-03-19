@@ -105,14 +105,18 @@ export default function ProfileCard(){
     let [id] = useState('');
     let [firstname] = useState('');
     let [lastname] = useState('');
+    let [mobile] = useState('');
 
 
   if (user != null) {
     user.providerData.forEach(function (profile) {
-      email = profile.email
+      email = profile.email;
       id = sessionStorage.getItem('userId');
-      firstname = sessionStorage.getItem('firstname')
-      lastname = sessionStorage.getItem('lastname')
+      firstname = sessionStorage.getItem('firstname');
+      lastname = sessionStorage.getItem('lastname');
+      mobile = sessionStorage.getItem('mobile');
+
+
     });
   }
     
@@ -138,7 +142,7 @@ export default function ProfileCard(){
         <Divider light />
         <Box display={"flex"}>
           <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-            <p className={styles.statLabel}>Venner</p>
+            <p className={styles.statLabel}>{"Telefon: " + mobile}</p>
             <p className={styles.statValue}>{"Bruker ID: " + id}</p>
           </Box>
         </Box>

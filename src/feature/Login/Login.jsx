@@ -65,7 +65,7 @@ const Login = ({ history }) => {
         }}, [history]);
 
     function UserLogin() {
-            fetch('http://127.0.0.1:8000/api/login', {
+            fetch('/api/login', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -82,6 +82,7 @@ const Login = ({ history }) => {
                     sessionStorage.setItem('firstname', Result[0]['firstname']);
                     sessionStorage.setItem('middlename', Result[0]['middlename']);
                     sessionStorage.setItem('lastname', Result[0]['lastname']);
+                    sessionStorage.setItem('mobile', Result[0]['mobile']);
                 })
         }
 
