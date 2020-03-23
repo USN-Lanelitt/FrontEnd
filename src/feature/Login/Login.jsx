@@ -58,14 +58,19 @@ const Login = ({ history }) => {
                 .then(res=>{
                     console.log(res);
                     console.log(res.data);
-                    sessionStorage.setItem('userId', res[0]['id']);
-                    sessionStorage.setItem('firstname', res[0]['firstname']);
-                    sessionStorage.setItem('middlename', res[0]['middlename']);
-                    sessionStorage.setItem('lastname', res[0]['lastname']);
-                    sessionStorage.setItem('mobile', res[0]['mobile']);
+                    if (res.data.length > 0) {
+                        sessionStorage.setItem('userId', res.data[0]['id']);
+                        sessionStorage.setItem('firstname', res.data[0]['firstname']);
+                        sessionStorage.setItem('middlename', res.data[0]['middlename']);
+                        sessionStorage.setItem('lastname', res.data[0]['lastname']);
+                        sessionStorage.setItem('phone', res.data[0]['phone']);
+                    }
+                    else
+                        alert('FEIL');
                 })
                 .then(()=>{
                     try {
+                        //alert(sessionStorage.getItem('userId'));
                         app
                             .auth()
                             .signInWithEmailAndPassword(email.value, password.value);
