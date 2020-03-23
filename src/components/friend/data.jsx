@@ -32,9 +32,9 @@ const data  =
         },
         {
             id: 5,
-            firstname: "John Berge",
+            firstname: "John-Berge",
             middlename: "",
-            lastname: "Brimaas",
+            lastname: "Grimaas",
             imageUrl: "https://source.unsplash.com/random"
         },
         {

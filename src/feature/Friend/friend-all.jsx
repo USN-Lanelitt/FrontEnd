@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import FriendCard from "../../components/friend/friend-card";
 import data from "../../components/friend/data";
 import Grid from "@material-ui/core/Grid";
@@ -6,6 +6,9 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
+import axios from "axios";
+import app from "../../fire";
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -17,51 +20,21 @@ heroContent: {
 }));
 
 const FriendAll = () => {
-        let [setFirstnameVar] = useState('');
-        let [setMidlenameVar] = useState('');
-        let [setLastnameVar] = useState('');
-        let [setProfilePicVar] = useState('');
+    const user = app.auth().currentUser;
+    const [id, setId] = useState(sessionStorage.getItem('userId'));
+    const [data, setData] = useState([]);
 
-        function FriendsAll() {
-            fetch('http://127.0.0.1:8000/api/friendAll', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    //'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    firstname: setFirstname,
-                    midname: setMidlename,
-                    lastname: setLastname,
-                    imageUrl: setProfilePic,
-                })
+
+    useEffect(() => {
+
+        console.log("hello from AllFriends", id, sessionStorage.getItem('userId'));
+        axios.get('/user/'+id+'/friends')
+            .then(result => {
+                console.log(result.data);
+                setData(result.data);
             })
-                .then((Response) => Response.on())
-                .then((Result) => {
-                    alert(Result);
-                })
-        }
-
-        function setFirstname(e) {
-            setFirstnameVar = e.target.value;
-        }
-        function setMidlename(e) {
-            setMidlenameVar = e.target.value;
-        }
-        function setLastname(e) {
-            setLastnameVar = e.target.value;
-        }
-        function setProfilePic (e) {
-            setProfilePicVar = e.target.value;
-
-        }
-
-        const [values, setValues] = useState({
-            firstname: '',
-            middlename:'',
-            lastname:'',
-            imageUrl: "https://source.unsplash.com/random",
-        });
+            .catch(e => console.log(e));
+    }, [setData, id]);
 
     const classes = useStyles();
         return (

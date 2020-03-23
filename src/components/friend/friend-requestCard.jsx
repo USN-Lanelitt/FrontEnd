@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
+import {red} from "@material-ui/core/colors";
 
 
 
@@ -28,12 +29,16 @@ const useStyles = makeStyles(theme => ({
     mid_name: {
         padding: theme.spacing(0.5),
 
+    },
+    Button: {
+        color: 'red',
     }
 
 }));
 
-const FriendCard = ({firstname, middlename, lastname, imageUrl}) => {
+const FriendRequestCard = ({firstname, middlename, lastname, imageUrl}) => {
     const classes = useStyles();
+
     return (
         <Grid xs={12}>
             <Card className={classes.card}>
@@ -59,10 +64,10 @@ const FriendCard = ({firstname, middlename, lastname, imageUrl}) => {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
-                        Venner
+                        Legg til
                     </Button>
-                    <Button size="small" color="primary">
-                        Send melding
+                    <Button className={classes.Button} size="small" color="primary">
+                        Avslå
                     </Button>
                 </CardActions>
             </Card>
@@ -70,7 +75,7 @@ const FriendCard = ({firstname, middlename, lastname, imageUrl}) => {
     );
 }
 
-export default FriendCard;
+export default FriendRequestCard;
 
 
 

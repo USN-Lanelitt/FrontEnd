@@ -12,6 +12,8 @@ import Box from "@material-ui/core/Box";
 import {useMediaQuery} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import useTheme from "@material-ui/core/styles/useTheme";
+import Notification from "./feature/Notification/notification";
+import FriendRequestCard from "./components/friend/friend-requestCard";
 
 
 const useStyles = makeStyles(theme => ({
@@ -26,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-
 const Scaffold = () => {
     const classes = useStyles();
     const theme = useTheme();
@@ -37,13 +38,17 @@ const Scaffold = () => {
         <main>
             <Box p={extraSmallScreen ? 1 : 3}>
 
-            <Route path="/friendlist" exact component={FriendList} />
-            <Route path="/friendReques" exact component={FriendRequest} />
+            <Route exact path="/friendList" component={FriendList} />
+            <Route exact path="/friendReques" component={FriendRequest} />
             <PrivateRoute path="/friendAll" exact component={FriendAll} />
             <Route exact path="/category" componenet={CategoryCard}/>
             <Route exact path="/assets" component={AssetContainer}/>
             <Route exact path="/my/assets" component={MyAssetsList}/>
             <Route exact path="/new/asset" component={NewAsset}/>
+            <Route exact path="/notification" component={Notification}/>
+            <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
+
+
             </Box>
         </main>
     );

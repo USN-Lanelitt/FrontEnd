@@ -9,7 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
-import { fade, makeStyles, useTheme} from '@material-ui/core/styles';
+import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -43,6 +43,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import ProfileCard from "../profile/profileCard";
 import Logout from "../login/logout";
 import app from "../../fire";
+import FriendRequest from "../friend/friend-request";
+import Button from "@material-ui/core/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
+import NotificationList from "../notification/notificationList";
+import {Icon} from "@material-ui/core";
 
 
 
@@ -165,13 +170,22 @@ const useStyles = makeStyles(theme => ({
             duration: theme.transitions.duration.enteringScreen
         }),
         marginLeft: 0
-    }
+    },
+
+
 }));
 
 export default function NavBar(props) {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [openopp, setOpenopp] = React.useState(false);
     const [expanded, setExpand] = React.useState(false);
     const [state, setState] = React.useState({
         left: false,
@@ -190,7 +204,24 @@ export default function NavBar(props) {
         setExpand(!expanded);
     };
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleToggle = () => {
+        setOpen(prevOpen => !prevOpen);
+    };
+    const handleClickme = event => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleCloseme = () => {
+        setAnchorEl(null);
+    };
 
     const toggleDrawer = (side, open) => event => {
         if (
@@ -201,15 +232,40 @@ export default function NavBar(props) {
             return;
         }
 
-        setState({ ...state, [side]: open });
+        setState({...state, [side]: open});
     };
 
+    const StyledMenuItem = withStyles(theme => ({
+        root: {
+            '&:focus': {
+                backgroundColor: theme.palette.primary.main,
+                '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+                    color: theme.palette.common.white,
+                },
+            },
+        },
+    }))(MenuItem);
+    const StyledMenu = withStyles({
+        paper: {
+            border: '1px solid #d3d4d5',
+        },
+    })(props => (
+        <Menu
+            elevation={0}
+            getContentAnchorEl={null}
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+            }}
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+            }}
+            {...props}
+        />
+    ));
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     /*const handleProfileMenuOpen = event => {
         setAnchorEl(event.currentTarget);
@@ -232,39 +288,37 @@ export default function NavBar(props) {
     const menuId = 'primary-search-account-menu';
 
 
-
     const [loggedIn, setloggedIn] = React.useState(false);
 
-        app.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // User is signed in.
-                    setloggedIn(true);
+    app.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            setloggedIn(true);
 
-            } else {
-                // No user is signed in.
-                setloggedIn(false);
-            }
-        });
-
+        } else {
+            // No user is signed in.
+            setloggedIn(false);
+        }
+    });
 
 
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{vertical: 'top', horizontal: 'right'}}
             id={menuId}
             keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            transformOrigin={{vertical: 'top', horizontal: 'right'}}
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <Link to="/prof" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="/prof" style={{textDecoration: 'none', color: 'black'}}>
                 <MenuItem onClick={handleMenuClose}>Min Profil</MenuItem>
             </Link>
 
-            { !loggedIn ? <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
+            {!loggedIn ? <Link to="/login" style={{textDecoration: 'none', color: 'black'}}>
                 <MenuItem onClick={handleMenuClose}>Logg på</MenuItem>
-            </Link>  : <MenuItem onClick={()=>Logout()}>Logg av</MenuItem>   }
+            </Link> : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>}
 
         </Menu>
     );
@@ -274,47 +328,50 @@ export default function NavBar(props) {
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{vertical: 'top', horizontal: 'right'}}
             id={mobileMenuId}
             keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            transformOrigin={{vertical: 'top', horizontal: 'right'}}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            {loggedIn && ( <div> <MenuItem>
+            {loggedIn && (<div><MenuItem>
                 <IconButton aria-label="show 1 new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
+                        <MailIcon/>
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
             </MenuItem>
-            <MenuItem>
-                <IconButton aria-label="show 1 new notifications" color="inherit">
-                    <Badge badgeContent={11} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem> </div>)}
-            {!loggedIn ? <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
+                <MenuItem>
+                    <Link to="#">
+                    <IconButton aria-label="show 1 new notifications" color="inherit">
+                        <Badge badgeContent={11} color="secondary">
+                            <NotificationsIcon/>
+                        </Badge>
+                    </IconButton>
+                        </Link>
+
+                    <p>Notifications</p>
+                </MenuItem></div>)}
+            {!loggedIn ? <Link to="/login" style={{textDecoration: 'none', color: 'black'}}>
                     <MenuItem>
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Logg på</p>
-            </MenuItem> </Link>:
-            <MenuItem onClick={() => Logout()}>
-                <IconButton aria-label="show 1 new notifications" color="inherit">
-                        <ExitToAppIcon />
-                </IconButton>
-                <p>Logg ut</p>
-            </MenuItem>}
+                        <IconButton
+                            aria-label="account of current user"
+                            aria-controls="primary-search-account-menu"
+                            aria-haspopup="true"
+                            color="inherit"
+                        >
+                            <AccountCircle/>
+                        </IconButton>
+                        <p>Logg på</p>
+                    </MenuItem> </Link> :
+                <MenuItem onClick={() => Logout()}>
+                    <IconButton aria-label="show 1 new notifications" color="inherit">
+                        <ExitToAppIcon/>
+                    </IconButton>
+                    <p>Logg ut</p>
+                </MenuItem>}
         </Menu>
     );
 
@@ -325,7 +382,7 @@ export default function NavBar(props) {
             onClick={toggleDrawer(side, false)}
             onKeyDown={toggleDrawer(side, false)}
         >
-            <ProfileCard />
+            <ProfileCard/>
             <List
                 component="nav"
                 aria-labelledby="nested-list-subheader"
@@ -334,73 +391,73 @@ export default function NavBar(props) {
                         Snarveier
                     </ListSubheader>
                 }>
-                <Link to="/friendlist" style={{ textDecoration: 'none', color: 'black' }}>
-                <ListItem button>
-                    <ListItemIcon>
-                        <PeopleIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Venner" />
-                </ListItem>
+                <Link to="/friendAll" style={{textDecoration: 'none', color: 'black'}}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <PeopleIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary="Venner"/>
+                    </ListItem>
                 </Link>
 
                 <ListItem button>
                     <ListItemIcon>
-                        <EmailIcon />
+                        <EmailIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Meldinger" />
+                    <ListItemText primary="Meldinger"/>
                 </ListItem>
 
-                <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+                <Link to="/" style={{textDecoration: 'none', color: 'black'}}>
                     <ListItem button>
                         <ListItemIcon>
-                            <HomeIcon />
+                            <HomeIcon/>
                         </ListItemIcon>
-                        <ListItemText primary="Hjem" />
+                        <ListItemText primary="Hjem"/>
                     </ListItem>
 
                 </Link>
-                <Link to="/prof" style={{ textDecoration: 'none', color: 'black' }}>
+                <Link to="/prof" style={{textDecoration: 'none', color: 'black'}}>
                     <ListItem button>
                         <ListItemIcon>
-                            <StorageIcon />
+                            <StorageIcon/>
                         </ListItemIcon>
-                        <ListItemText primary="Mine Eiendeler" />
+                        <ListItemText primary="Mine Eiendeler"/>
                     </ListItem>
 
                 </Link>
                 <ListItem button>
                     <ListItemIcon>
-                        <QueryBuilderIcon />
+                        <QueryBuilderIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Utlånt Eiendeler" />
+                    <ListItemText primary="Utlånt Eiendeler"/>
                 </ListItem>
 
                 <ListItem button>
                     <ListItemIcon>
-                        <ShoppingBasketIcon />
+                        <ShoppingBasketIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Lånt Eiendeler" />
+                    <ListItemText primary="Lånt Eiendeler"/>
                 </ListItem>
 
             </List>
-            <Divider />
+            <Divider/>
             <List>
 
                 <ListItem button onClick={handleClick}>
                     <ListItemIcon>
-                        <SettingsIcon />
+                        <SettingsIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Innstillinger" />
-                    {expanded ? <ExpandLess /> : <ExpandMore />}
+                    <ListItemText primary="Innstillinger"/>
+                    {expanded ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <Link to="/editprof" style={{ textDecoration: 'none', color: 'black' }}>
+                        <Link to="/editprof" style={{textDecoration: 'none', color: 'black'}}>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
-                                    <EditIcon />
+                                    <EditIcon/>
                                 </ListItemIcon>
-                                <ListItemText primary="Rediger profil" />
+                                <ListItemText primary="Rediger profil"/>
                             </ListItem>
                         </Link>
                     </List>
@@ -408,16 +465,16 @@ export default function NavBar(props) {
 
                 <ListItem button>
                     <ListItemIcon>
-                        <WarningIcon />
+                        <WarningIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Rapporter" />
+                    <ListItemText primary="Rapporter"/>
                 </ListItem>
 
                 <ListItem button>
                     <ListItemIcon>
-                        <HelpIcon />
+                        <HelpIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Hjelp" />
+                    <ListItemText primary="Hjelp"/>
                 </ListItem>
 
             </List>
@@ -441,17 +498,17 @@ export default function NavBar(props) {
                             onClick={handleDrawerOpen}
                             className={clsx(classes.menuButton, open && classes.hide)}
                         >
-                            <MenuIcon />
+                            <MenuIcon/>
                         </IconButton>
                     </div>)}
-                    <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                    <Link to="/" style={{textDecoration: "none", color: "white"}}>
                         <Typography className={classes.title} variant="h5" noWrap>
                             Lånelitt
                         </Typography>
                     </Link>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
-                            <SearchIcon />
+                            <SearchIcon/>
                         </div>
                         <InputBase
                             placeholder="Søk…"
@@ -459,93 +516,95 @@ export default function NavBar(props) {
                                 root: classes.inputRoot,
                                 input: classes.inputInput
                             }}
-                            inputProps={{ "aria-label": "search" }}
+                            inputProps={{"aria-label": "search"}}
                         />
                     </div>
 
-                    <div className={classes.grow} />
+                    <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        {loggedIn && ( <div>
-                            <Link to="/admin" style={{ color: "white" }}>
-                                <IconButton  color="inherit">
+                        {loggedIn && (<div>
+                            <Link to="/admin" style={{color: "white"}}>
+                                <IconButton color="inherit">
                                     <Badge color="secondary">
-                                        <SupervisorAccountIcon />
+                                        <SupervisorAccountIcon/>
                                     </Badge>
                                 </IconButton>
                             </Link>
+
                             <IconButton aria-label="show 1 new mails" color="inherit">
                                 <Badge badgeContent={1} color="secondary">
-                                    <MailIcon />
+                                    <MailIcon/>
                                 </Badge>
                             </IconButton>
-                            <IconButton aria-label="show 1 new notifications" color="inherit">
-                                <Badge badgeContent={1} color="secondary">
-                                    <NotificationsIcon />
-                                </Badge>
+
+                            <IconButton aria-label="show 1 new notification" color="inherit">
+                            <NotificationList/>
                             </IconButton>
+
                         </div>)}
 
-                        {!loggedIn ? <Link to="/login" style={{ textDecoration: 'none', color: 'white' }}>
-                        <IconButton
-                            edge="end"
-                            aria-label="Signin"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                        </Link> :
-                        <IconButton
-                            edge="end"
-                            aria-label="Logout"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={() => Logout()}
-                            color="inherit"
-                        >
-                            <ExitToAppIcon />
-                        </IconButton>}
 
-                    </div>
-                    <div className={classes.sectionMobile}>
-                        <IconButton
+                            {!loggedIn ? <Link to="/login" style={{textDecoration: 'none', color: 'white'}}>
+                                    <IconButton
+                                        edge="end"
+                                        aria-label="Signin"
+                                        aria-controls={menuId}
+                                        aria-haspopup="true"
+                                        color="inherit"
+                                    >
+                                        <AccountCircle/>
+                                    </IconButton>
+                                </Link> :
+                                <IconButton
+                                    edge="end"
+                                    aria-label="Logout"
+                                    aria-controls={menuId}
+                                    aria-haspopup="true"
+                                    onClick={() => Logout()}
+                                    color="inherit"
+                                >
+                                    <ExitToAppIcon/>
+                                </IconButton>}
+
+                            </div>
+                            <div className={classes.sectionMobile}>
+                            <IconButton
                             aria-label="show more"
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"
                             onClick={handleMobileMenuOpen}
                             color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </div>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === "ltr" ? (
-                            <ChevronLeftIcon />
-                        ) : (
-                            <ChevronRightIcon />
-                        )}
-                    </IconButton>
-                </div>
-                {sideList("left")}
-            </Drawer>
-            {renderMobileMenu}
-            {renderMenu}
-        </div>
-    );
-}
+                            >
+                            <MoreIcon/>
+                            </IconButton>
+                            </div>
+                            </Toolbar>
+                            </AppBar>
+                            <Drawer
+                            className={classes.drawer}
+                            variant="persistent"
+                            anchor="left"
+                            open={open}
+                            classes={{
+                            paper: classes.drawerPaper
+                            }}
+                            >
+                            <div className={classes.drawerHeader}>
+                            <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === "ltr" ? (
+                            <ChevronLeftIcon/>
+                            ) : (
+                            <ChevronRightIcon/>
+                            )}
+                            </IconButton>
+                            </div>
+                            {sideList("left")}
+                            </Drawer>
+                            {renderMobileMenu}
+                            {renderMenu}
+                            </div>
+                            );
+                            }
 
 
 
