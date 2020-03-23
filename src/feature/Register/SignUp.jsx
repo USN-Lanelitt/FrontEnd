@@ -54,18 +54,18 @@ const useStyles = makeStyles(theme => ({
 const SignUp = ({ history }) => {
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
-        const { firstname, middlename, lastname, phone, email, password } = event.target.elements;
+        const { firstname, middlename, birthdate, lastname, phone, email, password } = event.target.elements;
         if (firstname.value.length === 0 || lastname.value.length === 0 || email.valueOf.length === 0 || password.value.length === 0){
             alert("Alle feltene som er merket med * må fylles ut");
         }else {
-            axios.post('/api/register',{
-                firstname:firstname.value,
-                middlename:middlename.value,
-                lastname:lastname.value,
-                birthdate:'2020-12-31',
-                phone:phone.value,
-                email:email.value,
-                password:password.value
+            axios.post('/api/register/',{
+                firstname: firstname.value,
+                middlename: middlename.value,
+                lastname: lastname.value,
+                birthdate: birthdate.value,
+                phone: phone.value,
+                email: email.value,
+                password: password.value
             })
                 .then(res=>{
                     console.log(res);
@@ -89,17 +89,9 @@ const SignUp = ({ history }) => {
     const [values, setValues] = useState({
         showPassword: false,
     });
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
-
-    const handleDateChange = date => {
-        setSelectedDate(date);
-    };
 
     const classes = useStyles();
 
-    const handleChange = prop => event => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
 
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});
@@ -132,7 +124,6 @@ const SignUp = ({ history }) => {
                                 id="sFirstname"
                                 label="Fornavn"
                                 autoFocus
-                                onChange={handleChange('firstname')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -144,7 +135,6 @@ const SignUp = ({ history }) => {
                                 id="sMiddlename"
                                 label="Mellomnavn"
                                 autoFocus
-                                onChange={handleChange('middlename')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -155,7 +145,6 @@ const SignUp = ({ history }) => {
                                 fullWidth
                                 id="sLastname"
                                 label="Etternavn"
-                                onChange={handleChange('lastname')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -165,7 +154,6 @@ const SignUp = ({ history }) => {
                                 fullWidth
                                 id="iMobile"
                                 label="Telefon (valgfri)"
-                                onChange={handleChange('phone')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -176,8 +164,6 @@ const SignUp = ({ history }) => {
                                     label="Fødselsdato"
                                     fullWidth
                                     format="dd/MM/yyyy"
-                                    value={selectedDate}
-                                    onChange={handleDateChange}
                                     required
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
@@ -193,7 +179,6 @@ const SignUp = ({ history }) => {
                                 fullWidth
                                 id="sEmail"
                                 label="Epost"
-                                onChange={handleChange('email')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -204,7 +189,6 @@ const SignUp = ({ history }) => {
                                     name="password"
                                     id="outlined-adornment-password"
                                     type={values.showPassword ? 'text' : 'password'}
-                                    onChange={handleChange('password')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
