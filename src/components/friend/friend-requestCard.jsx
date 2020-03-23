@@ -50,13 +50,7 @@ const FriendRequestCard = ({firstname, middlename, lastname, imageUrl}) => {
                             </CardMedia>
                             <Grid className={classes.text}>
                                 <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
-                                    {firstname}
-                                </Typography>
-                                <Typography className = {classes.mid_name} gutterBottom variant="h6" component="h2" display={"inline"}>
-                                    {middlename}
-                                </Typography>
-                                <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
-                                    {lastname}
+                                    {firstname} {middlename} {lastname}
                                 </Typography>
                             </Grid>
                         </Grid>

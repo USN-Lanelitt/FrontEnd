@@ -21,20 +21,19 @@ heroContent: {
 
 const FriendAll = () => {
     const user = app.auth().currentUser;
-    const [id, setId] = useState(sessionStorage.getItem('userId'));
+    const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
 
     useEffect(() => {
-
-        console.log("hello from AllFriends", id, sessionStorage.getItem('userId'));
-        axios.get('/user/'+id+'/friends')
+        console.log("hello from AllFriends", userId, sessionStorage.getItem('userId'));
+        axios.get('/user/'+userId+'/friends')
             .then(result => {
                 console.log(result.data);
                 setData(result.data);
             })
             .catch(e => console.log(e));
-    }, [setData, id]);
+    }, [setData, userId]);
 
     const classes = useStyles();
         return (
@@ -52,13 +51,12 @@ const FriendAll = () => {
                 <Grid item key={item} xs={12} sm={6} md={4}>
 
                 <FriendCard
-                    firstname={item.firstname}
-                    lastname={item.lastname}
-                    middlename={item.middlename}
-                    imageUrl={item.imageUrl}
+                    firstname={item.user2.firstName}
+                    lastname={item.user2.lastName}
+                    middlename={item.user2.middleName}
+                    imageUrl={item.user2.imageUrl}
                 />
                 </Grid>
-
 
             ))}
             </Grid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
@@ -7,6 +7,8 @@ import data from "../../components/friend/data";
 import FriendRequestCard from "../../components/friend/friend-requestCard";
 import Divider from "@material-ui/core/Divider";
 import AssetsList from "../Assets/assets-list";
+import app from "../../fire";
+import axios from "axios";
 
 
 //siden på mobil, (en hel side)
@@ -25,6 +27,19 @@ const useStyles = makeStyles(theme => ({
 
 const Notification = () => {
     const classes = useStyles();
+    const user = app.auth().currentUser;
+    const [id, setId] = useState(sessionStorage.getItem('userId'));
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        console.log("hello from Notification", id, sessionStorage.getItem('userId'));
+        axios.get('/user/' + id + '/friendRequests')
+            .then(result => {
+                console.log(result.data);
+                setData(result.data);
+            })
+            .catch(e => console.log(e));
+    }, [setData, id]);
 
     return (
         <React.Fragment>
@@ -36,10 +51,10 @@ const Notification = () => {
                 </Container>
             </div>
             <Container maxWidth="sm">
-            <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph >
-                Venneforespørsler
-                 <Divider />  
-            </Typography>
+                <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
+                    Venneforespørsler
+                    <Divider/>
+                </Typography>
             </Container>
             <Grid container spacing={4}>
 
@@ -47,13 +62,12 @@ const Notification = () => {
                     <Grid item key={item} xs={12} sm={6} md={4}>
 
                         <FriendRequestCard
-                            firstname={item.firstname}
-                            lastname={item.lastname}
-                            middlename={item.middlename}
+                            firstname={item.firstName}
+                            lastname={item.lastName}
+                            middlename={item.middleName}
                             imageUrl={item.imageUrl}
                         />
                     </Grid>
-
                 ))}
             </Grid>
 
@@ -61,27 +75,11 @@ const Notification = () => {
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
 
                     Låneforespørsler
-                <Divider />
+                    <Divider/>
                 </Typography>
                 <AssetsList/>
 
             </Container>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         </React.Fragment>
