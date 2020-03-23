@@ -60,26 +60,26 @@ const SignUp = ({ history }) => {
         }else {
             let iCode = 0;
             axios.post('/api/register',{
-                firstname:firstname.value,
-                middlename:middlename.value,
-                lastname:lastname.value,
-                birthdate:birthdate.value,
-                phone:phone.value,
-                email:email.value,
-                password:password.value
-            })
-                .then(res=>{
-                    console.log(res);
-                    console.log(res.data);
-                    iCode = parseInt(res.data['code']);
-                })
-                .then(()=>{
-                    if (iCode === 200) {
-                        try {
-                            app
-                                .auth()
-                                .createUserWithEmailAndPassword(email.value, password.value);
-                            history.push("/login");
+                                firstname:firstname.value,
+                                middlename:middlename.value,
+                                lastname:lastname.value,
+                                birthdate:birthdate.value,
+                                phone:phone.value,
+                                email:email.value,
+                                password:password.value
+                            })
+                                .then(res=>{
+                                    console.log(res);
+                                    console.log(res.data);
+                                    iCode = parseInt(res.data['code']);
+                                })
+                                .then(()=>{
+                                    if (iCode === 200) {
+                                        try {
+                                            app
+                                                .auth()
+                                                .createUserWithEmailAndPassword(email.value, password.value);
+                                            history.push("/login");
                             console.log(history)
                         } catch (error) {
                             alert(error);

@@ -63,7 +63,7 @@ export default function Home() {
           </Container>
         </div>
 
-        <Container className={classes.cardGrid} maxWidth="md">
+        <Container className={classes.cardGrid}>
           <div>
             <TextField
                 id="outlined-full-width"
