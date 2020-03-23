@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
 const SignUp = ({ history }) => {
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
-        const { firstname, middlename, lastname, phone, email, password } = event.target.elements;
+        const { firstname, middlename, birthdate, lastname, phone, email, password } = event.target.elements;
         if (firstname.value.length === 0 || lastname.value.length === 0){
             alert("Alle feltene som er merket med * må fylles ut");
         }else {
@@ -62,7 +62,7 @@ const SignUp = ({ history }) => {
                 firstname:firstname.value,
                 middlename:middlename.value,
                 lastname:lastname.value,
-                birthdate:'2020-12-31',
+                birthdate:birthdate.value,
                 phone:phone.value,
                 email:email.value,
                 password:password.value
@@ -172,6 +172,7 @@ const SignUp = ({ history }) => {
                         <Grid item xs={12}>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
+                                    name="birthdate"
                                     margin="normal"
                                     id="date-picker-dialog"
                                     label="Fødselsdato"

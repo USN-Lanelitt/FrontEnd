@@ -24,6 +24,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import app from "../../fire";
 import { AuthContext } from "../../Auth";
 import Copyright from '../../components/home/Copyright';
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -53,38 +54,30 @@ const Login = ({ history }) => {
             alert("Alle feltene må fylles ut");
         }
         else {
-            try {
-                await app
-                    .auth()
-                    .signInWithEmailAndPassword(email.value, password.value);
-                history.push("/");
-            } catch (error) {
-                alert("Feil brukernavn og passord");
-
-            }
-        }}, [history]);
-
-    function UserLogin() {
-            fetch('/api/login', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: values.email,
-                    password: values.password
+            axios.get('/api/login/' + email.value + '/' + password.value)
+                .then(res=>{
+                    console.log(res);
+                    console.log(res.data);
+                    sessionStorage.setItem('userId', res[0]['id']);
+                    sessionStorage.setItem('firstname', res[0]['firstname']);
+                    sessionStorage.setItem('middlename', res[0]['middlename']);
+                    sessionStorage.setItem('lastname', res[0]['lastname']);
+                    sessionStorage.setItem('mobile', res[0]['mobile']);
                 })
-            })
-                .then((Response) => Response.json())
-                .then((Result) => {
-                    console.log(Result);
-                    sessionStorage.setItem('userId', Result[0]['id']);
-                    sessionStorage.setItem('firstname', Result[0]['firstname']);
-                    sessionStorage.setItem('middlename', Result[0]['middlename']);
-                    sessionStorage.setItem('lastname', Result[0]['lastname']);
-                    sessionStorage.setItem('mobile', Result[0]['mobile']);
+                .then(()=>{
+                    try {
+                        app
+                            .auth()
+                            .signInWithEmailAndPassword(email.value, password.value);
+                        history.push("/");
+                    } catch (error) {
+                        alert("Feil brukernavn og passord");
+
+                    }
                 })
+                .catch(e=>console.log(e));
         }
+        }, [history]);
 
     const classes = useStyles();
 
@@ -171,7 +164,6 @@ const Login = ({ history }) => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={()=> UserLogin()}
                     >
                         Logg inn
                     </Button>
