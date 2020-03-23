@@ -37,7 +37,6 @@ const Scaffold = () => {
     return (
         <main>
             <Box p={extraSmallScreen ? 1 : 3}>
-
             <Route exact path="/friendList" component={FriendList} />
             <Route exact path="/friendReques" component={FriendRequest} />
             <PrivateRoute path="/friendAll" exact component={FriendAll} />
@@ -47,8 +46,6 @@ const Scaffold = () => {
             <Route exact path="/new/asset" component={NewAsset}/>
             <Route exact path="/notification" component={Notification}/>
             <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
-
-
             </Box>
         </main>
     );
