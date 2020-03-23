@@ -27,6 +27,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import BrukerVilkar from '../../components/register/termsandconditions';
 import Copyright from '../../components/home/Copyright';
+import axios from 'axios';
 
 
 const useStyles = makeStyles(theme => ({
@@ -49,64 +50,52 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
 const SignUp = ({ history }) => {
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
-        const { email, password } = event.target.elements;
-        try {
-             app
-                .auth()
-                .createUserWithEmailAndPassword(email.value, password.value)
-                 .then(() => Register());
-            history.push("/login");
-            console.log(history)
-        } catch (error) {
-            alert(error);
+        const { firstname, middlename, lastname, phone, email, password } = event.target.elements;
+        if (firstname.value.length === 0 || lastname.value.length === 0 || email.valueOf.length === 0 || password.value.length === 0){
+            alert("Alle feltene som er merket med * må fylles ut");
+        }else {
+            axios.post('/api/register',{
+                firstname:firstname.value,
+                middlename:middlename.value,
+                lastname:lastname.value,
+                birthdate:'2020-12-31',
+                phone:phone.value,
+                email:email.value,
+                password:password.value
+            })
+                .then(res=>{
+                    console.log(res);
+                    console.log(res.data);
+                })
+                .then(()=>{
+                    try {
+                        app
+                            .auth()
+                            .createUserWithEmailAndPassword(email.value, password.value);
+                        history.push("/login");
+                        console.log(history)
+                    } catch (error) {
+                        alert(error);
+                    }
+                })
+                .catch(e=>console.log(e));
         }
     }, [history]);
 
-    function Register() {
-        fetch('http://127.0.0.1:8000/api/register', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-                firstname: values.firstname,
-                middlename: values.middlename,
-                lastname: values.lastname,
-                birthdate: selectedDate,
-                phone: values.phone,
-                email: values.email,
-                password: values.password
-            })
-        })
-            .then((Response) => Response.json())
-            .then((Result) => {
-                alert(Result)
-            })
-    }
-
-
-    const classes = useStyles();
-
+    const [values, setValues] = useState({
+        showPassword: false,
+    });
     const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
 
     const handleDateChange = date => {
         setSelectedDate(date);
     };
 
-    const [values, setValues] = useState({
-        firstname: '',
-        middlename: '',
-        lastname: '',
-        phone: '',
-        birthdate: '',
-        email: '',
-        password: '',
-        showPassword: false,
-    });
-
+    const classes = useStyles();
 
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
@@ -151,7 +140,6 @@ const SignUp = ({ history }) => {
                                 name="middlename"
                                 autoComplete="middlename"
                                 variant="outlined"
-                                required
                                 fullWidth
                                 id="sMiddlename"
                                 label="Mellomnavn"
@@ -190,6 +178,7 @@ const SignUp = ({ history }) => {
                                     format="dd/MM/yyyy"
                                     value={selectedDate}
                                     onChange={handleDateChange}
+                                    required
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}
@@ -205,7 +194,6 @@ const SignUp = ({ history }) => {
                                 id="sEmail"
                                 label="Epost"
                                 onChange={handleChange('email')}
-
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -258,9 +246,9 @@ const SignUp = ({ history }) => {
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                                <Link href="/login" variant="body2" style={{ textDecoration: "none" }}>
-                                    Har allerede en konto? Logg på!
-                                </Link>
+                            <Link href="/login" variant="body2" style={{ textDecoration: "none" }}>
+                                Har allerede en konto? Logg på!
+                            </Link>
                         </Grid>
                     </Grid>
                 </form>
