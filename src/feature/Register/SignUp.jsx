@@ -58,6 +58,7 @@ const SignUp = ({ history }) => {
         if (firstname.value.length === 0 || lastname.value.length === 0){
             alert("Alle feltene som er merket med * må fylles ut");
         }else {
+            let iCode = 0;
             axios.post('/api/register',{
                 firstname:firstname.value,
                 middlename:middlename.value,
@@ -70,16 +71,22 @@ const SignUp = ({ history }) => {
                 .then(res=>{
                     console.log(res);
                     console.log(res.data);
+                    iCode = parseInt(res.data['code']);
                 })
                 .then(()=>{
-                    try {
-                        app
-                            .auth()
-                            .createUserWithEmailAndPassword(email.value, password.value);
-                        history.push("/login");
-                        console.log(history)
-                    } catch (error) {
-                        alert(error);
+                    if (iCode === 200) {
+                        try {
+                            app
+                                .auth()
+                                .createUserWithEmailAndPassword(email.value, password.value);
+                            history.push("/login");
+                            console.log(history)
+                        } catch (error) {
+                            alert(error);
+                        }
+                    }
+                    else {
+                        alert('FEIL: feil ved registrering');
                     }
                 })
                 .catch(e=>console.log(e));
@@ -140,11 +147,9 @@ const SignUp = ({ history }) => {
                                 name="middlename"
                                 autoComplete="middlename"
                                 variant="outlined"
-                                required
                                 fullWidth
                                 id="sMiddlename"
                                 label="Mellomnavn"
-                                autoFocus
                                 onChange={handleChange('middlename')}
                             />
                         </Grid>
@@ -177,7 +182,7 @@ const SignUp = ({ history }) => {
                                     id="date-picker-dialog"
                                     label="Fødselsdato"
                                     fullWidth
-                                    format="dd/MM/yyyy"
+                                    format="dd.MM.yyyy"
                                     value={selectedDate}
                                     onChange={handleDateChange}
                                     KeyboardButtonProps={{

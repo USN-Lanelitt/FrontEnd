@@ -54,30 +54,35 @@ const Login = ({ history }) => {
             alert("Alle feltene må fylles ut");
         }
         else {
+            let iCode = 0;
             axios.get('/api/login/' + email.value + '/' + password.value)
                 .then(res=>{
                     console.log(res);
                     console.log(res.data);
-                    if (res.data.length > 0) {
+                    iCode = parseInt(res.data['code']);
+                    if (typeof res.data[0] !== 'undefined') {
                         sessionStorage.setItem('userId', res.data[0]['id']);
                         sessionStorage.setItem('firstname', res.data[0]['firstname']);
                         sessionStorage.setItem('middlename', res.data[0]['middlename']);
                         sessionStorage.setItem('lastname', res.data[0]['lastname']);
                         sessionStorage.setItem('phone', res.data[0]['phone']);
                     }
-                    else
-                        alert('FEIL');
                 })
                 .then(()=>{
-                    try {
-                        //alert(sessionStorage.getItem('userId'));
-                        app
-                            .auth()
-                            .signInWithEmailAndPassword(email.value, password.value);
-                        history.push("/");
-                    } catch (error) {
-                        alert("Feil brukernavn og passord");
+                    if (iCode === 200) {
+                        try {
+                            //alert(sessionStorage.getItem('userId'));
+                            app
+                                .auth()
+                                .signInWithEmailAndPassword(email.value, password.value);
+                            history.push("/");
+                        } catch (error) {
+                            alert("Feil brukernavn og passord");
 
+                        }
+                    }
+                    else {
+                        alert('FEIL ved innlogging');
                     }
                 })
                 .catch(e=>console.log(e));

@@ -105,7 +105,7 @@ export default function ProfileCard(){
     let [id] = useState('');
     let [firstname] = useState('');
     let [lastname] = useState('');
-    let [mobile] = useState('');
+    let [phone] = useState('');
 
 
   if (user != null) {
@@ -114,7 +114,7 @@ export default function ProfileCard(){
       id = sessionStorage.getItem('userId');
       firstname = sessionStorage.getItem('firstname');
       lastname = sessionStorage.getItem('lastname');
-      mobile = sessionStorage.getItem('mobile');
+      phone = sessionStorage.getItem('phone');
 
 
     });
@@ -142,7 +142,7 @@ export default function ProfileCard(){
         <Divider light />
         <Box display={"flex"}>
           <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-            <p className={styles.statLabel}>{"Telefon: " + mobile}</p>
+            <p className={styles.statLabel}>{"Telefon: " + phone}</p>
             <p className={styles.statValue}>{"Bruker ID: " + id}</p>
           </Box>
         </Box>
