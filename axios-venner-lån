@@ -1,6 +1,6 @@
-
 ------------------------------------------------------UserConnections---------------------------------------------------
-Funksjon getFriend - url: /user/{iUserId}/friend/{iFriendId}           - method GET
+
+Funksjon getFriend - url: /user/{iUserId}/friend/{iFriendId}  - method GET
 (hent en venn)
 
 Send til backend:
@@ -20,7 +20,7 @@ const [data, setData] = useState([]);
 
 useEffect(() => {
 console.log("", userId, sessionStorage.getItem('userId'));
-axios.get('/user/'+iUserId+'/friend/'+iFriendId')
+axios.get('/user/'+userId+'/friend/'+friendId')
       .then(result => {
       	    if (result.status === 200) {
       		     console.log(result.data);
@@ -30,8 +30,8 @@ axios.get('/user/'+iUserId+'/friend/'+iFriendId')
     .catch(e => console.log(e));
 }, [setData, userId]);
 
-
-Funksjon getFriends - url: /user/{iUserId}/friends                 - method GET
+----------------------------------------------------------------------------------
+Funksjon getFriends - url: /user/{iUserId}/friends - method GET
 (hent alle venner)
 
 Send til backend:
@@ -44,6 +44,7 @@ Send til frontend:
 · friendMiddleName
 · friendLastName
 · friendProfileImage
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
@@ -60,7 +61,9 @@ axios.get('/user/'+userId+'/friends')
     .catch(e => console.log(e));
 }, [setData, userId]);
 
-Funksjon sendFriendRequest - url: /user/{iUserId}/request/{iFriendId}      - method POST
+----------------------------------------------------------------------------------------
+
+Funksjon sendFriendRequest - url: /user/{iUserId}/request/{iFriendId} - method POST
 (send venneforespørsel)
 
 Send til backend:
@@ -82,9 +85,9 @@ useEffect(() => {
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+----------------------------------------------------------------------------------------
 
-
-Funksjon getFriendRequests - url: /user/{iUserId}/friendRequests             - method GET
+Funksjon getFriendRequests - url: /user/{iUserId}/friendRequests - method GET
 (alle mottatt venneforespørsler)
 
 Send til backend:
@@ -97,6 +100,7 @@ Send til frontend:
 · user2MiddleName
 · user2LastName
 · user2ProfileImage
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
@@ -113,14 +117,17 @@ axios.get('/user/’+userId+’/friendRequests')
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+----------------------------------------------------------------------------------------
+
 Funksjon replyFriendRequest -
-Url: /user/{iUserId}/friendRequest/{iFriendId}/{iStatus}                   - method POST
+Url: /user/{iUserId}/friendRequest/{iFriendId}/{iStatus}- method POST
 (svar på venneforespørsel)
 
 Send til backend:
 · userId
 · userId2 (Bruker som har sendt venneforespørsel sin id)
 · status (1= godkjent, 2=avslå)
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
@@ -136,6 +143,7 @@ useEffect(() => {
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+----------------------------------------------------------------------------------------
 
 Funksjon deleteFriendship - url: /user/{iUserId}/friend/{iFriendId}/delete - method DELETE
 (slett venn)
@@ -144,8 +152,8 @@ Send til backend:
 · userId
 · friendId (Venn som skal slettes sin id)
 
-const [userId, setId] = useState(sessionStorage.getItem('userId'));
 
+const [userId, setId] = useState(sessionStorage.getItem('userId'));
 useEffect(() => {
     console.log("", userId, sessionStorage.getItem('userId'));
     axios.post('/user/'+userId+'/friend/'+friendId+'/delete')
@@ -157,7 +165,9 @@ useEffect(() => {
     .catch(e => console.log(e));
 }, [setData, userId]);
 
-Funksjon getUserSearch - url: /user/{iUserId}/search/{sSearch}              - method GET
+----------------------------------------------------------------------------------------
+
+Funksjon getUserSearch - url: /user/{iUserId}/search/{sSearch}- method GET
 (søk opp bruker med søkeord)
 
 Send til backend:
@@ -171,6 +181,7 @@ Send til frontend:
 · user2MiddleName
 · user2LastName
 · user2ProfileImage
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
@@ -187,14 +198,17 @@ axios.get('/user/’+userId+’/search/'+search')
     .catch(e => console.log(e));
 }, [setData, userId]);
 
------------------------------------------------------------Loans--------------------------------------------------------
-Funksjon sendLoanRequest - url: /user/{iUserId}/asset/{iAssetId}/request    - method POST
+
+-----------------------------------------------------------Loans------------------------------------------------------------
+
+Funksjon sendLoanRequest - url: /user/{iUserId}/asset/{iAssetId}/request- method POST
 (send låneforespørsel)
 Send til backend:
 •	userId
 •	assetId
 •	startDate (ønsket av bruker) -> sendes i body
 •	endDate (ønsket av bruker) -> sendes i body
+
 
 const {startDate, endDate} = event.target.elements;
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -213,9 +227,9 @@ useEffect(() => {
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+----------------------------------------------------------------------------------------
 
-
-Funksjon getLoanRequest - url: /user/{iUserId}/loanRequest                   - method GET
+Funksjon getLoanRequest - url: /user/{iUserId}/loanRequest - method GET
 (hent alle mottatte låneforespørsler)
 Send til backend:
 •	userid
@@ -228,6 +242,7 @@ Send til frontend:
 •	loanerMiddleName
 •	loanerLastName
 •	loanerNickname
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
@@ -244,8 +259,9 @@ axios.get('/user/’+userId+’/loanRequest)
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+----------------------------------------------------------------------------------------
 
-Funksjon getLoanRequestStatus - url: /user/{iUserId}/loanRequest/status        - method GET
+Funksjon getLoanRequestStatus - url: /user/{iUserId}/loanRequest/status - method GET
 (få status på alle sendte låneforsespørsler)
 Send til backend:
 •	userId
@@ -261,7 +277,7 @@ Send til frontend:
 •	assetName
 •	assetImage
 •	loanStatus
-//Groups: loanStatus
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
@@ -277,15 +293,15 @@ axios.get('/user/’+userId+’/loanRequest/status)
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+----------------------------------------------------------------------------------------
 
-Funksjon replyLoanRequest -
-url: /user/{iUserid}/loanRequest/{iLoanId}/{iStatus}                      - method POST
+Funksjon replyLoanRequest - url:/user/{iUserid}/loanRequest/{iLoanId}/{iStatus} - method POST
 (svar på låneforespørsel)
 Send til backend:
 •	userId
 •	loanId
-•	status (Her tenker jeg at det holder å sende med et
-tall ("accepted" =1, "denied" =2))
+•	status (Her tenker jeg at det holder å sende med ettall ("accepted" =1, "denied" =2))
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
@@ -300,8 +316,9 @@ axios.post('/user/'+userId+'/loanRequest/'+loanId+'/'+status')
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+----------------------------------------------------------------------------------------
 
-Funksjon getAcceptedRequests - url: /user/{iUserId}/loanAccepted             - method GET
+Funksjon getAcceptedRequests - url: /user/{iUserId}/loanAccepted - method GET
 (alle godkjente forespørsler brukeren har sendt)
 Send til backend:
 •	userId
@@ -316,7 +333,7 @@ Send til frontend:
 •	assetId
 •	assetName
 •	AssetImage
-//Groups: loanStatus
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
@@ -332,7 +349,9 @@ axios.get('/user/'+userId+'/loanAccepted)
     .catch(e => console.log(e));
 }, [setData, userId]);
 
-Funksjon getLoans - url: /user/{iUserId}/loans                            - method GET
+----------------------------------------------------------------------------------------
+
+Funksjon getLoans - url: /user/{iUserId}/loans- method GET
 (Henter alle låneforespørsler brukern har godkjent)
 Send til backend:
 •	userid
@@ -345,7 +364,7 @@ Send til frontend:
 •	loanerMiddleName
 •	loanerLastName
 •	loanerNickname
-//Groups: loanRequest
+
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
