@@ -30,7 +30,21 @@ axios.get('/user/'+userId+'/friend/'+friendId')
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+
+{data.map(user => (
+    <Grid item key={user} xs={12} sm={6} md={4}>
+        <FriendCard
+            firstname={user.user2.firstName}
+            lastname={user.user2.lastName}
+            middlename={user.user2.middleName}
+            imageUrl={user.user2.assetImages}
+        />
+    </Grid>
+))}
+
+
 ----------------------------------------------------------------------------------
+
 Funksjon getFriends - url: /user/{iUserId}/friends - method GET
 (hent alle venner)
 
@@ -60,6 +74,19 @@ axios.get('/user/'+userId+'/friends')
        })
     .catch(e => console.log(e));
 }, [setData, userId]);
+
+
+{data.map(user => (
+    <Grid item key={user} xs={12} sm={6} md={4}>
+        <FriendCard
+            firstname={user.user2.firstName}
+            lastname={user.user2.lastName}
+            middlename={user.user2.middleName}
+            imageUrl={user.user2.assetImages}
+        />
+    </Grid>
+))}
+
 
 ----------------------------------------------------------------------------------------
 
@@ -116,6 +143,18 @@ axios.get('/user/’+userId+’/friendRequests')
        })
     .catch(e => console.log(e));
 }, [setData, userId]);
+
+
+{data.map(user => (
+    <Grid item key={user} xs={12} sm={6} md={4}>
+        <FriendCard
+            firstname={user.user1.firstName}
+            lastname={user.user1.lastName}
+            middlename={user.user1.middleName}
+            imageUrl={user.user1.assetImages}
+        />
+    </Grid>
+))}
 
 ----------------------------------------------------------------------------------------
 
@@ -199,6 +238,17 @@ axios.get('/user/’+userId+’/search/'+search')
 }, [setData, userId]);
 
 
+{data.map(user => (
+    <Grid item key={user} xs={12} sm={6} md={4}>
+        <FriendCard
+            firstname={user.firstName}
+            lastname={user.lastName}
+            middlename={user.middleName}
+            imageUrl={user.assetImages}
+        />
+    </Grid>
+))}
+
 -----------------------------------------------------------Loans------------------------------------------------------------
 
 Funksjon sendLoanRequest - url: /user/{iUserId}/asset/{iAssetId}/request- method POST
@@ -238,6 +288,9 @@ Send til frontend:
 •	loanId
 •	assetId
 •	assetName
+•	comment
+•	dateStart
+•	dateEnd
 •	loanerFirstName
 •	loanerMiddleName
 •	loanerLastName
@@ -259,6 +312,23 @@ axios.get('/user/’+userId+’/loanRequest)
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+{data.map(user => (
+    <Grid item key={user} xs={12} sm={6} md={4}>
+        <FriendCard
+            firstname={user.users.firstName}
+            lastname={user.users.lastName}
+            middlename={user.users.middleName}
+            imageUrl={user.users.assetImages}
+        />
+
+            Skal det være et assetcard her som viser hva personen ønsker å låne med info om lånet?
+            assetname={user.assets.assetName}
+            comment={user.comment}
+            dateStart={user.dateStart}
+            dateEnd={user.dateEnd}
+    </Grid>
+))}
+
 ----------------------------------------------------------------------------------------
 
 Funksjon getLoanRequestStatus - url: /user/{iUserId}/loanRequest/status - method GET
@@ -275,8 +345,13 @@ Send til frontend:
 •	ownerProfileImage
 •	assetId
 •	assetName
+•	description
+•	assetCondition
 •	assetImage
 •	loanStatus
+•	comment
+•	dateStart
+•	dateEnd
 
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -292,6 +367,27 @@ axios.get('/user/’+userId+’/loanRequest/status)
        })
     .catch(e => console.log(e));
 }, [setData, userId]);
+
+{data.map(loan => (
+    <Grid item key={loan} xs={12} sm={6} md={4}>
+        <FriendCard
+            firstname={loan.assets.users.firstName}
+            lastname={loan.assets.users.lastName}
+            middlename={loan.assets.users.middleName}
+            imageUrl={loan.assets.users.assetImages}
+        />
+
+            Skal det være et assetcard her som viser eiendelen?
+            assetname={loan.assets.assetName}
+            description={loan.assets.description}
+            assetCondition={loan.assets.assetCondition}
+            assetImage={loan.assets.assetImages}
+            loanStatus={loan.statusLoan.status}
+            comment={loan.comment}
+            dateStart={loan.dateStart}
+            dateEnd={loan.dateEnd}
+    </Grid>
+))}
 
 ----------------------------------------------------------------------------------------
 
@@ -332,7 +428,13 @@ Send til frontend:
 •	ownerProfileImage
 •	assetId
 •	assetName
-•	AssetImage
+•	description
+•	assetCondition
+•	assetImage
+•	loanStatus
+•	comment
+•	dateStart
+•	dateEnd
 
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -349,6 +451,28 @@ axios.get('/user/'+userId+'/loanAccepted)
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+{data.map(loan => (
+    <Grid item key={loan} xs={12} sm={6} md={4}>
+        <FriendCard
+            firstname={loan.assets.users.firstName}
+            lastname={loan.assets.users.lastName}
+            middlename={loan.assets.users.middleName}
+            imageUrl={loan.assets.users.assetImages}
+        />
+
+            Skal det være et assetcard her som viser eiendelen?
+            assetname={loan.assets.assetName}
+            description={loan.assets.description}
+            assetCondition={loan.assets.assetCondition}
+            assetImage={loan.assets.assetImages}
+            loanStatus={loan.statusLoan.status}
+            comment={loan.comment}
+            dateStart={loan.dateStart}
+            dateEnd={loan.dateEnd}
+    </Grid>
+))}
+
+
 ----------------------------------------------------------------------------------------
 
 Funksjon getLoans - url: /user/{iUserId}/loans- method GET
@@ -358,12 +482,16 @@ Send til backend:
 
 Send til frontend:
 •	loanId
-•	assetId
-•	assetName
 •	loanerFirstName
 •	loanerMiddleName
 •	loanerLastName
 •	loanerNickname
+•	assetId
+•	assetName
+•	assetImage
+•	comment
+•	dateStart
+•	dateEnd
 
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -380,4 +508,20 @@ axios.get('/user/'+userId+'/loans)
     .catch(e => console.log(e));
 }, [setData, userId]);
 
+{data.map(loan => (
+    <Grid item key={loan} xs={12} sm={6} md={4}>
+        <FriendCard
+            firstname={loan.users.firstName}
+            lastname={loan.users.lastName}
+            middlename={loan.users.middleName}
+            imageUrl={loan.users.assetImages}
+        />
 
+            Skal det være et assetcard her som viser eiendelen?
+            assetname={loan.assets.assetName}
+            assetImage={loan.assets.assetImages}
+            comment={loan.comment}
+            dateStart={loan.dateStart}
+            dateEnd={loan.dateEnd}
+    </Grid>
+))}
