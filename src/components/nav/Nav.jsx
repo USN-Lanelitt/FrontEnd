@@ -379,7 +379,7 @@
                                 </Toolbar>
                                 </AppBar>
 
-                {/*----------Sidepanel knapp--------------*/}
+                {/*----------Sidepanel knapp-------------*/}
                                 <Drawer
                                 className={classes.drawer}
                                 variant="persistent"
