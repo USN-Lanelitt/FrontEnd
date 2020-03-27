@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from 'react';
-import { withRouter } from "react-router";
+import React, {useCallback, useState} from 'react';
+import {withRouter} from "react-router";
 import app from "../../fire";
 import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
-import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
+import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
@@ -51,45 +51,44 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SignUp = ({ history }) => {
+const SignUp = ({history}) => {
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
-        const { firstname, middlename, birthdate, lastname, phone, email, password } = event.target.elements;
-        if (firstname.value.length === 0 || lastname.value.length === 0){
+        const {firstname, middlename, birthdate, lastname, phone, email, password} = event.target.elements;
+        if (firstname.value.length === 0 || lastname.value.length === 0) {
             alert("Alle feltene som er merket med * må fylles ut");
-        }else {
+        } else {
             let iCode = 0;
-            axios.post('/api/register',{
-                                firstname:firstname.value,
-                                middlename:middlename.value,
-                                lastname:lastname.value,
-                                birthdate:birthdate.value,
-                                phone:phone.value,
-                                email:email.value,
-                                password:password.value
-                            })
-                                .then(res=>{
-                                    console.log(res);
-                                    console.log(res.data);
-                                    iCode = parseInt(res.data['code']);
-                                })
-                                .then(()=>{
-                                    if (iCode === 200) {
-                                        try {
-                                            app
-                                                .auth()
-                                                .createUserWithEmailAndPassword(email.value, password.value);
-                                            history.push("/login");
+            axios.post('/api/register', {
+                firstname: firstname.value,
+                middlename: middlename.value,
+                lastname: lastname.value,
+                birthdate: birthdate.value,
+                phone: phone.value,
+                email: email.value,
+                password: password.value
+            })
+                .then(res => {
+                    console.log(res);
+                    console.log(res.data);
+                    iCode = parseInt(res.data['code']);
+                })
+                .then(() => {
+                    if (iCode === 200) {
+                        try {
+                            app
+                                .auth()
+                                .createUserWithEmailAndPassword(email.value, password.value);
+                            history.push("/login");
                             console.log(history)
                         } catch (error) {
                             alert(error);
                         }
-                    }
-                    else {
+                    } else {
                         alert('FEIL: feil ved registrering');
                     }
                 })
-                .catch(e=>console.log(e));
+                .catch(e => console.log(e));
         }
     }, [history]);
 
@@ -105,7 +104,7 @@ const SignUp = ({ history }) => {
     const classes = useStyles();
 
     const handleChange = prop => event => {
-        setValues({ ...values, [prop]: event.target.value });
+        setValues({...values, [prop]: event.target.value});
     };
 
     const handleClickShowPassword = () => {
@@ -252,7 +251,7 @@ const SignUp = ({ history }) => {
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="/login" variant="body2" style={{ textDecoration: "none" }}>
+                            <Link href="/login" variant="body2" style={{textDecoration: "none"}}>
                                 Har allerede en konto? Logg på!
                             </Link>
                         </Grid>

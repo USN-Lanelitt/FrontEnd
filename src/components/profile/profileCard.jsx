@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import cx from 'clsx';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
-import { useFadedShadowStyles } from '@mui-treasury/styles/shadow/faded';
-import { useGutterBorderedGridStyles } from '@mui-treasury/styles/grid/gutterBordered';
+import {useFadedShadowStyles} from '@mui-treasury/styles/shadow/faded';
+import {useGutterBorderedGridStyles} from '@mui-treasury/styles/grid/gutterBordered';
 import {grey} from "@material-ui/core/colors";
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,10 +22,10 @@ const useStyles = makeStyles(theme => ({
     },
     margin: {
         margin: theme.spacing(1),
-      },
-      extendedIcon: {
+    },
+    extendedIcon: {
         marginRight: theme.spacing(1),
-      },
+    },
     avatar: {
         width: 60,
         height: 60,
@@ -61,43 +61,41 @@ const useStyles = makeStyles(theme => ({
 
 const StyledBadge = withStyles(theme => ({
     badge: {
-      backgroundColor: '#44b700',
-      color: '#44b700',
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      '&::after': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: '$ripple 1.2s infinite ease-in-out',
-        border: '1px solid currentColor',
-        content: '""',
-      },
+        backgroundColor: '#44b700',
+        color: '#44b700',
+        boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+        '&::after': {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            borderRadius: '50%',
+            animation: '$ripple 1.2s infinite ease-in-out',
+            border: '1px solid currentColor',
+            content: '""',
+        },
     },
     '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
+        '0%': {
+            transform: 'scale(.8)',
+            opacity: 1,
+        },
+        '100%': {
+            transform: 'scale(2.4)',
+            opacity: 0,
+        },
     },
-  }))(Badge);
+}))(Badge);
 
-  
 
-export default function ProfileCard(){
+export default function ProfileCard() {
     const styles = useStyles();
     const shadowStyles = useFadedShadowStyles();
     const borderedGridStyles = useGutterBorderedGridStyles({
         borderColor: 'rgba(0, 0, 0, 0.08)',
         height: '50%',
     });
-
 
 
     const user = app.auth().currentUser;
@@ -108,45 +106,45 @@ export default function ProfileCard(){
     let [phone] = useState('');
 
 
-  if (user != null) {
-    user.providerData.forEach(function (profile) {
-      email = profile.email;
-      id = sessionStorage.getItem('userId');
-      firstname = sessionStorage.getItem('firstname');
-      lastname = sessionStorage.getItem('lastname');
-      phone = sessionStorage.getItem('phone');
+    if (user != null) {
+        user.providerData.forEach(function (profile) {
+            email = profile.email;
+            id = sessionStorage.getItem('userId');
+            firstname = sessionStorage.getItem('firstname');
+            lastname = sessionStorage.getItem('lastname');
+            phone = sessionStorage.getItem('phone');
 
 
-    });
-  }
-    
-    
+        });
+    }
+
+
     return (
-      <Card className={cx(styles.card, shadowStyles.root)}>
-        <CardContent>
-          <IconButton>
-            <StyledBadge
-              overlap="circle"
-              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-              variant="dot"
-            >
-              <Avatar
-                className={styles.avatar}
-                src={"https://i.pravatar.cc/300"}
-              />
-            </StyledBadge>
-          </IconButton>
-          <h3 className={styles.heading}>{firstname} {lastname}</h3>
-          <span className={styles.subheader}>{"Epost: " + email}</span>
-        </CardContent>
-        <Divider light />
-        <Box display={"flex"}>
-          <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-            <p className={styles.statLabel}>{"Telefon: " + phone}</p>
-            <p className={styles.statValue}>{"Bruker ID: " + id}</p>
-          </Box>
-        </Box>
-      </Card>
+        <Card className={cx(styles.card, shadowStyles.root)}>
+            <CardContent>
+                <IconButton>
+                    <StyledBadge
+                        overlap="circle"
+                        anchorOrigin={{vertical: "bottom", horizontal: "right"}}
+                        variant="dot"
+                    >
+                        <Avatar
+                            className={styles.avatar}
+                            src={"https://i.pravatar.cc/300"}
+                        />
+                    </StyledBadge>
+                </IconButton>
+                <h3 className={styles.heading}>{firstname} {lastname}</h3>
+                <span className={styles.subheader}>{"Epost: " + email}</span>
+            </CardContent>
+            <Divider light/>
+            <Box display={"flex"}>
+                <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
+                    <p className={styles.statLabel}>{"Telefon: " + phone}</p>
+                    <p className={styles.statValue}>{"Bruker ID: " + id}</p>
+                </Box>
+            </Box>
+        </Card>
     );
 };
 

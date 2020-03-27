@@ -23,15 +23,16 @@ export default function ForgotPassword() {
     return (
         <div>
             <Link href="#" variant="body2">
-            <Typography variant="outlined" color="primary" onClick={handleClickOpen}>
-                Glemt passord?
-            </Typography>
+                <Typography variant="outlined" color="primary" onClick={handleClickOpen}>
+                    Glemt passord?
+                </Typography>
             </Link>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Glemt Passord</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Vennligst skriv ned ditt epost adresse for å få tilsendt link med instruksjoner for å tilbakestille ditt passord.
+                        Vennligst skriv ned ditt epost adresse for å få tilsendt link med instruksjoner for å
+                        tilbakestille ditt passord.
                         Sjekk søppelpostkassen din på mailen hvis du ikke ser mail fra oss!
                     </DialogContentText>
                     <TextField

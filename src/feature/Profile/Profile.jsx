@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from "@material-ui/core/Container";
@@ -12,7 +12,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
     icons: {
         marginRight: theme.spacing(2),
-      },
+    },
     root: {
         display: 'flex',
     },
@@ -64,7 +64,7 @@ export default function Profile() {
 
     return (
         <React.Fragment>
-            <CssBaseline />
+            <CssBaseline/>
             <main>
                 <hr/>
                 <div className={classes.heroContent}>
@@ -90,7 +90,7 @@ export default function Profile() {
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
                     ProgTeam Lånelitt
                 </Typography>
-                <Copyright />
+                <Copyright/>
             </footer>
         </React.Fragment>
     );

@@ -2,12 +2,11 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Copyright from '../../components/home/Copyright';
 import UserList from "../../components/admin/userlist";
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -33,7 +32,7 @@ export default function Admin() {
 
     return (
         <React.Fragment>
-            <CssBaseline />
+            <CssBaseline/>
             <main>
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
@@ -51,7 +50,7 @@ export default function Admin() {
                         <TextField
                             id="outlined-full-width"
                             label="Søk"
-                            style={{ margin: 8 }}
+                            style={{margin: 8}}
                             placeholder="Brukernavn / Epost"
                             helperText="Søk opp Brukernavn / Epost / Mobilnr"
                             fullWidth
@@ -64,9 +63,9 @@ export default function Admin() {
                     </div>
                     <h3>Brukerliste</h3>
                     <hr/>
-                        <Grid item xs={12}>
-                          <UserList/>
-                        </Grid>
+                    <Grid item xs={12}>
+                        <UserList/>
+                    </Grid>
                 </Container>
             </main>
             {/* Footer */}
@@ -77,7 +76,7 @@ export default function Admin() {
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
                     ProgTeam Lånelitt
                 </Typography>
-                <Copyright />
+                <Copyright/>
             </footer>
         </React.Fragment>
     );

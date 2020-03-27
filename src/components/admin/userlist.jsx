@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { FixedSizeList } from 'react-window';
+import {FixedSizeList} from 'react-window';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function renderRow(props) {
-    const { index, style } = props;
+    const {index, style} = props;
 
     return (
         <ListItem key={index} button style={style}>
@@ -27,7 +27,7 @@ function renderRow(props) {
                     src={`https://i.pravatar.cc/300`}
                 />
             </ListItemAvatar>
-            <ListItemText primary={`Bruker ${index + 1}`} />
+            <ListItemText primary={`Bruker ${index + 1}`}/>
         </ListItem>
     );
 }
