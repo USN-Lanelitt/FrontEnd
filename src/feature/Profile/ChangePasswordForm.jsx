@@ -66,7 +66,8 @@ const ChangePasswordForm = ({history}) => {
         }).catch(function (error) {
             // An error happened.
         });
-        axios.post('/url', {
+        axios.post('/updatePassword', {
+            userid: sessionStorage.getItem('userId'),
             currentPassword: currentPassword.value,
             newPassword: newPassword.value
         })

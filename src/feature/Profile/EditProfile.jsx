@@ -175,6 +175,29 @@ const EditProfile = ({history}) => {
         setSelectedDate(date);
     };
 
+    const handleImageUpload = e => {
+        const [file] = e.target.files;
+        if (file) {
+            console.log(file);
+            let data = new FormData();
+            data.append('file', file, file.fileName);
+            data.append('userId', sessionStorage.getItem('userId'));
+
+            axios.post('/profileimageUpload', data, {
+                headers: {
+                    'accept': 'application/json',
+                    'Accept-Language': 'en-US,en;q=0.8',
+                    'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+                }
+            })
+                .then((response) => {
+                    //handle success
+                }).catch((error) => {
+                //handle error
+            });
+        }
+    };
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
@@ -204,13 +227,9 @@ const EditProfile = ({history}) => {
                                         <Avatar src={"https://i.pravatar.cc/150?img=68"}
                                                 className={classes.large}/>
                                         <div className={classes.root}>
-                                            <input
-                                                accept="image/*"
-                                                className={classes.input}
-                                                id="contained-button-file"
-                                                multiple
-                                                type="file"
-                                            />
+
+                                            <input type="file" accept="image/*" onChange={handleImageUpload} multiple = "false" />
+
                                             <label htmlFor="contained-button-file">
                                                 <Button variant="contained" color="primary" component="span">
                                                     Velg bilde
