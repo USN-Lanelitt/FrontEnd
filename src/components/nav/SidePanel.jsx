@@ -14,9 +14,6 @@ import QueryBuilderIcon from "@material-ui/icons/QueryBuilder";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import Divider from "@material-ui/core/Divider";
 import SettingsIcon from "@material-ui/icons/Settings";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import Collapse from "@material-ui/core/Collapse";
 import EditIcon from "@material-ui/icons/Edit";
 import WarningIcon from "@material-ui/icons/Warning";
 import HelpIcon from "@material-ui/icons/Help";
@@ -151,12 +148,6 @@ export default function SidePanel() {
     });
     const classes = useStyles();
 
-    const [expanded, setExpand] = React.useState(false);
-
-    const handleClick = () => {
-        setExpand(!expanded);
-    };
-
     const toggleDrawer = (side, open) => event => {
         if (
             event &&
@@ -185,6 +176,16 @@ export default function SidePanel() {
                         Snarveier
                     </ListSubheader>
                 }>
+
+                <Link to="/" style={{textDecoration: 'none', color: 'black'}}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <HomeIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary="Hjem"/>
+                    </ListItem>
+                </Link>
+
                 <Link to="/friendAll" style={{textDecoration: 'none', color: 'black'}}>
                     <ListItem button>
                         <ListItemIcon>
@@ -201,15 +202,6 @@ export default function SidePanel() {
                     <ListItemText primary="Meldinger"/>
                 </ListItem>
 
-                <Link to="/" style={{textDecoration: 'none', color: 'black'}}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <HomeIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Hjem"/>
-                    </ListItem>
-
-                </Link>
                 <Link to="/prof" style={{textDecoration: 'none', color: 'black'}}>
                     <ListItem button>
                         <ListItemIcon>
@@ -236,25 +228,21 @@ export default function SidePanel() {
             </List>
             <Divider/>
             <List>
-                <ListItem button onClick={handleClick}>
+                <ListItem button>
                     <ListItemIcon>
                         <SettingsIcon/>
                     </ListItemIcon>
                     <ListItemText primary="Innstillinger"/>
-                    {expanded ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <Link to="/editprof" style={{textDecoration: 'none', color: 'black'}}>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <EditIcon/>
-                                </ListItemIcon>
-                                <ListItemText primary="Rediger profil"/>
-                            </ListItem>
-                        </Link>
-                    </List>
-                </Collapse>
+
+                <Link to="/editprof" style={{textDecoration: 'none', color: 'black'}}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <EditIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary="Rediger profil"/>
+                    </ListItem>
+                </Link>
 
                 <ListItem button>
                     <ListItemIcon>

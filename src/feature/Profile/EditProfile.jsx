@@ -8,13 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import CardContent from '@material-ui/core/CardContent';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -24,11 +18,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import Copyright from '../../components/home/Copyright';
 import axios from "axios";
 import app from "../../fire";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import ProfileCard from "../../components/profile/profileCard";
 import DateFnsUtils from "@date-io/date-fns";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-import Input from "@material-ui/core/Input";
+import ChangePasswordForm from "./ChangePasswordForm";
 
 
 const useStyles = makeStyles(theme => ({
@@ -192,7 +186,7 @@ const EditProfile = ({history}) => {
             <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon/>
+                    <EditTwoToneIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Rediger Profil Informasjon
@@ -240,9 +234,18 @@ const EditProfile = ({history}) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                name="email"
+                                autoFocus
+                                required
+                                fullWidth
+                                id="email"
+                                label="Ny E-post adresse"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
                                 name="phone"
                                 fullWidth
-                                autoFocus
                                 id="phone"
                                 label="Telefon"
                             />
@@ -302,49 +305,21 @@ const EditProfile = ({history}) => {
                                 label="By"
                             />
                         </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                name="email"
-                                required
-                                fullWidth
-                                id="email"
-                                label="E-post"
 
-                            />
+                        <Grid item xs={12} sm={6}>
+                           <ChangePasswordForm/>
                         </Grid>
-                        <Grid item xs={12}>
-                            <FormControl className={clsx(classes.margin, classes.textField)}
-                                         fullWidth>
-                                <InputLabel htmlFor="outlined-adornment-password" required>Ny Passord</InputLabel>
-                                <Input
-                                    name="newPassword"
-                                    id="outlined-adornment-password"
-                                    type={values.showPassword ? 'text' : 'password'}
-                                    endAdornment={
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                edge="end"
-                                            >
-                                                {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    }
-                                    labelWidth={70}
-                                />
-                            </FormControl>
+                        <Grid item xs={12} sm={6}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                            >Lagre Endring
+                            </Button>
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >Lagre Endring
-                    </Button>
+
                     <Grid container justify="flex-end">
                         <Grid item>
                         </Grid>
