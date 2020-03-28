@@ -105,7 +105,7 @@ const EditProfile = ({history}) => {
         event.preventDefault();
         let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        const {phone, birthdate, address1, address2, zipcode, city, email, newPassword} = event.target.elements;
+        const {phone, birthdate, address1, address2, zipcode, city, email} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
         axios.post('/url', {
             phone: phone.value,
@@ -115,7 +115,6 @@ const EditProfile = ({history}) => {
             zipcode: zipcode.value,
             city: city.value,
             email: email.value,
-            newPassword: newPassword.value
         })
             .then(res => {
                     //Symfony
@@ -137,11 +136,6 @@ const EditProfile = ({history}) => {
                 user.updateEmail(email.value).then(function () {
                     // Update successful.
                 })
-                    .then(
-                        user.updatePassword(newPassword).then(function () {
-                            // Update successful.
-                        })
-                    )
             )
             .catch(function (error) {
                 // An error happened.

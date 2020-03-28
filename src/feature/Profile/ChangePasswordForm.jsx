@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl";
@@ -16,6 +14,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import clsx from 'clsx';
+import axios from "axios";
+import app from "../../fire";
 
 
 const useStyles = makeStyles(theme => ({
@@ -49,38 +49,57 @@ const useStyles = makeStyles(theme => ({
         height: theme.spacing(10),
     },
 }));
+const user = app.auth().currentUser;
 
-const styles = theme => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(2),
-    },
-    closeButton: {
-        position: 'absolute',
-        right: theme.spacing(1),
-        top: theme.spacing(1),
-        color: theme.palette.grey[500],
-    },
-});
+const ChangePasswordForm = ({history}) => {
+    const handleUpdate = useCallback(async event => {
+        event.preventDefault();
+        let credential;
+        // Henter verdier som er utfylt i tekst feltene på form skjema
+        const {currentPassword, newPassword} = event.target.elements;
+        // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
 
-export default function ChangePasswordForm() {
+        // Bruker må re-autentiseres for å kunne endre passord/epost og bli godkjent på Firebase. (Sikkerhetstiltak)
+        // Prompt the user to re-provide their sign-in credentials
+        user.reauthenticateWithCredential(credential).then(function () {
+            // User re-authenticated.
+        }).catch(function (error) {
+            // An error happened.
+        });
+        axios.post('/url', {
+            currentPassword: currentPassword.value,
+            newPassword: newPassword.value
+        })
+            .then(res => {
+                    //Symfony
+                    console.log(res);
+                    console.log(res.data);
+                }
+            )
+            .then(
+                //Firebase
+                user.updatePassword(newPassword).then(function () {
+                    // Update successful.
+                })
+            )
+            .catch(function (error) {
+                // An error happened.
+                console.log(error)
+            });
+    }, [history]);
+
     const [open, setOpen] = React.useState(false);
-    const classes = useStyles();
+    const [values, setValues] = useState({
+        showPassword: false,
+    });
 
+    const classes = useStyles();
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
-    };
-
-    const [values, setValues] = useState({
-        showPassword: false,
-    });
-
-    const handleChange = prop => event => {
-        setValues({...values, [prop]: event.target.value});
     };
 
     const handleClickShowPassword = () => {
@@ -91,6 +110,10 @@ export default function ChangePasswordForm() {
         event.preventDefault();
     };
 
+    const handleChange = prop => event => {
+        setValues({...values, [prop]: event.target.value});
+    };
+
     return (
         <div>
             <Button variant="contained" color="primary" onClick={handleClickOpen}>
@@ -98,57 +121,59 @@ export default function ChangePasswordForm() {
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Endre Passord</DialogTitle>
-                <DialogContent>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <FormControl className={clsx(classes.margin, classes.textField)}
-                                             fullWidth>
-                                    <InputLabel htmlFor="outlined-adornment-password" required>Nåværende passord</InputLabel>
-                                    <Input
-                                        name="currentPassword"
-                                        id="outlined-adornment-password"
-                                        type={values.showPassword ? 'text' : 'password'}
-                                        endAdornment={
-                                            <InputAdornment position="end">
-                                                <IconButton
-                                                    aria-label="toggle password visibility"
-                                                    onClick={handleClickShowPassword}
-                                                    onMouseDown={handleMouseDownPassword}
-                                                    edge="end"
-                                                >
-                                                    {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        }
-                                        labelWidth={70}
-                                    />
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControl className={clsx(classes.margin, classes.textField)}
-                                             fullWidth>
-                                    <InputLabel htmlFor="outlined-adornment-password" required>Ny Passord</InputLabel>
-                                    <Input
-                                        name="newPassword"
-                                        id="outlined-adornment-password"
-                                        type={values.showPassword ? 'text' : 'password'}
-                                        endAdornment={
-                                            <InputAdornment position="end">
-                                                <IconButton
-                                                    aria-label="toggle password visibility"
-                                                    onClick={handleClickShowPassword}
-                                                    onMouseDown={handleMouseDownPassword}
-                                                    edge="end"
-                                                >
-                                                    {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        }
-                                        labelWidth={70}
-                                    />
-                                </FormControl>
-                            </Grid>
+                <DialogContent onSubmit={handleUpdate}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <FormControl className={clsx(classes.margin, classes.textField)}
+                                         fullWidth>
+                                <InputLabel htmlFor="outlined-adornment-password" required>Nåværende
+                                    passord</InputLabel>
+                                <Input
+                                    name="currentPassword"
+                                    id="outlined-adornment-password"
+                                    type={values.showPassword ? 'text' : 'password'}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    labelWidth={70}
+                                />
+                            </FormControl>
                         </Grid>
+                        <Grid item xs={12}>
+                            <FormControl className={clsx(classes.margin, classes.textField)}
+                                         fullWidth>
+                                <InputLabel htmlFor="outlined-adornment-password" required>Ny Passord</InputLabel>
+                                <Input
+                                    name="newPassword"
+                                    id="newPassword"
+                                    type={values.showPassword ? 'text' : 'password'}
+                                    onChange={handleChange}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    labelWidth={70}
+                                />
+                            </FormControl>
+                        </Grid>
+                    </Grid>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
@@ -161,4 +186,6 @@ export default function ChangePasswordForm() {
             </Dialog>
         </div>
     );
-}
+};
+
+export default ChangePasswordForm;
