@@ -97,15 +97,19 @@ export default function ProfileCard() {
         height: '50%',
     });
 
-
+    // setter inn bruker info og innloggings status i "user" fra nåværende innlogget bruker (currentUser)
     const user = app.auth().currentUser;
+
+    // Oppretter variabler og setter de som blank ('')
     let [email] = useState('');
     let [id] = useState('');
     let [firstname] = useState('');
     let [lastname] = useState('');
     let [phone] = useState('');
 
-
+    // Henter bruker info fra "user" og setter de inn i variablene (let [__] = x;)
+    // Items i sessionStorage er satt fra Login.jsx
+    // f.eks linje 64 Login.jsx sessionStorage.setItem('userId', res.data[0]['id']);
     if (user != null) {
         user.providerData.forEach(function (profile) {
             email = profile.email;
@@ -113,8 +117,6 @@ export default function ProfileCard() {
             firstname = sessionStorage.getItem('firstname');
             lastname = sessionStorage.getItem('lastname');
             phone = sessionStorage.getItem('phone');
-
-
         });
     }
 
