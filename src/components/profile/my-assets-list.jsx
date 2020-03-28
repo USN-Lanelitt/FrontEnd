@@ -6,6 +6,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add"
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,13 +21,12 @@ const useStyles = makeStyles(theme => ({
 const MyAssetsList = () => {
 
     const classes = useStyles();
-
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [menuItems, setMenuItem] = useState([]);
 
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
-        axios.get("/assets/getMyAsset/"+userId)
+        axios.get("/assets/getMyAsset/" + userId)
             .then(result => {
                 if (result.status === 200) {
                     console.log(result.data);
@@ -37,17 +37,15 @@ const MyAssetsList = () => {
     }, [setMenuItem, userId]);
 
 
-
-
-
     return (
         <Container>
 
             <Grid container spacing={4} justify="center">
                 {
-                    menuItems.map(item => (
+                    menuItems.map(asset => (
                             <Grid item>
-                                <MyAssetsCard title={item.assetName} description={item.description} imageUrl={"https://source.unsplash.com/random"}/>
+                                <MyAssetsCard assetId={asset.id} title={asset.assetName} description={asset.description}
+                                              imageUrl={"https://source.unsplash.com/random"}/>
                             </Grid>
                         )
                     )
@@ -55,7 +53,7 @@ const MyAssetsList = () => {
 
             </Grid>
 
-            <Fab color="primary" aria-label="add" className={classes.fab}>
+            <Fab color="primary" aria-label="add" className={classes.fab} component={Link} to="new/asset">
                 <AddIcon/>
             </Fab>
         </Container>

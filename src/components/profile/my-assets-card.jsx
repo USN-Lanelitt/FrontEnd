@@ -26,8 +26,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const MyAssetsCard = ({title, description, imageUrl, rating}) => {
+
+const MyAssetsCard = ({assetId, title, description, imageUrl, rating}) => {
     const classes = useStyles();
+
+    const remove = () => {
+    };
 
 
     return (
@@ -62,7 +66,7 @@ const MyAssetsCard = ({title, description, imageUrl, rating}) => {
                 <CardActions>
 
                         <Box>
-                            <IconButton aria-label="delete">
+                            <IconButton aria-label="delete" onClick={remove}>
                                 <DeleteIcon/>
                             </IconButton>
                             <IconButton aria-label="edit">

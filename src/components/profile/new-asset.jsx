@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import {Box} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
@@ -12,6 +12,10 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
 import ImageUploader from "../assets/image-uploader";
+import axios from "axios";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import CategoryList from "./category-list";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -31,14 +35,29 @@ const useStyles = makeStyles((theme) => ({
 const NewAsset = () => {
     const [value, setValue] = React.useState('Controlled');
     const classes = useStyles();
-    const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [isPublic, setIsPublic] = React.useState(true);
+    const [category, setCategory] = React.useState(0);
 
-    const handleChange = event => {
-        setValue(event.target.value);
+    const save = () => {
+        const asset = {
+            assetName: title,
+            description: description,
+            userId: sessionStorage.getItem( 'userId' ),
+            condition: "1",
+            public: isPublic,
+            typeId: category
+        };
+
+        axios.post("/assets/addAsset", asset)
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => console.log(error));
+
+        console.log("new asset", asset);
     };
 
 
@@ -50,35 +69,19 @@ const NewAsset = () => {
                 <CardContent>
                     <Box mb={4} width={1}>
                         <TextField
+                            value={title}
                             label="Tittel"
                             id="outlined-size-normal"
                             variant="outlined"
                             fullWidth
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </Box>
-                    <Box mb={4} width={1}>
-                        <FormControl variant="outlined" fullWidth>
-                            <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-                                Kategori
-                            </InputLabel>
-                            <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={""}
-                                onChange={handleChange}
-                                labelWidth={labelWidth}
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={10}>klær</MenuItem>
-                                <MenuItem value={20}>verktøy</MenuItem>
-                                <MenuItem value={30}>sko</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Box>
+                   <CategoryList onChange={(e) => setCategory(e.target.value)} categoryId={category.id}/>
                     <Box mb={4} width={1}>
                         <TextField
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}
                             id="outlined-multiline-static"
                             label="Beskrivelse"
                             multiline
@@ -88,14 +91,24 @@ const NewAsset = () => {
                         />
                     </Box>
                     <ImageUploader/>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={isPublic}
+                                onChange={e => setIsPublic(e.target.checked)}
+                                name="isPublic"/>
+                        }
+                        label="Offentlig"
+
+                    />
                 </CardContent>
                 <CardActions>
                     <Button>Avbryt</Button>
-                    <Button>Opprett</Button>
+                    <Button onClick={save}>Opprett</Button>
                 </CardActions>
             </Card>
         </Box>
     );
-};
+}
 
 export default NewAsset;
