@@ -54,22 +54,14 @@ const user = app.auth().currentUser;
 const ChangePasswordForm = ({history}) => {
     const handleUpdate = useCallback(async event => {
         event.preventDefault();
-        let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        const {currentPassword, newPassword} = event.target.elements;
+        let currentPassword = event.target.elements;
+        let newPassword = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
-
-        // Bruker må re-autentiseres for å kunne endre passord/epost og bli godkjent på Firebase. (Sikkerhetstiltak)
-        // Prompt the user to re-provide their sign-in credentials
-        user.reauthenticateWithCredential(credential).then(function () {
-            // User re-authenticated.
-        }).catch(function (error) {
-            // An error happened.
-        });
         axios.post('/updatePassword', {
-            userid: sessionStorage.getItem('userId'),
-            currentPassword: currentPassword.value,
-            newPassword: newPassword.value
+            userId: sessionStorage.getItem('userId'),
+            currentPassword: currentPassword,
+            newPassword: newPassword
         })
             .then(res => {
                     //Symfony
@@ -77,11 +69,12 @@ const ChangePasswordForm = ({history}) => {
                     console.log(res.data);
                 }
             )
-            .then(
-                //Firebase
-                user.updatePassword(newPassword).then(function () {
-                    // Update successful.
-                })
+            .then( () => {
+                    //Firebase
+                    user.updatePassword(newPassword).then(function () {
+                        // Update successful.
+                    })
+            }
             )
             .catch(function (error) {
                 // An error happened.
@@ -122,7 +115,7 @@ const ChangePasswordForm = ({history}) => {
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Endre Passord</DialogTitle>
-                <DialogContent onSubmit={handleUpdate}>
+                <DialogContent>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <FormControl className={clsx(classes.margin, classes.textField)}
@@ -131,7 +124,7 @@ const ChangePasswordForm = ({history}) => {
                                     passord</InputLabel>
                                 <Input
                                     name="currentPassword"
-                                    id="outlined-adornment-password"
+                                    id="currentPassword"
                                     type={values.showPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">
@@ -180,7 +173,7 @@ const ChangePasswordForm = ({history}) => {
                     <Button onClick={handleClose} color="primary">
                         Avbrutt
                     </Button>
-                    <Button type="submit" onClick={handleClose} color="primary">
+                    <Button type="submit" onClick={handleUpdate} color="primary">
                         Lagre
                     </Button>
                 </DialogActions>

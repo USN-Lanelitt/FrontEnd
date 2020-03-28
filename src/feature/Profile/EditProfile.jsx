@@ -153,22 +153,6 @@ const EditProfile = ({history}) => {
         setOpen(false);
     };
 
-    const [values, setValues] = useState({
-        showPassword: false,
-    });
-
-    const handleChange = prop => event => {
-        setValues({...values, [prop]: event.target.value});
-    };
-
-    const handleClickShowPassword = () => {
-        setValues({...values, showPassword: !values.showPassword});
-    };
-
-    const handleMouseDownPassword = event => {
-        event.preventDefault();
-    };
-
     const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
 
     const handleDateChange = date => {
@@ -235,7 +219,7 @@ const EditProfile = ({history}) => {
                                         Endre Profilbilde
                                     </DialogTitle>
                                     <DialogContent dividers>
-                                        <Avatar src={"https://i.pravatar.cc/150?img=68"}
+                                        <Avatar src={"profileimages/"+sessionStorage.getItem('profileImage')}
                                                 className={classes.large}/>
                                         <div className={classes.root}>
 
