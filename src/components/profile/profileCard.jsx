@@ -130,7 +130,7 @@ export default function ProfileCard() {
                     >
                         <Avatar
                             className={styles.avatar}
-                            src={"https://i.pravatar.cc/300"}
+                            src={"profileimages/"+sessionStorage.getItem('profileImage')}
                         />
                     </StyledBadge>
                 </IconButton>
