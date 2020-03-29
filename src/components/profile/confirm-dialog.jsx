@@ -11,8 +11,8 @@ export default function ConfirmDialog({
                                           message,
                                           onConfirm,
                                           onNotConfirm,
-                                          confirmButtonText = "Ja",
-                                          notConfirmButtonText = "Nei",
+                                          confirmButtonText = "",
+                                          notConfirmButtonText = "",
                                           open
                                       }) {
 

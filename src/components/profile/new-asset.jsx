@@ -16,6 +16,9 @@ import axios from "axios";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CategoryList from "./category-list";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
+import StatusMessage from "./status-message";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -40,6 +43,9 @@ const NewAsset = () => {
     const [description, setDescription] = useState("");
     const [isPublic, setIsPublic] = React.useState(true);
     const [category, setCategory] = React.useState(0);
+    const [showStatusMessage, setShowStatusMessage] = React.useState(false);
+    const [statusMessage, setStatusMessage] = React.useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = React.useState("info");
 
     const save = () => {
         const asset = {
@@ -54,8 +60,15 @@ const NewAsset = () => {
         axios.post("/assets/addAsset", asset)
             .then(result => {
                 console.log(result);
+                setShowStatusMessage(true);
+                setStatusMessage("Eiendelen ble opprettet!")
+                setStatusMessageSeverity("success");
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error);
+                setShowStatusMessage(true);
+                setStatusMessage("Upps, dette gikk ikke helt etter planen!");
+            });
 
         console.log("new asset", asset);
     };
@@ -63,6 +76,8 @@ const NewAsset = () => {
 
     return (
         <Box width={1} display="flex" justifyContent="center">
+            <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity} onClose={setShowStatusMessage}/>
+
             <Card className={classes.card}>
                 <CardHeader title="Legg til eiendel"/>
 
@@ -105,6 +120,7 @@ const NewAsset = () => {
                 <CardActions>
                     <Button>Avbryt</Button>
                     <Button onClick={save}>Opprett</Button>
+
                 </CardActions>
             </Card>
         </Box>
