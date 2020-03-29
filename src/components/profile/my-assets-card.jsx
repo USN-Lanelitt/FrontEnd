@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from "@material-ui/core/Button";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -27,11 +28,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const MyAssetsCard = ({assetId, title, description, imageUrl, rating}) => {
+const MyAssetsCard = ({assetId, title, description, imageUrl, rating, onRemove}) => {
     const classes = useStyles();
 
-    const remove = () => {
-    };
+
 
 
     return (
@@ -66,7 +66,7 @@ const MyAssetsCard = ({assetId, title, description, imageUrl, rating}) => {
                 <CardActions>
 
                         <Box>
-                            <IconButton aria-label="delete" onClick={remove}>
+                            <IconButton aria-label="delete" onClick={onRemove}>
                                 <DeleteIcon/>
                             </IconButton>
                             <IconButton aria-label="edit">
