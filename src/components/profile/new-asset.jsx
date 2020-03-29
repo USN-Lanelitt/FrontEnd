@@ -3,10 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import {Box} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
@@ -16,9 +12,8 @@ import axios from "axios";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CategoryList from "./category-list";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
 import StatusMessage from "./status-message";
+import {Redirect} from "react-router";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -38,20 +33,20 @@ const useStyles = makeStyles((theme) => ({
 const NewAsset = () => {
     const [value, setValue] = React.useState('Controlled');
     const classes = useStyles();
-    const [labelWidth, setLabelWidth] = React.useState(0);
+    const [redirect, setRedirect] = React.useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [isPublic, setIsPublic] = React.useState(true);
     const [category, setCategory] = React.useState(0);
-    const [showStatusMessage, setShowStatusMessage] = React.useState(false);
-    const [statusMessage, setStatusMessage] = React.useState("");
-    const [statusMessageSeverity, setStatusMessageSeverity] = React.useState("info");
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
 
     const save = () => {
         const asset = {
             assetName: title,
             description: description,
-            userId: sessionStorage.getItem( 'userId' ),
+            userId: sessionStorage.getItem('userId'),
             condition: "1",
             public: isPublic,
             typeId: category
@@ -63,6 +58,7 @@ const NewAsset = () => {
                 setShowStatusMessage(true);
                 setStatusMessage("Eiendelen ble opprettet!")
                 setStatusMessageSeverity("success");
+               setTimeout(() => setRedirect(true), 1000) ;
             })
             .catch(error => {
                 console.log(error);
@@ -73,10 +69,12 @@ const NewAsset = () => {
         console.log("new asset", asset);
     };
 
+    if (redirect) return <Redirect to="/prof"/>;
 
     return (
         <Box width={1} display="flex" justifyContent="center">
-            <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity} onClose={setShowStatusMessage}/>
+            <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                           onClose={setShowStatusMessage}/>
 
             <Card className={classes.card}>
                 <CardHeader title="Legg til eiendel"/>
@@ -92,7 +90,7 @@ const NewAsset = () => {
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </Box>
-                   <CategoryList onChange={(e) => setCategory(e.target.value)} categoryId={category.id}/>
+                    <CategoryList onChange={(e) => setCategory(e.target.value)} categoryId={category.id}/>
                     <Box mb={4} width={1}>
                         <TextField
                             value={description}

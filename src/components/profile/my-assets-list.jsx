@@ -8,6 +8,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import ConfirmDialog from "./confirm-dialog";
+import {fetchAssets} from "./asset-repository";
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,24 +26,14 @@ const MyAssetsList = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [assets, setAssets] = useState([]);
     const [assetId, setAssetId] = useState(null);
-    const [showConfirmDialog, setShowConfirmDialog] = React.useState(false);
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
 
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
-        fetchAssets(userId);
+        fetchAssets(userId, setAssets);
     }, [setAssets, userId]);
 
-    const fetchAssets = (userId) => {
-        axios.get("/assets/getMyAsset/" + userId)
-            .then(result => {
-                if (result.status === 200) {
-                    console.log(result.data);
-                    setAssets(result.data);
-                }
-            })
-            .catch(e => console.log(e));
-    }
 
     const remove = (assetId) => {
         setShowConfirmDialog(true);
@@ -53,7 +44,7 @@ const MyAssetsList = () => {
     function onDeleteAssetConfirm() {
         axios.delete('/assets/removeAsset/' + assetId)
             .then(result => {
-                fetchAssets(userId);
+                fetchAssets(userId, setAssets);
                 console.log(result);
             })
             .catch(error => console.log(error));
@@ -66,6 +57,7 @@ const MyAssetsList = () => {
 
     return (
         <Container>
+
             <ConfirmDialog title="Slette eiendel?"
                            message="Ønsker du å slette denne eiendelen?"
                            onConfirm={onDeleteAssetConfirm}
