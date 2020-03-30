@@ -1,58 +1,42 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CategoryCard from "./category-card";
 import Grid from "@material-ui/core/Grid";
 import {Container} from "@material-ui/core";
+import axios from "axios";
 
 const HomeMenu = () => {
 
-    const menuItems = [
-        {
-            title: "Klær",
-            description: "Her kan du se klær til utlån",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-
-        {
-            title: "Verktøy",
-            description: "Her kan du se verktøy til utlån",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-
-        {
-            title: "Hundeutstyr",
-            description: "Her kan du se klær til utlån",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-
-        {
-            title: "Vinteraktiviteter",
-            description: "Her kan du se klær til utlån",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-
-        {
-            title: "Sommeraktiviteter",
-            description: "Her kan du se klær til utlån",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-
-        {
-            title: "Friluftsliv",
-            description: "Her kan du se klær til utlån",
-            imageUrl: "https://source.unsplash.com/random"
-        }
+    const [categories, setCategories] = useState([]);
 
 
-    ];
+    const getCategories = () => {
+        axios.get("/assets/AllTypes")
+            .then(result => {
+                setCategories(result.data);
+                console.log(result.data);
+            })
+            .catch(error => console.log(error));
+    };
+
+    useEffect(() => {
+        getCategories();
+    }, [])
+
+
+
+
+
+
     return (
         <Container>
 
             <Grid container spacing={4} justify="center">
 
                 {
-                    menuItems.map(item => (
-                            <Grid item>
-                                <CategoryCard title={item.title} description={item.description} imageUrl={item.imageUrl}/>
+                    categories.map(category => (
+                            <Grid item key={category.id}>
+                                <CategoryCard id={category.id} title={category.assetType} imageUrl="https://source.unsplash.com/random"/>
+
                             </Grid>
                         )
                     )

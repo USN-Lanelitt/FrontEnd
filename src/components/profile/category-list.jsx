@@ -13,7 +13,7 @@ const CategoryList = ({onChange, categoryId}) => {
     const [labelWidth, setLabelWidth] = React.useState(0);
 
     const getCategories = () => {
-        axios.get("/assets/category")
+        axios.get("/assets/AllTypes")
             .then(result => {
                 setCategories(result.data);
                 console.log(result.data);
@@ -47,7 +47,7 @@ const CategoryList = ({onChange, categoryId}) => {
                     {
                         categories.map(category => (
                             <MenuItem key={category.id} value={category.id}>
-                                {category.categoryName}
+                                {category.assetType}
                             </MenuItem>
                         ))
                     }
