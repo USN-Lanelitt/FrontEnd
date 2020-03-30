@@ -1,6 +1,6 @@
 ------------------------------------------------------UserConnections---------------------------------------------------
 
-Funksjon getFriend - url: /user/{iUserId}/friend/{iFriendId}  - method GET
+Funksjon getFriend - url: /user/{iUserId}/friend/{iFriendId}  - method GET 
 (hent en venn)
 
 Send til backend:
@@ -15,24 +15,25 @@ Send til frontend:
 · friendLastName
 · FriendProfileImage
 
+
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
-const [data, setData] = useState([]);
+const [users, setUsers] = useState([]);
 
 useEffect(() => {
-console.log("", userId, sessionStorage.getItem('userId'));
-axios.get('/user/'+userId+'/friend/'+friendId')
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-                 setData(result.data);
+    console.log("", userId, sessionStorage.getItem('userId'));
+    axios.get('/user/'+userId+'/friend/'+friendId')
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setUsers(response.data);
       	    }
        })
     .catch(e => console.log(e));
-}, [setData, userId]);
+}, [setUsers, userId]);
 
 
-{data.map(user => (
-    <Grid item key={user} xs={12} sm={6} md={4}>
+{users.map(user => (
+    <Grid item key={user.user2.id} xs={12} sm={6} md={4}>
         <FriendCard
             firstname={user.user2.firstName}
             lastname={user.user2.lastName}
@@ -61,23 +62,24 @@ Send til frontend:
 
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
-const [data, setData] = useState([]);
+const [users, setUsers] = useState([]);
 
 useEffect(() => {
-console.log("", userId, sessionStorage.getItem('userId'));
-axios.get('/user/'+userId+'/friends')
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-                 setData(result.data);
-      	    }
-       })
+    console.log("getfriends", userId, sessionStorage.getItem('userId'));
+    setLoading(true);
+    axios.get('/user/'+userId+'/friends')
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setUsers(response.data);
+        }
+    })
     .catch(e => console.log(e));
-}, [setData, userId]);
+}, [setUsers, userId]);
 
 
-{data.map(user => (
-    <Grid item key={user} xs={12} sm={6} md={4}>
+{users.map((user) => (
+    <Grid item key={user.user2.id} xs={12} sm={6} md={4}>
         <FriendCard
             firstname={user.user2.firstName}
             lastname={user.user2.lastName}
@@ -99,18 +101,17 @@ Send til backend:
 
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
-const [data, setData] = useState([]);
 
-useEffect(() => {
-    console.log("", userId, sessionStorage.getItem('userId'));
-    axios.post('/user/'+userId+'/request/'+friendId')
-        .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-      	    }
-        })
+function sendRequest(friendId) {
+    console.log("sendFriendRequest", userId, sessionStorage.getItem('userId'));
+    axios.post('/user/'+userId+'/request/'+friendId)
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+        }
+    })
     .catch(e => console.log(e));
-}, [setData, userId]);
+}
 
 ----------------------------------------------------------------------------------------
 
@@ -129,24 +130,24 @@ Send til frontend:
 · user2ProfileImage
 
 
-const [userId, setId] = useState(sessionStorage.getItem('userId'));
-const [data, setData] = useState([]);
+const [id, setId] = useState(sessionStorage.getItem('userId'));
+const [users, setUsers] = useState([]);
 
 useEffect(() => {
-console.log("", userId, sessionStorage.getItem('userId'));
-axios.get('/user/’+userId+’/friendRequests')
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-                 setData(result.data);
-      	    }
-       })
+    console.log("getuserrequest", id, sessionStorage.getItem('userId'));
+    axios.get('/user/'+id+'/friendRequests')
+    .then((response) => {
+    if (response.status === 200) {
+        console.log(response);
+        setUsers(response.data);
+        }
+    })
     .catch(e => console.log(e));
-}, [setData, userId]);
+}, [setUsers, userId]);
 
 
-{data.map(user => (
-    <Grid item key={user} xs={12} sm={6} md={4}>
+{users.map((user) => (
+    <Grid item key={user.user1.id} xs={12} sm={6} md={4}>
         <FriendCard
             firstname={user.user1.firstName}
             lastname={user.user1.lastName}
@@ -169,18 +170,17 @@ Send til backend:
 
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
-const [data, setData] = useState([]);
 
-useEffect(() => {
-    console.log("", userId, sessionStorage.getItem('userId'));
-    axios.post('/user/'+userId+'/friendRequest/'+friendId+'/'+status')
-        .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-      	    }
-        })
+function reply(friendId, status) {
+    console.log("replyrequest", userId, sessionStorage.getItem('userId'));
+    axios.post('/user/'+userId+'/friendRequest/'+friendId+'/'+status)
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+        }
+    })
     .catch(e => console.log(e));
-}, [setData, userId]);
+}
 
 ----------------------------------------------------------------------------------------
 
@@ -193,16 +193,17 @@ Send til backend:
 
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
-useEffect(() => {
-    console.log("", userId, sessionStorage.getItem('userId'));
+
+function deleteFriend(friendId) {
+    console.log("deletefriend", userId, sessionStorage.getItem('userId'));
     axios.post('/user/'+userId+'/friend/'+friendId+'/delete')
-        .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-      	    }
-        })
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+        }
+    })
     .catch(e => console.log(e));
-}, [setData, userId]);
+}
 
 ----------------------------------------------------------------------------------------
 
@@ -223,23 +224,26 @@ Send til frontend:
 
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
-const [data, setData] = useState([]);
+const [users, setUsers] = useState([]);
+const [search, setSearch] = useState();
 
 useEffect(() => {
-console.log("", userId, sessionStorage.getItem('userId'));
-axios.get('/user/’+userId+’/search/'+search')
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-                 setData(result.data);
-      	    }
-       })
+    console.log("getsearch", userId, sessionStorage.getItem('userId'), search);
+    setLoading(true);
+    axios.get('/user/'+userId+'/search/'+search)
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(search);
+            console.log(response.data);
+            setUsers(response.data);
+        }
+    })
     .catch(e => console.log(e));
-}, [setData, userId]);
+}, [setUsers, userId]);
 
 
-{data.map(user => (
-    <Grid item key={user} xs={12} sm={6} md={4}>
+{user.map(user => (
+    <Grid item key={user.id} xs={12} sm={6} md={4}>
         <FriendCard
             firstname={user.firstName}
             lastname={user.lastName}
@@ -269,9 +273,9 @@ useEffect(() => {
     axios.post('/user/'+userId+'/asset/'+assetId+'/request' , {
         startDate: startDate.value,
         endDate: startDate.value
-        }).then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
+        }).then((response) => {
+      	    if (response.status === 200) {
+      		     console.log(response.data);
       	    }
         })
     .catch(e => console.log(e));
@@ -301,12 +305,12 @@ const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
 
 useEffect(() => {
-console.log("", userId, sessionStorage.getItem('userId'));
-axios.get('/user/’+userId+’/loanRequest)
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-                setData(result.data);
+    console.log("", userId, sessionStorage.getItem('userId'));
+    axios.get('/user/’+userId+’/loanRequest)
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setData(response.data);
       	    }
        })
     .catch(e => console.log(e));
@@ -358,11 +362,12 @@ const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
 
 useEffect(() => {
-axios.get('/user/’+userId+’/loanRequest/status)
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-                setData(result.data);
+    console.log("", userId, sessionStorage.getItem('userId'));
+    axios.get('/user/’+userId+’/loanRequest/status)
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setData(response.data);
       	    }
        })
     .catch(e => console.log(e));
@@ -403,10 +408,11 @@ const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
 
 useEffect(() => {
-axios.post('/user/'+userId+'/loanRequest/'+loanId+'/'+status')
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
+    console.log("", userId, sessionStorage.getItem('userId'));
+    axios.post('/user/'+userId+'/loanRequest/'+loanId+'/'+status')
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
       	    }
        })
     .catch(e => console.log(e));
@@ -441,11 +447,12 @@ const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
 
 useEffect(() => {
-axios.get('/user/'+userId+'/loanAccepted)
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-                setData(result.data);
+    console.log("", userId, sessionStorage.getItem('userId'));
+    axios.get('/user/'+userId+'/loanAccepted)
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setData(response.data);
       	    }
        })
     .catch(e => console.log(e));
@@ -498,11 +505,12 @@ const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
 
 useEffect(() => {
-axios.get('/user/'+userId+'/loans)
-      .then(result => {
-      	    if (result.status === 200) {
-      		     console.log(result.data);
-                setData(result.data);
+    console.log("", userId, sessionStorage.getItem('userId'));
+    axios.get('/user/'+userId+'/loans)
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setData(response.data);
       	    }
        })
     .catch(e => console.log(e));
