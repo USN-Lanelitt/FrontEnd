@@ -96,7 +96,7 @@ const Login = ({ history }) => {
     });
 
     const handleClickShowPassword = () => {
-        setValues({ ...values, showCurrentPassword: !values.showPassword });
+        setValues({ ...values, showPassword: !values.showPassword });
     };
 
     const handleMouseDownPassword = event => {
