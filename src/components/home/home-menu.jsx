@@ -36,7 +36,6 @@ const HomeMenu = () => {
                     categories.map(category => (
                             <Grid item key={category.id}>
                                 <CategoryCard id={category.id} title={category.assetType} imageUrl="https://source.unsplash.com/random"/>
-
                             </Grid>
                         )
                     )
