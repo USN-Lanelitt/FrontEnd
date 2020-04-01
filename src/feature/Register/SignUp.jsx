@@ -55,8 +55,8 @@ const SignUp = ({history}) => {
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
         const {firstname, middlename, birthdate, lastname, phone, email, password} = event.target.elements;
-        if (firstname.value.length === 0 || lastname.value.length === 0) {
-            alert("Alle feltene som er merket med * må fylles ut");
+        if (firstname.value.length === 0 || lastname.value.length === 0 || password.value.length < 6) {
+            alert("Alle feltene som er merket med * må fylles ut og passord må inneholde minst 6 tegn");
         } else {
             let iCode = 0;
             axios.post('/api/register', {
@@ -103,10 +103,6 @@ const SignUp = ({history}) => {
 
     const classes = useStyles();
 
-    const handleChange = prop => event => {
-        setValues({...values, [prop]: event.target.value});
-    };
-
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});
     };
@@ -138,7 +134,6 @@ const SignUp = ({history}) => {
                                 id="sFirstname"
                                 label="Fornavn"
                                 autoFocus
-                                onChange={handleChange('firstname')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -149,7 +144,6 @@ const SignUp = ({history}) => {
                                 fullWidth
                                 id="sMiddlename"
                                 label="Mellomnavn"
-                                onChange={handleChange('middlename')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -160,7 +154,6 @@ const SignUp = ({history}) => {
                                 fullWidth
                                 id="sLastname"
                                 label="Etternavn"
-                                onChange={handleChange('lastname')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -170,7 +163,6 @@ const SignUp = ({history}) => {
                                 fullWidth
                                 id="iMobile"
                                 label="Telefon (valgfri)"
-                                onChange={handleChange('phone')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -198,7 +190,6 @@ const SignUp = ({history}) => {
                                 fullWidth
                                 id="sEmail"
                                 label="Epost"
-                                onChange={handleChange('email')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -209,7 +200,6 @@ const SignUp = ({history}) => {
                                     name="password"
                                     id="outlined-adornment-password"
                                     type={values.showPassword ? 'text' : 'password'}
-                                    onChange={handleChange('password')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton

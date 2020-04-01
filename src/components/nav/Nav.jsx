@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from "clsx";
 import {Link} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
@@ -151,15 +151,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NavBar(props) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
 
     const handleDrawerOpen = () => {
@@ -186,9 +186,8 @@ export default function NavBar(props) {
     };
 
 
-    {/*Sjekker om bruker er innlogget eller ikke*/
-    }
-    const [loggedIn, setloggedIn] = React.useState(false);
+    {/*Sjekker om bruker er innlogget eller ikke*/}
+    const [loggedIn, setloggedIn] = useState(false);
     app.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.

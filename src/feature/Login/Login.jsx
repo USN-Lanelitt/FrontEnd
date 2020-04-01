@@ -51,7 +51,7 @@ const Login = ({ history }) => {
         event.preventDefault();
         const { email, password } = event.target.elements;
         if (email.value.length === 0 || password.value.length === 0) {
-            alert("Alle feltene må fylles ut");
+            alert("Alle feltene må fylles ut.");
         }
         else {
             let iCode = 0;
@@ -92,15 +92,8 @@ const Login = ({ history }) => {
     const classes = useStyles();
 
     const [values, setValues] = useState({
-        email: '',
-        password: '',
         showPassword: false,
     });
-
-
-    const handleChange = prop => event => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
 
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
@@ -113,7 +106,7 @@ const Login = ({ history }) => {
     const { currentUser } = useContext(AuthContext);
     if (currentUser) {
         return <Redirect to="/" />;
-    }
+    };
 
     return (
 
@@ -128,16 +121,14 @@ const Login = ({ history }) => {
                 </Typography>
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
                     <TextField
+                        name="email"
                         variant="outlined"
                         margin="normal"
-                        required
-                        fullWidth
                         id="sEmail"
                         label="Epost"
-                        name="email"
                         type="text"
-                        onChange={handleChange('email')}
-
+                        required
+                        fullWidth
                     />
                     <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" fullWidth>
                         <InputLabel htmlFor="outlined-adornment-password" required>Passord</InputLabel>
@@ -146,7 +137,6 @@ const Login = ({ history }) => {
                             id="outlined-adornment-password"
                             type={values.showPassword ? 'text' : 'password'}
                             value={values.password}
-                            onChange={handleChange('password')}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton

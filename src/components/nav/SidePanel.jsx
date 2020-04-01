@@ -15,9 +15,8 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import Divider from "@material-ui/core/Divider";
 import SettingsIcon from "@material-ui/icons/Settings";
 import EditIcon from "@material-ui/icons/Edit";
-import WarningIcon from "@material-ui/icons/Warning";
-import HelpIcon from "@material-ui/icons/Help";
 import {fade, makeStyles} from "@material-ui/core/styles";
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 
 const drawerWidth = 240;
 
@@ -246,16 +245,9 @@ export default function SidePanel() {
 
                 <ListItem button>
                     <ListItemIcon>
-                        <WarningIcon/>
+                        <ContactSupportIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Rapporter"/>
-                </ListItem>
-
-                <ListItem button>
-                    <ListItemIcon>
-                        <HelpIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary="Hjelp"/>
+                    <ListItemText primary="Kontakt"/>
                 </ListItem>
 
             </List>
