@@ -51,17 +51,16 @@ const useStyles = makeStyles(theme => ({
 }));
 const user = app.auth().currentUser;
 
-const ChangePasswordForm = ({history}) => {
+const ChangePasswordForm = () => {
     const handleUpdate = useCallback(async event => {
         event.preventDefault();
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        let currentPassword = event.target.elements;
-        let newPassword = event.target.elements;
+        const {currentUserPassword, newUserPassword} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
         axios.post('/updatePassword', {
             userId: sessionStorage.getItem('userId'),
-            currentPassword: currentPassword,
-            newPassword: newPassword
+            currentPassword: currentUserPassword,
+            newPassword: newUserPassword
         })
             .then(res => {
                     //Symfony
@@ -71,7 +70,7 @@ const ChangePasswordForm = ({history}) => {
             )
             .then( () => {
                     //Firebase
-                    user.updatePassword(newPassword).then(function () {
+                    user.updatePassword(newUserPassword).then(function () {
                         // Update successful.
                     })
             }
@@ -80,7 +79,7 @@ const ChangePasswordForm = ({history}) => {
                 // An error happened.
                 console.log(error)
             });
-    }, [history]);
+    }, );
 
     const [open, setOpen] = React.useState(false);
     const [values, setValues] = useState({
@@ -97,7 +96,7 @@ const ChangePasswordForm = ({history}) => {
     };
 
     const handleClickShowPassword = () => {
-        setValues({...values, showPassword: !values.showPassword});
+        setValues({...values, showCurrentPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = event => {
@@ -116,6 +115,7 @@ const ChangePasswordForm = ({history}) => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Endre Passord</DialogTitle>
                 <DialogContent>
+                <form onSubmit={handleUpdate} className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <FormControl className={clsx(classes.margin, classes.textField)}
@@ -168,12 +168,13 @@ const ChangePasswordForm = ({history}) => {
                             </FormControl>
                         </Grid>
                     </Grid>
+                    </form>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Avbrutt
                     </Button>
-                    <Button type="submit" onClick={handleUpdate} color="primary">
+                    <Button type="submit" color="primary">
                         Lagre
                     </Button>
                 </DialogActions>

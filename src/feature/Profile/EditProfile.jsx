@@ -22,7 +22,13 @@ import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import ProfileCard from "../../components/profile/profileCard";
 import DateFnsUtils from "@date-io/date-fns";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-import ChangePasswordForm from "./ChangePasswordForm";
+import FormControl from "@material-ui/core/FormControl";
+import clsx from "clsx";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 
 const useStyles = makeStyles(theme => ({
@@ -105,9 +111,10 @@ const EditProfile = ({history}) => {
         event.preventDefault();
         let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        const {phone, birthdate, address1, address2, zipcode, city, email} = event.target.elements;
+        const {nickname, phone, birthdate, address1, address2, zipcode, city, email, currentPassword, newPassword} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
         axios.post('/url', {
+            nickname: nickname.value,
             phone: phone.value,
             birthdate: birthdate.value,
             address1: address1.value,
@@ -115,6 +122,8 @@ const EditProfile = ({history}) => {
             zipcode: zipcode.value,
             city: city.value,
             email: email.value,
+            currentPassword: currentPassword.value,
+            newPassword: newPassword.value
         })
             .then(res => {
                     //Symfony
@@ -133,9 +142,9 @@ const EditProfile = ({history}) => {
             )
             .then(
                 //Firebase
-                user.updateEmail(email.value).then(function () {
+                user.updatePassword(newPassword.value).then(function() {
                     // Update successful.
-                })
+                  })
             )
             .catch(function (error) {
                 // An error happened.
@@ -144,13 +153,36 @@ const EditProfile = ({history}) => {
     }, [history]);
 
     const classes = useStyles();
+
     const [open, setOpen] = React.useState(false);
+
+    const [values, setValues] = useState({
+        showCurrentPassword: false,
+        showNewPassword: false,
+        validUserInput: false
+    });
 
     const handleClickOpen = () => {
         setOpen(true);
     };
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleValidUserInput = props => event => {
+        setValues({...values, validUserInput: !values.validUserInput});
+    };
+
+    const handleClickShowCurrentPassword = () => {
+        setValues({...values, showCurrentPassword: !values.showCurrentPassword});
+    };
+
+    const handleClickShowNewPassword = () => {
+        setValues({...values, showNewPassword: !values.showNewPassword});
+    };
+
+    const handleMouseDownPassword = event => {
+        event.preventDefault();
     };
 
     const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
@@ -182,8 +214,7 @@ const EditProfile = ({history}) => {
                             console.log('Bildeopplasting ok');
                             console.log(aData['image']);
                             sessionStorage.setItem('profileImage', aData['image']);
-                        }
-                        else if (aData['code'] == 400) {
+                        } else if (aData['code'] == 400) {
                             alert('Feil ved bildeopplasting');
                         }
                     }
@@ -192,6 +223,7 @@ const EditProfile = ({history}) => {
             });
         }
     };
+
 
     return (
         <Container component="main" maxWidth="xs">
@@ -219,11 +251,12 @@ const EditProfile = ({history}) => {
                                         Endre Profilbilde
                                     </DialogTitle>
                                     <DialogContent dividers>
-                                        <Avatar src={"profileimages/"+sessionStorage.getItem('profileImage')}
+                                        <Avatar src={"profileimages/" + sessionStorage.getItem('profileImage')}
                                                 className={classes.large}/>
                                         <div className={classes.root}>
 
-                                            <input type="file" accept="image/*" onChange={handleImageUpload} multiple = "false" />
+                                            <input type="file" accept="image/*" onChange={handleImageUpload}
+                                                   multiple="false"/>
 
                                             <label htmlFor="contained-button-file">
                                                 <Button variant="contained" color="primary" component="span">
@@ -242,12 +275,11 @@ const EditProfile = ({history}) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                name="email"
-                                autoFocus
-                                required
+                                name="nickname"
                                 fullWidth
-                                id="email"
-                                label="Ny E-post adresse"
+                                autoFocus
+                                id="nickname"
+                                label="Visningsnavn"
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -282,7 +314,6 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="sAddress"
                                 label="Adresse"
-
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -292,7 +323,6 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="sAddress2"
                                 label="Adresse 2"
-
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -313,17 +343,88 @@ const EditProfile = ({history}) => {
                                 label="By"
                             />
                         </Grid>
-
-                        <Grid item xs={12} sm={6}>
-                           <ChangePasswordForm/>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12}>
                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
                                 color="primary"
                             >Lagre Endring
+                            </Button>
+                        </Grid>
+                    </Grid>
+
+                    <Grid container justify="flex-end">
+                        <Grid item>
+                        </Grid>
+                    </Grid>
+                </form>
+            </div>
+            <div className={classes.paper}>
+                <Typography component="h1" variant="h5">
+                    Endre Passord
+                </Typography>
+
+                <form onSubmit={handleUpdate} className={classes.form} noValidate>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <FormControl className={clsx(classes.margin, classes.textField)}
+                                         fullWidth>
+                                <InputLabel htmlFor="outlined-adornment-password" required>Nåværende
+                                    passord</InputLabel>
+                                <Input
+                                    name="currentPassword"
+                                    id="currentPassword"
+                                    type={values.showCurrentPassword ? 'text' : 'password'}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowCurrentPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {values.showCurrentPassword ? <Visibility/> : <VisibilityOff/>}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    labelWidth={70}
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <FormControl className={clsx(classes.margin, classes.textField)}
+                                         fullWidth>
+                                <InputLabel htmlFor="outlined-adornment-password" required>Ny Passord</InputLabel>
+                                <Input
+                                    name="newPassword"
+                                    id="newPassword"
+                                    type={values.showNewPassword ? 'text' : 'password'}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowNewPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {values.showNewPassword ? <Visibility/> : <VisibilityOff/>}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    labelWidth={70}
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                            >Lagre
                             </Button>
                         </Grid>
                     </Grid>

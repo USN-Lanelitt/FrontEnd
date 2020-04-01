@@ -55,8 +55,8 @@ const SignUp = ({history}) => {
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
         const {firstname, middlename, birthdate, lastname, phone, email, password} = event.target.elements;
-        if (firstname.value.length === 0 || lastname.value.length === 0) {
-            alert("Alle feltene som er merket med * må fylles ut");
+        if (firstname.value.length === 0 || lastname.value.length === 0 || password.value.length < 6) {
+            alert("Alle feltene som er merket med * må fylles ut og passord må inneholde minst 6 tegn");
         } else {
             let iCode = 0;
             axios.post('/api/register', {
@@ -108,7 +108,7 @@ const SignUp = ({history}) => {
     };
 
     const handleClickShowPassword = () => {
-        setValues({...values, showPassword: !values.showPassword});
+        setValues({...values, showCurrentPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = event => {
