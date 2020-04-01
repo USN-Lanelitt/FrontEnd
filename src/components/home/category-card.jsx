@@ -27,7 +27,7 @@ const CategoryCard = ({id, title, imageUrl}) => {
     return (
         <div>
             <Card className={classes.card}>
-                <CardActionArea component={Link} to="/prof">
+                <CardActionArea component={Link} to="/assets">
                     <CardMedia
                         component="img"
                         alt="bilde"
