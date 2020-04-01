@@ -10,7 +10,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 import {red} from "@material-ui/core/colors";
-
+import axios from "axios";
 
 
 const useStyles = makeStyles(theme => ({
@@ -26,21 +26,16 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
 
     },
-    mid_name: {
-        padding: theme.spacing(0.5),
-
-    },
     Button: {
         color: 'red',
     }
-
 }));
 
-const FriendRequestCard = ({firstname, middlename, lastname, imageUrl}) => {
+const FriendRequestCard = ({id,firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
     const classes = useStyles();
 
     return (
-        <Grid xs={12}>
+
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardContent>
@@ -57,15 +52,15 @@ const FriendRequestCard = ({firstname, middlename, lastname, imageUrl}) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
+                    <Button onClick= {onAccept} size="small" color="primary">
                         Legg til
                     </Button>
-                    <Button className={classes.Button} size="small" color="primary">
+                    <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">
                         Avslå
                     </Button>
                 </CardActions>
             </Card>
-        </Grid>
+
     );
 }
 

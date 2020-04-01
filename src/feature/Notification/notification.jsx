@@ -9,6 +9,8 @@ import Divider from "@material-ui/core/Divider";
 import AssetsList from "../Assets/assets-list";
 import app from "../../fire";
 import axios from "axios";
+import FriendRequest from "../../components/friend/friend-request";
+import ConfirmDialog from "../../components/profile/confirm-dialog";
 
 
 //siden på mobil, (en hel side)
@@ -28,18 +30,51 @@ const useStyles = makeStyles(theme => ({
 const Notification = () => {
     const classes = useStyles();
     const user = app.auth().currentUser;
-    const [id, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
+    const [friendId, setFriendId] = useState(null);
+    const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+
 
     useEffect(() => {
-        console.log("hello from Notification", id, sessionStorage.getItem('userId'));
-        axios.get('/user/' + id + '/friendRequests')
-            .then(result => {
-                console.log(result.data);
-                setData(result.data);
+        console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
+        axios.get('/user/' + userId + '/friendRequests')
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response);
+                    setData(response.data);
+                }
             })
             .catch(e => console.log(e));
-    }, [setData, id]);
+    }, [setData, userId]);
+
+    const accept = (friendId) => {
+        setShowConfirmDialog(true);
+        setFriendId(friendId);
+    };
+
+    const denied = (friendId) => {
+        setShowConfirmDialog(true);
+        setFriendId(friendId);
+    };
+
+    function reply(status) {
+        console.log("replyrequest", userId, sessionStorage.getItem('userId'));
+        axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' + status)
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data);
+                }
+
+            })
+            .catch(e => console.log(e));
+
+
+    }
+
+    function onReplyCancel() {
+        setShowConfirmDialog(false);
+    }
 
     return (
         <React.Fragment>
@@ -56,20 +91,35 @@ const Notification = () => {
                     <Divider/>
                 </Typography>
             </Container>
-            <Grid container spacing={4}>
 
+            <Container>
+
+                <ConfirmDialog title="Godkjenn forespørsel ?"
+                               message="Ønsker du å godkjenne denne vennen?"
+                               onConfirm={onReplyCancel}
+                               onNotConfirm={reply(1)}
+                               confirmButtonText="Ja"
+                               notConfirmButtonText="Nei"
+                               open={showConfirmDialog}
+                />
+
+            <Grid container spacing={4}>
                 {data.map(item => (
                     <Grid item key={item} xs={12} sm={6} md={4}>
 
                         <FriendRequestCard
-                            firstname={item.firstName}
-                            lastname={item.lastName}
-                            middlename={item.middleName}
-                            imageUrl={item.imageUrl}
+                            firstname={item.user1.firstName}
+                            lastname={item.user1.lastName}
+                            middlename={item.user1.middleName}
+                            imageUrl={item.user1.profileImage}
+                            friendId={item.user1.id}
+                            onDenied={() => denied(item.user1.id)}
+                            onAccept={() => accept(item.user1.id)}
                         />
                     </Grid>
                 ))}
             </Grid>
+            </Container>
 
             <Container maxWidth="sm">
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
@@ -77,7 +127,7 @@ const Notification = () => {
                     Låneforespørsler
                     <Divider/>
                 </Typography>
-                <AssetsList/>
+
 
             </Container>
 
