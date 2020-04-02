@@ -14,7 +14,9 @@ import ConfirmDialog from "../../components/profile/confirm-dialog";
 
 
 //siden på mobil, (en hel side)
-
+let statuss=0;
+let statusTittel="";
+let statusBesk="";
 const useStyles = makeStyles(theme => ({
 
     heroContent: {
@@ -51,16 +53,23 @@ const Notification = () => {
     const accept = (friendId) => {
         setShowConfirmDialog(true);
         setFriendId(friendId);
+        statusTittel="Godkjenn forespørsel?";
+        statusBesk="Ønsker du å godkjenne denne vennen?";
+        statuss=1;
     };
 
     const denied = (friendId) => {
         setShowConfirmDialog(true);
         setFriendId(friendId);
+        statusTittel="Slett forespørsel?";
+        statusBesk="Ønsker du å slette denne vennen?";
+        statuss=2;
     };
 
-    function reply(status) {
+    function reply() {
+
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
-        axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' + status)
+        axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' +statuss)
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
@@ -68,6 +77,7 @@ const Notification = () => {
 
             })
             .catch(e => console.log(e));
+        setShowConfirmDialog(false);
 
 
     }
@@ -94,31 +104,31 @@ const Notification = () => {
 
             <Container>
 
-                <ConfirmDialog title="Godkjenn forespørsel ?"
-                               message="Ønsker du å godkjenne denne vennen?"
-                               onConfirm={onReplyCancel}
-                               onNotConfirm={reply(1)}
+                <ConfirmDialog title={statusTittel}
+                               message={statusBesk}
+                               onConfirm ={reply}
+                               onNotConfirm={onReplyCancel}
                                confirmButtonText="Ja"
                                notConfirmButtonText="Nei"
                                open={showConfirmDialog}
                 />
 
-            <Grid container spacing={4}>
-                {data.map(item => (
-                    <Grid item key={item} xs={12} sm={6} md={4}>
+                <Grid container spacing={4}>
+                    {data.map(item => (
+                        <Grid item key={item} xs={12} sm={6} md={4}>
 
-                        <FriendRequestCard
-                            firstname={item.user1.firstName}
-                            lastname={item.user1.lastName}
-                            middlename={item.user1.middleName}
-                            imageUrl={item.user1.profileImage}
-                            friendId={item.user1.id}
-                            onDenied={() => denied(item.user1.id)}
-                            onAccept={() => accept(item.user1.id)}
-                        />
-                    </Grid>
-                ))}
-            </Grid>
+                            <FriendRequestCard
+                                firstname={item.user1.firstName}
+                                lastname={item.user1.lastName}
+                                middlename={item.user1.middleName}
+                                imageUrl={item.user1.profileImage}
+                                friendId={item.user1.id}
+                                onDenied={() => denied(item.user1.id)}
+                                onAccept={() => accept(item.user1.id)}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
             </Container>
 
             <Container maxWidth="sm">
