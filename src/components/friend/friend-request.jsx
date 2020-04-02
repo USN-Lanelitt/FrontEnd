@@ -22,7 +22,6 @@ import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
-
 //VenneVarselListe
 
 const useStyles = makeStyles(theme => ({
@@ -55,9 +54,6 @@ const useStyles = makeStyles(theme => ({
        padding: theme.spacing(1),
     },
 
-
-
-
 }));
 
 const StyledMenuItem = withStyles(theme => ({
@@ -71,7 +67,7 @@ const StyledMenuItem = withStyles(theme => ({
     },
 }))(MenuItem);
 
-const FriendRequest = ({firstname, middlename, lastname, imageUrl}) => {
+const FriendRequest = ({id,firstname, middlename, lastname, imageUrl}) => {
     const classes = useStyles();
 
     return (
@@ -90,14 +86,13 @@ const FriendRequest = ({firstname, middlename, lastname, imageUrl}) => {
                 <Divider variant = "inset" />
                 <ListItemSecondaryAction className={classes.button}>
                     <Button size="small" color="primary">
-                        Legg til
+                        Godta
                     </Button>
 
                     <Button className={classes.Button} size="small" color="primary">
                         Avslå
                     </Button>
                 </ListItemSecondaryAction>
-
 
 
         </StyledMenuItem>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
-
+import MyAssetsCard from "../profile/my-assets-card";
+import axios from "axios";
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,21 +20,20 @@ const useStyles = makeStyles(theme => ({
     photo: {
         width: theme.spacing(7),
         height: theme.spacing(7),
-
     },
     text: {
         padding: theme.spacing(2),
-
     },
-    mid_name: {
-        padding: theme.spacing(0.5),
-
-    }
+    Button: {
+        color: 'red',
+    },
 
 }));
 
-const FriendCard = ({firstname, middlename, lastname, imageUrl}) => {
+const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove}) => {
     const classes = useStyles();
+
+
     return (
         <Grid xs={12}>
             <Card className={classes.card}>
@@ -45,21 +45,15 @@ const FriendCard = ({firstname, middlename, lastname, imageUrl}) => {
                             </CardMedia>
                             <Grid className={classes.text}>
                                 <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
-                                    {firstname}
-                                </Typography>
-                                <Typography className = {classes.mid_name} gutterBottom variant="h6" component="h2" display={"inline"}>
-                                    {middlename}
-                                </Typography>
-                                <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
-                                    {lastname}
+                                    {firstname} {middlename} {lastname}
                                 </Typography>
                             </Grid>
                         </Grid>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        Venner
+                    <Button className={classes.Button} onClick= {onRemove} size="small" color="primary">
+                        Slett venn
                     </Button>
                     <Button size="small" color="primary">
                         Send melding
