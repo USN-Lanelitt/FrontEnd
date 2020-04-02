@@ -3,13 +3,10 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import data from "../../components/friend/data";
 import FriendRequestCard from "../../components/friend/friend-requestCard";
 import Divider from "@material-ui/core/Divider";
-import AssetsList from "../Assets/assets-list";
 import app from "../../fire";
 import axios from "axios";
-import FriendRequest from "../../components/friend/friend-request";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 
 
@@ -31,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 
 const Notification = () => {
     const classes = useStyles();
-    const user = app.auth().currentUser;
     const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
@@ -67,7 +63,6 @@ const Notification = () => {
     };
 
     function reply() {
-
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' +statuss)
             .then((response) => {

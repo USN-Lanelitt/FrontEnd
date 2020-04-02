@@ -9,8 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
-import MyAssetsCard from "../profile/my-assets-card";
-import axios from "axios";
 
 
 const useStyles = makeStyles(theme => ({

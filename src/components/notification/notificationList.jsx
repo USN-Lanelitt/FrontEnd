@@ -15,6 +15,7 @@ import FriendCard from "../friend/friend-card";
 import FriendRequestCard from "../friend/friend-requestCard";
 import FriendRequestList from "../friend/friend-request-list";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 
 
 
@@ -90,6 +91,7 @@ const NotificationList = ({firstname, middlename, lastname, imageUrl}) => {
                                         <Typography variant="h6" align="center" color="textPrimary" gutterBottom>
                                             Venneforespørsler
                                         </Typography>
+
 
                                       <FriendRequestList/> <FriendRequest/>
 

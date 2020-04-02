@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import FriendCard from "../../components/friend/friend-card";
-import data from "../../components/friend/data";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import app from "../../fire";
-import FriendRequest from "../../components/friend/friend-request";
-import {fetchAssets} from "../../components/profile/asset-repository";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
-import MyAssetsCard from "../../components/profile/my-assets-card";
 
 
 const useStyles = makeStyles(theme => ({

@@ -14,6 +14,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import useTheme from "@material-ui/core/styles/useTheme";
 import Notification from "./feature/Notification/notification";
 import FriendRequestCard from "./components/friend/friend-requestCard";
+import SearchFriends from "./components/search/search-friends";
 
 
 const useStyles = makeStyles(theme => ({
@@ -40,12 +41,15 @@ const Scaffold = () => {
             <Route exact path="/friendList" component={FriendList} />
             <Route exact path="/friendReques" component={FriendRequest} />
             <PrivateRoute path="/friendAll" exact component={FriendAll} />
+            <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
+            <Route exact path="/search-friends" component={SearchFriends}/>
             <Route exact path="/category" componenet={CategoryCard}/>
             <Route exact path="/assets" component={AssetContainer}/>
             <Route exact path="/my/assets" component={MyAssetsList}/>
             <Route exact path="/new/asset" component={NewAsset}/>
             <Route exact path="/notification" component={Notification}/>
-            <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
+
+
             </Box>
         </main>
     );

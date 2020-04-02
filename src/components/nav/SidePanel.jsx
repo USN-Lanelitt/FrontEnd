@@ -8,6 +8,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import PeopleIcon from "@material-ui/icons/People";
 import ListItemText from "@material-ui/core/ListItemText";
 import EmailIcon from "@material-ui/icons/Email";
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import HomeIcon from "@material-ui/icons/Home";
 import StorageIcon from "@material-ui/icons/Storage";
 import QueryBuilderIcon from "@material-ui/icons/QueryBuilder";
@@ -182,6 +183,15 @@ export default function SidePanel() {
                             <HomeIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Hjem"/>
+                    </ListItem>
+                </Link>
+
+                <Link to="/Notification" style={{textDecoration: 'none', color: 'black'}}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <NotificationsIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary="Varsel"/>
                     </ListItem>
                 </Link>
 

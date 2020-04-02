@@ -14,7 +14,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -25,6 +24,7 @@ import Logout from "../login/logout";
 import app from "../../fire";
 import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
+import SearchFriends from "../search/search-friends";
 
 const drawerWidth = 240;
 
@@ -219,8 +219,8 @@ export default function NavBar(props) {
         </Menu>
     );
 
-    {/*Meny knapp alternativer som blir vist hvi bruker er på mobil eller hvis skjermen er liten*/
-    }
+    {/*Meny knapp alternativer som blir vist hvis bruker er på mobil eller hvis skjermen er liten*/}
+
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <Menu
@@ -241,9 +241,9 @@ export default function NavBar(props) {
                 <p>Messages</p>
             </MenuItem>
                 <MenuItem>
-                    <Link to="#">
+                    <Link to="/notification">
                         <IconButton aria-label="show 1 new notifications" color="inherit">
-                            <Badge badgeContent={11} color="secondary">
+                            <Badge badgeContent={5} color="secondary">
                                 <NotificationsIcon/>
                             </Badge>
                         </IconButton>
@@ -298,25 +298,26 @@ export default function NavBar(props) {
                             Lånelitt
                         </Typography>
                     </Link>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon/>
-                        </div>
 
                         {/*----------Søke felt i Navbar Icon knapp--------------*/}
-                        <InputBase
-                            placeholder="Søk…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput
-                            }}
-                            inputProps={{"aria-label": "search"}}
-                        />
-                    </div>
+                    <SearchFriends/>
+
 
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
+
                         {loggedIn && (<div>
+                            {/*----------Varsel Icon knapp--------------*/}
+                            <IconButton aria-label="show 1 new notification" color="inherit">
+                                <NotificationList/>
+                            </IconButton>
+
+                            {/*----------Epost/melding Icon knapp--------------*/}
+                            <IconButton aria-label="show 1 new mails" color="inherit">
+                                <Badge badgeContent={1} color="secondary">
+                                    <MailIcon/>
+                                </Badge>
+                            </IconButton>
 
                             {/*----------AdminSide Icon knapp--------------*/}
                             <Link to="/admin" style={{color: "white"}}>
@@ -326,18 +327,6 @@ export default function NavBar(props) {
                                     </Badge>
                                 </IconButton>
                             </Link>
-
-                            {/*----------Epost/melding Icon knapp--------------*/}
-                            <IconButton aria-label="show 1 new mails" color="inherit">
-                                <Badge badgeContent={1} color="secondary">
-                                    <MailIcon/>
-                                </Badge>
-                            </IconButton>
-
-                            {/*----------Varsel Icon knapp--------------*/}
-                            <IconButton aria-label="show 1 new notification" color="inherit">
-                                <NotificationList/>
-                            </IconButton>
 
                         </div>)}
 
