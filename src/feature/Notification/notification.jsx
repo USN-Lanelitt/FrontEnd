@@ -5,12 +5,12 @@ import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import FriendRequestCard from "../../components/friend/friend-requestCard";
 import Divider from "@material-ui/core/Divider";
-import app from "../../fire";
 import axios from "axios";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 
 
 //siden på mobil, (en hel side)
+
 let statuss=0;
 let statusTittel="";
 let statusBesk="";
@@ -73,8 +73,6 @@ const Notification = () => {
             })
             .catch(e => console.log(e));
         setShowConfirmDialog(false);
-
-
     }
 
     function onReplyCancel() {

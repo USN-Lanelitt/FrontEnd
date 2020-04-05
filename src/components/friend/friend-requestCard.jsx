@@ -9,9 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
-import {red} from "@material-ui/core/colors";
-import axios from "axios";
-
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -41,6 +39,7 @@ const FriendRequestCard = ({id,firstname, middlename, lastname, imageUrl, onDeni
                     <CardContent>
                         <Grid container zeroMinWidth justify="flex-start">
                             <CardMedia>
+
                                 <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                             </CardMedia>
                             <Grid className={classes.text}>

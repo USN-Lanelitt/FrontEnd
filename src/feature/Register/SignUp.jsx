@@ -95,7 +95,7 @@ const SignUp = ({history}) => {
     const [values, setValues] = useState({
         showPassword: false,
     });
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-05'));
 
     const handleDateChange = date => {
         setSelectedDate(date);

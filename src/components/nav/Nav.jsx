@@ -240,16 +240,15 @@ export default function NavBar(props) {
                 </IconButton>
                 <p>Messages</p>
             </MenuItem>
+                <Link to="/notification" style={{textDecoration: 'none', color: 'black'}}>
                 <MenuItem>
-                    <Link to="/notification">
                         <IconButton aria-label="show 1 new notifications" color="inherit">
                             <Badge badgeContent={5} color="secondary">
                                 <NotificationsIcon/>
                             </Badge>
                         </IconButton>
-                    </Link>
                     <p>Notifications</p>
-                </MenuItem></div>)}
+                </MenuItem></Link></div>)}
             {!loggedIn ? <Link to="/login" style={{textDecoration: 'none', color: 'black'}}>
                     <MenuItem>
                         <IconButton

@@ -15,6 +15,11 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import Notification from "./feature/Notification/notification";
 import FriendRequestCard from "./components/friend/friend-requestCard";
 import SearchFriends from "./components/search/search-friends";
+import NotificationList from "./components/notification/notificationList";
+import FriendProfile from "./components/friend/friend-profile";
+import LoanRequest from "./components/loan/loan-request";
+import LoanRequestCard from "./components/loan/loan-request-card";
+import LoanCard from "./components/loan/loan-card";
 
 
 const useStyles = makeStyles(theme => ({
@@ -42,12 +47,20 @@ const Scaffold = () => {
             <Route exact path="/friendReques" component={FriendRequest} />
             <PrivateRoute path="/friendAll" exact component={FriendAll} />
             <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
-            <Route exact path="/search-friends" component={SearchFriends}/>
+            <Route exact path="/searchfriends" component={SearchFriends}/>
             <Route exact path="/category" componenet={CategoryCard}/>
             <Route exact path="/assets" component={AssetContainer}/>
             <Route exact path="/my/assets" component={MyAssetsList}/>
             <Route exact path="/new/asset" component={NewAsset}/>
             <Route exact path="/notification" component={Notification}/>
+            <Route exact path="/notificationList" component={NotificationList}/>
+            <Route exact path="/friendprofile" component={FriendProfile}/>
+            <Route exact path="/loanforespørsel" component={LoanRequest}/>
+            <Route exact path="/loanRequestCard" component={LoanRequestCard}/>
+            <Route exact path="/loanCard" component={LoanCard}/>
+
+
+
 
 
             </Box>

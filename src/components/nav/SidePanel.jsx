@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileCard from "../profile/profileCard";
+import ProfileCard from "../profile/profile-card";
 import List from "@material-ui/core/List";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import {Link} from "react-router-dom";

@@ -67,13 +67,13 @@ const StyledMenuItem = withStyles(theme => ({
     },
 }))(MenuItem);
 
-const FriendRequest = ({id,firstname, middlename, lastname, imageUrl}) => {
+const FriendRequest = ({id,firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
     const classes = useStyles();
 
     return (
         <React.Fragment>
             <StyledMenuItem>
-                <Box className={classes.list}>
+                <Grid className={classes.list}>
 
                     <ListItemAvatar>
                         <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
@@ -82,14 +82,13 @@ const FriendRequest = ({id,firstname, middlename, lastname, imageUrl}) => {
                         <ListItemText gutterBottom variant="h6" component="h7" display={"inline"}>
                             {firstname} {middlename} {lastname}
                         </ListItemText>
-                </Box>
+                </Grid>
                 <Divider variant = "inset" />
                 <ListItemSecondaryAction className={classes.button}>
-                    <Button size="small" color="primary">
+                    <Button onClick= {onAccept} size="small" color="primary">
                         Godta
                     </Button>
-
-                    <Button className={classes.Button} size="small" color="primary">
+                    <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">
                         Avslå
                     </Button>
                 </ListItemSecondaryAction>

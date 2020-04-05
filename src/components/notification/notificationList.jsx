@@ -1,27 +1,15 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import {Notification} from "react-activity-feed";
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import IconButton from "@material-ui/core/IconButton";
 import FriendRequest from "../friend/friend-request";
-import FriendCard from "../friend/friend-card";
-import FriendRequestCard from "../friend/friend-requestCard";
 import FriendRequestList from "../friend/friend-request-list";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-
-
-
-//her er alle varslene i liste (ALT)
-
-
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const NotificationList = ({firstname, middlename, lastname, imageUrl}) => {
+const NotificationList = ({firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -89,12 +77,10 @@ const NotificationList = ({firstname, middlename, lastname, imageUrl}) => {
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <Typography variant="h6" align="center" color="textPrimary" gutterBottom>
-                                            Venneforespørsler
+                                            Varsler
                                         </Typography>
 
-
                                       <FriendRequestList/> <FriendRequest/>
-
 
                                     </MenuList>
                                 </ClickAwayListener>

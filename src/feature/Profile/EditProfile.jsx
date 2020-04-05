@@ -19,7 +19,7 @@ import Copyright from '../../components/home/Copyright';
 import axios from "axios";
 import app from "../../fire";
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
-import ProfileCard from "../../components/profile/profileCard";
+import ProfileCard from "../../components/profile/profile-card";
 import DateFnsUtils from "@date-io/date-fns";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import FormControl from "@material-ui/core/FormControl";
