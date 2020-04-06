@@ -10,12 +10,14 @@ import EditProfile from "./feature/Profile/EditProfile";
 import {AuthProvider} from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import Scaffold from "./scaffold";
+import Cookie from "./components/user/cookies";
 
 function App(){
     return (
         <AuthProvider>
             <Router>
             <div className="App">
+                <Cookie/>
                 <Nav />
                 <Route path="/" exact component={Home} />
                 <PrivateRoute path="/admin" exact component={Admin} />

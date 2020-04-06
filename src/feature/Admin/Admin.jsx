@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
 import Copyright from '../../components/home/Copyright';
-import UserList from "../../components/admin/userlist";
+import AmountTable from "../../components/admin/amount-table";
+import AdminTable from "../../components/admin/admin-table";
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,25 +46,11 @@ export default function Admin() {
                 </div>
 
                 <Container className={classes.cardGrid} maxWidth="md">
-                    <div>
-                        <TextField
-                            id="outlined-full-width"
-                            label="Søk"
-                            style={{margin: 8}}
-                            placeholder="Brukernavn / Epost"
-                            helperText="Søk opp Brukernavn / Epost / Mobilnr"
-                            fullWidth
-                            margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            variant="outlined"
-                        />
-                    </div>
                     <h3>Brukerliste</h3>
                     <hr/>
                     <Grid item xs={12}>
-                        <UserList/>
+                        <AmountTable/>
+                        <AdminTable/>
                     </Grid>
                 </Container>
             </main>
