@@ -3,35 +3,76 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import axios from "axios";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import {fade} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+
+    search: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: fade(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+        },
+        marginRight: theme.spacing(2),
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(3),
+            width: 'auto',
+        },
+    },
+    searchIcon: {
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inputRoot: {
+        color: 'inherit',
+    },
+
+}));
 
 const SearchFriends = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
     const [search, setSearch] = useState();
+    const classes = useStyles();
 
-            useEffect(()=> {
+    useEffect(() => {
+        console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
+        axios.get('/users')
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setData(response.data);
                     console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
-                    axios.get('/users')
-                        .then((response) => {
-                            if (response.status === 200) {
-                                console.log(response.data);
-                                setData(response.data);
-                                 console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
-                            }
-                        })
-                        .catch(e => console.log(e));
-                }, [setData, userId]);
-     
+                }
+            })
+            .catch(e => console.log(e));
+    }, [setData, userId]);
+
 
     return (
         <Box m={2} display="flex" alignItems="center" flexDirection="column">
+            <div className={classes.search}>
+
             <Autocomplete
-                id="combo-box-demo"                                                  
+                id="combo-box-demo"
                 options={data}
                 getOptionLabel={option => option.firstName}
-                style={{ width: 210}}
-                renderInput={params => <TextField {...params} label="Søk på bruker..." variant="outlined"/>}
+                style={{width: 210}}
+                renderInput={params => <TextField   {...params}
+                                                  label="Søk på bruker..."
+                                                  variant="filled"/>}
             />
+            </div>
+
         </Box>
 
     );

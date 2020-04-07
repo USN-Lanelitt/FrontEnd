@@ -9,6 +9,7 @@ import Card from "@material-ui/core/Card";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     card: {
@@ -23,7 +24,7 @@ const AssetCard = ({title, description, imageUrl, rating}) => {
     return (
         <div>
             <Card className={classes.card}>
-                <CardActionArea>
+                <CardActionArea >
                     <CardMedia
                         component="img"
                         alt="bilde"
@@ -44,7 +45,7 @@ const AssetCard = ({title, description, imageUrl, rating}) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" component={Link} to="/assetSite">
                         åpne
                     </Button>
 
