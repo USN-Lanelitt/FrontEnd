@@ -1,0 +1,53 @@
+
+
+Funksjon getChat - url: /users/chat/{userId1}/{userId2}  - method GET
+(hent en venn)
+
+Send til backend:
+· userId1
+· userId2
+
+Send til frontend:
+· bruker1
+    fornavn
+    etternavn
+· bruker2
+    fornavn
+    etternavn
+· timestampSent
+· message
+· timestampRead
+
+
+
+
+Funksjon writeMessage - url: /users/writeMessage/{userId1}/{userId2}
+
+Send til backend
+· userId1
+· userId2
+· message(i request)
+
+
+Funksjon getChats - url: /users/getChats/{userId}
+
+Send til backend
+· userId1
+
+Send til frontend:
+· id
+· firstName
+· middleName
+· lastName
+· email
+· phone
+· birthDate
+
+
+
+
+
+
+
+
+
