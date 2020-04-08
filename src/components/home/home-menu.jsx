@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import CategoryCard from "./category-card";
+import CategoryCard from "../profile/category-card";
 import Grid from "@material-ui/core/Grid";
 import {Container} from "@material-ui/core";
 import axios from "axios";

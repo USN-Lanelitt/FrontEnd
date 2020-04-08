@@ -3,7 +3,7 @@ import {Route} from "react-router-dom";
 import FriendList from "./components/friend/friend-list";
 import FriendRequest from "./components/friend/friend-request";
 import FriendAll from "./feature/Friend/friend-all";
-import CategoryCard from "./components/home/category-card";
+import CategoryCard from "./components/profile/category-card";
 import AssetContainer from "./feature/Assets/asset-container";
 import MyAssetsList from "./components/profile/my-assets-list";
 import NewAsset from "./components/profile/new-asset";
@@ -21,6 +21,7 @@ import LoanRequest from "./components/loan/loan-request";
 import LoanRequestCard from "./components/loan/loan-request-card";
 import LoanCard from "./components/loan/loan-card";
 import Chat from "./feature/Chat/Chat";
+import AssetSite from "./feature/Assets/asset-site";
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,27 +44,24 @@ const Scaffold = () => {
 
     return (
         <main>
-            <Box p={extraSmallScreen ? 1 : 3}>
-            <Route exact path="/friendList" component={FriendList} />
-            <Route exact path="/friendReques" component={FriendRequest} />
-            <PrivateRoute path="/friendAll" exact component={FriendAll} />
-            <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
-            <Route exact path="/searchfriends" component={SearchFriends}/>
-            <Route exact path="/category" componenet={CategoryCard}/>
-            <Route exact path="/assets" component={AssetContainer}/>
-            <Route exact path="/my/assets" component={MyAssetsList}/>
-            <Route exact path="/new/asset" component={NewAsset}/>
-            <Route exact path="/notification" component={Notification}/>
-            <Route exact path="/notificationList" component={NotificationList}/>
-            <Route exact path="/friendprofile" component={FriendProfile}/>
-            <Route exact path="/loanforespørsel" component={LoanRequest}/>
-            <Route exact path="/loanRequestCard" component={LoanRequestCard}/>
-            <Route exact path="/loanCard" component={LoanCard}/>
-            <Route exact path="/chat" component={Chat}/>
-
-
-
-
+            <Box p={extraSmallScreen ? 1 : 3} mt={12}>
+                <Route exact path="/friendList" component={FriendList}/>
+                <Route exact path="/friendReques" component={FriendRequest}/>
+                <PrivateRoute path="/friendAll" exact component={FriendAll}/>
+                <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
+                <Route exact path="/searchfriends" component={SearchFriends}/>
+                <Route exact path="/category" componenet={CategoryCard}/>
+                <Route exact path="/assets" component={AssetContainer}/>
+                <Route exact path="/my/assets" component={MyAssetsList}/>
+                <Route exact path="/new/asset" component={NewAsset}/>
+                <Route exact path="/notification" component={Notification}/>
+                <Route exact path="/notificationList" component={NotificationList}/>
+                <Route exact path="/friendprofile" component={FriendProfile}/>
+                <Route exact path="/loanforespørsel" component={LoanRequest}/>
+                <Route exact path="/loanRequestCard" component={LoanRequestCard}/>
+                <Route exact path="/loanCard" component={LoanCard}/>
+                <Route exact path="/assetSite" component={AssetSite}/>
+                <Route exact path="/chat" component={Chat}/>
             </Box>
         </main>
     );
