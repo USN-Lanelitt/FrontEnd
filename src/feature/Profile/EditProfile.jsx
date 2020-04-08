@@ -189,6 +189,7 @@ const EditProfile = ({history}) => {
 
     const handleDateChange = date => {
         setSelectedDate(date);
+        console.log(selectedDate);
     };
 
     const handleImageUpload = e => {

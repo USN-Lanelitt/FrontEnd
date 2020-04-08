@@ -7,6 +7,11 @@ import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import {CardActions} from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+
 
 //her skal fra og til dato komme opp, søke om å låne
 
@@ -16,14 +21,24 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+
+
     },
     send: {
         margin: theme.spacing(3, 0, 2),
 
     },
+
+
 }));
 const LoanRequest = () => {
     const classes = useStyles();
+    const [value, setValue] = React.useState();
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
+
 
     const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-05'));
     const [selectedDate2, setSelectedDate2] = React.useState(new Date('2020-04-05'));
@@ -36,52 +51,79 @@ const LoanRequest = () => {
     };
 
     return (
-        <Card className={classes.paper}>
-                <Grid>
+        <Box display="flex" justifyContent="center">
+            <Box width={1 / 2} height={'100%'}>
+                <Card className={classes.paper}>
 
+                    <Box borderBottom={1}>
+                        <CardContent>
+                            <Typography variant="h5" component="h2">
+                                Velg ønsket tidspunkt for lån:
+                            </Typography>
+
+                        </CardContent>
+
+
+                    </Box>
+                    <Box m={4}>
+                        <CardActions>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    format="dd/MM/yyyy"
+                                    margin="normal"
+                                    id="date-picker-inline"
+                                    label="Låne fra: "
+                                    value={selectedDate}
+                                    onChange={handleDateChange}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />
+                            </MuiPickersUtilsProvider>
+
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    format="dd/MM/yyyy"
+                                    margin="normal"
+                                    id="date-picker-inline"
+                                    label="Låne til: "
+                                    value={selectedDate2}
+                                    onChange={handleDateChange2}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />
+                            </MuiPickersUtilsProvider>
+                        </CardActions>
+
+                    </Box>
+                    <TextField
+                        id="standard-multiline-static"
+                        label="Send med en melding"
+                        multiline
+                        rowsMax="7"
+                        value={value}
+                        onChange={handleChange}
+
+
+                    />
                     <CardActions>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <KeyboardDatePicker
-                                disableToolbar
-                                variant="inline"
-                                format="dd/MM/yyyy"
-                                margin="normal"
-                                id="date-picker-inline"
-                                label="Låne fra: "
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date',
-                                }}
-                            />
-                        </MuiPickersUtilsProvider>
-
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <KeyboardDatePicker
-                                disableToolbar
-                                variant="inline"
-                                format="dd/MM/yyyy"
-                                margin="normal"
-                                id="date-picker-inline"
-                                label="Låne til: "
-                                value={selectedDate2}
-                                onChange={handleDateChange2}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date',
-                                }}
-                            />
-                        </MuiPickersUtilsProvider>
-                    </CardActions>
-
-                    <CardActions>
-                        <Button className={classes.send} type="submit" fullWidth variant="contained" color="primary" >
+                        <Button className={classes.send} type="submit" fullWidth variant="contained" color="primary">
                             Send
                         </Button>
                     </CardActions>
-                </Grid>
 
-        </Card>
-);
+
+
+
+                </Card>
+            </Box>
+        </Box>
+    );
 };
 
 export default LoanRequest;
