@@ -21,20 +21,6 @@ const useStyles = makeStyles(theme => ({
 function ChatWindow ({selectedChat}) {
     const [userId, setId] = useState('nicole');
     const classes = useStyles();
-    const [side, setSide] = useState('left');
-
-    function changeSide(id) {
-
-        if(id === userId) {
-            const side = {
-                textAlign: 'right'
-            }
-            console.log('right');
-        }
-
-    }
-
-        console.log(selectedChat);
 
         return (
             <div >
@@ -43,11 +29,11 @@ function ChatWindow ({selectedChat}) {
                         selectedChat.map((chat) => (
                             <ListItem className={classes.chatBox} key={chat.id} >
                                 <Typography variant="caption" >
-                                    {chat.user1}
+                                    {chat.user1.firstName}
                                 </Typography>
 
                                 <div>
-                                    <Chip label= {chat.message} className={classes.chip} />
+                                    <Chip label= {chat.message} />
                                 </div>
                             </ListItem>
                         ))

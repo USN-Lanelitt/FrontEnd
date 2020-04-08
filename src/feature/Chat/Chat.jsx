@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
@@ -11,58 +12,7 @@ import Button from "@material-ui/core/Button";
 import FaceIcon from '@material-ui/icons/Face';
 import ChatWindow from "../../components/chat/chat-window";
 
-const initUsers = [
-    {
-        id:1,
-        firstName: "nicky bendu",
-        chat: [
 
-            {
-                id: 1,
-                user1: "nicole",
-                user2: "nicky",
-                message: "blaaaaa",
-            },
-            {
-                id: 2,
-                user1: "nicky",
-                user2: "nicole",
-                message: "bla",
-            },
-            {
-                id: 3,
-                user1: "nicole",
-                user2: "nicky",
-                message: "hva skjer?",
-            }
-        ],
-    },
-    {
-        id:2,
-        firstName: "nick bendu",
-        chat: [
-            {
-                id: 1,
-                user1: "nicole bendu",
-                user2: "nick bendu",
-                message: "Hallo",
-            },
-            {
-                id: 2,
-                user1: "nick bendu",
-                user2: "nicole bendu",
-                message: "hei",
-            },
-            {
-                id: 3,
-                user1: "nicole bendu",
-                user2: "nick bendu",
-                message: "hva skjer?",
-            }
-
-        ],
-    },
-];
 
 
 const useStyles = makeStyles(theme => ({
@@ -108,32 +58,58 @@ const useStyles = makeStyles(theme => ({
 
 export default function Chat() {
     const classes = useStyles();
+    const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
+    const [userId2, setUserId2] = useState([]);
+    const [chatUsers, setChatUsers] = useState([]);
+    const [selectedChat, setSelectedChat] = useState([]);
+    const [textValue, setTextValue] = useState('');
 
-    const [users, setUsers] = React.useState(initUsers);
-
-    const [selectedChat, setSelectedChat] = React.useState([]);
-
-    const [textValue, setTextValue] = React.useState('');
-
-    const onSelected = (chat) => {
-        setSelectedChat(chat);
-        console.log(chat);
-    };
-
-    {/*useEffect(() => {
-        AllFriends();
-    },[setData, userId]);
-
-    function AllFriends(){
-        console.log("hello from AllFriends", userId, sessionStorage.getItem('userId'));
-        axios.get('/user/' + userId + '/friends')
+    useEffect(() => {
+        console.log("getChatUsers", userId, sessionStorage.getItem('userId'));
+        axios.get('/users/getChats/51')
             .then(result => {
                 console.log(result.data);
-                setData(result.data);
+                setChatUsers(result.data);
             })
             .catch(e => console.log(e));
-    }*/}
+    },[setChatUsers, userId]);
 
+    function showChat(userId2) {
+        console.log("getChat", userId, sessionStorage.getItem('userId'));
+        axios.get('/users/chat/51/'+userId2)
+            .then(result => {
+                console.log(result.data);
+                setSelectedChat(result.data);
+            })
+            .catch(e => console.log(e));
+    }
+
+    function sendMessage(message) {
+        console.log("sendMessage", userId, sessionStorage.getItem('userId'));
+        axios.post('/users/writeMessage/51/52', {
+            message: message
+        })
+            .then(result => {
+                console.log(result.data);
+            })
+            .catch(e => console.log(e));
+    }
+
+    const onSelected = (id) => {
+        setUserId2(id);
+        showChat(id);
+        console.log(id);
+    };
+
+    const handleClick = () => {
+        sendMessage(textValue);
+        console.log(textValue);
+    };
+
+    const chatUpdate = () => {
+        showChat(userId2);
+        console.log('update');
+    };
 
     return (
 
@@ -158,11 +134,14 @@ export default function Chat() {
                         <div className={classes.chatListWindow}>
                             <List>
                                 {
-                                    users.map((user) => (
+                                    chatUsers.map((user) => (
                                         <ListItem key={user.id} button>
                                             <Chip icon={<FaceIcon />}
                                                   label={user.firstName}
-                                                  color="primary" classes={{primary:classes.listItemText}} onClick={() => onSelected(user.chat)} />
+                                                  color="primary"
+                                                  classes={{primary:classes.listItemText}}
+                                                  onClick={() => onSelected(user.id)}
+                                            />
                                         </ListItem>
                                     ))
                                 }
@@ -170,7 +149,6 @@ export default function Chat() {
                         </div>
 
                         <div className={classes.chatWindow}>
-
                             <div className={classes.messageBox}>
                                 <ChatWindow selectedChat = {selectedChat} />
                             </div>
@@ -184,13 +162,21 @@ export default function Chat() {
                                         value={textValue}
                                         onChange={e=> setTextValue(e.target.value)}
                                     />
-                                    <Button variant="contained" color="primary" className={classes.button}>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        className={classes.button}
+                                        onClick={()=>{
+                                            handleClick();
+                                            chatUpdate();
+                                            setTextValue('');
+                                        }}
+                                    >
                                         Send
                                     </Button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </Paper>
             </Container>
