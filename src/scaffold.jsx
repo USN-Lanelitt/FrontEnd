@@ -20,6 +20,7 @@ import FriendProfile from "./components/friend/friend-profile";
 import LoanRequest from "./components/loan/loan-request";
 import LoanRequestCard from "./components/loan/loan-request-card";
 import LoanCard from "./components/loan/loan-card";
+import Chat from "./feature/Chat/Chat";
 import AssetSite from "./feature/Assets/asset-site";
 
 
@@ -60,6 +61,7 @@ const Scaffold = () => {
                 <Route exact path="/loanRequestCard" component={LoanRequestCard}/>
                 <Route exact path="/loanCard" component={LoanCard}/>
                 <Route exact path="/assetSite" component={AssetSite}/>
+                <Route exact path="/chat" component={Chat}/>
             </Box>
         </main>
     );
