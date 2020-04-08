@@ -198,12 +198,14 @@ export default function SidePanel() {
                         <ListItemText primary="Venner"/>
                     </ListItem>
 
-                <ListItem button>
-                    <ListItemIcon>
-                        <EmailIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary="Meldinger"/>
-                </ListItem>
+                <Link to="/chat" style={{textDecoration: 'none', color: 'black'}}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <EmailIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary="Meldinger"/>
+                    </ListItem>
+                </Link>
 
                     <ListItem button component={Link} to="/prof">
                         <ListItemIcon>
