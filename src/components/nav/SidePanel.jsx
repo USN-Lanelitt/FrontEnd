@@ -177,32 +177,26 @@ export default function SidePanel() {
                     </ListSubheader>
                 }>
 
-                <Link to="/" style={{textDecoration: 'none', color: 'black'}}>
-                    <ListItem button>
+                    <ListItem button component={Link} to="/">
                         <ListItemIcon>
                             <HomeIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Hjem"/>
                     </ListItem>
-                </Link>
 
-                <Link to="/Notification" style={{textDecoration: 'none', color: 'black'}}>
-                    <ListItem button>
+                    <ListItem button component={Link} to="/Notification">
                         <ListItemIcon>
                             <NotificationsIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Varsel"/>
                     </ListItem>
-                </Link>
 
-                <Link to="/friendAll" style={{textDecoration: 'none', color: 'black'}}>
-                    <ListItem button>
+                    <ListItem button component={Link} to="/friendAll">
                         <ListItemIcon>
                             <PeopleIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Venner"/>
                     </ListItem>
-                </Link>
 
                 <ListItem button>
                     <ListItemIcon>
@@ -211,15 +205,13 @@ export default function SidePanel() {
                     <ListItemText primary="Meldinger"/>
                 </ListItem>
 
-                <Link to="/prof" style={{textDecoration: 'none', color: 'black'}}>
-                    <ListItem button>
+                    <ListItem button component={Link} to="/prof">
                         <ListItemIcon>
                             <StorageIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Mine Eiendeler"/>
                     </ListItem>
 
-                </Link>
                 <ListItem button>
                     <ListItemIcon>
                         <QueryBuilderIcon/>
@@ -244,14 +236,12 @@ export default function SidePanel() {
                     <ListItemText primary="Innstillinger"/>
                 </ListItem>
 
-                <Link to="/editprof" style={{textDecoration: 'none', color: 'black'}}>
-                    <ListItem button>
+                    <ListItem button component={Link} to="/editprof">
                         <ListItemIcon>
                             <EditIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Rediger profil"/>
                     </ListItem>
-                </Link>
 
                 <ListItem button>
                     <ListItemIcon>

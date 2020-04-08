@@ -93,8 +93,10 @@ const SignUp = ({history}) => {
     }, [history]);
 
     const [values, setValues] = useState({
+        firstnameField: '',
         showPassword: false,
-    });
+    }); console.log(values.firstnameField);
+
     const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-05'));
 
     const handleDateChange = date => {
@@ -102,6 +104,10 @@ const SignUp = ({history}) => {
     };
 
     const classes = useStyles();
+
+    const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
 
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});
@@ -134,6 +140,7 @@ const SignUp = ({history}) => {
                                 id="sFirstname"
                                 label="Fornavn"
                                 autoFocus
+                                onChange={handleChange('firstnameField')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>

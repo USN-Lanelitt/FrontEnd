@@ -189,15 +189,14 @@ export default function NavBar(props) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            {!loggedIn ? <Link to="/login" style={{textDecoration: 'none', color: 'black'}}>
-                <MenuItem onClick={handleMenuClose}>Logg på</MenuItem>
-            </Link> : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>}
+            {!loggedIn ?
+                <MenuItem onClick={handleMenuClose} component={Link} to="/login">Logg på</MenuItem>
+             : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>}
 
         </Menu>
     );
 
     {/*Meny knapp alternativer som blir vist hvis bruker er på mobil eller hvis skjermen er liten*/}
-
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <Menu
@@ -217,27 +216,27 @@ export default function NavBar(props) {
                 </IconButton>
                 <p>Messages</p>
             </MenuItem>
-                <Link to="/notification" style={{textDecoration: 'none', color: 'black'}}>
                 <MenuItem>
-                        <IconButton aria-label="show 1 new notifications" color="inherit">
+                        <IconButton aria-label="show 1 new notifications" color="inherit" component={Link} to="/notification">
                             <Badge badgeContent={5} color="secondary">
                                 <NotificationsIcon/>
                             </Badge>
                         </IconButton>
                     <p>Notifications</p>
-                </MenuItem></Link></div>)}
-            {!loggedIn ? <Link to="/login" style={{textDecoration: 'none', color: 'black'}}>
+                </MenuItem></div>)}
+            {!loggedIn ?
                     <MenuItem>
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="primary-search-account-menu"
                             aria-haspopup="true"
                             color="inherit"
+                            component={Link} to="/login"
                         >
                             <AccountCircle/>
                         </IconButton>
                         <p>Logg på</p>
-                    </MenuItem> </Link> :
+                    </MenuItem>:
                 <MenuItem onClick={() => Logout()}>
                     <IconButton aria-label="show 1 new notifications" color="inherit">
                         <ExitToAppIcon/>
@@ -251,7 +250,7 @@ export default function NavBar(props) {
         //------------DESKTOP / PC SKJERM NAVBAR MENY----------------
         <div className={classes.grow}>
             <AppBar
-                position="fixed"
+                position="static"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open
                 })}
@@ -269,15 +268,13 @@ export default function NavBar(props) {
                             <MenuIcon/>
                         </IconButton>
                     </div>)}
-                    <Link to="/" style={{textDecoration: "none", color: "white"}}>
-                        <Typography className={classes.title} variant="h5" noWrap>
+                        <Typography className={classes.title} variant="h5" noWrap component={Link} to="/" style={{textDecoration: "none", color: "white"}}>
                             Lånelitt
                         </Typography>
-                    </Link>
+
 
                         {/*----------Søke felt i Navbar Icon knapp--------------*/}
                     <SearchFriends/>
-
 
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
@@ -296,28 +293,28 @@ export default function NavBar(props) {
                             </IconButton>
 
                             {/*----------AdminSide Icon knapp--------------*/}
-                            <Link to="/admin" style={{color: "white"}}>
-                                <IconButton color="inherit">
+                                <IconButton color="inherit" component={Link} to="/admin">
                                     <Badge color="secondary">
                                         <SupervisorAccountIcon/>
                                     </Badge>
                                 </IconButton>
-                            </Link>
+
 
                         </div>)}
 
                         {/*----------Logg på/av Icon knapp--------------*/}
-                        {!loggedIn ? <Link to="/login" style={{textDecoration: 'none', color: 'white'}}>
+                        {!loggedIn ?
                                 <IconButton
                                     edge="end"
                                     aria-label="Signin"
                                     aria-controls={menuId}
                                     aria-haspopup="true"
                                     color="inherit"
+                                    component={Link} to="/login"
                                 >
                                     <AccountCircle/>
                                 </IconButton>
-                            </Link> :
+                         :
                             <IconButton
                                 edge="end"
                                 aria-label="Logout"
