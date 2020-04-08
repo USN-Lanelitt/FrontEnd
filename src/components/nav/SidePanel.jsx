@@ -204,12 +204,14 @@ export default function SidePanel() {
                     </ListItem>
                 </Link>
 
-                <ListItem button>
-                    <ListItemIcon>
-                        <EmailIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary="Meldinger"/>
-                </ListItem>
+                <Link to="/chat" style={{textDecoration: 'none', color: 'black'}}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <EmailIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary="Meldinger"/>
+                    </ListItem>
+                </Link>
 
                 <Link to="/prof" style={{textDecoration: 'none', color: 'black'}}>
                     <ListItem button>

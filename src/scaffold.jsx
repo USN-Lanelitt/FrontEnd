@@ -20,6 +20,7 @@ import FriendProfile from "./components/friend/friend-profile";
 import LoanRequest from "./components/loan/loan-request";
 import LoanRequestCard from "./components/loan/loan-request-card";
 import LoanCard from "./components/loan/loan-card";
+import Chat from "./feature/Chat/Chat";
 
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +59,7 @@ const Scaffold = () => {
             <Route exact path="/loanforespørsel" component={LoanRequest}/>
             <Route exact path="/loanRequestCard" component={LoanRequestCard}/>
             <Route exact path="/loanCard" component={LoanCard}/>
-
+            <Route exact path="/chat" component={Chat}/>
 
 
 
