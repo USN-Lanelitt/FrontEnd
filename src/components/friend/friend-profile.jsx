@@ -8,16 +8,16 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import {CardContent} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import FriendProfileCard from "./friend-profile-card";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles(theme => ({
     Button: {
-        margin: theme.spacing(3, 0, 0),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
 
-    },
-    root: {
-        marginTop: theme.spacing(10),
-    },
-
+    }
 
     }));
 const FriendProfile = () => {
@@ -25,20 +25,22 @@ const FriendProfile = () => {
 
     return (
         <React.Fragment>
-            <CardContent className={classes.root}>
+            <CardContent>
                 <Grid container direction="row" justify="center" alignItems="center">
-                    <ProfileCard/>
+                    <FriendProfileCard/>
                      </Grid>
+                <Box m={4} className={classes.Button}>
                 <CardActions>
-                    <Button className={classes.Button} type="submit" fullWidth variant="contained" color="primary" >
+                    <Box>
+                    <Button  type="submit" fullWidth variant="contained" color="primary" >
                         Legg til
                     </Button>
-                </CardActions>
-                <CardActions>
                     <Button type="submit" fullWidth variant="contained" color="secondary">
                         Send Melding
                     </Button>
+                    </Box>
                 </CardActions>
+                </Box>
                 <CssBaseline/>
                 <FriendAssets/>
             </CardContent>
