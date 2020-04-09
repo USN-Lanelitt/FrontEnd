@@ -7,8 +7,11 @@ import ListItem from "@material-ui/core/ListItem";
 
 
 const useStyles = makeStyles(theme => ({
-    text: {
-
+    chip: {
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        maxWidth: '20rem',
     },
     chatBox: {
         width: '85%',
@@ -33,7 +36,14 @@ function ChatWindow ({selectedChat}) {
                                 </Typography>
 
                                 <div>
-                                    <Chip label= {chat.message} />
+                                    <Chip
+                                        component='div'
+                                        label={(
+                                            <section>
+                                                <div className={classes.chip}>{chat.message}</div>
+                                            </section>
+                                        )}
+                                    />
                                 </div>
                             </ListItem>
                         ))
