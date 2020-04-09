@@ -13,8 +13,6 @@ import FaceIcon from '@material-ui/icons/Face';
 import ChatWindow from "../../components/chat/chat-window";
 
 
-
-
 const useStyles = makeStyles(theme => ({
     heroContent: {
         backgroundColor: theme.palette.background.paper,
@@ -51,9 +49,7 @@ const useStyles = makeStyles(theme => ({
         width: '15%',
         height: '55px',
     },
-    listItemText:{
-        fontSize:'1.5em',
-    }
+
 }));
 
 export default function Chat() {
@@ -66,7 +62,7 @@ export default function Chat() {
 
     useEffect(() => {
         console.log("getChatUsers", userId, sessionStorage.getItem('userId'));
-        axios.get('/users/getChats/51')
+        axios.get('/users/getChats/'+userId)
             .then(result => {
                 console.log(result.data);
                 setChatUsers(result.data);
@@ -76,7 +72,7 @@ export default function Chat() {
 
     function showChat(userId2) {
         console.log("getChat", userId, sessionStorage.getItem('userId'));
-        axios.get('/users/chat/51/'+userId2)
+        axios.get('/users/chat/'+userId+'/'+userId2)
             .then(result => {
                 console.log(result.data);
                 setSelectedChat(result.data);
@@ -86,17 +82,17 @@ export default function Chat() {
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/51/52', {
+        axios.post('/users/writeMessage/'+userId+'/'+userId2, {
             message: message
         })
             .then(result => {
                 console.log(result.data);
+                setSelectedChat(result.data);
             })
             .catch(e => console.log(e));
     }
 
     const onSelected = (id) => {
-        setUserId2(id);
         showChat(id);
         console.log(id);
     };
@@ -106,10 +102,6 @@ export default function Chat() {
         console.log(textValue);
     };
 
-    const chatUpdate = () => {
-        showChat(userId2);
-        console.log('update');
-    };
 
     return (
 
@@ -139,8 +131,10 @@ export default function Chat() {
                                             <Chip icon={<FaceIcon />}
                                                   label={user.firstName}
                                                   color="primary"
-                                                  classes={{primary:classes.listItemText}}
-                                                  onClick={() => onSelected(user.id)}
+                                                  onClick={() => {
+                                                      onSelected(user.id);
+                                                      setUserId2(user.id);
+                                                  }}
                                             />
                                         </ListItem>
                                     ))
@@ -168,7 +162,6 @@ export default function Chat() {
                                         className={classes.button}
                                         onClick={()=>{
                                             handleClick();
-                                            chatUpdate();
                                             setTextValue('');
                                         }}
                                     >

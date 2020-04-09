@@ -3,11 +3,9 @@ import ConfirmDialog from "./confirm-dialog";
 
 const Cookie = () => {
     const [showConfirmDialog, setShowConfirmDialog] = useState(true);
-    console.log('cookie');
 
     function handleConfirm() {
         setShowConfirmDialog(false);
-        console.log('cookie2');
     }
 
     return (
