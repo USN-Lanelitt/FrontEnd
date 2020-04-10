@@ -29,6 +29,7 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 
 
 const useStyles = makeStyles(theme => ({
@@ -159,7 +160,7 @@ const EditProfile = ({history}) => {
     const [values, setValues] = useState({
         showCurrentPassword: false,
         showNewPassword: false,
-        validUserInput: false
+        password: ''
     });
 
     const handleClickOpen = () => {
@@ -169,8 +170,8 @@ const EditProfile = ({history}) => {
         setOpen(false);
     };
 
-    const handleValidUserInput = props => event => {
-        setValues({...values, validUserInput: !values.validUserInput});
+    const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
     };
 
     const handleClickShowCurrentPassword = () => {
@@ -292,23 +293,6 @@ const EditProfile = ({history}) => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <KeyboardDatePicker
-                                    name="birthdate"
-                                    margin="normal"
-                                    id="date-picker-dialog"
-                                    label="Fødselsdato"
-                                    fullWidth
-                                    format="dd.MM.yyyy"
-                                    value={selectedDate}
-                                    onChange={handleDateChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date',
-                                    }}
-                                />
-                            </MuiPickersUtilsProvider>
-                        </Grid>
-                        <Grid item xs={12}>
                             <TextField
                                 name="address1"
                                 required
@@ -402,6 +386,8 @@ const EditProfile = ({history}) => {
                                     name="newPassword"
                                     id="newPassword"
                                     type={values.showNewPassword ? 'text' : 'password'}
+                                    value={values.password}
+                                    onChange={handleChange('password')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton

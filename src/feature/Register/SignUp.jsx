@@ -93,11 +93,12 @@ const SignUp = ({history}) => {
     }, [history]);
 
     const [values, setValues] = useState({
-        firstnameField: '',
+        firstname:'',
+        password: '',
         showPassword: false,
-    }); console.log(values.firstnameField);
+    }); console.log(values.password.length);
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-05'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
 
     const handleDateChange = date => {
         setSelectedDate(date);
@@ -140,7 +141,7 @@ const SignUp = ({history}) => {
                                 id="sFirstname"
                                 label="Fornavn"
                                 autoFocus
-                                onChange={handleChange('firstnameField')}
+                                onChange={handleChange('firstname')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -202,11 +203,17 @@ const SignUp = ({history}) => {
                         <Grid item xs={12}>
                             <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined"
                                          fullWidth>
-                                <InputLabel htmlFor="outlined-adornment-password" required>Passord</InputLabel>
-                                <OutlinedInput
+                                <TextField
                                     name="password"
+                                    variant="outlined"
+                                    label="Passord"
+                                    required
                                     id="outlined-adornment-password"
                                     type={values.showPassword ? 'text' : 'password'}
+                                    value={values.password}
+                                    onChange={handleChange('password')}
+                                    error={values.password.length < 6}
+                                    helperText={values.password.length < 6 ? 'Passord må være minst 6 tegn' : ''}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton

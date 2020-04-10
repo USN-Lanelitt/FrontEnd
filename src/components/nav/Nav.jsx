@@ -228,13 +228,12 @@ export default function NavBar(props) {
                     <p>Notifications</p>
                 </MenuItem></div>)}
             {!loggedIn ?
-                    <MenuItem>
+                    <MenuItem component={Link} to="/login">
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="primary-search-account-menu"
                             aria-haspopup="true"
                             color="inherit"
-                            component={Link} to="/login"
                         >
                             <AccountCircle/>
                         </IconButton>
