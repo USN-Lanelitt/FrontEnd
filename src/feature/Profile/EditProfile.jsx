@@ -256,7 +256,7 @@ const EditProfile = ({history}) => {
                                                 className={classes.large}/>
                                         <div className={classes.root}>
 
-                                            <input type="file" accept="image/*" onChange={handleImageUpload}
+                                            <input type="file" accept="image/*" onClick={handleImageUpload}
                                                    multiple="false"/>
 
                                             <label htmlFor="contained-button-file">

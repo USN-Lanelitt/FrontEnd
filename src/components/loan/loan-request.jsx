@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
+import 'date-fns';
 import {MuiPickersUtilsProvider, KeyboardDatePicker,} from '@material-ui/pickers';
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
@@ -46,6 +46,7 @@ const LoanRequest = () => {
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
+
     const handleDateChange2 = (date) => {
         setSelectedDate2(date);
     };
@@ -69,12 +70,12 @@ const LoanRequest = () => {
                         <CardActions>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
-                                    disableToolbar
-                                    variant="inline"
-                                    format="dd/MM/yyyy"
+                                    name="birthdate"
                                     margin="normal"
-                                    id="date-picker-inline"
-                                    label="Låne fra: "
+                                    id="date-picker-dialog"
+                                    label="Fødselsdato"
+                                    fullWidth
+                                    format="dd.MM.yyyy"
                                     value={selectedDate}
                                     onChange={handleDateChange}
                                     KeyboardButtonProps={{
@@ -85,12 +86,12 @@ const LoanRequest = () => {
 
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
-                                    disableToolbar
-                                    variant="inline"
-                                    format="dd/MM/yyyy"
+                                    name="birthdate"
                                     margin="normal"
-                                    id="date-picker-inline"
-                                    label="Låne til: "
+                                    id="date-picker-dialog"
+                                    label="Fødselsdato"
+                                    fullWidth
+                                    format="dd.MM.yyyy"
                                     value={selectedDate2}
                                     onChange={handleDateChange2}
                                     KeyboardButtonProps={{

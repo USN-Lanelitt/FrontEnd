@@ -1,25 +1,13 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import classes from "@mui-treasury/styles/cardHeader/contained/containedCardHeader.styles";
-import {Box, MenuList} from "@material-ui/core";
-import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
-import data from "./data";
-import FriendRequestCard from "./friend-requestCard";
-import Container from "@material-ui/core/Container";
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import withStyles from "@material-ui/core/styles/withStyles";
-import FriendCard from "./friend-card";
 import Button from "@material-ui/core/Button";
-import CardActions from "@material-ui/core/CardActions";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 //VenneVarselListe
@@ -38,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     list: {
         display: 'flex',
         padding: theme.spacing(2),
+
     },
 
     photo: {

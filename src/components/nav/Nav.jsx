@@ -26,6 +26,9 @@ import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
 
+
+
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -209,15 +212,15 @@ export default function NavBar(props) {
             onClose={handleMobileMenuClose}
         >
             {loggedIn && (<div><MenuItem>
-                <IconButton aria-label="show 1 new mails" color="inherit">
+                <IconButton aria-label="show new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
                         <MailIcon/>
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
             </MenuItem>
-                <MenuItem>
-                        <IconButton aria-label="show 1 new notifications" color="inherit" component={Link} to="/notification">
+                <MenuItem >
+                        <IconButton aria-label="show new notifications" color="inherit">
                             <Badge badgeContent={5} color="secondary">
                                 <NotificationsIcon/>
                             </Badge>
@@ -281,7 +284,7 @@ export default function NavBar(props) {
 
                         {loggedIn && (<div>
                             {/*----------Varsel Icon knapp--------------*/}
-                            <IconButton aria-label="show 1 new notification" color="inherit">
+                            <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent'}}>
                                 <NotificationList/>
                             </IconButton>
 
