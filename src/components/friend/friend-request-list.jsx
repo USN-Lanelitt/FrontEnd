@@ -1,11 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import FriendRequest from "./friend-request";
 import Grid from "@material-ui/core/Grid";
-import data from "./data";
-import app from "../../fire";
 import axios from "axios";
-import MyAssetsCard from "../profile/my-assets-card";
-import {Container} from "@material-ui/core";
 import ConfirmDialog from "../profile/confirm-dialog";
 
 
@@ -19,6 +15,7 @@ const FriendRequestList = () => {
     const [friendId, setFriendId] = useState(null);
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+
 
     useEffect(() => {
         console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
@@ -64,6 +61,7 @@ const FriendRequestList = () => {
     function onReplyCancel() {
         setShowConfirmDialog(false);
     }
+
 
     return (
         <Grid container spacing={4}>

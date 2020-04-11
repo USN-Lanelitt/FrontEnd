@@ -7,20 +7,22 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import IconButton from "@material-ui/core/IconButton";
-import FriendRequest from "../friend/friend-request";
 import FriendRequestList from "../friend/friend-request-list";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+
+
     },
     paper: {
-        marginRight: theme.spacing(2),
+        margin: '0',
+
     },
 }));
 
-const NotificationList = ({firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
+const NotificationList = () => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -33,7 +35,6 @@ const NotificationList = ({firstname, middlename, lastname, imageUrl, onDenied, 
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-
         setOpen(false);
     };
 
@@ -64,9 +65,12 @@ const NotificationList = ({firstname, middlename, lastname, imageUrl, onDenied, 
                     aria-haspopup="true"
                     color="inherit"
                     onClick={handleToggle}
+
+
                 >
                     <NotificationsIcon/>
                 </IconButton>
+
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (
                         <Grow
@@ -74,13 +78,14 @@ const NotificationList = ({firstname, middlename, lastname, imageUrl, onDenied, 
                             style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                         >
                             <Paper>
+
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <Typography variant="h6" align="center" color="textPrimary" gutterBottom>
                                             Varsler
                                         </Typography>
 
-                                      <FriendRequestList/> <FriendRequest/>
+                                      <FriendRequestList/>
 
                                     </MenuList>
                                 </ClickAwayListener>
