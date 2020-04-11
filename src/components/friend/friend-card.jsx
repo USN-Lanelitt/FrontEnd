@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
+import {Link} from "react-router-dom";
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -35,14 +37,14 @@ const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove}) => {
     return (
         <Grid xs={12}>
             <Card className={classes.card}>
-                <CardActionArea>
-                    <CardContent>
+                <CardActionArea component = {Link} to="/FriendProfile" style={{backgroundColor: 'transparent'}}>
+                    <CardContent >
                         <Grid container zeroMinWidth justify="flex-start">
                             <CardMedia>
                                 <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                             </CardMedia>
-                            <Grid className={classes.text}>
-                                <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
+                            <Grid className={classes.text} >
+                                <Typography gutterBottom variant="h6" component="h2" display={"inline"} >
                                     {firstname} {middlename} {lastname}
                                 </Typography>
                             </Grid>

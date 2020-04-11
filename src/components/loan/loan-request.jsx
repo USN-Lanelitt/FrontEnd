@@ -40,8 +40,8 @@ const LoanRequest = () => {
     };
 
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-05'));
-    const [selectedDate2, setSelectedDate2] = React.useState(new Date('2020-04-05'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date() );
+    const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
 
     const handleDateChange = (date) => {
         setSelectedDate(date);

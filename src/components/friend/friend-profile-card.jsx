@@ -106,7 +106,7 @@ const FriendProfileCard = (id,firstname, middlename, lastname, imageUrl,) => {
                     >
                         <Avatar
                             className={styles.avatar}
-                            src={"profileimages/"+sessionStorage.getItem('profileImage')}
+                            src={"/"+sessionStorage.getItem('profileImage')}
                         />
                     </StyledBadge>
                 </IconButton>
