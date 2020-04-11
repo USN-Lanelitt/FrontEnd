@@ -5,6 +5,8 @@ import {Paper} from "@material-ui/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 import Box from "@material-ui/core/Box";
+import {Link} from "react-router-dom";
+import LoanRequest from "../../components/loan/loan-request";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -36,7 +38,7 @@ const AssetSite = () => {
     const classes = useStyles();
     return (
         <Box display='flex' justifyContent='center'>
-            <Box width={'70%'} height={1/4}>
+            <Box width={'70%'} height={1 / 4}>
                 <Carousel infiniteLoop={true}>
                     {
                         images.map(image =>
@@ -46,7 +48,12 @@ const AssetSite = () => {
                         )
                     }
                 </Carousel>
-                <Button variant="contained" color="primary" className={classes.button}>
+                <Button className={classes.button}
+                        component = {Link} to="/loanRequest"
+                        variant="contained"
+                        color="primary"
+
+                >
                     Send forespørsel
                 </Button>
             </Box>

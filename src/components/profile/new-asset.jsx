@@ -63,7 +63,7 @@ const NewAsset = () => {
             .catch(error => {
                 console.log(error);
                 setShowStatusMessage(true);
-                setStatusMessage("Upps, dette gikk ikke helt etter planen!");
+                setStatusMessage("Ups, dette gikk ikke helt etter planen!");
             });
 
         console.log("new asset", asset);

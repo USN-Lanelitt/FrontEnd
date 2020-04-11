@@ -56,7 +56,7 @@ const Scaffold = () => {
                 <Route exact path="/notification" component={Notification}/>
                 <Route exact path="/notificationList" component={NotificationList}/>
                 <Route exact path="/friendprofile" component={FriendProfile}/>
-                <Route exact path="/loanforespørsel" component={LoanRequest}/>
+                <Route exact path="/loanRequest" component={LoanRequest}/>
                 <Route exact path="/loanRequestCard" component={LoanRequestCard}/>
                 <Route exact path="/loanCard" component={LoanCard}/>
                 <Route exact path="/assetSite" component={AssetSite}/>

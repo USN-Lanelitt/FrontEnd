@@ -28,7 +28,6 @@ const MyAssetsList = () => {
     const [assetId, setAssetId] = useState(null);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
-
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
         fetchAssets(userId, setAssets);
