@@ -90,7 +90,6 @@ const Login = ({ history }) => {
         }, [history]);
 
     const classes = useStyles();
-
     const [values, setValues] = useState({
         showPassword: false,
     });
@@ -106,7 +105,7 @@ const Login = ({ history }) => {
     const { currentUser } = useContext(AuthContext);
     if (currentUser) {
         return <Redirect to="/" />;
-    };
+    }
 
     return (
 
@@ -136,7 +135,6 @@ const Login = ({ history }) => {
                             name="password"
                             id="outlined-adornment-password"
                             type={values.showPassword ? 'text' : 'password'}
-                            value={values.password}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton

@@ -90,7 +90,7 @@ const FriendAll = () => {
 
                 <Grid container spacing={4}>
                     {data.map(item => (
-                        <Grid item key={item} xs={12} sm={6} md={4}>
+                        <Grid item key={item.user2.id} xs={12} sm={6} md={4}>
 
                             <FriendCard
                                 firstname={item.user2.firstName}
@@ -100,6 +100,7 @@ const FriendAll = () => {
                                 friendId={item.user2.id}
                                 onRemove={() => remove(item.user2.id)}
                                 getChat={() => sendMessage('', userId, item.user2.id)}
+
                             />
                         </Grid>
 

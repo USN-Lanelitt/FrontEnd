@@ -231,13 +231,6 @@ export default function SidePanel() {
             </List>
             <Divider/>
             <List>
-                <ListItem button>
-                    <ListItemIcon>
-                        <SettingsIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary="Innstillinger"/>
-                </ListItem>
-
                     <ListItem button component={Link} to="/editprof">
                         <ListItemIcon>
                             <EditIcon/>

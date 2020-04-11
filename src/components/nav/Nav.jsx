@@ -27,6 +27,9 @@ import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
 import Button from "@material-ui/core/Button";
 
+
+
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -210,15 +213,15 @@ export default function NavBar(props) {
             onClose={handleMobileMenuClose}
         >
             {loggedIn && (<div><MenuItem>
-                <IconButton aria-label="show 1 new mails" color="inherit">
+                <IconButton aria-label="show new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
                         <MailIcon/>
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
             </MenuItem>
-                <MenuItem>
-                        <IconButton aria-label="show 1 new notifications" color="inherit" component={Link} to="/notification">
+                <MenuItem >
+                        <IconButton aria-label="show new notifications" color="inherit">
                             <Badge badgeContent={5} color="secondary">
                                 <NotificationsIcon/>
                             </Badge>
@@ -226,13 +229,12 @@ export default function NavBar(props) {
                     <p>Notifications</p>
                 </MenuItem></div>)}
             {!loggedIn ?
-                    <MenuItem>
+                    <MenuItem component={Link} to="/login">
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="primary-search-account-menu"
                             aria-haspopup="true"
                             color="inherit"
-                            component={Link} to="/login"
                         >
                             <AccountCircle/>
                         </IconButton>
@@ -282,7 +284,7 @@ export default function NavBar(props) {
 
                         {loggedIn && (<div>
                             {/*----------Varsel Icon knapp--------------*/}
-                            <IconButton aria-label="show 1 new notification" color="inherit">
+                            <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent'}}>
                                 <NotificationList/>
                             </IconButton>
 
