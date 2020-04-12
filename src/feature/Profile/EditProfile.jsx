@@ -113,7 +113,6 @@ const EditProfile = ({history}) => {
         axios.post('/url', {
             nickname: nickname.value,
             phone: phone.value,
-            birthdate: birthdate.value,
             address1: address1.value,
             address2: address2.value,
             zipcode: zipcode.value,
