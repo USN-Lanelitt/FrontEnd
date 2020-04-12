@@ -14,7 +14,6 @@ import StorageIcon from "@material-ui/icons/Storage";
 import QueryBuilderIcon from "@material-ui/icons/QueryBuilder";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import Divider from "@material-ui/core/Divider";
-import SettingsIcon from "@material-ui/icons/Settings";
 import EditIcon from "@material-ui/icons/Edit";
 import {fade, makeStyles} from "@material-ui/core/styles";
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
@@ -177,42 +176,40 @@ export default function SidePanel() {
                     </ListSubheader>
                 }>
 
-                    <ListItem button component={Link} to="/">
-                        <ListItemIcon>
-                            <HomeIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Hjem"/>
-                    </ListItem>
+                <ListItem button component={Link} to="/">
+                    <ListItemIcon>
+                        <HomeIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Hjem"/>
+                </ListItem>
 
-                    <ListItem button component={Link} to="/Notification">
-                        <ListItemIcon>
-                            <NotificationsIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Varsel"/>
-                    </ListItem>
+                <ListItem button component={Link} to="/Notification">
+                    <ListItemIcon>
+                        <NotificationsIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Varsel"/>
+                </ListItem>
 
-                    <ListItem button component={Link} to="/friendAll">
-                        <ListItemIcon>
-                            <PeopleIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Venner"/>
-                    </ListItem>
+                <ListItem button component={Link} to="/friendAll">
+                    <ListItemIcon>
+                        <PeopleIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Venner"/>
+                </ListItem>
 
-                <Link to="/chat" style={{textDecoration: 'none', color: 'black'}}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <EmailIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Meldinger"/>
-                    </ListItem>
-                </Link>
+                <ListItem button component={Link} to="/chat">
+                    <ListItemIcon>
+                        <EmailIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Meldinger"/>
+                </ListItem>
 
-                    <ListItem button component={Link} to="/prof">
-                        <ListItemIcon>
-                            <StorageIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Mine Eiendeler"/>
-                    </ListItem>
+                <ListItem button component={Link} to="/prof">
+                    <ListItemIcon>
+                        <StorageIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Mine Eiendeler"/>
+                </ListItem>
 
                 <ListItem button>
                     <ListItemIcon>
@@ -227,16 +224,15 @@ export default function SidePanel() {
                     </ListItemIcon>
                     <ListItemText primary="Lånt Eiendeler"/>
                 </ListItem>
-
             </List>
             <Divider/>
             <List>
-                    <ListItem button component={Link} to="/editprof">
-                        <ListItemIcon>
-                            <EditIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Rediger profil"/>
-                    </ListItem>
+                <ListItem button component={Link} to="/editprof">
+                    <ListItemIcon>
+                        <EditIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Rediger profil"/>
+                </ListItem>
 
                 <ListItem button>
                     <ListItemIcon>

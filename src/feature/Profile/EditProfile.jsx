@@ -20,8 +20,6 @@ import axios from "axios";
 import app from "../../fire";
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import ProfileCard from "../../components/profile/profile-card";
-import DateFnsUtils from "@date-io/date-fns";
-import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import FormControl from "@material-ui/core/FormControl";
 import clsx from "clsx";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -29,8 +27,6 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -112,17 +108,15 @@ const EditProfile = ({history}) => {
         event.preventDefault();
         let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        const {nickname, phone, birthdate, address1, address2, zipcode, city, email, currentPassword, newPassword} = event.target.elements;
+        const {nickname, phone, address1, address2, zipcode, city, currentPassword, newPassword} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
         axios.post('/url', {
             nickname: nickname.value,
             phone: phone.value,
-            birthdate: birthdate.value,
             address1: address1.value,
             address2: address2.value,
             zipcode: zipcode.value,
             city: city.value,
-            email: email.value,
             currentPassword: currentPassword.value,
             newPassword: newPassword.value
         })
@@ -184,13 +178,6 @@ const EditProfile = ({history}) => {
 
     const handleMouseDownPassword = event => {
         event.preventDefault();
-    };
-
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
-
-    const handleDateChange = date => {
-        setSelectedDate(date);
-        console.log(selectedDate);
     };
 
     const handleImageUpload = e => {
