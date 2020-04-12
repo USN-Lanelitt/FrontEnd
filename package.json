@@ -19,6 +19,7 @@
     "firebase-admin": "^8.9.2",
     "firebase-tools": "^7.14.0",
     "material-table": "^1.57.2",
+    "material-ui-cookie-consent": "^0.1.0",
     "path": "^0.12.7",
     "react": "^16.12.0",
     "react-activity-feed": "^0.9.26",
