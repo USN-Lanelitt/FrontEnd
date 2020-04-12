@@ -1,6 +1,6 @@
 ------------------------------------------------------UserConnections---------------------------------------------------
 
-Funksjon getFriend - url: /user/{iUserId}/friend/{iFriendId}  - method GET 
+Funksjon getFriend - url: /user/{iUserId}/friend/{iFriendId}  - method GET
 (hent en venn)
 
 Send til backend:
@@ -591,4 +591,3 @@ useEffect(() => {
             dateEnd={loan.dateEnd}
     </Grid>
 ))}
-

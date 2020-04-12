@@ -211,7 +211,7 @@ export default function SidePanel() {
                     <ListItemText primary="Mine Eiendeler"/>
                 </ListItem>
 
-                <ListItem button>
+                <ListItem button component={Link} to="/LoanToFriends">
                     <ListItemIcon>
                         <QueryBuilderIcon/>
                     </ListItemIcon>
