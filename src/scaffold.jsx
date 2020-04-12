@@ -17,12 +17,11 @@ import FriendRequestCard from "./components/friend/friend-requestCard";
 import SearchFriends from "./components/search/search-friends";
 import NotificationList from "./components/notification/notificationList";
 import FriendProfile from "./components/friend/friend-profile";
-import LoanRequest from "./components/loan/loan-request";
-import LoanRequestCard from "./components/loan/loan-request-card";
 import LoanCard from "./components/loan/loan-card";
 import Chat from "./feature/Chat/Chat";
 import AssetSite from "./feature/Assets/asset-site";
 import FriendProfileCard from "./components/friend/friend-profile-card";
+import LoanToFriends from "./components/loan/loan-to-friends";
 
 
 const useStyles = makeStyles(theme => ({
@@ -58,12 +57,12 @@ const Scaffold = () => {
                 <Route exact path="/notification" component={Notification}/>
                 <Route exact path="/notificationList" component={NotificationList}/>
                 <Route exact path="/friendprofile" component={FriendProfile}/>
-                <Route exact path="/loanforespørsel" component={LoanRequest}/>
-                <Route exact path="/loanRequestCard" component={LoanRequestCard}/>
                 <Route exact path="/loanCard" component={LoanCard}/>
                 <Route exact path="/assetSite" component={AssetSite}/>
                 <Route exact path="/chat" component={Chat}/>
                 <Route exact path="/friendProfileCard" component={FriendProfileCard}/>
+                <Route exact path="/loantofriends" component={LoanToFriends}/>
+
             </Box>
         </main>
     );

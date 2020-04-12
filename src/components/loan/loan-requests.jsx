@@ -8,7 +8,7 @@ import LoanReplyCard from "./loan-reply-card";
 
 //her er den listen i notification
 
-const LoanRequestList = () => {
+const LoanRequests = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
@@ -48,5 +48,5 @@ const LoanRequestList = () => {
     );
 };
 
-export default LoanRequestList;
+export default LoanRequests;
 
