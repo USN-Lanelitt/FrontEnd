@@ -33,14 +33,14 @@ export default function ConfirmDialog({
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
-                <DialogContent>
+                <DialogContent dividers>
                     <DialogContentText id="alert-dialog-description">
                         {message}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
 
-                    <Button onClick={onConfirm} color="secondary">
+                    <Button onClick={onConfirm} color="primary">
                         {confirmButtonText}
                     </Button>
                 </DialogActions>

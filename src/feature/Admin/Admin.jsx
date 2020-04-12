@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import Copyright from '../../components/home/Copyright';
 import AmountTable from "../../components/admin/amount-table";
 import AdminTable from "../../components/admin/admin-table";
+import ReportList from "../../components/admin/report-list";
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +24,9 @@ const useStyles = makeStyles(theme => ({
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
+    },
+    reportBox: {
+        padding:"100px",
     },
 }));
 
@@ -45,12 +49,17 @@ export default function Admin() {
                     </Container>
                 </div>
 
-                <Container className={classes.cardGrid} maxWidth="md">
+                <Container className={classes.cardGrid} >
                     <h3>Brukerliste</h3>
                     <hr/>
                     <Grid item xs={12}>
                         <AmountTable/>
                         <AdminTable/>
+                    </Grid>
+                    <Grid className={classes.reportBox} item xs={12}>
+                    <h3>Rapporterte saker</h3>
+                    <hr/>
+                    <ReportList/>
                     </Grid>
                 </Container>
             </main>
