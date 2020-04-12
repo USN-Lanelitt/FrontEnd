@@ -24,7 +24,6 @@ import app from "../../fire";
 import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
-import Button from "@material-ui/core/Button";
 
 
 
