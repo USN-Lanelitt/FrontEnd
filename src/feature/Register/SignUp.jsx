@@ -19,8 +19,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
@@ -28,8 +26,15 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import BrukerVilkar from '../../components/register/termsandconditions';
 import Copyright from '../../components/home/Copyright';
 import axios from 'axios';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 
+
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -52,12 +57,15 @@ const useStyles = makeStyles(theme => ({
 
 
 const SignUp = ({history}) => {
+    const [errors, setErrors] = useState(false);
     const handleSignUp = useCallback(async event => {
-        event.preventDefault();
         const {firstname, middlename, birthdate, lastname, phone, email, password} = event.target.elements;
-        if (firstname.value.length === 0 || lastname.value.length === 0 || password.value.length < 6) {
-            alert("Alle feltene som er merket med * må fylles ut og passord må inneholde minst 6 tegn");
-        } else {
+        event.preventDefault();
+        if (firstname.value.length === 0 || lastname.value.length === 0 ||  email.value.length === 0 || password.value.length < 6 ) {
+            //alert('Feil ved registrering, vennligst se over alle feltene merket med *')
+            setErrors(true);
+        }
+        else {
             let iCode = 0;
             axios.post('/api/register', {
                 firstname: firstname.value,
@@ -93,12 +101,10 @@ const SignUp = ({history}) => {
     }, [history]);
 
     const [values, setValues] = useState({
-        firstname:'',
-        password: '',
         showPassword: false,
-    }); console.log(values.password.length);
+    });
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const handleDateChange = date => {
         setSelectedDate(date);
@@ -106,16 +112,20 @@ const SignUp = ({history}) => {
 
     const classes = useStyles();
 
-    const handleChange = prop => event => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
-
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = event => {
         event.preventDefault();
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setErrors(false);
     };
 
     return (
@@ -138,10 +148,10 @@ const SignUp = ({history}) => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                error={errors}
                                 id="sFirstname"
                                 label="Fornavn"
                                 autoFocus
-                                onChange={handleChange('firstname')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -160,6 +170,7 @@ const SignUp = ({history}) => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                error={errors}
                                 id="sLastname"
                                 label="Etternavn"
                             />
@@ -196,6 +207,7 @@ const SignUp = ({history}) => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                error={errors}
                                 id="sEmail"
                                 label="Epost"
                             />
@@ -209,11 +221,10 @@ const SignUp = ({history}) => {
                                     label="Passord"
                                     required
                                     id="outlined-adornment-password"
+                                    error={errors}
                                     type={values.showPassword ? 'text' : 'password'}
                                     value={values.password}
-                                    onChange={handleChange('password')}
-                                    error={values.password.length < 6}
-                                    helperText={values.password.length < 6 ? 'Passord må være minst 6 tegn' : ''}
+                                    helperText={'Passord må være minst 6 tegn'}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -261,6 +272,13 @@ const SignUp = ({history}) => {
                         </Grid>
                     </Grid>
                 </form>
+                <div className={classes.root}>
+                    <Snackbar open={errors} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="error">
+                            FEIL! Vennligst sjekk at feltene merket med * er fylt ut riktig.
+                        </Alert>
+                    </Snackbar>
+                </div>
             </div>
             <Box mt={5}>
                 <Copyright/>

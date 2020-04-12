@@ -10,14 +10,19 @@ import EditProfile from "./feature/Profile/EditProfile";
 import {AuthProvider} from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import Scaffold from "./scaffold";
-import Cookie from "./components/user/cookies";
+import MUICookieConsent from "material-ui-cookie-consent";
 
 function App(){
     return (
         <AuthProvider>
             <Router>
             <div className="App">
-                <Cookie/>
+                <MUICookieConsent
+                    cookieName="mySiteCookieConsent"
+                    componentType="Snackbar" // default value is Snackbar
+                    message="LåneLitt bruker informasjonskapsler (cookies) på sine nettsider til bl.a.
+                    stastikk og skjemaoppdateriger. Hvis du godtar dette, kan du fortsette å bruke våre nettsider som vanlig."
+                />
                 <Nav />
                 <Route path="/" exact component={Home} />
                 <PrivateRoute path="/admin" exact component={Admin} />

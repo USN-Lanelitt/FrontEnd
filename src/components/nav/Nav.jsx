@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import clsx from "clsx";
 import {Link} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
-import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -25,7 +24,6 @@ import app from "../../fire";
 import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
-import Button from "@material-ui/core/Button";
 
 
 
@@ -177,6 +175,7 @@ export default function NavBar(props) {
         } else {
             // No user is signed in.
             setloggedIn(false);
+            setOpen(false);
         }
     });
 
