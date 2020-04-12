@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 
 
@@ -29,10 +30,21 @@ const useStyles = makeStyles(theme => ({
     status: {
         padding: theme.spacing(0.5),
 
-    }
+    },
+
+    Button: {
+        color: 'red',
+    },
+
+    button: {
+        display: 'Grid',
+        padding: theme.spacing(1),
+    },
+
+
 }));
 
-const LoanCard = ({firstname, middlename, lastname, assetname, description, assetImages, loanStatus, selectedDate, selectedDate2}) => {
+const LoanReplyCard = ({firstname, middlename, lastname, assetname, description, assetImages, loanStatus, selectedDate, selectedDate2, onDenied, onAccept}) => {
     const classes = useStyles();
 
     return (
@@ -71,9 +83,17 @@ const LoanCard = ({firstname, middlename, lastname, assetname, description, asse
 
                     </Typography>
                 </Box>
+                <ListItemSecondaryAction className={classes.button}>
+                    <Button onClick= {onAccept} size="small" color="primary">
+                        Godta
+                    </Button>
+                    <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">
+                        Avslå
+                    </Button>
+                </ListItemSecondaryAction>
             </CardContent>
         </Card>
     );
 };
 
-export default LoanCard;
+export default LoanReplyCard;

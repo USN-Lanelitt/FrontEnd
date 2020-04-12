@@ -9,16 +9,15 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import IconButton from "@material-ui/core/IconButton";
 import FriendRequestList from "../friend/friend-request-list";
 import Typography from "@material-ui/core/Typography";
+import Menu from "@material-ui/core/Menu";
+
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-
-
-    },
     paper: {
-        margin: '0',
-
+        border: '1px solid #d3d4d5',
+    },
+    typo: {
+        padding: theme.spacing(1),
     },
 }));
 
@@ -64,6 +63,7 @@ const NotificationList = () => {
                     aria-controls={open ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"
                     color="inherit"
+                    variant="contained"
                     onClick={handleToggle}
 
 
@@ -72,16 +72,17 @@ const NotificationList = () => {
                 </IconButton>
 
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                    {({ TransitionProps, placement }) => (
+                    {({ TransitionProps}) => (
                         <Grow
                             {...TransitionProps}
-                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+
                         >
                             <Paper>
 
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                        <Typography variant="h6" align="center" color="textPrimary" gutterBottom>
+
+                                        <Typography className={classes.typo} variant="h6" align="center" color="textPrimary" gutterBottom>
                                             Varsler
                                         </Typography>
 

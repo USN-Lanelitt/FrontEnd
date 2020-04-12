@@ -1,51 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import AssetCard from "./asset-card";
+import axios from "axios";
 
-const AssetsList = () => {
-    const menuItems = [
-        {
-            title: "Header",
-            description: "Kort beskrivelse av produktet som lånes ut.",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-        {
-            title: "Header",
-            description: "Kort beskrivelse av produktet som lånes ut.",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-        {
-            title: "Header",
-            description: "Kort beskrivelse av produktet som lånes ut.",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-        {
-            title: "Header",
-            description: "Kort beskrivelse av produktet som lånes ut.",
-            imageUrl: "https://source.unsplash.com/random"
-        },
-        {
-            title: "Header",
-            description: "Kort beskrivelse av produktet som lånes ut.",
-            imageUrl: "https://source.unsplash.com/random"
-        },
+const AssetsList = ({categoryId}) => {
+   const [assetByCategory, setAssetByCategory] = useState([]);
 
-        {
-            title: "Header",
-            description: "Kort beskrivelse av produktet som lånes ut",
-            imageUrl: "https://source.unsplash.com/random"
-        }
-        ];
+    useEffect( () => {
+        getAssetsByCategory();
+    }, []);
+
+    const getAssetsByCategory = () => {
+        axios.get("/assets/getAssetType/" + sessionStorage.getItem("userId") + "/" + categoryId)
+            .then(result => setAssetByCategory(result.data))
+            .catch(error => console.log(error))
+
+    }
     return (
         <Container>
 
             <Grid container spacing={3} justify="center">
 
                 {
-                    menuItems.map(item => (
+                    assetByCategory.map(asset => (
                             <Grid item>
-                                <AssetCard title={item.title} description={item.description} imageUrl={item.imageUrl}/>
+                                <AssetCard title={asset.title} description={asset.description} imageUrl={"https://source.unsplash.com/random"}/>
                             </Grid>
                         )
                     )

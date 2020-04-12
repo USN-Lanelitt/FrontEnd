@@ -51,8 +51,9 @@ const FriendAssets = () => {
                         <h3>Lån</h3>
                         <hr/>
                         <Grid container spacing={12}>
-                            <AssetsList/>
+                            <AssetsList />
                         </Grid>
+
 
                     </Container>
                 </main>

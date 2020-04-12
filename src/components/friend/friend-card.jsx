@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
 
 
+
 const useStyles = makeStyles(theme => ({
     card: {
         padding: theme.spacing(1),
@@ -29,21 +30,21 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove, getChat}) => {
+const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove}) => {
     const classes = useStyles();
 
 
     return (
         <Grid xs={12}>
             <Card className={classes.card}>
-                <CardActionArea>
-                    <CardContent>
+                <CardActionArea component = {Link} to="/FriendProfile" style={{backgroundColor: 'transparent'}}>
+                    <CardContent >
                         <Grid container zeroMinWidth justify="flex-start">
                             <CardMedia>
                                 <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                             </CardMedia>
-                            <Grid className={classes.text}>
-                                <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
+                            <Grid className={classes.text} >
+                                <Typography gutterBottom variant="h6" component="h2" display={"inline"} >
                                     {firstname} {middlename} {lastname}
                                 </Typography>
                             </Grid>
@@ -54,10 +55,9 @@ const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove, getCha
                     <Button className={classes.Button} onClick= {onRemove} size="small" color="primary">
                         Slett venn
                     </Button>
-                    <Button onClick= {getChat} component={Link} to="/chat" size="small" color="primary">
+                    <Button size="small" color="primary">
                         Send melding
                     </Button>
-
                 </CardActions>
             </Card>
         </Grid>

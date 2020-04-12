@@ -21,17 +21,14 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-
-
     },
     send: {
         margin: theme.spacing(3, 0, 2),
 
     },
 
-
 }));
-const LoanRequest = () => {
+const LoanRequestSend = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState();
 
@@ -39,9 +36,8 @@ const LoanRequest = () => {
         setValue(event.target.value);
     };
 
-
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-05'));
-    const [selectedDate2, setSelectedDate2] = React.useState(new Date('2020-04-05'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date() );
+    const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -55,7 +51,6 @@ const LoanRequest = () => {
         <Box display="flex" justifyContent="center">
             <Box width={1 / 2} height={'100%'}>
                 <Card className={classes.paper}>
-
                     <Box borderBottom={1}>
                         <CardContent>
                             <Typography variant="h5" component="h2">
@@ -63,17 +58,15 @@ const LoanRequest = () => {
                             </Typography>
 
                         </CardContent>
-
-
-                    </Box>
+                   </Box>
                     <Box m={4}>
                         <CardActions>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
-                                    name="birthdate"
+                                    name="daypicker"
                                     margin="normal"
                                     id="date-picker-dialog"
-                                    label="Fødselsdato"
+                                    label="Fra dato:"
                                     fullWidth
                                     format="dd.MM.yyyy"
                                     value={selectedDate}
@@ -82,14 +75,15 @@ const LoanRequest = () => {
                                         'aria-label': 'change date',
                                     }}
                                 />
+
                             </MuiPickersUtilsProvider>
 
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
-                                    name="birthdate"
+                                    name="daypicker"
                                     margin="normal"
                                     id="date-picker-dialog"
-                                    label="Fødselsdato"
+                                    label="Til dato:"
                                     fullWidth
                                     format="dd.MM.yyyy"
                                     value={selectedDate2}
@@ -98,18 +92,18 @@ const LoanRequest = () => {
                                         'aria-label': 'change date',
                                     }}
                                 />
+
                             </MuiPickersUtilsProvider>
                         </CardActions>
 
                     </Box>
                     <TextField
                         id="standard-multiline-static"
-                        label="Send med en melding"
+                        label="Send en melding ..."
                         multiline
                         rowsMax="7"
                         value={value}
                         onChange={handleChange}
-
 
                     />
                     <CardActions>
@@ -118,13 +112,10 @@ const LoanRequest = () => {
                         </Button>
                     </CardActions>
 
-
-
-
                 </Card>
             </Box>
         </Box>
     );
 };
 
-export default LoanRequest;
+export default LoanRequestSend;

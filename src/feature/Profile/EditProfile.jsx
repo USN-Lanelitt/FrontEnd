@@ -20,8 +20,6 @@ import axios from "axios";
 import app from "../../fire";
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import ProfileCard from "../../components/profile/profile-card";
-import DateFnsUtils from "@date-io/date-fns";
-import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import FormControl from "@material-ui/core/FormControl";
 import clsx from "clsx";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -64,15 +62,6 @@ const useStyles = makeStyles(theme => ({
         width: theme.spacing(10),
         height: theme.spacing(10),
     },
-    media: {
-        height: "135px",
-        width: "135px",
-        borderRadius: "95px",
-    },
-    imageBox: {
-        height: "135px",
-        width: "350px",
-    }
 }));
 
 const styles = theme => ({
@@ -123,17 +112,15 @@ const EditProfile = ({history}) => {
         event.preventDefault();
         let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        const {nickname, phone, birthdate, address1, address2, zipcode, city, email, currentPassword, newPassword} = event.target.elements;
+        const {nickname, phone, address1, address2, zipcode, city, currentPassword, newPassword} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
         axios.post('/url', {
             nickname: nickname.value,
             phone: phone.value,
-            birthdate: birthdate.value,
             address1: address1.value,
             address2: address2.value,
             zipcode: zipcode.value,
             city: city.value,
-            email: email.value,
             currentPassword: currentPassword.value,
             newPassword: newPassword.value
         })
@@ -197,27 +184,44 @@ const EditProfile = ({history}) => {
         event.preventDefault();
     };
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
+    const handleImageUpload = e => {
+        const [file] = e.target.files;
+        if (file) {
+            console.log(file);
+            let data = new FormData();
+            data.append('file', file, file.fileName);
+            data.append('userId', sessionStorage.getItem('userId'));
 
-    const handleDateChange = date => {
-        setSelectedDate(date);
-        console.log(selectedDate);
+            axios.post('/profileimageUpload', data, {
+                headers: {
+                    'accept': 'application/json',
+                    'Accept-Language': 'en-US,en;q=0.8',
+                    'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+                }
+            })
+                .then((response) => {
+                    //handle success
+                    if (response.status == 200) { // 200 at api har gått bra
+                        var aData = response.data;
+                        if (aData['code'] == 200) {// da har lagring av bilde gått bra
+                            console.log('Bildeopplasting ok');
+                            console.log(aData['image']);
+                            sessionStorage.setItem('profileImage', aData['image']);
+                        } else if (aData['code'] == 400) {
+                            alert('Feil ved bildeopplasting');
+                        }
+                    }
+                }).catch((error) => {
+                //handle error
+            });
+        }
     };
-
-    const [file, setFile] = useState({ preview: null, raw: null })
-
-    const handleImageChange = (e) => {
-        setFile({
-            preview: URL.createObjectURL(e.target.files[0]),
-            raw: e.target.files[0]
-        })
-    }
 
 
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
-            <Box className={classes.paper}>
+            <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <EditTwoToneIcon/>
                 </Avatar>
@@ -267,8 +271,9 @@ const EditProfile = ({history}) => {
                                             </div>
                                         </Box>
                                     </DialogContent>
+                                  
                                     <DialogActions>
-                                        <Button autoFocus onClick={()=>{handleClose(); ProfileImageUpload(file);}} color="primary">
+                                        <Button autoFocus onClick={handleClose} color="primary">
                                             Lagre
                                         </Button>
                                     </DialogActions>
@@ -344,7 +349,7 @@ const EditProfile = ({history}) => {
                         </Grid>
                     </Grid>
                 </form>
-            </Box>
+            </div>
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">
                     Endre Passord
