@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import FaceIcon from '@material-ui/icons/Face';
 import ChatWindow from "../../components/chat/chat-window";
+import Avatar from "@material-ui/core/Avatar";
 
 
 const useStyles = makeStyles(theme => ({
@@ -31,6 +32,15 @@ const useStyles = makeStyles(theme => ({
         width: '30%',
         borderRight: '1px solid grey',
     },
+    bubble: {
+        backgroundColor: "silver",
+        textAlign: "left",
+        borderRadius: "20px",
+        padding: "5px 15px",
+        marginLeft: "5px",
+        display: "inline-block",
+        maxWidth: "70%",
+    },
     chatWindow: {
         height: '450px',
         width: '70%',
@@ -49,7 +59,6 @@ const useStyles = makeStyles(theme => ({
         width: '15%',
         height: '55px',
     },
-
 }));
 
 export default function Chat() {
@@ -122,20 +131,24 @@ export default function Chat() {
                     </div>
 
                     <div className={classes.flex}>
-
                         <div className={classes.chatListWindow}>
                             <List>
                                 {
                                     chatUsers.map((user) => (
                                         <ListItem key={user.id} button>
-                                            <Chip icon={<FaceIcon />}
-                                                  label={user.firstName}
-                                                  color="primary"
-                                                  onClick={() => {
-                                                      onSelected(user.id);
-                                                      setUserId2(user.id);
-                                                  }}
-                                            />
+                                            <div
+                                                onClick={() => {
+                                                onSelected(user.id);
+                                                setUserId2(user.id);
+                                            }}
+                                            >
+                                                <div>
+                                                    <Avatar src="/broken-image.jpg" />
+                                                    {user.firstName}
+                                                </div>
+                                            </div>
+
+
                                         </ListItem>
                                     ))
                                 }

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove}) => {
+const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove, getChat}) => {
     const classes = useStyles();
 
 
@@ -53,9 +54,10 @@ const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove}) => {
                     <Button className={classes.Button} onClick= {onRemove} size="small" color="primary">
                         Slett venn
                     </Button>
-                    <Button size="small" color="primary">
+                    <Button onClick= {getChat} component={Link} to="/chat" size="small" color="primary">
                         Send melding
                     </Button>
+
                 </CardActions>
             </Card>
         </Grid>

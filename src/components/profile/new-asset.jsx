@@ -14,6 +14,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CategoryList from "./category-list";
 import StatusMessage from "./status-message";
 import {Redirect} from "react-router";
+import HandleImageUpload from "./handle-image-upload";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -25,13 +26,19 @@ const useStyles = makeStyles((theme) => ({
             minWidth: "100%"
         },
         minWidth: "50%",
-
-    }
+    },
+    root: {
+        height: "100%",
+    },
+    media: {
+        height: "250px",
+        width: "250px",
+        borderRadius: "4px",
+    },
 }));
 
 
 const NewAsset = () => {
-    const [value, setValue] = React.useState('Controlled');
     const classes = useStyles();
     const [redirect, setRedirect] = React.useState(false);
     const [title, setTitle] = useState("");
@@ -41,6 +48,14 @@ const NewAsset = () => {
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
+    const [file, setFile] = useState({ preview: null, raw: null })
+
+    const handleChange = (e) => {
+        setFile({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        })
+    }
 
     const save = () => {
         const asset = {
@@ -103,7 +118,37 @@ const NewAsset = () => {
                             fullWidth
                         />
                     </Box>
-                    <ImageUploader/>
+                    <Box display="flex" justifyContent="space-evenly" flexDirection="column" alignItems="center" className={classes.root}>
+                        <Box className={classes.media}
+                             display="flex"
+                             justifyContent="center"
+                             alignItems="center"
+                             mb={4}
+                        >
+                            {
+                                file.preview ?
+                                    <img src={file.preview}  alt="Protocol illustration"
+                                         className={classes.media}/> :
+                                    (<img src={"https://source.unsplash.com/random"}  alt="Protocol illustration"
+                                          className={classes.media}/>)}
+                        </Box>
+
+                        <div>
+                            <label htmlFor="upload-button"
+                                   style={{
+                                       backgroundColor: 'blue',
+                                       color: 'white',
+                                       padding: "4px 8px 4px 8px",
+                                       borderRadius: 4,
+                                       textAlign: "center"    }}
+                            >
+                                LAST OPP BILDE
+                            </label>
+
+                            <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleChange} multiple="false"/>
+
+                        </div>
+                    </Box>
                     <FormControlLabel
                         control={
                             <Checkbox
@@ -117,7 +162,13 @@ const NewAsset = () => {
                 </CardContent>
                 <CardActions>
                     <Button>Avbryt</Button>
-                    <Button onClick={save}>Opprett</Button>
+                    <Button onClick={()=>{
+                        save();
+                        HandleImageUpload(file);
+                    }}
+                    >
+                        Opprett
+                    </Button>
 
                 </CardActions>
             </Card>

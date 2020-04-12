@@ -7,6 +7,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import app from "../../fire";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
+import sendMessage from "../../components/chat/send-message";
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,6 +26,7 @@ const FriendAll = () => {
     const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const [selectedChat, setSelectedChat] = useState([]);
 
     useEffect(() => {
             AllFriends();
@@ -39,7 +41,6 @@ const FriendAll = () => {
             })
             .catch(e => console.log(e));
     }
-
 
     const remove = (friendId) => {
         setShowConfirmDialog(true);
@@ -67,6 +68,7 @@ const FriendAll = () => {
     return (
         <React.Fragment>
             <div className={classes.heroContent}>
+
                 <Container maxWidth="sm">
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                         Mine Venner
@@ -95,13 +97,14 @@ const FriendAll = () => {
                                 imageUrl={item.user2.imageUrl}
                                 friendId={item.user2.id}
                                 onRemove={() => remove(item.user2.id)}
-
+                                getChat={() => sendMessage(userId, item.user2.id)}
 
                             />
                         </Grid>
 
                     ))}
                 </Grid>
+
             </Container>
         </React.Fragment>
 
