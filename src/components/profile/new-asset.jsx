@@ -118,38 +118,8 @@ const NewAsset = () => {
                             fullWidth
                         />
                     </Box>
-                    <Box display="flex" justifyContent="space-evenly" flexDirection="column" alignItems="center" className={classes.root}>
-                        <Box className={classes.media}
-                             display="flex"
-                             justifyContent="center"
-                             alignItems="center"
-                             mb={4}
-                        >
-                            {
-                                file.preview ?
-                                    <img src={file.preview}  alt="Protocol illustration"
-                                         className={classes.media}/> :
-                                    (<img src={"https://source.unsplash.com/random"}  alt="Protocol illustration"
-                                          className={classes.media}/>)}
-                        </Box>
-
-                        <div>
-                            <label htmlFor="upload-button"
-                                   style={{
-                                       backgroundColor: 'blue',
-                                       color: 'white',
-                                       padding: "4px 8px 4px 8px",
-                                       borderRadius: 4,
-                                       textAlign: "center"    }}
-                            >
-                                LAST OPP BILDE
-                            </label>
-
-                            <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleChange} multiple="false"/>
-
-                        </div>
-                    </Box>
-                    <FormControlLabel
+                    <ImageUploader/>
+                   <FormControlLabel
                         control={
                             <Checkbox
                                 checked={isPublic}
