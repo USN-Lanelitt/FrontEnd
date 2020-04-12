@@ -47,7 +47,7 @@ const AssetSite = () => {
                         )
                     }
                 </Carousel>
-                <Button variant="contained" color="primary" className={classes.button} component={Link} to="/loanforespørsel" >
+                <Button variant="contained" color="primary" className={classes.button} component={Link} to="/loanRequest">
                     Send forespørsel
                 </Button>
             </Box>

@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import HomeMenu from "../../components/home/home-menu";
 import Copyright from "../../components/home/Copyright";
+import {useParams} from "react-router";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
 
 const AssetContainer = () => {
     const classes = useStyles();
+    const {id} = useParams();
 
     return (
         <React.Fragment>
@@ -54,7 +56,7 @@ const AssetContainer = () => {
                     <h3>Placeholder</h3>
                     <hr/>
                     <Grid container spacing={12}>
-                        <AssetsList/>
+                        <AssetsList categoryId={id}/>
                     </Grid>
                 </Container>
             </main>

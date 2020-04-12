@@ -28,7 +28,6 @@ const MyAssetsList = () => {
     const [assetId, setAssetId] = useState(null);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
-
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
         fetchAssets(userId, setAssets);
@@ -70,9 +69,11 @@ const MyAssetsList = () => {
                 {
                     assets.map(asset => (
                             <Grid item>
-                                <MyAssetsCard assetId={asset.id} title={asset.assetName} description={asset.description}
+                                <MyAssetsCard asset={asset}
                                               imageUrl={"https://source.unsplash.com/random"}
-                                              onRemove={() => remove(asset.id)}/>
+                                              onRemove={() => remove(asset.id)}
+                                              refresh={() => fetchAssets(userId, setAssets)}
+                                />
                             </Grid>
                         )
                     )
