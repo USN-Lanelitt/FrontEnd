@@ -61,8 +61,6 @@ const FriendAll = () => {
         AllFriends();
     }
 
-
-
     function onDeleteFriendCancel() {
         setShowConfirmDialog(false);
     }
@@ -99,7 +97,7 @@ const FriendAll = () => {
                                 imageUrl={item.user2.imageUrl}
                                 friendId={item.user2.id}
                                 onRemove={() => remove(item.user2.id)}
-                                getChat={() => sendMessage('', userId, item.user2.id)}
+                                getChat={() => sendMessage(userId, item.user2.id)}
 
                             />
                         </Grid>
