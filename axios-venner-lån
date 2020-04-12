@@ -400,7 +400,6 @@ Send til frontend:
 •	dateEnd
 
 
-
 useEffect(() => {
     console.log("", userId, sessionStorage.getItem('userId'));
     axios.get('/user/’+userId+’/loanRequest/sent)
@@ -412,8 +411,6 @@ useEffect(() => {
        })
     .catch(e => console.log(e));
 }, [setData, userId]);
-
-
 
 ----------------------------------------------------------------------------------------
 
@@ -462,7 +459,6 @@ Send til frontend:
 •	comment
 •	dateStart
 •	dateEnd
-
 
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [data, setData] = useState([]);
