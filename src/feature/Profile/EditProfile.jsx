@@ -30,6 +30,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+import HandleImageUpload from "../../components/profile/handle-image-upload";
 
 
 const useStyles = makeStyles(theme => ({
@@ -62,6 +63,15 @@ const useStyles = makeStyles(theme => ({
         width: theme.spacing(10),
         height: theme.spacing(10),
     },
+    media: {
+        height: "135px",
+        width: "135px",
+        borderRadius: "95px",
+    },
+    imageBox: {
+        height: "135px",
+        width: "350px",
+    }
 }));
 
 const styles = theme => ({
@@ -193,44 +203,20 @@ const EditProfile = ({history}) => {
         console.log(selectedDate);
     };
 
-    const handleImageUpload = e => {
-        const [file] = e.target.files;
-        if (file) {
-            console.log(file);
-            let data = new FormData();
-            data.append('file', file, file.fileName);
-            data.append('userId', sessionStorage.getItem('userId'));
+    const [file, setFile] = useState({ preview: null, raw: null })
 
-            axios.post('/profileimageUpload', data, {
-                headers: {
-                    'accept': 'application/json',
-                    'Accept-Language': 'en-US,en;q=0.8',
-                    'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-                }
-            })
-                .then((response) => {
-                    //handle success
-                    if (response.status == 200) { // 200 at api har gått bra
-                        var aData = response.data;
-                        if (aData['code'] == 200) {// da har lagring av bilde gått bra
-                            console.log('Bildeopplasting ok');
-                            console.log(aData['image']);
-                            sessionStorage.setItem('profileImage', aData['image']);
-                        } else if (aData['code'] == 400) {
-                            alert('Feil ved bildeopplasting');
-                        }
-                    }
-                }).catch((error) => {
-                //handle error
-            });
-        }
-    };
+    const handleImageChange = (e) => {
+        setFile({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        })
+    }
 
 
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
-            <div className={classes.paper}>
+            <Box className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <EditTwoToneIcon/>
                 </Avatar>
@@ -253,22 +239,37 @@ const EditProfile = ({history}) => {
                                         Endre Profilbilde
                                     </DialogTitle>
                                     <DialogContent dividers>
-                                        <Avatar src={"profileimages/" + sessionStorage.getItem('profileImage')}
-                                                className={classes.large}/>
-                                        <div className={classes.root}>
+                                        <Box display="flex" justifyContent="space-between" alignItems="flex-end" flexDirection="row"  className={classes.imageBox}>
+                                            <Box className={classes.media}
 
-                                            <input type="file" accept="image/*" onClick={handleImageUpload}
-                                                   multiple="false"/>
+                                            >
+                                                {
+                                                    file.preview ?
+                                                        <img src={file.preview}  alt="Protocol illustration"
+                                                             className={classes.media}/> :
+                                                        (<img src={"https://source.unsplash.com/random"}  alt="Protocol illustration"
+                                                              className={classes.media}/>)}
+                                            </Box>
 
-                                            <label htmlFor="contained-button-file">
-                                                <Button variant="contained" color="primary" component="span">
-                                                    Velg bilde
-                                                </Button>
-                                            </label>
-                                        </div>
+                                            <div>
+                                                <label htmlFor="upload-button"
+                                                       style={{
+                                                           backgroundColor: 'blue',
+                                                           color: 'white',
+                                                           padding: "10px 8px 10px 8px",
+                                                           borderRadius: 4,
+                                                           textAlign: "center"    }}
+                                                >
+                                                    LAST OPP BILDE
+                                                </label>
+
+                                                <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleImageChange} />
+
+                                            </div>
+                                        </Box>
                                     </DialogContent>
                                     <DialogActions>
-                                        <Button autoFocus onClick={handleClose} color="primary">
+                                        <Button autoFocus onClick={()=>{handleClose(); HandleImageUpload(file);}} color="primary">
                                             Lagre
                                         </Button>
                                     </DialogActions>
@@ -344,7 +345,7 @@ const EditProfile = ({history}) => {
                         </Grid>
                     </Grid>
                 </form>
-            </div>
+            </Box>
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">
                     Endre Passord

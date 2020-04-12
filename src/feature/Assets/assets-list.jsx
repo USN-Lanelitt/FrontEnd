@@ -53,7 +53,6 @@ const AssetsList = () => {
 
             </Grid>
 
-
         </Container>
     );
 };
