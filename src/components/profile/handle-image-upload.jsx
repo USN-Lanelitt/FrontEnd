@@ -1,5 +1,4 @@
 import axios from "axios";
-import ImageUploader from "../assets/image-uploader";
 
 const HandleImageUpload = (file) => {
     if (file.raw) {

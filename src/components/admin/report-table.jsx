@@ -8,6 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Button from "@material-ui/core/Button";
 import ConfirmDialog from "../user/confirm-dialog";
+import {Visibility} from "@material-ui/icons";
 
 
 const ReportTable = ({reports}) => {
@@ -33,6 +34,7 @@ const ReportTable = ({reports}) => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
+                        <TableCell>Actions</TableCell>
                         <TableCell>Id</TableCell>
                         <TableCell>Fra bruker</TableCell>
                         <TableCell>Om bruker</TableCell>
@@ -45,31 +47,22 @@ const ReportTable = ({reports}) => {
                         reports.map((report) =>
                             (<TableRow key={report.id}>
                                 <TableCell component="th" scope="row">
-                                    {report.id}
+                                    <Visibility onClick={() => onShow(report.subject, report.comment)}/>
                                 </TableCell>
+                                <TableCell> {report.id}</TableCell>
                                 <TableCell>{report.reporter.id}</TableCell>
                                 <TableCell>{report.reported.id}</TableCell>
                                 <TableCell>{report.subject}</TableCell>
                                 <TableCell>{report.timestamp}</TableCell>
-
                                 <TableCell>
-                                    <Button
-                                        size="small"
-                                        color="primary"
-                                        variant="contained"
-                                        onClick={() => onShow(report.subject, report.comment)}
-                                        >
-                                        Se
-                                    </Button>
-
                                     <ConfirmDialog
                                         title={title}
+
                                         message={text}
                                         onConfirm={onClose}
                                         confirmButtonText="Lukk"
                                         open={showConfirmDialog}
                                     />
-
                                 </TableCell>
                             </TableRow>)
                         )

@@ -31,6 +31,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import HandleImageUpload from "../../components/profile/handle-image-upload";
+import ProfileImageUpload from "./profile-image-upload";
 
 
 const useStyles = makeStyles(theme => ({
@@ -262,14 +263,12 @@ const EditProfile = ({history}) => {
                                                 >
                                                     LAST OPP BILDE
                                                 </label>
-
                                                 <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleImageChange} />
-
                                             </div>
                                         </Box>
                                     </DialogContent>
                                     <DialogActions>
-                                        <Button autoFocus onClick={()=>{handleClose(); HandleImageUpload(file);}} color="primary">
+                                        <Button autoFocus onClick={()=>{handleClose(); ProfileImageUpload(file);}} color="primary">
                                             Lagre
                                         </Button>
                                     </DialogActions>
