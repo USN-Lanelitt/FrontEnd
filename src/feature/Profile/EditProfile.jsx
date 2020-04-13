@@ -62,6 +62,15 @@ const useStyles = makeStyles(theme => ({
         width: theme.spacing(10),
         height: theme.spacing(10),
     },
+    media: {
+        height: "135px",
+        width: "135px",
+        borderRadius: "95px",
+    },
+    imageBox: {
+        height: "135px",
+        width: "350px",
+    }
 }));
 
 const styles = theme => ({
@@ -184,38 +193,21 @@ const EditProfile = ({history}) => {
         event.preventDefault();
     };
 
-    const handleImageUpload = e => {
-        const [file] = e.target.files;
-        if (file) {
-            console.log(file);
-            let data = new FormData();
-            data.append('file', file, file.fileName);
-            data.append('userId', sessionStorage.getItem('userId'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
 
-            axios.post('/profileimageUpload', data, {
-                headers: {
-                    'accept': 'application/json',
-                    'Accept-Language': 'en-US,en;q=0.8',
-                    'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-                }
-            })
-                .then((response) => {
-                    //handle success
-                    if (response.status == 200) { // 200 at api har gått bra
-                        var aData = response.data;
-                        if (aData['code'] == 200) {// da har lagring av bilde gått bra
-                            console.log('Bildeopplasting ok');
-                            console.log(aData['image']);
-                            sessionStorage.setItem('profileImage', aData['image']);
-                        } else if (aData['code'] == 400) {
-                            alert('Feil ved bildeopplasting');
-                        }
-                    }
-                }).catch((error) => {
-                //handle error
-            });
-        }
+    const handleDateChange = date => {
+        setSelectedDate(date);
+        console.log(selectedDate);
     };
+
+    const [file, setFile] = useState({ preview: null, raw: null })
+
+    const handleImageChange = (e) => {
+        setFile({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        })
+    }
 
 
     return (
@@ -273,7 +265,7 @@ const EditProfile = ({history}) => {
                                     </DialogContent>
                                   
                                     <DialogActions>
-                                        <Button autoFocus onClick={handleClose} color="primary">
+                                        <Button autoFocus onClick={()=>{handleClose(); ProfileImageUpload(file);}} color="primary">
                                             Lagre
                                         </Button>
                                     </DialogActions>
