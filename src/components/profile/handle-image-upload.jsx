@@ -4,7 +4,7 @@ const HandleImageUpload = (file) => {
     if (file.raw) {
         console.log(file.raw);
         let data = new FormData();
-        data.append('file', file.raw, file.fileName);
+        data.append('file', file.raw);
         data.append('mainImage', true);
         //data.append('userId', sessionStorage.getItem('userId'));
 

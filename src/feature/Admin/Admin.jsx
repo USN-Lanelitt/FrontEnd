@@ -8,6 +8,8 @@ import Copyright from '../../components/home/Copyright';
 import AmountTable from "../../components/admin/amount-table";
 import AdminTable from "../../components/admin/admin-table";
 import ReportList from "../../components/admin/report-list";
+import LogDropdown from "../../components/admin/log-dropdown";
+import ControlledOpenSelect from "../../components/profile/testDrop";
 
 
 const useStyles = makeStyles(theme => ({
@@ -56,10 +58,14 @@ export default function Admin() {
                         <AmountTable/>
                         <AdminTable/>
                     </Grid>
+
                     <Grid className={classes.reportBox} item xs={12}>
                     <h3>Rapporterte saker</h3>
                     <hr/>
                     <ReportList/>
+                    </Grid>
+                    <Grid>
+                        <LogDropdown/>
                     </Grid>
                 </Container>
             </main>

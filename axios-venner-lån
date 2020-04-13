@@ -269,7 +269,7 @@ const [data, setData] = useState([]);
 
 useEffect(() => {
     console.log("", userId, sessionStorage.getItem('userId'));
-    axios.post('/user/'+userId+'/asset/'+assetId+'/request' , {
+    axios.post('/user/’+userId+’/loanRequest' , {
         startDate: startDate.value,
         endDate: startDate.value
         }).then((response) => {
@@ -445,7 +445,7 @@ const [data, setData] = useState([]);
 
 useEffect(() => {
     console.log("", userId, sessionStorage.getItem('userId'));
-    axios.get('/user/'+userId+'/loanAccepted)
+    axios.get('/user/'+userId+'/loanSent)
     .then((response) => {
         if (response.status === 200) {
             console.log(response.data);
@@ -479,7 +479,7 @@ useEffect(() => {
 ----------------------------------------------------------------------------------------
 
 Funksjon getDeniedRequests - url: /user/{iUserId}/loanDenied - method GET
-(alle godkjente forespørsler brukeren har sendt)
+(alle avviste forespørsler brukeren har sendt)
 Send til backend:
 •	userId
 
@@ -505,7 +505,7 @@ const [data, setData] = useState([]);
 
 useEffect(() => {
     console.log("", userId, sessionStorage.getItem('userId'));
-    axios.get('/user/'+userId+'/loanAccepted)
+    axios.get('/user/'+userId+'/loanDenied)
     .then((response) => {
         if (response.status === 200) {
             console.log(response.data);
