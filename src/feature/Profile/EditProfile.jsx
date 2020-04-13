@@ -27,6 +27,10 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import HandleImageUpload from "../../components/profile/handle-image-upload";
+import ProfileImageUpload from "./profile-image-upload";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -240,20 +244,34 @@ const EditProfile = ({history}) => {
                                         Endre Profilbilde
                                     </DialogTitle>
                                     <DialogContent dividers>
-                                        <Avatar src={"profileimages/" + sessionStorage.getItem('profileImage')}
-                                                className={classes.large}/>
-                                        <div className={classes.root}>
+                                        <Box display="flex" justifyContent="space-between" alignItems="flex-end" flexDirection="row"  className={classes.imageBox}>
+                                            <Box className={classes.media}
 
-                                            <input type="file" accept="image/*" onClick={handleImageUpload}
-                                                   multiple="false"/>
+                                            >
+                                                {
+                                                    file.preview ?
+                                                        <img src={file.preview}  alt="Protocol illustration"
+                                                             className={classes.media}/> :
+                                                        (<img src={"https://source.unsplash.com/random"}  alt="Protocol illustration"
+                                                              className={classes.media}/>)}
+                                            </Box>
 
-                                            <label htmlFor="contained-button-file">
-                                                <Button variant="contained" color="primary" component="span">
-                                                    Velg bilde
-                                                </Button>
-                                            </label>
-                                        </div>
+                                            <div>
+                                                <label htmlFor="upload-button"
+                                                       style={{
+                                                           backgroundColor: 'blue',
+                                                           color: 'white',
+                                                           padding: "10px 8px 10px 8px",
+                                                           borderRadius: 4,
+                                                           textAlign: "center"    }}
+                                                >
+                                                    LAST OPP BILDE
+                                                </label>
+                                                <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleImageChange} />
+                                            </div>
+                                        </Box>
                                     </DialogContent>
+                                  
                                     <DialogActions>
                                         <Button autoFocus onClick={handleClose} color="primary">
                                             Lagre
