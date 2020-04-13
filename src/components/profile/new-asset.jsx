@@ -66,8 +66,17 @@ const NewAsset = () => {
             public: isPublic,
             typeId: category
         };
+        let data = new FormData();
+        data.append('file', file.raw);
+        data.append('mainImage', true);
+        data.append('assetName', title);
+        data.append('description',description);
+        data.append('userId', sessionStorage.getItem('userId'));
+        data.append('condition',"1");
+        data.append('public', isPublic);
+        data.append('typeId', category);
 
-        axios.post("/assets/addAsset", asset)
+        axios.post("/assets/addAsset", data)
             .then(result => {
                 console.log(result);
                 setShowStatusMessage(true);
@@ -162,7 +171,7 @@ const NewAsset = () => {
                     <Button>Avbryt</Button>
                     <Button onClick={()=>{
                         save();
-                        HandleImageUpload(file);
+                        //HandleImageUpload(file);
                     }}
                     >
                         Opprett
