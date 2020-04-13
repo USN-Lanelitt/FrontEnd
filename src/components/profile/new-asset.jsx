@@ -57,6 +57,7 @@ const NewAsset = () => {
     }
 
     const save = () => {
+        /*
         const asset = {
             assetName: title,
             description: description,
@@ -66,7 +67,17 @@ const NewAsset = () => {
             typeId: category,
             file: file.raw,
             mainImage: true
-        };
+        };*/
+
+        const asset = new FormData();
+        asset.append('file', file.raw);
+        asset.append('mainImage', true);
+        asset.append('assetName', title);
+        asset.append('description',description);
+        asset.append('userId', sessionStorage.getItem('userId'));
+        asset.append('condition',"1");
+        asset.append('public', isPublic);
+        asset.append('typeId', category);
 
 
         axios.post("/assets/addAsset", asset)
@@ -129,7 +140,7 @@ const NewAsset = () => {
                                 file.preview ?
                                     <img src={file.preview}  alt="Protocol illustration"
                                          className={classes.media}/> :
-                                    (<img src={"https://source.unsplash.com/random"}  alt="Protocol illustration"
+                                    (<img src={"/DefaultAssetImage.png"}  alt="Protocol illustration"
                                           className={classes.media}/>)}
                         </Box>
 
