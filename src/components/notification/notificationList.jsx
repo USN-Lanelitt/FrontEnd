@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import FriendRequestList from "../friend/friend-request-list";
 import Typography from "@material-ui/core/Typography";
 import Menu from "@material-ui/core/Menu";
+import LoanRequestList from "../loan/loan-request-list";
 
 
 const useStyles = makeStyles(theme => ({
@@ -87,6 +88,7 @@ const NotificationList = () => {
                                         </Typography>
 
                                       <FriendRequestList/>
+
 
                                     </MenuList>
                                 </ClickAwayListener>

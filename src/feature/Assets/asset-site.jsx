@@ -6,6 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 import Box from "@material-ui/core/Box";
 import {Link} from "react-router-dom";
+import LoanRequestSend from "../../components/loan/loan-request-send";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -47,7 +48,7 @@ const AssetSite = () => {
                         )
                     }
                 </Carousel>
-                <Button variant="contained" color="primary" className={classes.button} component={Link} to="/loanRequest">
+                <Button variant="contained" color="primary" className={classes.button} component={Link} to="/LoanRequestSend">
                     Send forespørsel
                 </Button>
             </Box>

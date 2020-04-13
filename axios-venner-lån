@@ -15,7 +15,6 @@ Send til frontend:
 · friendLastName
 · FriendProfileImage
 
-
 const [userId, setId] = useState(sessionStorage.getItem('userId'));
 const [users, setUsers] = useState([]);
 

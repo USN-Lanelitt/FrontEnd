@@ -10,31 +10,20 @@ const LoanRequestList = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        console.log("", userId, sessionStorage.getItem('userId'));
-        axios.get('/user/’+userId+’/loanRequest')
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log(response.data);
-                    setData(response.data);
-                }
-            })
-            .catch(e => console.log(e));
-    }, [setData, userId]);
 
     return (
         <Grid container spacing={3} justify="center">
-            {data.map(item => (
-                <Grid item key={item} xs={12}>
+            {data.map(user => (
+                <Grid item key={user}>
 
                     <LoanRequestNotification
-                        firstname={item.user1.firstName}
-                        lastname={item.user1.lastName}
-                        middlename={item.user1.middleName}
-                        imageUrl={item.user1.profileImage}
-                        friendId={item.user1.id}
-                        onDenied={() => denied(item.user1.id)}
-                        onAccept={() => accept(item.user1.id)}
+                        firstname={user.users.firstName}
+                        middlename={user.users.middleName}
+                        lastname={user.users.lastName}
+                        assetname={user.assets.assetName}
+                        dateStart={user.dateStart}
+                        dateEnd={user.dateEnd}
+
 
                     />
                 </Grid>

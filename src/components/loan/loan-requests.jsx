@@ -8,7 +8,7 @@ import LoanReplyCard from "./loan-reply-card";
 
 //her er den listen i notification
 
-const LoanRequests = () => {
+const LoanRequests = ({firstname, middlename, lastname, assetname, assetImages, selectedDate, selectedDate2}) => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
@@ -32,14 +32,10 @@ const LoanRequests = () => {
                         firstname={user.users.firstName}
                         middlename={user.users.middleName}
                         lastname={user.users.lastName}
-                        assetname={loan.assets.assetName}
-                        description={loan.assets.description}
-                        assetImage={loan.assets.assetImages}
-                        loanStatus={loan.statusLoan.status}
-                        selectedDate={loan.dateStart}
-                        selectedDate2={loan.dateEnd}
-                        onDenied={() => denied(item.user1.id)}
-                        onAccept={() => accept(item.user1.id)}
+                        assetname={user.assets.assetName}
+                        selectedDate={user.dateStart}
+                        selectedDate2={user.dateEnd}
+
                     />
 
                 </Grid>

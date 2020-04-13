@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
     },
 
 }));
+
 const StyledMenuItem = withStyles(theme => ({
 root: {
     '&:focus': {
@@ -52,7 +53,8 @@ root: {
     },
 },
 }))(MenuItem);
-const LoanRequestNotification = (id,firstname, middlename, lastname, assetname, onDenied, onAccept) => {
+const LoanRequestNotification = (id,firstname, middlename, imageUrl, lastname, assetname, onDenied, onAccept) => {
+    const classes = useStyles();
     return (
         <React.Fragment>
             <StyledMenuItem>
@@ -66,7 +68,7 @@ const LoanRequestNotification = (id,firstname, middlename, lastname, assetname, 
                         {firstname} {middlename} {lastname}
                     </ListItemText>
                     <ListItemText gutterBottom variant="h6" component="h7" display={"inline"}>
-                        Vil låne {assetName}
+                        Vil låne {assetname}
                     </ListItemText>
                 </Grid>
                 <Divider variant = "inset" />

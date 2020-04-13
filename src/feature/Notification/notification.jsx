@@ -7,6 +7,7 @@ import FriendRequestCard from "../../components/friend/friend-requestCard";
 import Divider from "@material-ui/core/Divider";
 import axios from "axios";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
+import LoanRequests from "../../components/loan/loan-requests";
 
 
 //siden på mobil, (en hel side)
@@ -131,6 +132,7 @@ const Notification = () => {
                     <Divider/>
                 </Typography>
 
+                <LoanRequests/>
 
             </Container>
 

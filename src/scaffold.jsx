@@ -22,6 +22,7 @@ import Chat from "./feature/Chat/Chat";
 import AssetSite from "./feature/Assets/asset-site";
 import FriendProfileCard from "./components/friend/friend-profile-card";
 import LoanToFriends from "./components/loan/loan-to-friends";
+import LoanRequestSend from "./components/loan/loan-request-send";
 
 
 const useStyles = makeStyles(theme => ({
@@ -62,6 +63,7 @@ const Scaffold = () => {
                 <Route exact path="/chat" component={Chat}/>
                 <Route exact path="/friendProfileCard" component={FriendProfileCard}/>
                 <Route exact path="/loantofriends" component={LoanToFriends}/>
+                <Route exact path="/loanrequestsend" component={LoanRequestSend}/>
 
             </Box>
         </main>
