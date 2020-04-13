@@ -75,7 +75,7 @@ const SearchFriends = () => {
         <Box m={2} display="flex" alignItems="center" flexDirection="column">
             <div className={classes.search}>
 
-            <Autocomplete
+            <Autocomplete component = {Link} to="/FriendProfile"
                 id="combo-box-demo"
                 options={data}
                 getOptionLabel={option => option.firstName}
