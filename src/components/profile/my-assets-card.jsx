@@ -10,14 +10,10 @@ import Rating from "@material-ui/lab/Rating";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import CheckIcon from '@material-ui/icons/Check';
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+
 const useStyles = makeStyles((theme) => ({
     card: {
         height: 250,
@@ -43,8 +39,6 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
             .then(result => refresh())
             .catch(error => console.log(error))
     }
-
-
 
 
     return (
@@ -75,22 +69,25 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                         </Box>
                     </CardContent>
                 </CardActionArea>
-                <Box display="flex" flexDirection="row">
                 <CardActions>
-
+                    <Box display="flex" flexDirection="row" alignItems="center" width={1} justifyContent="space-between">
                         <Box>
                             <IconButton aria-label="delete" onClick={onRemove}>
                                 <DeleteIcon/>
                             </IconButton>
-                            <Button onClick={onlyFriends} startIcon={<VisibilityIcon/>}>{asset.public ? 'Offentlig' : 'Bare venner'}</Button>
-
                         </Box>
+
                         <Box>
+                            <Button onClick={onlyFriends}
+                                    startIcon={<VisibilityIcon/>}>
+                                {asset.public ? 'Offentlig' : 'Bare venner'}
+                            </Button>
+
                             <Button>Publiser</Button>
                         </Box>
 
+                    </Box>
                 </CardActions>
-                </Box>
             </Card>
         </div>
 

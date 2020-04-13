@@ -64,19 +64,13 @@ const NewAsset = () => {
             userId: sessionStorage.getItem('userId'),
             condition: "1",
             public: isPublic,
-            typeId: category
+            typeId: category,
+            file: file.raw,
+            mainImage: true
         };
-        let data = new FormData();
-        data.append('file', file.raw);
-        data.append('mainImage', true);
-        data.append('assetName', title);
-        data.append('description',description);
-        data.append('userId', sessionStorage.getItem('userId'));
-        data.append('condition',"1");
-        data.append('public', isPublic);
-        data.append('typeId', category);
 
-        axios.post("/assets/addAsset", data)
+
+        axios.post("/assets/addAsset", asset)
             .then(result => {
                 console.log(result);
                 setShowStatusMessage(true);

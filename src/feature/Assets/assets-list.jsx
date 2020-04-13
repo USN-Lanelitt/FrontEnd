@@ -25,7 +25,7 @@ const AssetsList = ({categoryId}) => {
                 {
                     assetByCategory.map(asset => (
                             <Grid item>
-                                <AssetCard title={asset.title} description={asset.description} imageUrl={"https://source.unsplash.com/random"}/>
+                                <AssetCard asset={asset}/>
                             </Grid>
                         )
                     )

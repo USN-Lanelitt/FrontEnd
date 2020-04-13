@@ -17,9 +17,8 @@ const useStyles = makeStyles({
     }
 });
 
-const AssetCard = ({title, description, imageUrl, rating}) => {
+const AssetCard = ({asset}) => {
     const classes = useStyles();
-    const styles = useStyles();
 
     return (
         <div>
@@ -29,14 +28,14 @@ const AssetCard = ({title, description, imageUrl, rating}) => {
                         component="img"
                         alt="bilde"
                         height="200"
-                        image={imageUrl}
+                        image={asset.assetImages.length > 0 ? asset.assetImages[0] : 'https://source.unsplash.com/random'}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            {title}
+                            {asset.assetName}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            {description}
+                            {asset.description}
                         </Typography>
                         <Box component="fieldset" mb={3} borderColor="transparent">
                             <Typography component="legend">Read only</Typography>
