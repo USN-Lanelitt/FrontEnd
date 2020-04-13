@@ -6,6 +6,7 @@ import {makeStyles} from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import * as firebase from "firebase";
 import axios from "axios";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,7 +23,6 @@ const useStyles = makeStyles(theme => ({
         padding: 10,
         borderRadius: 4
     },
-
 }));
 
 const ImageUploader = (props) => {
@@ -31,6 +31,7 @@ const ImageUploader = (props) => {
     const [progress, setProgress] = useState(0);
     const [url, setUrl] = useState(null);
     const [isImageLoading, setIsImageLoading] = useState(true);
+    const [file, setFile] = useState({ preview: null, raw: null })
 
 
     useEffect(() => {
@@ -63,39 +64,12 @@ const ImageUploader = (props) => {
             );
     };
 
-    const handleImageUpload = e => {
-        const [file] = e.target.files;
-        if (file) {
-            console.log(file);
-            let data = new FormData();
-            data.append('file', file, file.fileName);
-            data.append('mainImage', true);
-            //data.append('userId', sessionStorage.getItem('userId'));
-
-            axios.post('/assetsImage/addImage/'+sessionStorage.getItem('userId')+'/0', data, {
-                headers: {
-                    'accept': 'application/json',
-                    'Accept-Language': 'en-US,en;q=0.8',
-                    'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-                }
-            })
-                .then((response) => {
-                    //handle success
-                    if (response.status == 200) { // 200 at api har gått bra
-                        var aData = response.data;
-                        if (aData['code'] == 200) {// da har lagring av bilde gått bra
-                            console.log('Bildeopplasting ok');
-                            console.log(aData['image']);
-                            sessionStorage.setItem('profileImage', aData['image']);
-                        } else if (aData['code'] == 400) {
-                            alert('Feil ved bildeopplasting');
-                        }
-                    }
-                }).catch((error) => {
-                //handle error
-            });
-        }
-    };
+    const handleChange = (e) => {
+        setFile({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        })
+    }
 
     return (
         <Box display="flex" justifyContent="space-evenly" flexDirection="column" alignItems="center" className={classes.root}>
@@ -105,16 +79,23 @@ const ImageUploader = (props) => {
                  alignItems="center"
                  mb={4}
             >
-                {url !== null &&
-                <img src={url} onLoad={() => setIsImageLoading(false)} alt="Protocol illustration"
+                {
+                    file.preview ?
+                        <img src={file.preview}  alt="Protocol illustration"
+                             className={classes.media}/> :
+                        (<img src={"https://source.unsplash.com/random"}  alt="Protocol illustration"
+                              className={classes.media}/>)}
+            </Box>
+
+
+            {/* {file.preview !== null  &&
+                <img src={file.preview} onLoad={() => setIsImageLoading(false)} alt="Protocol illustration"
                      className={classes.media}/>}
                 {(isImageLoading) && <Box position={"absolute"}><CircularProgress color={"secondary"}/></Box>}
             </Box>
             {isUploading && <LinearProgress thickness={10} color="secondary" variant="determinate" value={progress}/>}
 
-            <input type="file" accept="image/*" onChange={handleImageUpload} multiple="false"/>
-
-            <CustomUploadButton
+          <CustomUploadButton
                 hidden
                 accept="image/*"
                 onUploadStart={handleUploadStart}
@@ -132,7 +113,23 @@ const ImageUploader = (props) => {
                     textAlign: "center"
                 }}>
                 LAST OPP BILDE
-            </CustomUploadButton>
+            </CustomUploadButton>*/}
+            <div>
+                <label htmlFor="upload-button"
+                       style={{
+                           backgroundColor: 'blue',
+                           color: 'white',
+                           padding: "4px 8px 4px 8px",
+                           borderRadius: 4,
+                           textAlign: "center"    }}
+                >
+                    LAST OPP BILDE
+                </label>
+
+                <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleChange} multiple="false"/>
+                <br />
+
+            </div>
         </Box>
 
     );
