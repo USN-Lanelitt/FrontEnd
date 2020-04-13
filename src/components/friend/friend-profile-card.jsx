@@ -11,6 +11,13 @@ import {useGutterBorderedGridStyles} from "@mui-treasury/styles/grid/gutterBorde
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import {grey} from "@material-ui/core/colors";
 import Badge from "@material-ui/core/Badge";
+import CardActions from "@material-ui/core/CardActions";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import {CardHeader} from "@material-ui/core";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardActionArea from "@material-ui/core/CardActionArea";
 
 
 const useStyles = makeStyles(theme => ({
@@ -22,102 +29,50 @@ const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(1),
     },
-    extendedIcon: {
-        marginRight: theme.spacing(1),
-    },
-    avatar: {
-        width: 60,
-        height: 60,
-        margin: 'auto',
-    },
-    heading: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        letterSpacing: '0.5px',
-        marginTop: 8,
+    Button: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
 
     },
-    subheader: {
-        fontSize: 14,
-        color: grey,
-        marginBottom: '0.875em',
+    text: {
+        padding: theme.spacing(2),
     },
-    statLabel: {
-        fontSize: 12,
-        color: grey,
-        fontWeight: 500,
-        fontFamily:
-            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-        margin: 0,
-    },
-    statValue: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 4,
-        letterSpacing: '1px',
-    },
+
+
 }));
 
-const StyledBadge = withStyles(theme => ({
-    badge: {
-        backgroundColor: '#44b700',
-        color: '#44b700',
-        boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-        '&::after': {
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            borderRadius: '50%',
-            animation: '$ripple 1.2s infinite ease-in-out',
-            border: '1px solid currentColor',
 
-        },
-    },
-    '@keyframes ripple': {
-        '0%': {
-            transform: 'scale(.8)',
-            opacity: 1,
-        },
-        '100%': {
-            transform: 'scale(2.4)',
-            opacity: 0,
-        },
-    },
-}))(Badge);
-
-
-const FriendProfileCard = (id,firstname, middlename, lastname, imageUrl,) => {
-
-    const styles = useStyles();
-    const shadowStyles = useFadedShadowStyles();
-    const borderedGridStyles = useGutterBorderedGridStyles({
-        borderColor: 'rgba(0, 0, 0, 0.08)',
-        height: '50%',
-    });
+const FriendProfileCard = ({id,firstname, middlename, lastname, imageUrl}) => {
+    const classes = useStyles();
 
     return (
-        <Card className={cx(styles.card, shadowStyles.root)}>
-            <CardContent>
-                <IconButton>
-                    <StyledBadge
-                        overlap="circle"
-                        anchorOrigin={{vertical: "bottom", horizontal: "right"}}
-                        variant="dot"
-                    >
-                        <Avatar
-                            className={styles.avatar}
-                            src={"/"+sessionStorage.getItem('profileImage')}
-                        />
-                    </StyledBadge>
-                </IconButton>
-                <h3 className={styles.heading}>Maria Monsen</h3>
-            </CardContent>
-            <Divider light/>
-            <Box display={"flex"}>
-                <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-                    <p className={styles.statValue}>{"Bruker ID: " + id}</p>
+        <Card>
+            <CardActionArea>
+                <CardContent>
+                    <CardMedia>
+                        <Avatar alt="Remy Sharp" src={imageUrl}/>
+                    </CardMedia>
+                    <Grid className={classes.text}>
+                        <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
+                            {firstname}{middlename}{lastname}
+                        </Typography>
+                    </Grid>
+                </CardContent>
+                <Divider light/>
+                <Box m={4} className={classes.Button}>
+                    <CardActions>
+                        <Box>
+                            <Button type="submit" fullWidth variant="contained" color="primary">
+                                Legg til
+                            </Button>
+                            <Button type="submit" fullWidth variant="contained" color="secondary">
+                                Send Melding
+                            </Button>
+                        </Box>
+                    </CardActions>
                 </Box>
-            </Box>
+            </CardActionArea>
         </Card>
     );
 };

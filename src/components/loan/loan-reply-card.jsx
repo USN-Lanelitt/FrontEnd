@@ -17,9 +17,10 @@ const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(10),
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        maxWidth: 645,
+        flexDirection: 'row',
+        maxwidt: 635,
+
+
 
     },
     top: {
@@ -67,8 +68,10 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     alt="bilde"
                     height="200"
                     width="300"
+                    image={"https://source.unsplash.com/random"}
                 />
-                {assetImages}
+
+
                 <Typography gutterBottom variant="h5" component="h2">
                     {assetname}
 
@@ -79,18 +82,16 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                 </Typography>
                 <Box>
                     <Typography gutterBottom variant="subtitle1" component="h2">
-                        {selectedDate} {selectedDate2}
+                        {selectedDate} - {selectedDate2}
 
                     </Typography>
                 </Box>
-                <ListItemSecondaryAction className={classes.button}>
                     <Button onClick= {onAccept} size="small" color="primary">
                         Godta
                     </Button>
                     <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">
                         Avslå
                     </Button>
-                </ListItemSecondaryAction>
             </CardContent>
         </Card>
     );

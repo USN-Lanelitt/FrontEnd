@@ -190,7 +190,7 @@ export default function SidePanel() {
                     <ListItemText primary="Varsel"/>
                 </ListItem>
 
-                <ListItem button component={Link} to="/friendAll">
+                <ListItem button component={Link} to="/FriendAll">
                     <ListItemIcon>
                         <PeopleIcon/>
                     </ListItemIcon>
@@ -218,7 +218,7 @@ export default function SidePanel() {
                     <ListItemText primary="Utlånt Eiendeler"/>
                 </ListItem>
 
-                <ListItem button>
+                <ListItem button component={Link} to="/LoanAccepted">
                     <ListItemIcon>
                         <ShoppingBasketIcon/>
                     </ListItemIcon>

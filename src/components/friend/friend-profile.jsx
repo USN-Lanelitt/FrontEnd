@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import ProfileCard from "../profile/profile-card";
@@ -9,41 +9,48 @@ import Button from "@material-ui/core/Button";
 import {CardContent} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import FriendProfileCard from "./friend-profile-card";
-import Box from "@material-ui/core/Box";
+import axios from "axios";
+import {useParams} from "react-router";
+import FriendCard from "./friend-card";
+import sendMessage from "../chat/send-message";
 
-const useStyles = makeStyles(theme => ({
-    Button: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-
-    }
-
-    }));
 const FriendProfile = () => {
-    const classes = useStyles();
+    const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const [user, setUser] = useState([]);
+    const {id} = useParams();
+
+
+        console.log("dette er id" + id);
+         useEffect(() => {
+            console.log("", userId, sessionStorage.getItem('userId'));
+            axios.get('/user/'+userId+'/friend/'+id)
+                .then(result => {
+                    console.log(result.data);
+                    setUser(result.data);
+                })
+                .catch(e => console.log(e));
+         },[setUser,userId]);
+    console.log( "nr2" + user);
+
 
     return (
         <React.Fragment>
-            <CardContent>
                 <Grid container direction="row" justify="center" alignItems="center">
-                    <FriendProfileCard/>
-                     </Grid>
-                <Box m={4} className={classes.Button}>
-                <CardActions>
-                    <Box>
-                    <Button  type="submit" fullWidth variant="contained" color="primary" >
-                        Legg til
-                    </Button>
-                    <Button type="submit" fullWidth variant="contained" color="secondary">
-                        Send Melding
-                    </Button>
-                    </Box>
-                </CardActions>
-                </Box>
+                        {user.map(user => (
+                            <Grid key={user.user2.id}>
+
+                                <FriendProfileCard
+                                    firstname={user.user2.firstName}
+                                    lastname={user.user2.lastName}
+                                    middlename={user.user2.middleName}
+                                    imageUrl={user.user2.profileImage}
+
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
                 <CssBaseline/>
                 <FriendAssets/>
-            </CardContent>
         </React.Fragment>
 
 

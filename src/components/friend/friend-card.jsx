@@ -30,15 +30,15 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const FriendCard = ({firstname, middlename, lastname, imageUrl, onRemove}) => {
+const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove}) => {
     const classes = useStyles();
 
 
     return (
         <Grid xs={12}>
             <Card className={classes.card}>
-                <CardActionArea component = {Link} to="/FriendProfile" style={{backgroundColor: 'transparent'}}>
-                    <CardContent >
+                <CardActionArea component = {Link} to={"/FriendProfile/" + id}  style={{backgroundColor: 'transparent'}}>
+                    <CardContent>
                         <Grid container zeroMinWidth justify="flex-start">
                             <CardMedia>
                                 <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>

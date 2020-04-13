@@ -8,6 +8,7 @@ import axios from "axios";
 import app from "../../fire";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessage from "../../components/chat/send-message";
+import getFriend from "../../components/friend/friend-profile";
 
 
 const useStyles = makeStyles(theme => ({
@@ -91,13 +92,15 @@ const FriendAll = () => {
                         <Grid item key={item.user2.id} xs={12} sm={6} md={4}>
 
                             <FriendCard
+                                id={item.user2.id}
                                 firstname={item.user2.firstName}
                                 lastname={item.user2.lastName}
                                 middlename={item.user2.middleName}
-                                imageUrl={item.user2.imageUrl}
+                                imageUrl={item.user2.profileImage}
                                 friendId={item.user2.id}
                                 onRemove={() => remove(item.user2.id)}
                                 getChat={() => sendMessage(userId, item.user2.id)}
+
 
                             />
                         </Grid>

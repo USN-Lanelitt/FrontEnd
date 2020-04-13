@@ -23,6 +23,7 @@ import AssetSite from "./feature/Assets/asset-site";
 import FriendProfileCard from "./components/friend/friend-profile-card";
 import LoanToFriends from "./components/loan/loan-to-friends";
 import LoanRequestSend from "./components/loan/loan-request-send";
+import LoanAccepted from "./components/loan/loan-accepted";
 
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +49,7 @@ const Scaffold = () => {
             <Box p={extraSmallScreen ? 1 : 3} mt={12}>
                 <Route exact path="/friendList" component={FriendList}/>
                 <Route exact path="/friendReques" component={FriendRequest}/>
-                <PrivateRoute path="/friendAll" exact component={FriendAll}/>
+                <Route path="/friendAll" exact component={FriendAll}/>
                 <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
                 <Route exact path="/searchfriends" component={SearchFriends}/>
                 <Route exact path="/category" componenet={CategoryCard}/>
@@ -57,13 +58,15 @@ const Scaffold = () => {
                 <Route exact path="/new/asset" component={NewAsset}/>
                 <Route exact path="/notification" component={Notification}/>
                 <Route exact path="/notificationList" component={NotificationList}/>
-                <Route exact path="/friendprofile" component={FriendProfile}/>
+                <Route path="/friendprofile/:id" exact component={FriendProfile}/>
                 <Route exact path="/loanCard" component={LoanCard}/>
                 <Route exact path="/assetSite" component={AssetSite}/>
                 <Route exact path="/chat" component={Chat}/>
                 <Route exact path="/friendProfileCard" component={FriendProfileCard}/>
                 <Route exact path="/loantofriends" component={LoanToFriends}/>
                 <Route exact path="/loanrequestsend" component={LoanRequestSend}/>
+                <Route exact path="/loanAccepted" component={LoanAccepted}/>
+
 
             </Box>
         </main>

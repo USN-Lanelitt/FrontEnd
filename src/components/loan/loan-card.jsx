@@ -67,7 +67,7 @@ const LoanCard = ({firstname, middlename, lastname, assetname, description, asse
                 </Typography>
                 <Box>
                     <Typography gutterBottom variant="subtitle1" component="h2">
-                        {selectedDate} {selectedDate2}
+                        {selectedDate} - {selectedDate2}
 
                     </Typography>
                 </Box>
