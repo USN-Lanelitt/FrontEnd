@@ -66,7 +66,7 @@ export default function Chat() {
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
     const [userId2, setUserId2] = useState([]);
     const [chatUsers, setChatUsers] = useState([]);
-    const [selectedChat, setSelectedChat] = useState([]);
+    const [selectedChat, setSelectedChat] = useState(null);
     const [textValue, setTextValue] = useState('');
 
     useEffect(() => {
@@ -157,7 +157,12 @@ export default function Chat() {
                         </div>
                         <div className={classes.chatWindow}>
                             <div className={classes.messageBox}>
-                                <ChatWindow selectedChat = {selectedChat} />
+                                {selectedChat ?
+                                    <ChatWindow selectedChat={selectedChat}/> :
+                                    <Typography  component="h4" variant="h5" align="center" style={{color: 'grey'}} >
+                                        Velg en du ønsker å chatte med
+                                    </Typography>
+                                }
                             </div>
                             <div className={classes.flex}>
                                 <div style={{borderTop: '1px solid grey'}} className={classes.chatBox}>
