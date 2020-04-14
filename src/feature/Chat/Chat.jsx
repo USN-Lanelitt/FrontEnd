@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import FaceIcon from '@material-ui/icons/Face';
 import ChatWindow from "../../components/chat/chat-window";
 import Avatar from "@material-ui/core/Avatar";
+import Copyright from "../../components/home/Copyright";
 
 
 const useStyles = makeStyles(theme => ({
@@ -113,8 +114,8 @@ export default function Chat() {
 
 
     return (
-
         <React.Fragment>
+            <main>
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -148,8 +149,6 @@ export default function Chat() {
                                                     {user.firstName} {user.lastName}
                                                 </div>
                                             </div>
-
-
                                         </ListItem>
                                     ))
                                 }
@@ -191,6 +190,16 @@ export default function Chat() {
                     </div>
                 </Paper>
             </Container>
+        </main>
+            <footer className={classes.footer}>
+                <Typography variant="h6" align="center" gutterBottom>
+                    Lånelitt
+                </Typography>
+                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                    ProgTeam Lånelitt
+                </Typography>
+                <Copyright/>
+            </footer>
         </React.Fragment>
     );
 };

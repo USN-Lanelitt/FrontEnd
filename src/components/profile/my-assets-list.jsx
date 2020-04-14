@@ -9,6 +9,7 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import ConfirmDialog from "./confirm-dialog";
 import {fetchAssets} from "./asset-repository";
+import {getRatings} from "../rating/getRating";
 
 
 const useStyles = makeStyles(theme => ({
@@ -29,14 +30,12 @@ const MyAssetsList = () => {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
     useEffect(() => {
-        console.log("", userId, sessionStorage.getItem('userId'));
+        console.log("fetchassets", sessionStorage.getItem('userId'));
         fetchAssets(userId, setAssets);
     }, [setAssets, userId]);
 
-
     const remove = (assetId) => {
         setShowConfirmDialog(true);
-
         setAssetId(assetId);
     };
 
@@ -53,6 +52,7 @@ const MyAssetsList = () => {
     function onDeleteAssetCancel() {
         setShowConfirmDialog(false);
     }
+
 
     return (
         <Container>
@@ -80,6 +80,7 @@ const MyAssetsList = () => {
                 }
 
             </Grid>
+
 
             <Fab color="primary" aria-label="add" className={classes.fab} component={Link} to="new/asset">
                 <AddIcon/>
