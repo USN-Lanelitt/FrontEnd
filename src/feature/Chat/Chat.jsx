@@ -132,19 +132,20 @@ export default function Chat() {
 
                     <div className={classes.flex}>
                         <div className={classes.chatListWindow}>
+
                             <List>
                                 {
                                     chatUsers.map((user) => (
                                         <ListItem key={user.id} button>
                                             <div
                                                 onClick={() => {
-                                                onSelected(user.id);
-                                                setUserId2(user.id);
-                                            }}
+                                                    onSelected(user.id);
+                                                    setUserId2(user.id);
+                                                }}
                                             >
                                                 <div>
-                                                    <Avatar src="/broken-image.jpg" />
-                                                    {user.firstName}
+                                                    <Avatar alt="img" src={user.profileImage}/>
+                                                    {user.firstName} {user.lastName}
                                                 </div>
                                             </div>
 
@@ -154,7 +155,6 @@ export default function Chat() {
                                 }
                             </List>
                         </div>
-
                         <div className={classes.chatWindow}>
                             <div className={classes.messageBox}>
                                 <ChatWindow selectedChat = {selectedChat} />

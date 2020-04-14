@@ -32,29 +32,29 @@ function ChatWindow ({selectedChat}) {
     const [userId, setId] = useState('nicole');
     const classes = useStyles();
 
-        return (
-            <div >
-                <List>
-                    {
-                        selectedChat.map((chat) => (
-                            <ListItem className={classes.item} key={chat.id}>
-                                <div className={classes.textBox}>
-                                    <Typography variant="caption" >
-                                        {chat.user1.firstName}
-                                    </Typography>
-                                    <div className={classes.bubble}>
-                                        <Typography variant="subtitle2" >{chat.message}</Typography>
-                                    </div>
+    return (
+        <div >
+            <List>
+                {
+                    selectedChat.map((chat) => (
+                        <ListItem className={classes.item} key={chat.id}>
+                            <div className={classes.textBox}>
+                                <Typography variant="caption" >
+                                    {chat.user1.firstName}
+                                </Typography>
+                                <div className={classes.bubble}>
+                                    <Typography variant="subtitle2" >{chat.message}</Typography>
                                 </div>
-                                <div className={classes.time}>
-                                    <Typography variant="caption">{chat.timestampSent}</Typography>
-                                </div>
-                            </ListItem>
-                        ))
-                    }
-                </List>
-            </div>
-        )
-    }
+                            </div>
+                            <div className={classes.time}>
+                                <Typography variant="caption">{chat.timestampSent}</Typography>
+                            </div>
+                        </ListItem>
+                    ))
+                }
+            </List>
+        </div>
+    )
+}
 
 export default ChatWindow;
