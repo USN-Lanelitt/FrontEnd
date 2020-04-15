@@ -19,28 +19,31 @@ import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
     card: {
-        height: 280,
+        height: 270,
         width: 650,
-        backgroundColor:'#a3b1ff',
+        backgroundColor:'#cfd8dc',
     },
     assetCard: {
         padding: 15,
-        height: 180,
+        height: 170,
         width: 450,
     },
     paddingRight: {
-        paddingRight:20,
+        paddingRight:10,
     },
     flex: {
         display: 'flex',
         alignItems: 'center',
     },
     textarea: {
-        marginTop: 10,
+        marginTop: 20,
         marginRight: 15,
         padding: 10,
         width: '77%',
-        height: 80,
+        height: 90,
+    },
+    resize:{
+        fontSize:80
     },
 }));
 
@@ -64,8 +67,8 @@ const RatingCard = ({firstname, middlename, lastname, assetId, assetname, select
                 .catch(e => console.log(e));
         }*/
     function setRating(userId, assetId, newRating) {
-        console.log("getChat", userId, sessionStorage.getItem('userId'));
-        axios.get('/assets/'+assetId+'/rateAsset/'+userId+'/'+newRating)
+        console.log("rateAsset", userId, sessionStorage.getItem('userId'));
+        axios.post('/assets/'+assetId+'/rateAsset/'+userId+'/'+newRating)
             .then(result => {
                 console.log(result.data);
             })
@@ -73,45 +76,46 @@ const RatingCard = ({firstname, middlename, lastname, assetId, assetname, select
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert(`Vurderingen på ${assetname} er lagret`);
+        alert(`Ønsker du å lagre vurderingen på ${assetname}?`);
     };
 
     return (
         <div>
             <Card className={classes.card}>
-
                     <CardContent>
                         <div className={classes.flex}>
                             <Box className={classes.paddingRight}>
                                 <Typography gutterBottom variant="h6" component="h2">
-                                    {firstname}{middlename}{lastname}
+                                    {firstname} {middlename} {lastname}
                                 </Typography>
                             </Box>
-
                             <Box>
                                 <Typography gutterBottom variant="subtitle1" component="h2">
                                     {selectedDate} - {selectedDate2}
                                 </Typography>
                             </Box>
                         </div>
-                        <Card className={classes.assetCard}>
-                            <div className={classes.flex}>
-                                <Box className={classes.paddingRight}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {assetname}
-                                    </Typography>
-                                </Box>
-                            </div>
-                            <Box borderColor="transparent">
-                                <Rating
-                                    name="simple-controlled"
-                                    value={value}
-                                    onChange={(event, newValue) => {
-                                        setValue(newValue);
-                                    }}
-                                />
-                            </Box>
 
+                        <Card className={classes.assetCard}>
+                            <Box display="flex" flexDirection="row" alignItems="center">
+                                <Box className={classes.flex}>
+                                    <Box className={classes.paddingRight}>
+                                        <Typography  variant="h5" component="h2">
+                                            {assetname}
+                                        </Typography>
+                                    </Box>
+                                </Box>
+                                <Box borderColor="transparent">
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={value}
+                                        precision={0.5}
+                                        onChange={(event, newValue) => {
+                                            setValue(newValue);
+                                        }}
+                                    />
+                                </Box>
+                            </Box>
                             <form className={classes.form}  onSubmit={handleSubmit}>
                                 <textarea
                                     className={classes.textarea}
@@ -121,6 +125,11 @@ const RatingCard = ({firstname, middlename, lastname, assetId, assetname, select
                                     type="submit"
                                     color="primary"
                                     className={classes.submit}
+                                    InputProps={{
+                                        classes: {
+                                            input: classes.resize,
+                                        },
+                                    }}
                                     onClick={() => setRating(userId, assetId, value)}
                                 >
                                     Lagre
