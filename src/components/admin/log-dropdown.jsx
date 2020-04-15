@@ -5,9 +5,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import React, {useEffect} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import axios from "axios";
-import Grid from "@material-ui/core/Grid";
-import LoanCard from "../loan/loan-card";
-import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {

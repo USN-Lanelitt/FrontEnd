@@ -13,7 +13,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CategoryList from "./category-list";
 import StatusMessage from "./status-message";
 import {Redirect} from "react-router";
-import HandleImageUpload from "./handle-image-upload";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -78,7 +77,6 @@ const NewAsset = () => {
         asset.append('condition',"1");
         asset.append('public', isPublic);
         asset.append('typeId', category);
-
 
         axios.post(sessionStorage.getItem('API_URL')+"/assets/addAsset", asset)
             .then(result => {
@@ -175,7 +173,6 @@ const NewAsset = () => {
                     <Button>Avbryt</Button>
                     <Button onClick={()=>{
                         save();
-                        //HandleImageUpload(file);
                     }}
                     >
                         Opprett

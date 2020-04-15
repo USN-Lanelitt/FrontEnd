@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -13,6 +13,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import {getRatings} from "../rating/getRating";
+import StatusMessage from "./status-message";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -31,6 +33,13 @@ const useStyles = makeStyles((theme) => ({
 const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const [assetId, setAssetId] = useState('');
+    const [rating, setRating] = useState(null);
+    const [published, setPublished] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+
 
     const onlyFriends = () => {
         asset.public = !asset.public;
@@ -41,8 +50,33 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     }
 
 
+    useEffect(() => {
+        getRatings(asset.id, setRating)
+        console.log(rating);
+    }, []);
+
+    const publishAsset = () => {
+        axios.post(/setPublished/ + userId + "/" + asset.id + "/" + published)
+            .then(result => {
+                console.log(result);
+                setPublished(true);
+                setShowStatusMessage(true);
+                setStatusMessage("Eiendelen ble publisert!")
+                setStatusMessageSeverity("success");
+            })
+            .catch(error => {
+                console.log(error);
+                setShowStatusMessage(true);
+                setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+            });
+    };
+
+
+
     return (
         <div>
+            <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                           onClose={setShowStatusMessage}/>
             <Card className={classes.card}>
                 <CardActionArea>
 
@@ -62,15 +96,15 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                                     {asset.description}
                                 </Typography>
                                 <Box component="fieldset" borderColor="transparent" display="flex">
-                                    <Rating name="read-only" value={4} readOnly/>
+                                    <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                                 </Box>
-
                             </Box>
                         </Box>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Box display="flex" flexDirection="row" alignItems="center" width={1} justifyContent="space-between">
+                    <Box display="flex" flexDirection="row" alignItems="center" width={1}
+                         justifyContent="space-between">
                         <Box>
                             <IconButton aria-label="delete" onClick={onRemove}>
                                 <DeleteIcon/>
@@ -83,7 +117,9 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                                 {asset.public ? 'Offentlig' : 'Bare venner'}
                             </Button>
 
-                            <Button>Publiser</Button>
+                            <Button onClick={publishAsset}>
+                                {setPublished ? 'publisert' : 'publiser'}
+                            </Button>
                         </Box>
 
                     </Box>
