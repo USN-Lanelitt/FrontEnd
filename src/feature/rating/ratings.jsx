@@ -6,6 +6,13 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Copyright from "../../components/home/Copyright";
 import RatingList from "../../components/rating/ratings-list";
+import FormControl from "@material-ui/core/FormControl";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
+import Box from "@material-ui/core/Box";
+import withStyles from "@material-ui/core/styles/withStyles";
+import FormLabel from "@material-ui/core/FormLabel";
 
 const drawerWidth = 240;
 
@@ -47,9 +54,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
     },
-    cardMedia: {
-        paddingTop: '56.25%', // 16:9
-    },
     cardContent: {
         flexGrow: 1,
     },
@@ -59,8 +63,21 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
+
+
 export default function Ratings() {
     const classes = useStyles();
+    const [value, setValue] = React.useState('');
+
+    const handleRadioChange = (event) => {
+        setValue(event.target.value);
+        if (value === 'fått') {
+            console.log('fått');
+
+        } else
+            console.log('gitt');
+    };
 
     return (
         <React.Fragment>
@@ -72,6 +89,12 @@ export default function Ratings() {
                         </Typography>
                     </Container>
                 </div>
+                    <FormControl component="fieldset">
+                        <RadioGroup row aria-label="position" name="position" defaultValue="fått" value={value} onChange={handleRadioChange}>
+                            <FormControlLabel value="fått" control={<Radio color="primary" />} label="Vurderinger fått" />
+                            <FormControlLabel value="gitt" control={<Radio color="primary" />} label="Vurderinger gitt" />
+                        </RadioGroup>
+                    </FormControl>
                 <Container className={classes.cardGrid}>
                     <Grid container spacing={12}>
                         <RatingList/>

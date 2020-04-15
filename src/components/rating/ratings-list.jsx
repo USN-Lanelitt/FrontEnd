@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import RatingCard from "./rating-card";
 
-
 const useStyles = makeStyles(theme => ({
     heroContent: {
         backgroundColor: theme.palette.background.paper,
@@ -20,7 +19,7 @@ const RatingList = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        console.log("", userId, sessionStorage.getItem('userId'));
+        console.log("ratingAcceptedLoans", userId, sessionStorage.getItem('userId'));
         axios.get('/user/'+userId+'/loanAccepted')
             .then((response) => {
                 if (response.status === 200) {
