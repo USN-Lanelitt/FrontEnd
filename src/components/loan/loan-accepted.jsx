@@ -2,10 +2,22 @@ import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import LoanCard from "./loan-card";
 import axios from "axios";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import {makeStyles} from "@material-ui/core/styles";
 
 //her er det kort med godkjente forespørsel (alle lånene personen har) (jeg låner denne av en vennn)
+const useStyles = makeStyles(theme => ({
+
+    heroContent: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(8, 0, 6),
+    },
+
+}));
 
 const LoanAccepted = () => {
+    const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
@@ -22,6 +34,15 @@ const LoanAccepted = () => {
     }, [setData, userId]);
 
     return (
+        <React.Fragment>
+        <div className={classes.heroContent}>
+
+            <Container maxWidth="sm">
+                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                    Mine Lån
+                </Typography>
+            </Container>
+        </div>
         <Grid container spacing={3} justify="center">
 
             {
@@ -45,7 +66,7 @@ const LoanAccepted = () => {
             }
 
         </Grid>
-
+        </React.Fragment>
 
     );
 };
