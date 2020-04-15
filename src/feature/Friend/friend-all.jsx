@@ -35,7 +35,7 @@ const FriendAll = () => {
 
     function AllFriends(){
         console.log("hello from AllFriends", userId, sessionStorage.getItem('userId'));
-        axios.get('/user/' + userId + '/friends')
+        axios.get(sessionStorage.getItem('API_URL')+'/user/' + userId + '/friends')
             .then(result => {
                 console.log(result.data);
                 setData(result.data);
@@ -50,7 +50,7 @@ const FriendAll = () => {
 
     function onDeleteFriendComfirm() {
         console.log("deletefriend", userId, sessionStorage.getItem('userId'));
-        axios.post('/user/' + userId + '/friend/' + friendId + '/delete')
+        axios.post(sessionStorage.getItem('API_URL')+'/user/' + userId + '/friend/' + friendId + '/delete')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);

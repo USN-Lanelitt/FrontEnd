@@ -15,7 +15,7 @@ const List = () => {
 
     useEffect(()=> {
         console.log("listUsers", sessionStorage.getItem('userId'));
-        axios.get('/users')
+        axios.get(sessionStorage.getItem('API_URL')+'/users')
             .then((response) => {
                 if (response.status === 200) {
                     console.log('data');
@@ -30,7 +30,7 @@ const List = () => {
     function getIndividAmount(id)
      {
         console.log("listAmount", sessionStorage.getItem('userId'));
-        axios.get('/assets/AssetAmount/'+id)
+        axios.get(sessionStorage.getItem('API_URL')+'/assets/AssetAmount/'+id)
             .then((response) => {
                 if (response.status === 200) {
                     console.log('data');

@@ -25,8 +25,10 @@ import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
 
-
-
+import { useTranslation } from 'react-i18next';
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
 
 const drawerWidth = 240;
 
@@ -130,6 +132,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NavBar(props) {
+
+    const { t, i18n } = useTranslation();
+
+    function handleClick(lang) {
+        i18n.changeLanguage(lang);
+    }
+
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -199,6 +208,11 @@ export default function NavBar(props) {
         </Menu>
     );
 
+    const names = [
+        'Norsk',
+        'English',
+    ];
+
     {/*Meny knapp alternativer som blir vist hvis bruker er på mobil eller hvis skjermen er liten*/}
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -211,7 +225,8 @@ export default function NavBar(props) {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            {loggedIn && (<div><MenuItem>
+            {loggedIn && (<div>
+                <MenuItem>
                 <IconButton aria-label="show new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
                         <MailIcon/>

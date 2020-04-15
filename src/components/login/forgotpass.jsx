@@ -31,7 +31,7 @@ export default function ForgotPassword() {
                 <DialogTitle id="form-dialog-title">Glemt Passord</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Vennligst skriv ned ditt epost adresse for å få tilsendt link med instruksjoner for å
+                        Vennligst skriv ned din e-post for å få tilsendt link med instruksjoner for å
                         tilbakestille ditt passord.
                         Sjekk søppelpostkassen din på mailen hvis du ikke ser mail fra oss!
                     </DialogContentText>
@@ -39,7 +39,7 @@ export default function ForgotPassword() {
                         autoFocus
                         margin="dense"
                         id="name"
-                        label="Epost adresse"
+                        label="E-post"
                         type="email"
                         fullWidth
                     />

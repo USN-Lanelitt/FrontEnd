@@ -8,9 +8,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {useTheme} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-
+import { useTranslation } from 'react-i18next';
 
 export default function BrukerVilkar() {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -26,7 +27,7 @@ export default function BrukerVilkar() {
   return (
       <div>
         <Typography variant="outlined" color="primary" onClick={handleClickOpen}>
-          Jeg godtar brukervilkårene
+          {t('register.11')}
         </Typography>
         <Dialog
             fullScreen={fullScreen}

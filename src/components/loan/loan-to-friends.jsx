@@ -25,7 +25,7 @@ const LoanToFriends = () => {
 
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
-        axios.get('/user/'+userId+'/loans')
+        axios.get(sessionStorage.getItem('API_URL')+'/user/'+userId+'/loans')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);

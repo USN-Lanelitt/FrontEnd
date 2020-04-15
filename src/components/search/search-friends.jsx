@@ -8,6 +8,7 @@ import {fade} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
+import { useTranslation } from 'react-i18next';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,10 +57,11 @@ const SearchFriends = () => {
     const [data, setData] = useState([]);
     const [search, setSearch] = useState();
     const classes = useStyles();
+    const { t } = useTranslation();
 
     useEffect(() => {
         console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
-        axios.get('/users')
+        axios.get(sessionStorage.getItem('API_URL')+'/users')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
@@ -85,7 +87,7 @@ const SearchFriends = () => {
                                                         root: classes.inputRoot,
                                                         input: classes.inputInput,
                                                     }}
-                                                  label="Søk på bruker..."
+                                                  label={t('nav.1')}
                                                   variant="filled"/>}
             />
             </div>

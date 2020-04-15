@@ -28,9 +28,7 @@ import Copyright from '../../components/home/Copyright';
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-
-
-
+import { useTranslation } from 'react-i18next';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -57,6 +55,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const SignUp = ({history}) => {
+    const { t } = useTranslation();
     const [errors, setErrors] = useState(false);
     const handleSignUp = useCallback(async event => {
         const {firstname, middlename, birthdate, lastname, phone, email, password} = event.target.elements;
@@ -67,7 +66,7 @@ const SignUp = ({history}) => {
         }
         else {
             let iCode = 0;
-            axios.post('/api/register', {
+            axios.post(sessionStorage.getItem('API_URL')+'/api/register', {
                 firstname: firstname.value,
                 middlename: middlename.value,
                 lastname: lastname.value,
@@ -136,7 +135,7 @@ const SignUp = ({history}) => {
                     <LockOutlinedIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Opprett konto
+                    {t('register.1')}
                 </Typography>
 
                 <form onSubmit={handleSignUp} className={classes.form} noValidate>
@@ -150,7 +149,7 @@ const SignUp = ({history}) => {
                                 fullWidth
                                 error={errors}
                                 id="sFirstname"
-                                label="Fornavn"
+                                label={t('register.2')}
                                 autoFocus
                             />
                         </Grid>
@@ -161,7 +160,7 @@ const SignUp = ({history}) => {
                                 variant="outlined"
                                 fullWidth
                                 id="sMiddlename"
-                                label="Mellomnavn"
+                                label={t('register.3')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -172,7 +171,7 @@ const SignUp = ({history}) => {
                                 fullWidth
                                 error={errors}
                                 id="sLastname"
-                                label="Etternavn"
+                                label={t('register.4')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -181,7 +180,7 @@ const SignUp = ({history}) => {
                                 variant="outlined"
                                 fullWidth
                                 id="iMobile"
-                                label="Telefon (valgfri)"
+                                label={t('register.5')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -190,7 +189,7 @@ const SignUp = ({history}) => {
                                     name="birthdate"
                                     margin="normal"
                                     id="date-picker-dialog"
-                                    label="Fødselsdato"
+                                    label={t('register.6')}
                                     fullWidth
                                     format="dd.MM.yyyy"
                                     value={selectedDate}
@@ -209,7 +208,7 @@ const SignUp = ({history}) => {
                                 fullWidth
                                 error={errors}
                                 id="sEmail"
-                                label="Epost"
+                                label={t('register.7')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -218,13 +217,13 @@ const SignUp = ({history}) => {
                                 <TextField
                                     name="password"
                                     variant="outlined"
-                                    label="Passord"
+                                    label={t('register.8')}
                                     required
                                     id="outlined-adornment-password"
                                     error={errors}
                                     type={values.showPassword ? 'text' : 'password'}
                                     value={values.password}
-                                    helperText={'Passord må være minst 6 tegn'}
+                                    helperText={t('register.9')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -245,7 +244,7 @@ const SignUp = ({history}) => {
                         <Grid item xs={12}>
                             <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="primary"/>}
-                                label="Jeg ønsker å motta nyheter på mail"
+                                label={t('register.10')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -262,12 +261,12 @@ const SignUp = ({history}) => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                    >Opprett konto
+                    >{t('register.12')}
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Link href="/login" variant="body2" style={{textDecoration: "none"}}>
-                                Har allerede en konto? Logg på!
+                                {t('register.13')}
                             </Link>
                         </Grid>
                     </Grid>
@@ -275,7 +274,7 @@ const SignUp = ({history}) => {
                 <div className={classes.root}>
                     <Snackbar open={errors} autoHideDuration={6000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="error">
-                            FEIL! Vennligst sjekk at feltene merket med * er fylt ut riktig.
+                            {t('register.14')}
                         </Alert>
                     </Snackbar>
                 </div>

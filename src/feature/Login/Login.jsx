@@ -25,6 +25,7 @@ import app from "../../fire";
 import { AuthContext } from "../../Auth";
 import Copyright from '../../components/home/Copyright';
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Login = ({ history }) => {
+    const { t } = useTranslation();
     const handleLogin = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
@@ -55,7 +57,7 @@ const Login = ({ history }) => {
         }
         else {
             let iCode = 0;
-            axios.get('/api/login/' + email.value + '/' + password.value)
+            axios.get(sessionStorage.getItem('API_URL')+'/api/login/' + email.value + '/' + password.value)
                 .then(res=>{
                     console.log(res);
                     console.log(res.data);
@@ -66,6 +68,12 @@ const Login = ({ history }) => {
                         sessionStorage.setItem('middlename', res.data[0]['middlename']);
                         sessionStorage.setItem('lastname', res.data[0]['lastname']);
                         sessionStorage.setItem('phone', res.data[0]['phone']);
+                        sessionStorage.setItem('profileImage', res.data[0]['profileImage']);
+                        sessionStorage.setItem('nickname', res.data[0]['nickname']);
+                        sessionStorage.setItem('address', res.data[0]['address']);
+                        sessionStorage.setItem('address2', res.data[0]['address2']);
+                        sessionStorage.setItem('zipcode', res.data[0]['zipcode']);
+                        //sessionStorage.setItem('city', res.data[0]['city']);
                     }
                 })
                 .then(()=>{
@@ -116,7 +124,7 @@ const Login = ({ history }) => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Logg inn
+                    {t('login.1')}
                 </Typography>
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
                     <TextField
@@ -124,13 +132,13 @@ const Login = ({ history }) => {
                         variant="outlined"
                         margin="normal"
                         id="sEmail"
-                        label="Epost"
+                        label={t('login.2')}
                         type="text"
                         required
                         fullWidth
                     />
                     <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" fullWidth>
-                        <InputLabel htmlFor="outlined-adornment-password" required>Passord</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-password" required>{t('login.3')}</InputLabel>
                         <OutlinedInput
                             name="password"
                             id="outlined-adornment-password"
@@ -153,7 +161,7 @@ const Login = ({ history }) => {
                     </FormControl>
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
-                        label="Husk meg"
+                        label={t('login.4')}
                     />
 
                     <Button
@@ -163,18 +171,18 @@ const Login = ({ history }) => {
                         color="primary"
                         className={classes.submit}
                     >
-                        Logg inn
+                        {t('login.7')}
                     </Button>
 
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
-                                Glemt passord?
+                                {t('login.5')}
                             </Link>
                         </Grid>
                         <Grid item>
                             <Link href="/signup" variant="body2">
-                                    Har ikke konto? Opprett her
+                                {t('login.6')}
                             </Link>
                         </Grid>
                     </Grid>

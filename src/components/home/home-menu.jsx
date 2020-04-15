@@ -10,7 +10,7 @@ const HomeMenu = () => {
 
 
     const getCategories = () => {
-        axios.get("/assets/AllTypes")
+        axios.get(sessionStorage.getItem('API_URL')+"/assets/AllTypes")
             .then(result => {
                 setCategories(result.data);
                 console.log(result.data);

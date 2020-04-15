@@ -123,7 +123,7 @@ const EditProfile = ({history}) => {
         // Henter verdier som er utfylt i tekst feltene på form skjema
         const {nickname, phone, address1, address2, zipcode, city, currentPassword, newPassword} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
-        axios.post('/url', {
+        axios.post(sessionStorage.getItem('API_URL')+'/url', {
             nickname: nickname.value,
             phone: phone.value,
             address1: address1.value,
@@ -257,7 +257,7 @@ const EditProfile = ({history}) => {
                                                            borderRadius: 4,
                                                            textAlign: "center"    }}
                                                 >
-                                                    LAST OPP BILDE
+                                                    VELG BILDE
                                                 </label>
                                                 <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleImageChange} />
                                             </div>
@@ -279,6 +279,7 @@ const EditProfile = ({history}) => {
                                 autoFocus
                                 id="nickname"
                                 label="Visningsnavn"
+                                value={sessionStorage.getItem('nickname')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -287,6 +288,7 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="phone"
                                 label="Telefon"
+                                value={sessionStorage.getItem('phone')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -296,6 +298,8 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="sAddress"
                                 label="Adresse"
+                                value={sessionStorage.getItem('address')}
+
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -305,6 +309,7 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="sAddress2"
                                 label="Adresse 2"
+                                value={sessionStorage.getItem('address2')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -314,6 +319,7 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="iZipcode"
                                 label="Postkode"
+                                value={sessionStorage.getItem('zipcode')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
