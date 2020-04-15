@@ -224,6 +224,12 @@ export default function SidePanel() {
                     </ListItemIcon>
                     <ListItemText primary="Lånt Eiendeler"/>
                 </ListItem>
+                <ListItem button component={Link} to="/Ratings">
+                    <ListItemIcon>
+                        <ShoppingBasketIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Vurderinger"/>
+                </ListItem>
             </List>
             <Divider/>
             <List>

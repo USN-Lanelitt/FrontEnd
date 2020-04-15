@@ -4,13 +4,14 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import Chip from "@material-ui/core/Chip";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
+import FaceIcon from '@material-ui/icons/Face';
 import ChatWindow from "../../components/chat/chat-window";
 import Avatar from "@material-ui/core/Avatar";
-import Box from "@material-ui/core/Box";
 
 
 const useStyles = makeStyles(theme => ({
@@ -22,7 +23,10 @@ const useStyles = makeStyles(theme => ({
         marginLeft: '150px',
         width: '700px',
     },
-
+    flex: {
+        display: 'flex',
+        alignItems: 'center',
+    },
     chatListWindow: {
         height: '450px',
         width: '30%',
@@ -67,17 +71,17 @@ export default function Chat() {
 
     useEffect(() => {
         console.log("getChatUsers", userId, sessionStorage.getItem('userId'));
-        axios.get('/users/getChats/' + userId)
+        axios.get('/users/getChats/'+userId)
             .then(result => {
                 console.log(result.data);
                 setChatUsers(result.data);
             })
             .catch(e => console.log(e));
-    }, [setChatUsers, userId]);
+    },[setChatUsers, userId]);
 
     function showChat(userId2) {
         console.log("getChat", userId, sessionStorage.getItem('userId'));
-        axios.get('/users/chat/' + userId + '/' + userId2)
+        axios.get('/users/chat/'+userId+'/'+userId2)
             .then(result => {
                 console.log(result.data);
                 setSelectedChat(result.data);
@@ -87,7 +91,7 @@ export default function Chat() {
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
+        axios.post('/users/writeMessage/'+userId+'/'+userId2, {
             message: message
         })
             .then(result => {
@@ -118,57 +122,49 @@ export default function Chat() {
                     </Typography>
                 </Container>
             </div>
-            <Container>
+            <Container >
                 <Paper className={classes.chat}>
-                    <div style={{borderBottom: '1px solid grey', padding: '10px'}}>
-                        <Typography variant="h5" component="h5">
+                    <div style={{borderBottom: '1px solid grey', padding:'10px'}}>
+                        <Typography  variant="h5" component="h5">
                             Chats
                         </Typography>
                     </div>
 
-                    <Box display="flex" alignItems="center">
+                    <div className={classes.flex}>
                         <div className={classes.chatListWindow}>
 
                             <List>
                                 {
                                     chatUsers.map((user) => (
-                                        <Box display="flex" width={1}>
-                                            <ListItem key={user.id} button>
-                                                <div
-                                                    onClick={() => {
-                                                        onSelected(user.id);
-                                                        setUserId2(user.id);
-                                                    }}
-                                                >
-                                                    <Box display="flex" flexDirection="row" alignItems="center">
-                                                        <Box mr={1}>
-                                                            <Avatar alt="img" src={user.profileImage}/>
-                                                        </Box>
-                                                        <Box>
-                                                            {user.firstName} {user.lastName}
-                                                        </Box>
-                                                    </Box>
-
+                                        <ListItem key={user.id} button>
+                                            <div
+                                                onClick={() => {
+                                                    onSelected(user.id);
+                                                    setUserId2(user.id);
+                                                }}
+                                            >
+                                                <div>
+                                                    <Avatar alt="img" src={user.profileImage}/>
+                                                    {user.firstName} {user.lastName}
                                                 </div>
+                                            </div>
 
 
-                                            </ListItem>
-                                        </Box>
+                                        </ListItem>
                                     ))
                                 }
                             </List>
-
                         </div>
                         <div className={classes.chatWindow}>
                             <div className={classes.messageBox}>
                                 {selectedChat ?
                                     <ChatWindow selectedChat={selectedChat}/> :
-                                    <Typography component="h4" variant="h5" align="center" style={{color: 'grey'}}>
+                                    <Typography  component="h4" variant="h5" align="center" style={{color: 'grey'}} >
                                         Velg en du ønsker å chatte med
                                     </Typography>
                                 }
                             </div>
-                            <Box display="flex" alignItems="center">
+                            <div className={classes.flex}>
                                 <div style={{borderTop: '1px solid grey'}} className={classes.chatBox}>
                                     <TextField
                                         id="outlined-basic"
@@ -176,13 +172,13 @@ export default function Chat() {
                                         variant="outlined"
                                         className={classes.textField}
                                         value={textValue}
-                                        onChange={e => setTextValue(e.target.value)}
+                                        onChange={e=> setTextValue(e.target.value)}
                                     />
                                     <Button
                                         variant="contained"
                                         color="primary"
                                         className={classes.button}
-                                        onClick={() => {
+                                        onClick={()=>{
                                             handleClick();
                                             setTextValue('');
                                         }}
@@ -190,9 +186,9 @@ export default function Chat() {
                                         Send
                                     </Button>
                                 </div>
-                            </Box>
+                            </div>
                         </div>
-                    </Box>
+                    </div>
                 </Paper>
             </Container>
         </React.Fragment>
