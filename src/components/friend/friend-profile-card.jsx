@@ -11,13 +11,9 @@ import {useGutterBorderedGridStyles} from "@mui-treasury/styles/grid/gutterBorde
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import {grey} from "@material-ui/core/colors";
 import Badge from "@material-ui/core/Badge";
-import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import {CardHeader} from "@material-ui/core";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -38,9 +34,6 @@ const useStyles = makeStyles(theme => ({
     button: {
         paddingRight: '40px',
         paddingLeft: '40px',
-
-
-
 
     }
 }));

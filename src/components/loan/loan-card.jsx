@@ -26,11 +26,16 @@ const useStyles = makeStyles(theme => ({
     status: {
         padding: theme.spacing(0.5),
 
+
     },
     image: {
         width: "60%",
         height: 200,
         marginRight: theme.spacing(2),
+    },
+    button: {
+        color: 'green',           
+
     }
 }));
 
@@ -46,7 +51,7 @@ const LoanCard = ({firstname, middlename, lastname, assetname, description, asse
                     </Typography>
 
                     <Box className={classes.status} display="flex" justifyContent="center" flexDirection="row">
-                        <Button size="small" color="primary">
+                        <Button className={classes.button}size="small" color="primary">
                             {loanStatus}
                         </Button>
                     </Box>
@@ -71,7 +76,7 @@ const LoanCard = ({firstname, middlename, lastname, assetname, description, asse
                         </Typography>
                         <Box display="flex" flexDirection="column" paddingTop="90px">
                             <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h6">
-                                Låne fra:
+                                Dato for lån:
                             </Typography>
                             <Typography gutterBottom variant="body2" color="textPrimary" component="body1"
                                         flexDirection="row">

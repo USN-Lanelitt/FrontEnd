@@ -38,8 +38,8 @@ const LoanAccepted = () => {
         <div className={classes.heroContent}>
 
             <Container maxWidth="sm">
-                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                    Mine Lån
+                <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
+                    Mine Lån:
                 </Typography>
             </Container>
         </div>

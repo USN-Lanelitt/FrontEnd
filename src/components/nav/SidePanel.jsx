@@ -17,6 +17,7 @@ import Divider from "@material-ui/core/Divider";
 import EditIcon from "@material-ui/icons/Edit";
 import {fade, makeStyles} from "@material-ui/core/styles";
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import StarIcon from "@material-ui/icons/Star";
 
 const drawerWidth = 240;
 
@@ -208,25 +209,25 @@ export default function SidePanel() {
                     <ListItemIcon>
                         <StorageIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Mine Eiendeler"/>
+                    <ListItemText primary="Mine eiendeler"/>
                 </ListItem>
 
                 <ListItem button component={Link} to="/LoanToFriends">
                     <ListItemIcon>
                         <QueryBuilderIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Utlånt Eiendeler"/>
+                    <ListItemText primary="Utlånte eiendeler"/>
                 </ListItem>
 
                 <ListItem button component={Link} to="/LoanAccepted">
                     <ListItemIcon>
                         <ShoppingBasketIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Lånt Eiendeler"/>
+                    <ListItemText primary="Lånte eiendeler"/>
                 </ListItem>
                 <ListItem button component={Link} to="/Ratings">
                     <ListItemIcon>
-                        <ShoppingBasketIcon/>
+                        <StarIcon/>
                     </ListItemIcon>
                     <ListItemText primary="Vurderinger"/>
                 </ListItem>

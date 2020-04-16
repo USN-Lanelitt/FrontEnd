@@ -30,7 +30,7 @@ const AssetContainer = () => {
 
 
     return (
-        <React.Fragment>
+        <div>
             <div className={classes.heroContent}>
                 <Container>
                     <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -46,13 +46,13 @@ const AssetContainer = () => {
                    <Box m={5}>
                     <hr/>
                    </Box>
-                    <Grid container spacing={12}>
+                    <Grid >
                         <AssetsList categoryId={id}/>
                     </Grid>
                 </Container>
             </main>
+</div>
 
-        </React.Fragment>
     );
 };
 

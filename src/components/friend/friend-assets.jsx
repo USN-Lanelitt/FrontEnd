@@ -27,13 +27,12 @@ const FriendAssets = () => {
         getUserAssets();
 
     }, []);
-    console.log("nr1" + id);
     const getUserAssets = () => {
         axios.get('/assets/getUsersAssets/' + userId + '/' + id)
             .then(result => setfriendassets(result.data))
             .catch(error => console.log(error))
     }
-    console.log("nr2" + id);
+
 
     return (
 
