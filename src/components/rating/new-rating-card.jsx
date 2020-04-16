@@ -70,7 +70,7 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
         }*/
     function setRating(userId, newRating) {
         console.log("rateAsset", sessionStorage.getItem('userId'));
-        axios.post('/assets/'+loanId+'/rateAsset/'+userId+'/'+newRating)
+        axios.post(sessionStorage.getItem('API_URL')+'/assets/'+loanId+'/rateAsset/'+userId+'/'+newRating)
             .then(result => {
                 console.log(result.data);
             })
