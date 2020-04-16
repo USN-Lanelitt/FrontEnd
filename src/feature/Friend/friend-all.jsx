@@ -9,6 +9,7 @@ import app from "../../fire";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessage from "../../components/chat/send-message";
 import getFriend from "../../components/friend/friend-profile";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const FriendAll = () => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const user = app.auth().currentUser;
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -70,19 +72,19 @@ const FriendAll = () => {
         <React.Fragment>
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
-                    <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        Mine Venner
+                    <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                        {t('friend-all.1')}
                     </Typography>
                 </Container>
             </div>
             <Container>
 
-                <ConfirmDialog title="Slette venn?"
-                               message="Ønsker du å slette denne vennen?"
+                <ConfirmDialog title={t('friend-all.2')}
+                               message={t('friend-all.3')}
                                onConfirm ={onDeleteFriendComfirm}
                                onNotConfirm={onDeleteFriendCancel}
-                               confirmButtonText="Ja"
-                               notConfirmButtonText="Nei"
+                               confirmButtonText={t('friend-all.4')}
+                               notConfirmButtonText={t('friend-all.5')}
                                open={showConfirmDialog}
                 />
 
@@ -99,19 +101,14 @@ const FriendAll = () => {
                                 friendId={item.user2.id}
                                 onRemove={() => remove(item.user2.id)}
                                 getChat={() => sendMessage(userId, item.user2.id)}
-
-
                             />
                         </Grid>
-
                     ))}
                 </Grid>
 
             </Container>
         </React.Fragment>
-
-
     );
-
 };
+
 export default FriendAll;

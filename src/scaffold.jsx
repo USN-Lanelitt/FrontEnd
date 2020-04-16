@@ -26,7 +26,7 @@ import LoanRequestSend from "./components/loan/loan-request-send";
 import LoanAccepted from "./components/loan/loan-accepted";
 import Ratings from "./feature/rating/ratings";
 
-/*sessionStorage.setItem('API_URL', 'https://api.lanelitt.no');*/
+{/*sessionStorage.setItem('API_URL', 'https://api.lanelitt.no');*/}
 sessionStorage.setItem('API_URL', 'http://127.0.0.1:8000');
 
 
@@ -46,6 +46,7 @@ const Scaffold = () => {
     const classes = useStyles();
     const theme = useTheme();
     const extraSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
+
 
     return (
         <main>

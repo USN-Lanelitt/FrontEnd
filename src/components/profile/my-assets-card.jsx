@@ -15,6 +15,7 @@ import axios from "axios";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import {getRatings} from "../rating/getRating";
 import StatusMessage from "./status-message";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [assetId, setAssetId] = useState('');
@@ -55,7 +57,7 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     }, []);
 
     const publishAsset = () => {
-        axios.post(/setPublished/ + userId + "/" + asset.id + "/" + published)
+        axios.post(sessionStorage.getItem('API_URL')+/setPublished/ + userId + "/" + asset.id + "/" + published)
             .then(result => {
                 console.log(result);
                 setPublished(true);

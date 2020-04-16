@@ -132,7 +132,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NavBar(props) {
-
     const { t, i18n } = useTranslation();
 
     function handleClick(lang) {

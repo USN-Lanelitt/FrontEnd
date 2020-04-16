@@ -7,6 +7,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import * as firebase from "firebase";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ImageUploader = (props) => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [isUploading, setIsUploading] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -123,7 +125,7 @@ const ImageUploader = (props) => {
                            borderRadius: 4,
                            textAlign: "center"    }}
                 >
-                    LAST OPP BILDE
+                    {t('image-uploader.1')}
                 </label>
 
                 <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleChange} multiple="false"/>

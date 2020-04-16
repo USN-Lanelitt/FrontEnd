@@ -33,9 +33,165 @@
     "8": "Password",
     "9": "Password strenght minimum 6 charachters",
     "10": "I want e-mail",
-    "11": "Accept userterms",
+    "11": "",
     "12": "CREATE ACCOUNT",
     "13": "Already have an account? Login here!",
     "14": "ERROR! Please check required fields *."
+  },
+  "categories": {
+    "1": "Tools",
+    "2": "Electronic",
+    "3": "Instruments",
+    "4": "Clothes",
+    "5": "Shooes",
+    "6": "Books"
+  },
+  "sidepanel": {
+    "1": "Shortcuts",
+    "2": "Home",
+    "3": "Alerts",
+    "4": "Friends",
+    "5": "Messeges",
+    "6": "My assets",
+    "7": "Loaned assets",
+    "8": "Borrowed assets",
+    "9": "Vurderinger???",
+    "10": "Edit profile",
+    "11": "Contact"
+  },
+  "admin-table": {
+    "1": "Id",
+    "2": "Nickname",
+    "3": "Firstname",
+    "4": "Middlename",
+    "5": "Lastname",
+    "6": "E-mail",
+    "7": "Usertype",
+    "8": "Active",
+    "9": "News",
+    "10": "User administration"
+  },
+  "amount-table": {
+    "1": "Count users",
+    "2": "Count assets",
+    "3": "Count users reported"
+  },
+  "log-dropdown": {
+    "1": "log level"
+  },
+  "makeNewList": {
+    "1": "Firtsname",
+    "2": "Middlename",
+    "3": "Lastname",
+    "4": "Count"
+  },
+  "report-table": {
+    "1": "Actions",
+    "2": "Id",
+    "3": "From user",
+    "4": "About User",
+    "5": "Subject",
+    "6": "Timestamp"
+  },
+  "image-uploader": {
+    "1": "SELECT IMAGE"
+  },
+  "loan-request-send": {
+    "1": "Set time for loan:",
+    "2": "Start date:",
+    "3": "End date:",
+    "4": "Send message ...",
+    "5": "Send"
+  },
+  "loan-to-friends": {
+    "1": "My assets on loan"
+  },
+  "forgotpass": {
+    "1": "Forgot password?",
+    "2": "Forgot Password",
+    "3": "Vennligst skriv ned din e-post for å få tilsendt link med instruksjoner for å\n tilbakestille ditt passord.\n Sjekk søppelpostkassen din på mailen hvis du ikke ser mail fra oss!",
+    "4": "E-mail",
+    "5": "Cancel",
+    "6": "Send"
+  },
+  "nav": {
+    "1": "Messages"
+  },
+  "new-asset": {
+    "1": "Add asset",
+    "2": "Title",
+    "3": "Description",
+    "4": "SELECT IMAGE",
+    "5": "Public",
+    "6": "Create"
+  },
+  "rating-card": {
+    "1": "Save"
+  },
+  "termsandconditions": {
+    "1": "Accept userterms",
+    "2": "Cancel",
+    "3": "Accept"
+  },
+  "admin": {
+    "1": "Administrator",
+    "2": "User administration",
+    "3": "Users",
+    "4": "Rapporterte saker"
+  },
+  "asset-card": {
+    "1": "open"
+  },
+  "asset-site": {
+    "1": "Send request"
+  },
+  "chat": {
+    "1": "Messages",
+    "2": "Chats",
+    "3": "Velg en du ønsker å chatte med",
+    "4": "Write message.."
+  },
+  "friend-all": {
+    "1": "My friends",
+    "2": "Delete as friend?",
+    "3": "Ønsker du å slette denne vennen?",
+    "4": "Yes",
+    "5": "No"
+  },
+  "notification": {
+    "1": "Varsler",
+    "2": "Venneforespørsler",
+    "3": "Låneforespørsler"
+  },
+  "changePasswordForm": {
+    "1": "Current password",
+    "2": "New password",
+    "3": "Cancel",
+    "4": "Save"
+  },
+  "editProfile": {
+    "1": "Edit Profile Settings",
+    "2": "Edit profile image",
+    "3": "SELECT IMAGE",
+    "4": "Save",
+    "5": "Nickname",
+    "6": "Phone",
+    "7": "Address",
+    "8": "Address 2",
+    "9": "Zipcode",
+    "10": "City",
+    "11": "Change password",
+    "12": "Current password",
+    "13": "New Password",
+    "14": "Save"
+  },
+  "profile": {
+    "1": "My assets"
+  },
+  "ratings": {
+    "1": "Vurderinger",
+    "2": "Vurderinger fått",
+    "3": "Vurderinger gitt",
+    "4": "Nye vurderinger"
   }
 }

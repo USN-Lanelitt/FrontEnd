@@ -9,7 +9,6 @@ import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Link} from "react-router-dom";
 
-
 const useStyles = makeStyles({
     card: {
         maxWidth: 345,
@@ -20,7 +19,6 @@ const useStyles = makeStyles({
 
     }
 });
-
 
 const CategoryCard = ({id, title, imageUrl}) => {
     const classes = useStyles();
@@ -41,7 +39,6 @@ const CategoryCard = ({id, title, imageUrl}) => {
 
                     </CardContent>
                 </CardActionArea>
-
             </Card>
         </div>
     );

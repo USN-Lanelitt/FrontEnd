@@ -116,7 +116,6 @@ const Login = ({ history }) => {
     }
 
     return (
-
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>

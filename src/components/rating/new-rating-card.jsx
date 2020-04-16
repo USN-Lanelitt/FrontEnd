@@ -2,13 +2,17 @@ import React, {useEffect, useState} from 'react';
 import Card from "@material-ui/core/Card";
 import {makeStyles} from "@material-ui/core/styles";
 import {CardContent} from "@material-ui/core";
+import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
 import Rating from "@material-ui/lab/Rating";
 import useInput from "./use-input";
 import axios from "axios";
-import setRating from "./setRating";
+import {useTranslation} from "react-i18next";
 
 
 
@@ -45,6 +49,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2}) => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [value, setValue] = React.useState(0);
@@ -63,7 +68,14 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
             })
                 .catch(e => console.log(e));
         }*/
-
+    function setRating(userId, newRating) {
+        console.log("rateAsset", sessionStorage.getItem('userId'));
+        axios.post(sessionStorage.getItem('API_URL')+'/assets/'+loanId+'/rateAsset/'+userId+'/'+newRating)
+            .then(result => {
+                console.log(result.data);
+            })
+            .catch(e => console.log(e));
+    }
     /* const handleSubmit = (event) => {
         event.preventDefault();
         alert(`Ønsker du å lagre vurderingen på ${assetname}?`);
@@ -108,20 +120,21 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                             </Box>
                             <form className={classes.form} >
                                 <textarea
-                                    inputprops={{
-                                        classes: {
-                                            input: classes.resize,
-                                        },
-                                    }}
                                     className={classes.textarea}
                                     {...bindComment} />
 
                                 <Button
                                     type="submit"
                                     color="primary"
-                                    onClick={() => setRating(userId, loanId, value)}
+                                    className={classes.submit}
+                                    inputprops={{
+                                        classes: {
+                                            input: classes.resize,
+                                        },
+                                    }}
+                                    onClick={() => setRating(userId, value)}
                                 >
-                                    Lagre
+                                    {t('rating-card.1')}
                                 </Button>
                             </form>
                         </Card>
