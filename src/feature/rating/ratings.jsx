@@ -12,12 +12,9 @@ import MyRatingsList from "../../components/rating/my-ratings-list";
 import ReceivedRatingsList from "../../components/rating/received-ratings-list-";
 import NewRatingsList from "../../components/rating/new-rating-list";
 import Box from "@material-ui/core/Box";
-<<<<<<< HEAD
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormLabel from "@material-ui/core/FormLabel";
 import {useTranslation} from "react-i18next";
-=======
->>>>>>> 77cae3674e2ce419eea33705311ef1315ed70428
 
 const drawerWidth = 240;
 
@@ -68,10 +65,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 77cae3674e2ce419eea33705311ef1315ed70428
 export default function Ratings() {
     const { t } = useTranslation();
     const classes = useStyles();
@@ -97,16 +90,11 @@ export default function Ratings() {
                             {t('ratings.1')}
                         </Typography>
                     <FormControl component="fieldset">
-<<<<<<< HEAD
-                        <RadioGroup row aria-label="position" name="position" defaultValue="fått" value={value} onChange={handleRadioChange}>
+
+                        <RadioGroup row aria-label="position" name="position" value={value} onChange={handleRadioChange}>
                             <FormControlLabel value="fått" control={<Radio color="primary" />} label={t('ratings.2')} />
                             <FormControlLabel value="gitt" control={<Radio color="primary" />} label={t('ratings.3')} />
-=======
-                        <RadioGroup row aria-label="position" name="position" value={value} onChange={handleRadioChange}>
-                            <FormControlLabel  value='fått' control={<Radio color="primary" />} label="Vurderinger fått" />
-                            <FormControlLabel  value='gitt' control={<Radio color="primary" />} label="Vurderinger gitt" />
                             <FormControlLabel  value='ny' control={<Radio color="primary" />} label="Nye vurderinger" />
->>>>>>> 77cae3674e2ce419eea33705311ef1315ed70428
                         </RadioGroup>
                     </FormControl>
                     </Container>
