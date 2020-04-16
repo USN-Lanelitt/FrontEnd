@@ -25,6 +25,7 @@ import LoanToFriends from "./components/loan/loan-to-friends";
 import LoanRequestSend from "./components/loan/loan-request-send";
 import LoanAccepted from "./components/loan/loan-accepted";
 import Ratings from "./feature/rating/ratings";
+import AssetOwnerInfo from "./feature/Assets/asset-owner-info";
 
 {/*sessionStorage.setItem('API_URL', 'https://api.lanelitt.no');*/}
 sessionStorage.setItem('API_URL', 'http://127.0.0.1:8000');
@@ -63,13 +64,14 @@ const Scaffold = () => {
                 <Route exact path="/notificationList" component={NotificationList}/>
                 <Route path="/friendprofile/:id" exact component={FriendProfile}/>
                 <Route exact path="/loanCard" component={LoanCard}/>
-                <Route exact path="/assetSite" component={AssetSite}/>
+                <Route path="/assetSite/:id" component={AssetSite}/>
                 <Route exact path="/chat" component={Chat}/>
                 <Route exact path="/friendProfileCard" component={FriendProfileCard}/>
                 <Route exact path="/loantofriends" component={LoanToFriends}/>
                 <Route exact path="/loanrequestsend" component={LoanRequestSend}/>
                 <Route exact path="/loanAccepted" component={LoanAccepted}/>
                 <Route exact path="/ratings" component={Ratings}/>
+                <Route exact path="/owner/info" component={AssetOwnerInfo}/>
 
             </Box>
         </main>

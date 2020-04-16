@@ -52,8 +52,8 @@ const AssetCard = ({asset}) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary" component={Link} to="/assetSite">
-                        {t('asset-card.a')}
+                    <Button size="small" color="primary" component={Link} to={"/assetSite/" + asset.id}>
+                        {t('asset-card.1')}
                     </Button>
 
                 </CardActions>
