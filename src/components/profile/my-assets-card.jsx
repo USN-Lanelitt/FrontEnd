@@ -49,7 +49,6 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
             .catch(error => console.log(error))
     }
 
-
     useEffect(() => {
         getRatings(asset.id, setRating)
         console.log(rating);
