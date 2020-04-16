@@ -11,8 +11,9 @@ import Box from "@material-ui/core/Box";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import axios from "axios";
 
-
+//Mangler assetID, assetName og userId2!!!
 //her skal fra og til dato komme opp, søke om å låne
 
 const useStyles = makeStyles(theme => ({
@@ -30,14 +31,37 @@ const useStyles = makeStyles(theme => ({
 }));
 const LoanRequestSend = () => {
     const classes = useStyles();
-    const [value, setValue] = React.useState();
-
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
-
+    const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const [userId2, setId2] = useState(52);
+    const [assetId, setAssetId] = useState(1);
+    const [assetName, setAssetName] = useState('Laptop');
+    const [textValue, setTextValue] = useState('');
     const [selectedDate, setSelectedDate] = React.useState(new Date() );
     const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
+
+    function sendMessage(message) {
+        console.log("sendMessage", userId, sessionStorage.getItem('userId'));
+        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
+            message: message
+        })
+            .then(result => {
+                console.log(result.data);
+            })
+            .catch(e => console.log(e));
+    }
+
+    function sendRequest() {
+        console.log("sendRequest", sessionStorage.getItem('userId'));
+        axios.post('/user/'+userId+'/asset/'+assetId+'/request' , {
+            startDate: selectedDate,
+            endDate: selectedDate2
+        }).then((response) => {
+            if (response.status === 200) {
+                console.log(response.data);
+            }
+        })
+            .catch(e => console.log(e));
+    }
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -46,6 +70,13 @@ const LoanRequestSend = () => {
     const handleDateChange2 = (date) => {
         setSelectedDate2(date);
     };
+
+    const handleClick = () => {
+        sendMessage(assetName+': '+textValue);
+        console.log(textValue);
+        sendRequest();
+    };
+
 
     return (
         <Box display="flex" justifyContent="center">
@@ -102,12 +133,19 @@ const LoanRequestSend = () => {
                         label="Send en melding ..."
                         multiline
                         rowsMax="7"
-                        value={value}
-                        onChange={handleChange}
-
+                        value={textValue}
+                        onChange={e => setTextValue(e.target.value)}
                     />
                     <CardActions>
-                        <Button className={classes.send} type="submit" fullWidth variant="contained" color="primary">
+                        <Button
+                            className={classes.send}
+                            type="submit"
+                            fullWidth variant="contained"
+                            color="primary"
+                            onClick={() => {
+                                handleClick();
+                                setTextValue('');
+                            }}>
                             Send
                         </Button>
                     </CardActions>

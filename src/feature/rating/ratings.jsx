@@ -1,18 +1,17 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Copyright from "../../components/home/Copyright";
-import RatingList from "../../components/rating/ratings-list";
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+import MyRatingsList from "../../components/rating/my-ratings-list";
+import ReceivedRatingsList from "../../components/rating/received-ratings-list-";
+import NewRatingsList from "../../components/rating/new-rating-list";
 import Box from "@material-ui/core/Box";
-import withStyles from "@material-ui/core/styles/withStyles";
-import FormLabel from "@material-ui/core/FormLabel";
 
 const drawerWidth = 240;
 
@@ -64,19 +63,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-
-
 export default function Ratings() {
     const classes = useStyles();
-    const [value, setValue] = React.useState('');
+    const [show, setShow] = React.useState(<ReceivedRatingsList/>);
+    const [value, setValue] = React.useState('fått');
 
     const handleRadioChange = (event) => {
         setValue(event.target.value);
-        if (value === 'fått') {
-            console.log('fått');
-
+        if (event.target.value === 'fått') {
+            setShow(<ReceivedRatingsList/>);
+        } else if (event.target.value === 'gitt') {
+            setShow(<MyRatingsList/>);
         } else
-            console.log('gitt');
+            setShow(<NewRatingsList/>);
     };
 
     return (
@@ -87,17 +86,18 @@ export default function Ratings() {
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                             Vurderinger
                         </Typography>
-                    </Container>
-                </div>
                     <FormControl component="fieldset">
-                        <RadioGroup row aria-label="position" name="position" defaultValue="fått" value={value} onChange={handleRadioChange}>
-                            <FormControlLabel value="fått" control={<Radio color="primary" />} label="Vurderinger fått" />
-                            <FormControlLabel value="gitt" control={<Radio color="primary" />} label="Vurderinger gitt" />
+                        <RadioGroup row aria-label="position" name="position" value={value} onChange={handleRadioChange}>
+                            <FormControlLabel  value='fått' control={<Radio color="primary" />} label="Vurderinger fått" />
+                            <FormControlLabel  value='gitt' control={<Radio color="primary" />} label="Vurderinger gitt" />
+                            <FormControlLabel  value='ny' control={<Radio color="primary" />} label="Nye vurderinger" />
                         </RadioGroup>
                     </FormControl>
+                    </Container>
+                </div>
                 <Container className={classes.cardGrid}>
                     <Grid container spacing={12}>
-                        <RatingList/>
+                        {show}
                     </Grid>
                 </Container>
             </main>
