@@ -195,13 +195,6 @@ const EditProfile = ({history}) => {
         event.preventDefault();
     };
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
-
-    const handleDateChange = date => {
-        setSelectedDate(date);
-        console.log(selectedDate);
-    };
-
     const [file, setFile] = useState({ preview: null, raw: null })
 
     const handleImageChange = (e) => {
@@ -354,6 +347,7 @@ const EditProfile = ({history}) => {
                     {t('editProfile.11')}
                 </Typography>
 
+                {/*Midlertidig slått av for videreutvikling. Grunnet: Kjent feil med Firebase kode kobling. Mail sendt til Firebase support*/}
                 <form onSubmit={handleUpdate} className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -363,10 +357,12 @@ const EditProfile = ({history}) => {
                                 <Input
                                     name="currentPassword"
                                     id="currentPassword"
+                                    disabled
                                     type={values.showCurrentPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
+                                                disabled
                                                 aria-label="toggle password visibility"
                                                 onClick={handleClickShowCurrentPassword}
                                                 onMouseDown={handleMouseDownPassword}
@@ -388,12 +384,14 @@ const EditProfile = ({history}) => {
                                 <Input
                                     name="newPassword"
                                     id="newPassword"
+                                    disabled
                                     type={values.showNewPassword ? 'text' : 'password'}
                                     value={values.password}
                                     onChange={handleChange('password')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
+                                                disabled
                                                 aria-label="toggle password visibility"
                                                 onClick={handleClickShowNewPassword}
                                                 onMouseDown={handleMouseDownPassword}
@@ -410,6 +408,7 @@ const EditProfile = ({history}) => {
 
                         <Grid item xs={12}>
                             <Button
+                                disabled
                                 type="submit"
                                 fullWidth
                                 variant="contained"
