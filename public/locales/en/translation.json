@@ -1,0 +1,41 @@
+{
+  "test": {
+    "message": "Thank you",
+    "text": "Jump and stuff"
+  },
+  "home": {
+    "1": "Category",
+    "2": "Shovel",
+    "3": "Homepage",
+    "4": "Search",
+    "5": "What you need?"
+  },
+  "nav": {
+    "1": "Search user..."
+  },
+  "login": {
+    "1": "Login",
+    "2": "Username",
+    "3": "Password",
+    "4": "Remember me",
+    "5": "Forgot password",
+    "6": "No account? Create account",
+    "7": "Login"
+  },
+  "register": {
+    "1": "Create account",
+    "2": "Fistname",
+    "3": "Middlename",
+    "4": "Lastname",
+    "5": "Phonenumber (Optional)",
+    "6": "Birthdate",
+    "7": "E-mail",
+    "8": "Password",
+    "9": "Password strenght minimum 6 charachters",
+    "10": "I want e-mail",
+    "11": "Accept userterms",
+    "12": "CREATE ACCOUNT",
+    "13": "Already have an account? Login here!",
+    "14": "ERROR! Please check required fields *."
+  }
+}

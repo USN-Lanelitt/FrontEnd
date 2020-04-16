@@ -8,7 +8,7 @@ const HandleImageUpload = (file) => {
         data.append('mainImage', true);
         //data.append('userId', sessionStorage.getItem('userId'));
 
-        axios.post('/assetsImage/addImage/'+sessionStorage.getItem('userId')+'/0', data, {
+        axios.post(sessionStorage.getItem('API_URL')+'/assetsImage/addImage/'+sessionStorage.getItem('userId')+'/0', data, {
             headers: {
                 'accept': 'application/json',
                 'Accept-Language': 'en-US,en;q=0.8',

@@ -13,7 +13,7 @@ const ReportList = () => {
     useEffect(() => {
         console.log("getreports", sessionStorage.getItem('userId'));
         setLoading(true);
-        axios.get('/getReports')
+        axios.get(sessionStorage.getItem('API_URL')+'/getReports')
         .then((response) => {
             if (response.status === 200) {
                 console.log(response.data);

@@ -132,7 +132,7 @@ export default function ProfileCard() {
                     >
                         <Avatar
                             className={styles.avatar}
-                            src={"profileimages/"+sessionStorage.getItem('profileImage')}
+                            src={"profileImages/"+sessionStorage.getItem('profileImage')}
                         />
                     </StyledBadge>
                 </IconButton>

@@ -4,7 +4,7 @@ import axios from "axios";
 const ReportAmount  = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [reportNr, setReportNr] = useState();
-    axios.get('/report/amount')
+    axios.get(sessionStorage.getItem('API_URL')+'/report/amount')
         .then((response) => {
             if (response.status === 200) {
                 setReportNr(response.data);

@@ -78,7 +78,7 @@ const NewAsset = () => {
         asset.append('public', isPublic);
         asset.append('typeId', category);
 
-        axios.post("/assets/addAsset", asset)
+        axios.post(sessionStorage.getItem('API_URL')+"/assets/addAsset", asset)
             .then(result => {
                 console.log(result);
                 setShowStatusMessage(true);
@@ -151,7 +151,7 @@ const NewAsset = () => {
                                        borderRadius: 4,
                                        textAlign: "center"    }}
                             >
-                                LAST OPP BILDE
+                                VELG BILDE
                             </label>
 
                             <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleChange} multiple="false"/>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 function editUser(id, nickname, firstname, middlename, lastname, email, usertype, active, newsSubscription) {
     console.log("editUser ", id, sessionStorage.getItem('userId'));
-    axios.post('/user/'+id+'/edit', {
+    axios.post(sessionStorage.getItem('API_URL')+'/user/'+id+'/edit', {
         nickname: nickname,
         firstname: firstname,
         middlename: middlename,

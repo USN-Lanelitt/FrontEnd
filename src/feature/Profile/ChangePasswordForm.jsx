@@ -57,7 +57,7 @@ const ChangePasswordForm = () => {
         // Henter verdier som er utfylt i tekst feltene på form skjema
         const {currentUserPassword, newUserPassword} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
-        axios.post('/updatePassword', {
+        axios.post(sessionStorage.getItem('API_URL')+'/updatePassword', {
             userId: sessionStorage.getItem('userId'),
             currentPassword: currentUserPassword,
             newPassword: newUserPassword

@@ -8,6 +8,8 @@ import Copyright from '../../components/home/Copyright';
 import TextField from '@material-ui/core/TextField';
 import HomeMenu from "../../components/home/home-menu";
 
+import { useTranslation } from 'react-i18next';
+
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -15,13 +17,13 @@ const useStyles = makeStyles(theme => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(15, 0, 6)
+    padding: theme.spacing(5, 0, 4)
   },
   heroButtons: {
     marginTop: theme.spacing(4),
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
+
     paddingBottom: theme.spacing(8),
   },
   card: {
@@ -44,19 +46,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
   const classes = useStyles();
+  const { t, i18n } = useTranslation();
 
-
+  function handleClick(lang) {
+    i18n.changeLanguage(lang);
+  }
   return (
       <React.Fragment>
         <CssBaseline/>
         <main>
           <div className={classes.heroContent}>
             <Container maxWidth="sm">
-              <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+              <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
                 Lånelitt
-              </Typography>
-              <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                Hjemmeside
               </Typography>
             </Container>
           </div>
@@ -65,10 +67,10 @@ export default function Home() {
             <div>
               <TextField
                   id="outlined-full-width"
-                  label="Søk"
+                  label={t('home.4')}
                   style={{margin: 8}}
-                  placeholder="Spade"
-                  helperText="Hva trenger du å låne?"
+                  placeholder={t('home.2')}
+                  helperText={t('home.5')}
                   fullWidth
                   margin="normal"
                   InputLabelProps={{
@@ -77,7 +79,7 @@ export default function Home() {
                   variant="outlined"
               />
             </div>
-            <h3>Kategori</h3>
+            <h3>{t('home.1')}</h3>
             <hr/>
             <Grid container spacing={12}>
               <HomeMenu/>

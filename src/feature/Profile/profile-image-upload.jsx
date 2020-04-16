@@ -7,7 +7,7 @@ const ProfileImageUpload = (file) => {
         data.append('file', file.raw, file.fileName);
         data.append('userId', sessionStorage.getItem('userId'));
 
-        axios.post('/profileimageUpload', data, {
+        axios.post(sessionStorage.getItem('API_URL')+'/profileimageUpload', data, {
             headers: {
                 'accept': 'application/json',
                 'Accept-Language': 'en-US,en;q=0.8',

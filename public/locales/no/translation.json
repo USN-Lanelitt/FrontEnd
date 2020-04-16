@@ -1,0 +1,41 @@
+{
+  "test": {
+    "message": "Takk for oss",
+    "text": "Hei og hopp"
+  },
+  "home": {
+    "1": "Kategori",
+    "2": "Spade",
+    "3": "Hjemmeside",
+    "4": "Søk",
+    "5": "Hva trenger du å låne?"
+  },
+  "nav": {
+    "1": "Søk på bruker..."
+  },
+  "login": {
+    "1": "Logg inn",
+    "2": "Brukernavn",
+    "3": "Passord",
+    "4": "Husk meg",
+    "5": "Glemt passord",
+    "6": "Har ikke konto? Opprett her",
+    "7": "Logg inn"
+  },
+  "register": {
+    "1": "Opprett konto",
+    "2": "Fornavn",
+    "3": "Mellomnavn",
+    "4": "Etternavn",
+    "5": "Telefon (Valgfri)",
+    "6": "Fødselsdato",
+    "7": "E-post",
+    "8": "Passord",
+    "9": "Passord må være minst 6 tegn",
+    "10": "Jeg ønsker å motta nyheter på e-post",
+    "11": "Jeg godtar brukervilkårene",
+    "12": "OPPRETT KONTO",
+    "13": "Har allerede en konto? Logg på!",
+    "14": "FEIL! Vennligst sjekk at feltene merket med * er fylt ut riktig."
+  }
+}
