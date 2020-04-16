@@ -193,5 +193,9 @@
     "2": "Vurderinger fått",
     "3": "Vurderinger gitt",
     "4": "Nye vurderinger"
+  },
+  "assetOwner": {
+    "1": "Send request",
+    "2": "Do you want to borrow this asset?"
   }
 }
