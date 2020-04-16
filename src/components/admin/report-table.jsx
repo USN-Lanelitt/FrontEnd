@@ -57,7 +57,6 @@ const ReportTable = ({reports}) => {
                                 <TableCell>
                                     <ConfirmDialog
                                         title={title}
-
                                         message={text}
                                         onConfirm={onClose}
                                         confirmButtonText="Lukk"

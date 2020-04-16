@@ -66,8 +66,8 @@ export default function Chat() {
     const [textValue, setTextValue] = useState('');
 
     useEffect(() => {
-        console.log("getChatUsers", userId, sessionStorage.getItem('userId'));
-        axios.get('/users/getChats/' + userId)
+        console.log("getChatUsers", sessionStorage.getItem('userId'));
+        axios.get(sessionStorage.getItem('API_URL')+'/users/getChats/'+userId)
             .then(result => {
                 console.log(result.data);
                 setChatUsers(result.data);
@@ -76,8 +76,8 @@ export default function Chat() {
     }, [setChatUsers, userId]);
 
     function showChat(userId2) {
-        console.log("getChat", userId, sessionStorage.getItem('userId'));
-        axios.get('/users/chat/' + userId + '/' + userId2)
+        console.log("getChat", sessionStorage.getItem('userId'));
+        axios.get(sessionStorage.getItem('API_URL')+'/users/chat/' + userId + '/' + userId2)
             .then(result => {
                 console.log(result.data);
                 setSelectedChat(result.data);
@@ -86,8 +86,9 @@ export default function Chat() {
     }
 
     function sendMessage(message) {
-        console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
+        console.log(sessionStorage.getItem('API_URL')+"sendMessage", userId, sessionStorage.getItem('userId'));
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        axios.post(sessionStorage.getItem('API_URL')+'/users/writeMessage/' + userId + '/' + userId2, {
             message: message
         })
             .then(result => {
@@ -109,7 +110,6 @@ export default function Chat() {
 
 
     return (
-
         <React.Fragment>
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
@@ -128,7 +128,6 @@ export default function Chat() {
 
                     <Box display="flex" alignItems="center">
                         <div className={classes.chatListWindow}>
-
                             <List>
                                 {
                                     chatUsers.map((user) => (
@@ -148,16 +147,12 @@ export default function Chat() {
                                                             {user.firstName} {user.lastName}
                                                         </Box>
                                                     </Box>
-
                                                 </div>
-
-
                                             </ListItem>
                                         </Box>
                                     ))
                                 }
                             </List>
-
                         </div>
                         <div className={classes.chatWindow}>
                             <div className={classes.messageBox}>
