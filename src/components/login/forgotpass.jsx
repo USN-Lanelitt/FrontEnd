@@ -8,8 +8,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import Link from "@material-ui/core/Link";
+import {useTranslation} from "react-i18next";
 
 export default function ForgotPassword() {
+    const { t } = useTranslation();
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -24,32 +26,30 @@ export default function ForgotPassword() {
         <div>
             <Link href="#" variant="body2">
                 <Typography variant="outlined" color="primary" onClick={handleClickOpen}>
-                    Glemt passord?
+
                 </Typography>
             </Link>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Glemt Passord</DialogTitle>
+                <DialogTitle id="form-dialog-title">{t('forgotpass.2')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Vennligst skriv ned din e-post for å få tilsendt link med instruksjoner for å
-                        tilbakestille ditt passord.
-                        Sjekk søppelpostkassen din på mailen hvis du ikke ser mail fra oss!
+                        {t('forgotpass.3')}
                     </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="name"
-                        label="E-post"
+                        label={t('forgotpass.4')}
                         type="email"
                         fullWidth
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Avbryt
+                        {t('forgotpass.5')}
                     </Button>
                     <Button onClick={handleClose} color="primary">
-                        Send
+                        {t('forgotpass.6')}
                     </Button>
                 </DialogActions>
             </Dialog>

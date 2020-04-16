@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles({
     table: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles({
 });
 
 const AmountTable = () => {
+    const { t } = useTranslation();
     const classes = useStyles();
     return (
         <div>
@@ -30,17 +32,17 @@ const AmountTable = () => {
                             <TableCell component="th" scope="row">
                                 <UserAmount/>
                                 {"\n"}
-                                Antall brukere
+                                {t('amount-table.1')}
                             </TableCell>
                             <TableCell>
                                 <AssetAmount/>
                                 {"\n"}
-                                Antall eiendeler
+                                {t('amount-table.2')}
                             </TableCell>
                             <TableCell>
                                 <ReportAmount/>
                                 {"\n"}
-                                Antall rapporteringer
+                                {t('amount-table.3')}
                             </TableCell>
                             <TableCell>
 

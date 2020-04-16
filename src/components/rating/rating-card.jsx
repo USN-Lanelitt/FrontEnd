@@ -12,6 +12,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Rating from "@material-ui/lab/Rating";
 import useInput from "./use-input";
 import axios from "axios";
+import {useTranslation} from "react-i18next";
 
 
 
@@ -48,6 +49,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const RatingCard = ({firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2}) => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [value, setValue] = React.useState(2);
@@ -132,7 +134,7 @@ const RatingCard = ({firstname, middlename, lastname, assetId, assetname, select
                                     }}
                                     onClick={() => setRating(userId, assetId, value)}
                                 >
-                                    Lagre
+                                    {t('rating-card.1')}
                                 </Button>
                             </form>
                         </Card>

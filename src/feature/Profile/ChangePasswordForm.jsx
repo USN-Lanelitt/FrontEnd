@@ -16,6 +16,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import clsx from 'clsx';
 import axios from "axios";
 import app from "../../fire";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
@@ -52,6 +53,7 @@ const useStyles = makeStyles(theme => ({
 const user = app.auth().currentUser;
 
 const ChangePasswordForm = () => {
+    const { t } = useTranslation();
     const handleUpdate = useCallback(async event => {
         event.preventDefault();
         // Henter verdier som er utfylt i tekst feltene på form skjema
@@ -120,8 +122,7 @@ const ChangePasswordForm = () => {
                         <Grid item xs={12}>
                             <FormControl className={clsx(classes.margin, classes.textField)}
                                          fullWidth>
-                                <InputLabel htmlFor="outlined-adornment-password" required>Nåværende
-                                    passord</InputLabel>
+                                <InputLabel htmlFor="outlined-adornment-password" required>{t('changePasswordForm.1')}</InputLabel>
                                 <Input
                                     name="currentPassword"
                                     id="currentPassword"
@@ -145,7 +146,7 @@ const ChangePasswordForm = () => {
                         <Grid item xs={12}>
                             <FormControl className={clsx(classes.margin, classes.textField)}
                                          fullWidth>
-                                <InputLabel htmlFor="outlined-adornment-password" required>Ny Passord</InputLabel>
+                                <InputLabel htmlFor="outlined-adornment-password" required>{t('changePasswordForm.2')}</InputLabel>
                                 <Input
                                     name="newPassword"
                                     id="newPassword"
@@ -172,10 +173,10 @@ const ChangePasswordForm = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Avbrutt
+                        {t('changePasswordForm.3')}
                     </Button>
                     <Button type="submit" color="primary">
-                        Lagre
+                        {t('changePasswordForm.4')}
                     </Button>
                 </DialogActions>
             </Dialog>

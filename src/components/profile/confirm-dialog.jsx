@@ -7,15 +7,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function ConfirmDialog({
-                                          title,
-                                          message,
-                                          onConfirm,
-                                          onNotConfirm,
-                                          confirmButtonText = "",
-                                          notConfirmButtonText = "",
-                                          open
-                                      }) {
-
+    title,
+    message,
+    onConfirm,
+    onNotConfirm,
+    confirmButtonText = "",
+    notConfirmButtonText = "",
+    open
+}) {
 
     return (
         <div>

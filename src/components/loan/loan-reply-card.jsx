@@ -19,9 +19,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'row',
         maxwidt: 635,
-
-
-
     },
     top: {
         display: 'flex',
@@ -30,7 +27,6 @@ const useStyles = makeStyles(theme => ({
     },
     status: {
         padding: theme.spacing(0.5),
-
     },
 
     Button: {
@@ -70,7 +66,6 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     width="300"
                     image={"https://source.unsplash.com/random"}
                 />
-
 
                 <Typography gutterBottom variant="h5" component="h2">
                     {assetname}

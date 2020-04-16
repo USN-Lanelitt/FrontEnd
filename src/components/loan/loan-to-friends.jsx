@@ -5,20 +5,19 @@ import axios from "axios";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
+import {useTranslation} from "react-i18next";
 
 //her er det kort med alle eiendeler som skal lånes til andre (alle godkjente)
 
 const useStyles = makeStyles(theme => ({
-
     heroContent: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(8, 0, 6),
     },
-
 }));
 
-
 const LoanToFriends = () => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
@@ -41,7 +40,7 @@ const LoanToFriends = () => {
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        Mine utlånte eiendeler
+                        {t('loan-to-friends.1')}
                     </Typography>
                 </Container>
             </div>
@@ -60,13 +59,11 @@ const LoanToFriends = () => {
                                 selectedDate={loan.dateStart}
                                 selectedDate2={loan.dateEnd}
                             />
-
                         </Grid>
                     )
                 )
             }
-
-        </Grid>
+            </Grid>
 
         </React.Fragment>
     );

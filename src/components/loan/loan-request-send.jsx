@@ -11,7 +11,7 @@ import Box from "@material-ui/core/Box";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-
+import {useTranslation} from "react-i18next";
 
 //her skal fra og til dato komme opp, søke om å låne
 
@@ -24,11 +24,11 @@ const useStyles = makeStyles(theme => ({
     },
     send: {
         margin: theme.spacing(3, 0, 2),
-
     },
 
 }));
 const LoanRequestSend = () => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [value, setValue] = React.useState();
 
@@ -54,7 +54,7 @@ const LoanRequestSend = () => {
                     <Box borderBottom={1}>
                         <CardContent>
                             <Typography variant="h5" component="h2">
-                                Velg ønsket tidspunkt for lån:
+                                {t('loan-request-send.1')}
                             </Typography>
 
                         </CardContent>
@@ -66,7 +66,7 @@ const LoanRequestSend = () => {
                                     name="daypicker"
                                     margin="normal"
                                     id="date-picker-dialog"
-                                    label="Fra dato:"
+                                    label={t('loan-request-send.2')}
                                     fullWidth
                                     format="dd.MM.yyyy"
                                     value={selectedDate}
@@ -83,7 +83,7 @@ const LoanRequestSend = () => {
                                     name="daypicker"
                                     margin="normal"
                                     id="date-picker-dialog"
-                                    label="Til dato:"
+                                    label={t('loan-request-send.3')}
                                     fullWidth
                                     format="dd.MM.yyyy"
                                     value={selectedDate2}
@@ -99,7 +99,7 @@ const LoanRequestSend = () => {
                     </Box>
                     <TextField
                         id="standard-multiline-static"
-                        label="Send en melding ..."
+                        label={t('loan-request-send.4')}
                         multiline
                         rowsMax="7"
                         value={value}
@@ -108,7 +108,7 @@ const LoanRequestSend = () => {
                     />
                     <CardActions>
                         <Button className={classes.send} type="submit" fullWidth variant="contained" color="primary">
-                            Send
+                            {t('loan-request-send.5')}
                         </Button>
                     </CardActions>
 

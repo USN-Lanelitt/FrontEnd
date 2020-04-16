@@ -3,13 +3,11 @@ import Grid from "@material-ui/core/Grid";
 import LoanRequestNotification from "./loan-request-notification";
 import axios from "axios";
 
-
 //her er den listen i notification
 
 const LoanRequestList = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
-
 
     return (
         <Grid container spacing={3} justify="center">
@@ -23,8 +21,6 @@ const LoanRequestList = () => {
                         assetname={user.assets.assetName}
                         dateStart={user.dateStart}
                         dateEnd={user.dateEnd}
-
-
                     />
                 </Grid>
             ))}

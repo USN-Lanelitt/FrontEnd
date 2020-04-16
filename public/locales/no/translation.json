@@ -33,9 +33,164 @@
     "8": "Passord",
     "9": "Passord må være minst 6 tegn",
     "10": "Jeg ønsker å motta nyheter på e-post",
-    "11": "Jeg godtar brukervilkårene",
+    "11": "",
     "12": "OPPRETT KONTO",
     "13": "Har allerede en konto? Logg på!",
     "14": "FEIL! Vennligst sjekk at feltene merket med * er fylt ut riktig."
+  },
+  "categories": {
+    "1": "Verktøy",
+    "2": "Elektronikk",
+    "3": "Instrumenter",
+    "4": "Klær",
+    "5": "Sko",
+    "6": "Bøker"
+  },
+  "sidepanel": {
+    "1": "Snarveier",
+    "2": "Hjem",
+    "3": "Varsler",
+    "4": "Venner",
+    "5": "Meldinger",
+    "6": "Mine eiendeler",
+    "7": "Utlånte eiendeler",
+    "8": "Lånte eiendeler",
+    "9": "Vurderinger",
+    "10": "Rediger profil",
+    "11": "Kontakt"
+  },
+  "admin-table": {
+    "1": "Id",
+    "2": "Visningsnavn",
+    "3": "Fornavn",
+    "4": "Mellomnavn",
+    "5": "Etternavn",
+    "6": "E-post",
+    "7": "Brukertype",
+    "8": "Aktiv",
+    "9": "Nyheter",
+    "10": "Administrere brukere"
+  },
+  "amount-table": {
+    "1": "Antall brukere",
+    "2": "Antall eiendeler",
+    "3": "Antall rapporteringer"
+  },
+  "log-dropdown": {
+    "1": "Loggnivå"
+  },
+  "makeNewList": {
+    "1": "Fornavn",
+    "2": "Mellomnavn",
+    "3": "Etternavn",
+    "4": "Antall"
+  },
+  "report-table": {
+    "1": "Actions",
+    "2": "Id",
+    "3": "Fra bruker",
+    "4": "Om bruker",
+    "5": "Emne",
+    "6": "Tidspunkt"
+  },
+  "image-uploader": {
+    "1": "VELG BILDE"
+  },
+  "loan-request-send": {
+    "1": "Velg ønsket tidspunkt for lån:",
+    "2": "Fra dato:",
+    "3": "Til dato:",
+    "4": "Send en melding ...",
+    "5": "Send"
+  },
+  "loan-to-friends": {
+    "1": "Mine utlånte eiendeler"
+  },
+  "forgotpass": {
+    "1": "Glemt passord?",
+    "2": "Glemt Passord",
+    "3": "Vennligst skriv ned din e-post for å få tilsendt link med instruksjoner for å\n tilbakestille ditt passord.\n Sjekk søppelpostkassen din på mailen hvis du ikke ser mail fra oss!",
+    "4": "E-post",
+    "5": "Avbryt",
+    "6": "Send"
+  },
+  "nav": {
+    "1": "Messages"
+  },
+  "new-asset": {
+    "1": "Legg til eiendel",
+    "2": "Tittel",
+    "3": "Beskrivelse",
+    "4": "VELG BILDE",
+    "5": "Offentlig",
+    "6": "Opprett"
+  },
+  "rating-card": {
+    "1": "Lagre"
+  },
+  "termsandconditions": {
+    "1": "Jeg godtar brukervilkårene",
+    "2": "Avbryt",
+    "3": "Godta"
+  },
+  "admin": {
+    "1": "Administrator",
+    "2": "Bruker Administrasjon",
+    "3": "Brukere",
+    "4": "Rapporterte saker"
+  },
+  "asset-card": {
+    "1": "åpne"
+  },
+  "asset-site": {
+    "1": "Send forespørsel"
+  },
+  "chat": {
+    "1": "Meldinger",
+    "2": "Chats",
+    "3": "Velg en du ønsker å chatte med",
+    "4": "Skriv en melding.."
+  },
+  "friend-all": {
+  "1": "Mine Venner",
+  "2": "Slett som venn?",
+  "3": "Ønsker du å slette denne vennen?",
+  "4": "Ja",
+  "5": "Nei"
+  },
+  "notification": {
+    "1": "Varsler",
+    "2": "Venneforespørsler",
+    "3": "Låneforespørsler"
+  },
+  "changePasswordForm": {
+  "1": "Nåværende passord",
+  "2": "Nytt Passord",
+  "3": "Avbrutt",
+  "4": "Lagre"
+  },
+  "editProfile": {
+    "1": "Rediger Profil Informasjon",
+    "2": "Endre Profilbilde",
+    "3": "VELG BILDE",
+    "4": "Lagre",
+    "5": "Visningsnavn",
+    "6": "Telefon",
+    "7": "Adresse",
+    "8": "Adresse 2",
+    "9": "Postkode",
+    "10": "Sted",
+    "11": "Endre Passord",
+    "12": "Nåværende passord",
+    "13": "Nytt Passord",
+    "14": "Lagre"
+  },
+  "profile": {
+    "1": "Mine Eiendeler"
+  },
+  "ratings": {
+    "1": "Vurderinger",
+    "2": "Vurderinger fått",
+    "3": "Vurderinger gitt"
   }
 }

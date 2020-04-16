@@ -16,12 +16,12 @@ const useStyles = makeStyles(() => ({
 
 
 export default function ConfirmDialog({
-                                          title,
-                                          message,
-                                          onConfirm,
-                                          confirmButtonText = "",
-                                          open
-                                      }) {
+          title,
+          message,
+          onConfirm,
+          confirmButtonText = "",
+          open
+      }) {
     const classes = useStyles();
 
     return (

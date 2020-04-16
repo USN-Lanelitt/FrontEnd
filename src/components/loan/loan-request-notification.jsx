@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => ({
     list: {
         display: 'flex',
         padding: theme.spacing(2),
-
     },
 
     photo: {
@@ -80,7 +79,6 @@ const LoanRequestNotification = (id,firstname, middlename, imageUrl, lastname, a
                         Avslå
                     </Button>
                 </ListItemSecondaryAction>
-
 
             </StyledMenuItem>
             <Divider variant = "inset" component = "li" />

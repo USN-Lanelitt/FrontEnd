@@ -13,6 +13,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CategoryList from "./category-list";
 import StatusMessage from "./status-message";
 import {Redirect} from "react-router";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const NewAsset = () => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [redirect, setRedirect] = React.useState(false);
     const [title, setTitle] = useState("");
@@ -103,13 +105,13 @@ const NewAsset = () => {
                            onClose={setShowStatusMessage}/>
 
             <Card className={classes.card}>
-                <CardHeader title="Legg til eiendel"/>
+                <CardHeader title={t('new-asset.1')}/>
 
                 <CardContent>
                     <Box mb={4} width={1}>
                         <TextField
                             value={title}
-                            label="Tittel"
+                            label={t('new-asset.2')}
                             id="outlined-size-normal"
                             variant="outlined"
                             fullWidth
@@ -122,7 +124,7 @@ const NewAsset = () => {
                             value={description}
                             onChange={(event) => setDescription(event.target.value)}
                             id="outlined-multiline-static"
-                            label="Beskrivelse"
+                            label={t('new-asset.3')}
                             multiline
                             rows="4"
                             variant="outlined"
@@ -149,9 +151,9 @@ const NewAsset = () => {
                                        color: 'white',
                                        padding: "4px 8px 4px 8px",
                                        borderRadius: 4,
-                                       textAlign: "center"    }}
+                                       textAlign: "center" }}
                             >
-                                VELG BILDE
+                                {t('new-asset.4')}
                             </label>
 
                             <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleChange} multiple="false"/>
@@ -165,7 +167,7 @@ const NewAsset = () => {
                                 onChange={e => setIsPublic(e.target.checked)}
                                 name="isPublic"/>
                         }
-                        label="Offentlig"
+                        label={t('new-asset.5')}
 
                     />
                 </CardContent>
@@ -175,7 +177,7 @@ const NewAsset = () => {
                         save();
                     }}
                     >
-                        Opprett
+                        {t('new-asset.6')}
                     </Button>
 
                 </CardActions>

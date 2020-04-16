@@ -8,8 +8,6 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-
-
 //her er det kort med ventende forespørsel/avist - kort
 
 const useStyles = makeStyles(theme => ({

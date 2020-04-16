@@ -7,8 +7,10 @@ import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import TableHead from "@material-ui/core/TableHead";
+import {useTranslation} from "react-i18next";
 
 const List = () => {
+    const { t } = useTranslation();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
     const [users, setUsers] = useState([]);
     const [amount, setAmount] = useState([]);
@@ -54,10 +56,10 @@ return (
         <Table aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <TableCell>Fornavn</TableCell>
-                    <TableCell >Mellomnavn</TableCell>
-                    <TableCell >Etternavn</TableCell>
-                    <TableCell >antall</TableCell>
+                    <TableCell>{t('makeNewList.1')}</TableCell>
+                    <TableCell >{t('makeNewList.2')}</TableCell>
+                    <TableCell >{t('makeNewList.3')}</TableCell>
+                    <TableCell >{t('makeNewList.4')}</TableCell>
                 </TableRow>
             </TableHead>
 

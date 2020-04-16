@@ -10,6 +10,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles({
     card: {
@@ -18,8 +19,8 @@ const useStyles = makeStyles({
 });
 
 const AssetCard = ({asset}) => {
+    const { t } = useTranslation();
     const classes = useStyles();
-
     return (
         <div>
             <Card className={classes.card}>
@@ -45,7 +46,7 @@ const AssetCard = ({asset}) => {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary" component={Link} to="/assetSite">
-                        åpne
+                        {t('asset-card.a')}
                     </Button>
 
                 </CardActions>

@@ -17,6 +17,7 @@ import Divider from "@material-ui/core/Divider";
 import EditIcon from "@material-ui/icons/Edit";
 import {fade, makeStyles} from "@material-ui/core/styles";
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 240;
 
@@ -141,7 +142,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SidePanel() {
-
+    const { t } = useTranslation();
     const [state, setState] = React.useState({
         left: false,
     });
@@ -172,7 +173,7 @@ export default function SidePanel() {
                 aria-labelledby="nested-list-subheader"
                 subheader={
                     <ListSubheader component="div" id="nested-list-subheader">
-                        Snarveier
+                        {t('sidepanel.1')}
                     </ListSubheader>
                 }>
 
@@ -180,55 +181,55 @@ export default function SidePanel() {
                     <ListItemIcon>
                         <HomeIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Hjem"/>
+                    <ListItemText primary={t('sidepanel.2')}/>
                 </ListItem>
 
                 <ListItem button component={Link} to="/Notification">
                     <ListItemIcon>
                         <NotificationsIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Varsel"/>
+                    <ListItemText primary={t('sidepanel.3')}/>
                 </ListItem>
 
                 <ListItem button component={Link} to="/FriendAll">
                     <ListItemIcon>
                         <PeopleIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Venner"/>
+                    <ListItemText primary={t('sidepanel.4')}/>
                 </ListItem>
 
                 <ListItem button component={Link} to="/chat">
                     <ListItemIcon>
                         <EmailIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Meldinger"/>
+                    <ListItemText primary={t('sidepanel.5')}/>
                 </ListItem>
 
                 <ListItem button component={Link} to="/prof">
                     <ListItemIcon>
                         <StorageIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Mine Eiendeler"/>
+                    <ListItemText primary={t('sidepanel.6')}/>
                 </ListItem>
 
                 <ListItem button component={Link} to="/LoanToFriends">
                     <ListItemIcon>
                         <QueryBuilderIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Utlånt Eiendeler"/>
+                    <ListItemText primary={t('sidepanel.7')}/>
                 </ListItem>
 
                 <ListItem button component={Link} to="/LoanAccepted">
                     <ListItemIcon>
                         <ShoppingBasketIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Lånt Eiendeler"/>
+                    <ListItemText primary={t('sidepanel.8')}/>
                 </ListItem>
                 <ListItem button component={Link} to="/Ratings">
                     <ListItemIcon>
                         <ShoppingBasketIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Vurderinger"/>
+                    <ListItemText primary={t('sidepanel.9')}/>
                 </ListItem>
             </List>
             <Divider/>
@@ -237,14 +238,14 @@ export default function SidePanel() {
                     <ListItemIcon>
                         <EditIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Rediger profil"/>
+                    <ListItemText primary={t('sidepanel.10')}/>
                 </ListItem>
 
                 <ListItem button>
                     <ListItemIcon>
                         <ContactSupportIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Kontakt"/>
+                    <ListItemText primary={t('sidepanel.11')}/>
                 </ListItem>
 
             </List>

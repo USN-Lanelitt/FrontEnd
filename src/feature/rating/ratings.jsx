@@ -13,6 +13,7 @@ import Radio from "@material-ui/core/Radio";
 import Box from "@material-ui/core/Box";
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormLabel from "@material-ui/core/FormLabel";
+import {useTranslation} from "react-i18next";
 
 const drawerWidth = 240;
 
@@ -63,10 +64,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
-
-
 export default function Ratings() {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [value, setValue] = React.useState('');
 
@@ -85,14 +84,14 @@ export default function Ratings() {
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Vurderinger
+                            {t('ratings.1')}
                         </Typography>
                     </Container>
                 </div>
                     <FormControl component="fieldset">
                         <RadioGroup row aria-label="position" name="position" defaultValue="fått" value={value} onChange={handleRadioChange}>
-                            <FormControlLabel value="fått" control={<Radio color="primary" />} label="Vurderinger fått" />
-                            <FormControlLabel value="gitt" control={<Radio color="primary" />} label="Vurderinger gitt" />
+                            <FormControlLabel value="fått" control={<Radio color="primary" />} label={t('ratings.2')} />
+                            <FormControlLabel value="gitt" control={<Radio color="primary" />} label={t('ratings.3')} />
                         </RadioGroup>
                     </FormControl>
                 <Container className={classes.cardGrid}>

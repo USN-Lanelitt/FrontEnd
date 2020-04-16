@@ -6,6 +6,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Copyright from "../../components/home/Copyright";
 import MyAssetContainer from "../../components/profile/my-asset-container";
+import {useTranslation} from "react-i18next";
 
 const drawerWidth = 240;
 
@@ -60,6 +61,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Profile() {
+    const { t } = useTranslation();
     const classes = useStyles();
 
     return (
@@ -70,7 +72,7 @@ export default function Profile() {
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Mine Eiendeler
+                            {t('profile.1')}
                         </Typography>
 
                     </Container>
