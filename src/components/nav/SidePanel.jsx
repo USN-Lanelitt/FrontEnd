@@ -18,6 +18,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import {fade, makeStyles} from "@material-ui/core/styles";
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import { useTranslation } from 'react-i18next';
+import StarIcon from "@material-ui/icons/Star";
 
 const drawerWidth = 240;
 
@@ -227,7 +228,7 @@ export default function SidePanel() {
                 </ListItem>
                 <ListItem button component={Link} to="/Ratings">
                     <ListItemIcon>
-                        <ShoppingBasketIcon/>
+                        <StarIcon/>
                     </ListItemIcon>
                     <ListItemText primary={t('sidepanel.9')}/>
                 </ListItem>

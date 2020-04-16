@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -11,6 +11,7 @@ import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import {getRatings} from "../../components/rating/getRating";
 
 const useStyles = makeStyles({
     card: {
@@ -21,6 +22,13 @@ const useStyles = makeStyles({
 const AssetCard = ({asset}) => {
     const { t } = useTranslation();
     const classes = useStyles();
+    const [rating, setRating] = useState(null);
+
+    useEffect(() => {
+        getRatings(asset.id, setRating)
+        console.log(rating);
+    }, []);
+
     return (
         <div>
             <Card className={classes.card}>
@@ -39,8 +47,7 @@ const AssetCard = ({asset}) => {
                             {asset.description}
                         </Typography>
                         <Box component="fieldset" mb={3} borderColor="transparent">
-                            <Typography component="legend">Read only</Typography>
-                            <Rating name="read-only" value={4} readOnly />
+                            <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                         </Box>
                     </CardContent>
                 </CardActionArea>

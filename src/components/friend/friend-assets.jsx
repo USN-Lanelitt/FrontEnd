@@ -1,65 +1,67 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import AssetsList from "../../feature/Assets/assets-list";
 import {makeStyles} from "@material-ui/core/styles";
+import AssetCard from "../../feature/Assets/asset-card";
+import axios from "axios";
+import {useParams} from "react-router";
+import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
-    icon: {
-        marginRight: theme.spacing(2),
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(15, 0, 6)
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4),
-    },
     cardGrid: {
-        paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
     },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardMedia: {
-        paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-        flexGrow: 1,
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
-    },
+
 
 }));
 
 const FriendAssets = () => {
     const classes = useStyles();
+    const [friendassets, setfriendassets] = useState([]);
+    const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const {id} = useParams();
+
+    useEffect(() => {
+        getUserAssets();
+
+    }, []);
+    const getUserAssets = () => {
+        axios.get('/assets/getUsersAssets/' + userId + '/' + id)
+            .then(result => setfriendassets(result.data))
+            .catch(error => console.log(error))
+    }
+
 
     return (
-        <React.Fragment>
-            <Grid>
-                <CssBaseline/>
 
-                <main>
-                    <Container className={classes.cardGrid}>
+        <Container>
+
+            <main>
+                <Container className={classes.cardGrid}>
+                    <Box m={5}>
                         <h3>Lån</h3>
                         <hr/>
-                        <Grid container spacing={12}>
-                            <AssetsList />
-                        </Grid>
+                    </Box>
+                    <Grid container spacing={3} justify="center">
 
+                        {
+                            friendassets.map(asset => (
+                                    <Grid item>
+                                        <AssetCard asset={asset}/>
+                                    </Grid>
+                                )
+                            )
+                        }
 
-                    </Container>
-                </main>
-            </Grid>
-        </React.Fragment>
-    );
+                    </Grid>
+                </Container>
+            </main>
+        </Container>
+
+    )
+        ;
 };
 
 export default FriendAssets;

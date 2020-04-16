@@ -17,13 +17,13 @@ const useStyles = makeStyles(theme => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(15, 0, 6)
+    padding: theme.spacing(5, 0, 4)
   },
   heroButtons: {
     marginTop: theme.spacing(4),
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
+
     paddingBottom: theme.spacing(8),
   },
   card: {
@@ -57,11 +57,8 @@ export default function Home() {
         <main>
           <div className={classes.heroContent}>
             <Container maxWidth="sm">
-              <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+              <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
                 Lånelitt
-              </Typography>
-              <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                {t('home.3')}
               </Typography>
             </Container>
           </div>

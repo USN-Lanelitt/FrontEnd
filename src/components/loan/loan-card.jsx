@@ -15,9 +15,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        maxWidth: 645,
-
+        maxWidth: 470,
     },
     top: {
         display: 'flex',
@@ -26,6 +24,16 @@ const useStyles = makeStyles(theme => ({
     },
     status: {
         padding: theme.spacing(0.5),
+
+
+    },
+    image: {
+        width: "60%",
+        height: 200,
+        marginRight: theme.spacing(2),
+    },
+    button: {
+        color: 'green',           
 
     }
 }));
@@ -38,38 +46,46 @@ const LoanCard = ({firstname, middlename, lastname, assetname, description, asse
             <CardContent>
                 <Grid className={classes.top}>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {firstname}{middlename}{lastname}
+                        {firstname} {middlename} {lastname}
                     </Typography>
 
-                    <Box className={classes.status} border={1} display="flex" justifyContent="center">
-                        <Button size="small" color="primary">
+                    <Box className={classes.status} display="flex" justifyContent="center" flexDirection="row">
+                        <Button className={classes.button}size="small" color="primary">
                             {loanStatus}
                         </Button>
                     </Box>
-
                 </Grid>
-                <CardMedia
-                    component="img"
-                    alt="bilde"
-                    height="200"
-                    width="300"
-                />
-                {assetImages}
-                <Typography gutterBottom variant="h5" component="h2">
-                    {assetname}
 
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {description}
+                <Box display="-webkit-inline-box" flexDirection="row">
+                    <CardMedia className={classes.image}
+                               component="img"
+                               alt="bilde"
+                               height="200"
+                               image={'https://source.unsplash.com/random'}
+                    />
 
-                </Typography>
-                <Box>
-                    <Typography gutterBottom variant="subtitle1" component="h2">
-                        {selectedDate} - {selectedDate2}
+                    <Box display="flex" flexDirection="column" margin="auto">
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {assetname}
+                        </Typography>
 
-                    </Typography>
+                        <Typography variant="subtitle1" color="textSecondary" component="p">
+                            {description}
+
+                        </Typography>
+                        <Box display="flex" flexDirection="column" paddingTop="90px">
+                            <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h6">
+                                Dato for lån:
+                            </Typography>
+                            <Typography gutterBottom variant="body2" color="textPrimary" component="body1"
+                                        flexDirection="row">
+                                {selectedDate} - {selectedDate2}
+                            </Typography>
+                        </Box>
+                    </Box>
                 </Box>
             </CardContent>
+
         </Card>
     );
 };

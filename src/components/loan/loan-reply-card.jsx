@@ -9,16 +9,14 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
-
-
 //her er det kort med ventende forespørsel/avist - kort
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(10),
+
         display: 'flex',
         flexDirection: 'row',
-        maxwidt: 635,
+        maxWidth: 470,
     },
     top: {
         display: 'flex',
@@ -49,12 +47,12 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
             <CardContent>
                 <Grid className={classes.top}>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {firstname}{middlename}{lastname}
+                        {firstname} {middlename} {lastname}
                     </Typography>
 
-                    <Box className={classes.status} border={1} display="flex" justifyContent="center">
-                        <Button size="small" color="primary">
-                            {loanStatus}
+                    <Box className={classes.status} display="flex" justifyContent="center">
+                        <Button size="small" color="grey">
+                            Venter
                         </Button>
                     </Box>
 
@@ -63,7 +61,6 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     component="img"
                     alt="bilde"
                     height="200"
-                    width="300"
                     image={"https://source.unsplash.com/random"}
                 />
 
@@ -76,7 +73,7 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
 
                 </Typography>
                 <Box>
-                    <Typography gutterBottom variant="subtitle1" component="h2">
+                    <Typography gutterBottom variant="subtitle1" component="h2" paddingTop="10px">
                         {selectedDate} - {selectedDate2}
 
                     </Typography>
@@ -84,7 +81,7 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     <Button onClick= {onAccept} size="small" color="primary">
                         Godta
                     </Button>
-                    <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">
+                    <Button className={classes.Button} onClick={onDenied} size="small" color="primary">
                         Avslå
                     </Button>
             </CardContent>

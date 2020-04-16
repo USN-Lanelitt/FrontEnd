@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AssetsList from "./assets-list";
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -9,59 +9,50 @@ import TextField from "@material-ui/core/TextField";
 import HomeMenu from "../../components/home/home-menu";
 import Copyright from "../../components/home/Copyright";
 import {useParams} from "react-router";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles(theme => ({
-    icon: {
-        marginRight: theme.spacing(2),
-    },
     heroContent: {
         backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(15, 0, 6)
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4),
+        padding: theme.spacing(5, 0, 4)
     },
     cardGrid: {
-        paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
     },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardMedia: {
-        paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-        flexGrow: 1,
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
-    },
+
 }));
 
 
 const AssetContainer = () => {
     const classes = useStyles();
     const {id} = useParams();
+    const [categoryId, setCategoriId] = useState([]);
+
 
     return (
-        <React.Fragment>
+        <div>
+            <div className={classes.heroContent}>
+                <Container>
+                    <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
+                        {categoryId}
+                        Kategorinavn
+                    </Typography>
+                </Container>
+            </div>
             <CssBaseline />
             <main>
                 <Container className={classes.cardGrid}>
 
-                    <h3>Placeholder</h3>
+                   <Box m={5}>
                     <hr/>
-                    <Grid container spacing={12}>
+                   </Box>
+                    <Grid >
                         <AssetsList categoryId={id}/>
                     </Grid>
                 </Container>
             </main>
+</div>
 
-        </React.Fragment>
     );
 };
 
