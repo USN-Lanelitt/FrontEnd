@@ -9,6 +9,7 @@ import app from "../../fire";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessage from "../../components/chat/send-message";
 import getFriend from "../../components/friend/friend-profile";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({

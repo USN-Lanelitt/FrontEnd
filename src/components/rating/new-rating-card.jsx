@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2}) => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [value, setValue] = React.useState(0);
