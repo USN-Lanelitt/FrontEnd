@@ -42,7 +42,7 @@ const LoanRequestSend = () => {
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
+        axios.post(sessionStorage.getItem('API_URL')+'/users/writeMessage/' + userId + '/' + userId2, {
             message: message
         })
             .then(result => {
@@ -53,7 +53,7 @@ const LoanRequestSend = () => {
 
     function sendRequest() {
         console.log("sendRequest", sessionStorage.getItem('userId'));
-        axios.post('/user/'+userId+'/asset/'+assetId+'/request' , {
+        axios.post(sessionStorage.getItem('API_URL')+'/user/'+userId+'/asset/'+assetId+'/request' , {
             startDate: selectedDate,
             endDate: selectedDate2
         }).then((response) => {
