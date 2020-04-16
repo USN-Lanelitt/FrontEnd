@@ -1,26 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
-import RatingCard from "./rating-card";
+import ReceivedRatingsCard from "./received-ratings-card";
+import NewRatingCard from "./new-rating-card";
 
-const useStyles = makeStyles(theme => ({
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6),
-    },
-}));
-
-const RatingList = () => {
-    const classes = useStyles();
+const NewRatingsList = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        console.log("ratingAcceptedLoans", userId, sessionStorage.getItem('userId'));
-        axios.get('/user/'+userId+'/loanAccepted')
+        console.log("unratedLoans", sessionStorage.getItem('userId'));
+        axios.get('/unratedLoans/'+userId)
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
@@ -30,14 +20,14 @@ const RatingList = () => {
             .catch(e => console.log(e));
     }, [setData, userId]);
 
-
     return (
         <React.Fragment>
             <Grid container spacing={3} justify="center">
                 {
                     data.map(loan => (
                             <Grid item key={loan.id}>
-                                <RatingCard
+                                <NewRatingCard
+                                    loanId={loan.id}
                                     firstname={loan.assets.users.firstName}
                                     middlename={loan.assets.users.middleName}
                                     lastname={loan.assets.users.lastName}
@@ -55,4 +45,4 @@ const RatingList = () => {
     );
 };
 
-export default RatingList;
+export default NewRatingsList;

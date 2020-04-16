@@ -47,10 +47,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const RatingCard = ({firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2}) => {
+const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2}) => {
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(0);
     const { value:newRating, bind:bindNewRating} = useInput('');
     const { value:comment, bind:bindComment } = useInput('');
 
@@ -66,18 +66,18 @@ const RatingCard = ({firstname, middlename, lastname, assetId, assetname, select
             })
                 .catch(e => console.log(e));
         }*/
-    function setRating(userId, assetId, newRating) {
-        console.log("rateAsset", userId, sessionStorage.getItem('userId'));
-        axios.post('/assets/'+assetId+'/rateAsset/'+userId+'/'+newRating)
+    function setRating(userId, newRating) {
+        console.log("rateAsset", sessionStorage.getItem('userId'));
+        axios.post('/assets/'+loanId+'/rateAsset/'+userId+'/'+newRating)
             .then(result => {
                 console.log(result.data);
             })
             .catch(e => console.log(e));
     }
-    const handleSubmit = (event) => {
+    /* const handleSubmit = (event) => {
         event.preventDefault();
         alert(`Ønsker du å lagre vurderingen på ${assetname}?`);
-    };
+    };*/
 
     return (
         <div>
@@ -116,7 +116,7 @@ const RatingCard = ({firstname, middlename, lastname, assetId, assetname, select
                                     />
                                 </Box>
                             </Box>
-                            <form className={classes.form}  onSubmit={handleSubmit}>
+                            <form className={classes.form} >
                                 <textarea
                                     className={classes.textarea}
                                     {...bindComment} />
@@ -125,12 +125,12 @@ const RatingCard = ({firstname, middlename, lastname, assetId, assetname, select
                                     type="submit"
                                     color="primary"
                                     className={classes.submit}
-                                    InputProps={{
+                                    inputprops={{
                                         classes: {
                                             input: classes.resize,
                                         },
                                     }}
-                                    onClick={() => setRating(userId, assetId, value)}
+                                    onClick={() => setRating(userId, value)}
                                 >
                                     Lagre
                                 </Button>
@@ -143,4 +143,4 @@ const RatingCard = ({firstname, middlename, lastname, assetId, assetname, select
     );
 };
 
-export default RatingCard;
+export default NewRatingCard;
