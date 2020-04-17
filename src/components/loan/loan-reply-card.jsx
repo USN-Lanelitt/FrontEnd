@@ -9,8 +9,6 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
-
-
 //her er det kort med ventende forespørsel/avist - kort
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +25,6 @@ const useStyles = makeStyles(theme => ({
     },
     status: {
         padding: theme.spacing(0.5),
-
     },
 
     Button: {
@@ -66,7 +63,6 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     height="200"
                     image={"https://source.unsplash.com/random"}
                 />
-
 
                 <Typography gutterBottom variant="h5" component="h2">
                     {assetname}

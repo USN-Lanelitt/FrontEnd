@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import React, {useEffect} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LogDropdown = () => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [levels, setLevels] = React.useState('');
     const [selectedLevel, setSelectedLevel] = React.useState('');
@@ -61,7 +63,7 @@ const LogDropdown = () => {
     return (
         <div>
             <FormControl className={classes.formControl}>
-                <InputLabel id="demo-controlled-open-select-label">Loggnivå</InputLabel>
+                <InputLabel id="demo-controlled-open-select-label">{t('log-dropdown.1')}</InputLabel>
                 <Select
                     labelId="demo-controlled-open-select-label"
                     id="demo-controlled-open-select"

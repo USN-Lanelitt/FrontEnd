@@ -83,12 +83,12 @@ const SearchFriends = () => {
                 getOptionLabel={option => option.firstName}
                 style={{width: 210}}
                 renderInput={params => <TextField   {...params}
-                                                    classes={{
-                                                        root: classes.inputRoot,
-                                                        input: classes.inputInput,
-                                                    }}
-                                                  label={t('nav.1')}
-                                                  variant="filled"/>}
+                classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                }}
+                label={t('nav.1')}
+                variant="filled"/>}
             />
             </div>
 

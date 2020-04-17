@@ -30,6 +30,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import HandleImageUpload from "../../components/profile/handle-image-upload";
 import ProfileImageUpload from "./profile-image-upload";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
@@ -117,6 +118,7 @@ const DialogTitle = withStyles(styles)(props => {
 const user = app.auth().currentUser;
 
 const EditProfile = ({history}) => {
+    const { t } = useTranslation();
     const handleUpdate = useCallback(async event => {
         event.preventDefault();
         let credential;
@@ -193,13 +195,6 @@ const EditProfile = ({history}) => {
         event.preventDefault();
     };
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-12-31'));
-
-    const handleDateChange = date => {
-        setSelectedDate(date);
-        console.log(selectedDate);
-    };
-
     const [file, setFile] = useState({ preview: null, raw: null })
 
     const handleImageChange = (e) => {
@@ -218,7 +213,7 @@ const EditProfile = ({history}) => {
                     <EditTwoToneIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Rediger Profil Informasjon
+                    {t('editProfile.1')}
                 </Typography>
 
                 <form onSubmit={handleUpdate} className={classes.form} noValidate>
@@ -233,12 +228,11 @@ const EditProfile = ({history}) => {
                                 </IconButton>
                                 <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                                        Endre Profilbilde
+                                        {t('editProfile.2')}
                                     </DialogTitle>
                                     <DialogContent dividers>
                                         <Box display="flex" justifyContent="space-between" alignItems="flex-end" flexDirection="row"  className={classes.imageBox}>
                                             <Box className={classes.media}
-
                                             >
                                                 {
                                                     file.preview ?
@@ -257,7 +251,7 @@ const EditProfile = ({history}) => {
                                                            borderRadius: 4,
                                                            textAlign: "center"    }}
                                                 >
-                                                    VELG BILDE
+                                                    {t('editProfile.3')}
                                                 </label>
                                                 <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleImageChange} />
                                             </div>
@@ -266,7 +260,7 @@ const EditProfile = ({history}) => {
                                   
                                     <DialogActions>
                                         <Button autoFocus onClick={()=>{handleClose(); ProfileImageUpload(file);}} color="primary">
-                                            Lagre
+                                            {t('editProfile.4')}
                                         </Button>
                                     </DialogActions>
                                 </Dialog>
@@ -278,7 +272,7 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 autoFocus
                                 id="nickname"
-                                label="Visningsnavn"
+                                label={t('editProfile.5')}
                                 value={sessionStorage.getItem('nickname')}
                             />
                         </Grid>
@@ -287,7 +281,7 @@ const EditProfile = ({history}) => {
                                 name="phone"
                                 fullWidth
                                 id="phone"
-                                label="Telefon"
+                                label={t('editProfile.6')}
                                 value={sessionStorage.getItem('phone')}
                             />
                         </Grid>
@@ -297,7 +291,7 @@ const EditProfile = ({history}) => {
                                 required
                                 fullWidth
                                 id="sAddress"
-                                label="Adresse"
+                                label={t('editProfile.7')}
                                 value={sessionStorage.getItem('address')}
 
                             />
@@ -308,7 +302,7 @@ const EditProfile = ({history}) => {
                                 required
                                 fullWidth
                                 id="sAddress2"
-                                label="Adresse 2"
+                                label={t('editProfile.8')}
                                 value={sessionStorage.getItem('address2')}
                             />
                         </Grid>
@@ -318,7 +312,7 @@ const EditProfile = ({history}) => {
                                 required
                                 fullWidth
                                 id="iZipcode"
-                                label="Postkode"
+                                label={t('editProfile.9')}
                                 value={sessionStorage.getItem('zipcode')}
                             />
                         </Grid>
@@ -328,7 +322,7 @@ const EditProfile = ({history}) => {
                                 required
                                 fullWidth
                                 id="sCity"
-                                label="By"
+                                label={t('editProfile.10')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -350,23 +344,25 @@ const EditProfile = ({history}) => {
             </div>
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">
-                    Endre Passord
+                    {t('editProfile.11')}
                 </Typography>
 
+                {/*Midlertidig slått av for videreutvikling. Grunnet: Kjent feil med Firebase kode kobling. Mail sendt til Firebase support*/}
                 <form onSubmit={handleUpdate} className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <FormControl className={clsx(classes.margin, classes.textField)}
                                          fullWidth>
-                                <InputLabel htmlFor="outlined-adornment-password" required>Nåværende
-                                    passord</InputLabel>
+                                <InputLabel htmlFor="outlined-adornment-password" required>{t('editProfile.12')}</InputLabel>
                                 <Input
                                     name="currentPassword"
                                     id="currentPassword"
+                                    disabled
                                     type={values.showCurrentPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
+                                                disabled
                                                 aria-label="toggle password visibility"
                                                 onClick={handleClickShowCurrentPassword}
                                                 onMouseDown={handleMouseDownPassword}
@@ -384,16 +380,18 @@ const EditProfile = ({history}) => {
                         <Grid item xs={12}>
                             <FormControl className={clsx(classes.margin, classes.textField)}
                                          fullWidth>
-                                <InputLabel htmlFor="outlined-adornment-password" required>Ny Passord</InputLabel>
+                                <InputLabel htmlFor="outlined-adornment-password" required>{t('editProfile.13')}</InputLabel>
                                 <Input
                                     name="newPassword"
                                     id="newPassword"
+                                    disabled
                                     type={values.showNewPassword ? 'text' : 'password'}
                                     value={values.password}
                                     onChange={handleChange('password')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
+                                                disabled
                                                 aria-label="toggle password visibility"
                                                 onClick={handleClickShowNewPassword}
                                                 onMouseDown={handleMouseDownPassword}
@@ -410,11 +408,12 @@ const EditProfile = ({history}) => {
 
                         <Grid item xs={12}>
                             <Button
+                                disabled
                                 type="submit"
                                 fullWidth
                                 variant="contained"
                                 color="primary"
-                            >Lagre
+                            >{t('editProfile.14')}
                             </Button>
                         </Grid>
                     </Grid>

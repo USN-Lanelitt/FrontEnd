@@ -18,17 +18,15 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
+import LanguageIcon from '@material-ui/icons/Language';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import Logout from "../login/logout";
 import app from "../../fire";
 import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
-
 import { useTranslation } from 'react-i18next';
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
+
 
 const drawerWidth = 240;
 
@@ -134,10 +132,17 @@ const useStyles = makeStyles(theme => ({
 export default function NavBar(props) {
 
     const { t, i18n } = useTranslation();
-
-    function handleClick(lang) {
+    const [selectedLang, setSelectedLang] = useState(false);
+    function handleLanguageNO(lang) {
         i18n.changeLanguage(lang);
+        setSelectedLang(false);
     }
+
+    function handleLanguageEN(lang) {
+        i18n.changeLanguage(lang);
+        setSelectedLang(true);
+    }
+
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -296,8 +301,19 @@ export default function NavBar(props) {
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
 
+                        {/*----------Språk Icon i Navbar Icon knapp--------------*/}
+                        {selectedLang ?
+                            <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent', fontSize: 'small'}} onClick={()=>handleLanguageNO('no')}>
+                                <LanguageIcon/>
+                            NO
+                        </IconButton> :
+                            <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent', fontSize: 'small'}} onClick={()=>handleLanguageEN('en')}>
+                                <LanguageIcon/>
+                                EN
+                        </IconButton>}
+
                         {loggedIn && (<div>
-                            {/*----------Varsel Icon knapp--------------*/}
+                            {/*----------Notification Icon knapp--------------*/}
                             <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent'}}>
                                 <NotificationList/>
                             </IconButton>

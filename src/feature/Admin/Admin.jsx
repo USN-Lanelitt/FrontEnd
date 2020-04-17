@@ -9,6 +9,7 @@ import AmountTable from "../../components/admin/amount-table";
 import AdminTable from "../../components/admin/admin-table";
 import ReportList from "../../components/admin/report-list";
 import LogDropdown from "../../components/admin/log-dropdown";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
@@ -33,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Admin() {
+    const { t } = useTranslation();
     const classes = useStyles();
 
     return (
@@ -42,16 +44,16 @@ export default function Admin() {
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Administrator
+                            {t('admin.1')}
                         </Typography>
                         <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                            Bruker Administrasjon
+                            {t('admin.2')}
                         </Typography>
                     </Container>
                 </div>
 
                 <Container className={classes.cardGrid} >
-                    <h3>Brukerliste</h3>
+                    <h3>{t('admin.3')}</h3>
                     <hr/>
                     <Grid item xs={12}>
                         <AmountTable/>
@@ -59,7 +61,7 @@ export default function Admin() {
                     </Grid>
 
                     <Grid className={classes.reportBox} item xs={12}>
-                    <h3>Rapporterte saker</h3>
+                    <h3>{t('admin.4')}</h3>
                     <hr/>
                     <ReportList/>
                     </Grid>

@@ -1,11 +1,13 @@
 import axios from "axios";
 
 
-export default function setRating(userId, assetId, newRating) {
-    console.log("getChat", userId, sessionStorage.getItem('userId'));
-    axios.get('/assets/'+assetId+'/rateAsset/'+userId+'/'+newRating)
+export default function setRating(userId, loanId, newRating, comment) {
+    console.log("rateAsset", sessionStorage.getItem('userId'));
+    axios.post(sessionStorage.getItem('API_URL')+'/assets/'+loanId+'/rateAsset/'+userId+'/'+newRating, {
+        comment:comment
+        })
         .then(result => {
             console.log(result.data);
         })
         .catch(e => console.log(e));
-};
+}

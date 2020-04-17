@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import ChatWindow from "../../components/chat/chat-window";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
@@ -58,6 +59,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Chat() {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
     const [userId2, setUserId2] = useState([]);
@@ -67,7 +69,7 @@ export default function Chat() {
 
     useEffect(() => {
         console.log("getChatUsers", userId, sessionStorage.getItem('userId'));
-        axios.get('/users/getChats/' + userId)
+        axios.get(sessionStorage.getItem('API_URL')+'/users/getChats/' + userId)
             .then(result => {
                 console.log(result.data);
                 setChatUsers(result.data);
@@ -77,7 +79,7 @@ export default function Chat() {
 
     function showChat(userId2) {
         console.log("getChat", userId, sessionStorage.getItem('userId'));
-        axios.get('/users/chat/' + userId + '/' + userId2)
+        axios.get(sessionStorage.getItem('API_URL')+'/users/chat/' + userId + '/' + userId2)
             .then(result => {
                 console.log(result.data);
                 setSelectedChat(result.data);
@@ -87,7 +89,7 @@ export default function Chat() {
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
+        axios.post(sessionStorage.getItem('API_URL')+'/users/writeMessage/' + userId + '/' + userId2, {
             message: message
         })
             .then(result => {
@@ -107,14 +109,12 @@ export default function Chat() {
         console.log(textValue);
     };
 
-
     return (
-
         <React.Fragment>
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        Meldinger
+                        {t('chat.1')}
                     </Typography>
                 </Container>
             </div>
@@ -122,7 +122,7 @@ export default function Chat() {
                 <Paper className={classes.chat}>
                     <div style={{borderBottom: '1px solid grey', padding: '10px'}}>
                         <Typography variant="h5" component="h5">
-                            Chats
+                            {t('chat.2')}
                         </Typography>
                     </div>
 
@@ -150,8 +150,6 @@ export default function Chat() {
                                                     </Box>
 
                                                 </div>
-
-
                                             </ListItem>
                                         </Box>
                                     ))
@@ -164,7 +162,7 @@ export default function Chat() {
                                 {selectedChat ?
                                     <ChatWindow selectedChat={selectedChat}/> :
                                     <Typography component="h4" variant="h5" align="center" style={{color: 'grey'}}>
-                                        Velg en du ønsker å chatte med
+                                        {t('chat.3')}
                                     </Typography>
                                 }
                             </div>
@@ -172,7 +170,7 @@ export default function Chat() {
                                 <div style={{borderTop: '1px solid grey'}} className={classes.chatBox}>
                                     <TextField
                                         id="outlined-basic"
-                                        label="Skriv en melding.."
+                                        label={t('chat.4')}
                                         variant="outlined"
                                         className={classes.textField}
                                         value={textValue}

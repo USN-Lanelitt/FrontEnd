@@ -9,9 +9,11 @@ import TableBody from "@material-ui/core/TableBody";
 import Button from "@material-ui/core/Button";
 import ConfirmDialog from "../user/confirm-dialog";
 import {Visibility} from "@material-ui/icons";
+import {useTranslation} from "react-i18next";
 
 
 const ReportTable = ({reports}) => {
+    const { t } = useTranslation();
     const [title, setTitle] = React.useState(false);
     const [text, setText] = React.useState(false);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -34,12 +36,12 @@ const ReportTable = ({reports}) => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Actions</TableCell>
-                        <TableCell>Id</TableCell>
-                        <TableCell>Fra bruker</TableCell>
-                        <TableCell>Om bruker</TableCell>
-                        <TableCell>Emne</TableCell>
-                        <TableCell>Tidspunkt</TableCell>
+                        <TableCell>{t('report-table.1')}</TableCell>
+                        <TableCell>{t('report-table.2')}</TableCell>
+                        <TableCell>{t('report-table.3')}</TableCell>
+                        <TableCell>{t('report-table.4')}</TableCell>
+                        <TableCell>{t('report-table.5')}</TableCell>
+                        <TableCell>{t('report-table.6')}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -57,7 +59,6 @@ const ReportTable = ({reports}) => {
                                 <TableCell>
                                     <ConfirmDialog
                                         title={title}
-
                                         message={text}
                                         onConfirm={onClose}
                                         confirmButtonText="Lukk"

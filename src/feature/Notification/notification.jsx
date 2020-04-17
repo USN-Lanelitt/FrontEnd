@@ -9,6 +9,7 @@ import axios from "axios";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import LoanRequests from "../../components/loan/loan-requests";
 import {notificationRefresh} from "./notification-refresh";
+import {useTranslation} from "react-i18next";
 
 
 //siden på mobil, (en hel side)
@@ -29,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Notification = () => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
@@ -68,24 +70,21 @@ const Notification = () => {
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        Varsler
+                        {t('notification.1')}
                     </Typography>
                 </Container>
             </div>
             <Container>
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
-                    Venneforespørsler
+                    {t('notification.2')}
                     <Divider/>
                 </Typography>
             </Container>
 
             <Container>
-
-
                 <Grid container spacing={4}>
                     {data.map(item => (
                         <Grid item key={item}>
-
                             <FriendRequestCard
                                 id={item.user1.id}
                                 firstname={item.user1.firstName}
@@ -104,16 +103,11 @@ const Notification = () => {
 
             <Container >
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
-
-                    Låneforespørsler
+                    {t('notification.3')}
                     <Divider/>
                 </Typography>
-
                 <LoanRequests/>
-
             </Container>
-
-
         </React.Fragment>
     );
 };

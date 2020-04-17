@@ -10,7 +10,6 @@ import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import {getRatings} from "../rating/getRating";
 
-
 //her er det kort med ventende forespørsel/avist - kort
 
 const useStyles = makeStyles(theme => ({

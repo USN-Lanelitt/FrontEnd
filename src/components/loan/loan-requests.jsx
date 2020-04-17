@@ -8,20 +8,16 @@ import FriendRequest from "../friend/friend-request";
 import ConfirmDialog from "../profile/confirm-dialog";
 import {notificationRefresh, notificationRefresh1} from "../../feature/Notification/notification-refresh";
 
-
 //her er den listen i notification
 
 let statuss = 0;
 let statusTittel = "";
 let statusBesk = "";
 
-
-
 const LoanRequests = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
     const [loanId, setLoanId] = useState(null);
-
 
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
@@ -36,7 +32,6 @@ const LoanRequests = () => {
             .catch(e => console.log(e));
     }, [setData, userId]);
 
-
     function ReplyLoan (loanId,statuss) {
         console.log("", userId, sessionStorage.getItem('userId'));
         axios.post(sessionStorage.getItem('API_URL')+'/user/'+userId+'/loanRequest/'+loanId+'/'+statuss)
@@ -45,10 +40,8 @@ const LoanRequests = () => {
                 if (response.status === 200) {
                     console.log(response.data);
                 }
-
             })
             .catch(e => console.log(e));
-
     }
     return (
         <Grid container spacing={4}>
@@ -65,10 +58,7 @@ const LoanRequests = () => {
                         onDenied={() => ReplyLoan(user.id,2)}
                         onAccept={() => ReplyLoan(user.id,1)}
                         refresh={() => notificationRefresh1(userId, setData)}
-
-
                     />
-
                 </Grid>
             ))}
         </Grid>

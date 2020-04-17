@@ -2,9 +2,12 @@ import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from "axios";
 import editUser from "./edit-user";
+import { useTranslation } from 'react-i18next';
 
 const AdminTable = () => {
     let list = [];
+    const { t } = useTranslation();
+
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
     const [users, setUsers] = useState([]);
         useEffect(()=> {
@@ -40,7 +43,7 @@ const AdminTable = () => {
     return (
         <div >
             <MaterialTable
-                title="Administrere brukere"
+                title={t('admin-table.10')}
                 columns={state.columns}
                 data={users}
                 editable={{

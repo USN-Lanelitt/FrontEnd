@@ -27,7 +27,7 @@ export default function BrukerVilkar() {
   return (
       <div>
         <Typography variant="outlined" color="primary" onClick={handleClickOpen}>
-          {t('register.11')}
+          {t('termsandconditions.1')}
         </Typography>
         <Dialog
             fullScreen={fullScreen}
@@ -74,10 +74,10 @@ export default function BrukerVilkar() {
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose} color="primary">
-              Ikke godta
+              {t('termsandconditions.2')}
             </Button>
             <Button onClick={handleClose} color="primary" autoFocus>
-              Godta
+              {t('termsandconditions.3')}
             </Button>
           </DialogActions>
         </Dialog>
