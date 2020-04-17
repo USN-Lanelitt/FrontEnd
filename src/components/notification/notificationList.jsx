@@ -122,7 +122,7 @@ const NotificationList = () => {
 
                                 {data && <FriendRequestList data={data}/>}
 
-                                      <FriendRequestList/>
+
                                       <LoanGetAcceptedRequests/>
                                       <LoanGetDeniedRequests/>
 
