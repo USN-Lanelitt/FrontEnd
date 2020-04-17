@@ -33,7 +33,6 @@ const Scaffold = () => {
         <main>
             <Nav />
             <Box p={extraSmallScreen ? 1 : 3} mt={12}>
-
                 <Routes/>
             </Box>
         </main>
