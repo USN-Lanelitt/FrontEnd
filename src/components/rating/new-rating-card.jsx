@@ -89,7 +89,6 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                             </Box>
                             <form className={classes.form} >
                                 <textarea
-                                    inputStyle={{ fontSize: '1.5rem' }}
                                     className={classes.textarea}
                                     {...bindComment} />
 
