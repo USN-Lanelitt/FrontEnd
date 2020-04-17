@@ -6,9 +6,8 @@ import axios from "axios";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {fade} from "@material-ui/core";
 import {Link} from "react-router-dom";
-import CardActionArea from "@material-ui/core/CardActionArea";
 
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,10 +54,16 @@ const useStyles = makeStyles((theme) => ({
 const SearchFriends = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
+    const [dataFilterd, setDataFilterd] = useState([]);
     const [search, setSearch] = useState();
     const classes = useStyles();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
+    const handleChange = (event) => {
+        setSearch(event.target.value);
+        setDataFilterd(data.filter((user) => user.firstName.includes(search)));
+        console.log('search', data.filter((user) => user && user.firstName.includes(event.target.value)))
+    }
     useEffect(() => {
         console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
         axios.get('/users')
@@ -70,26 +75,28 @@ const SearchFriends = () => {
                 }
             })
             .catch(e => console.log(e));
-    }, [setData, userId]);
+    }, []);
 
 
     return (
         <Box m={2} display="flex" alignItems="center" flexDirection="column">
             <div className={classes.search}>
 
-            <Autocomplete component = {Link} to="/FriendProfile"
-                id="combo-box-demo"
-                options={data}
-                getOptionLabel={option => option.firstName}
-                style={{width: 210}}
-                renderInput={params => <TextField   {...params}
-                classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                }}
-                label={t('nav.1')}
-                variant="filled"/>}
-            />
+                <Autocomplete component={Link} to="/FriendProfile"
+                              id="combo-box-demo"
+                              options={dataFilterd}
+                              getOptionLabel={option => option && option.firstName}
+                              style={{width: 210}}
+                              filterOptions={(x) => x}
+                              renderInput={params => <TextField   {...params}
+                                                                  classes={{
+                                                                      root: classes.inputRoot,
+                                                                      input: classes.inputInput,
+                                                                  }}
+                                                                  label={t('nav.1')}
+                                                                  variant="filled"
+                                                                  onChange={handleChange}/>}
+                />
             </div>
 
         </Box>
