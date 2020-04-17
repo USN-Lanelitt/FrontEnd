@@ -9,25 +9,27 @@ let statuss = 0;
 let statusTittel = "";
 let statusBesk = "";
 
-const FriendRequestList = () => {
+const FriendRequestList = ({data}) => {
 
-    const [data, setData] = useState([]);
+    //const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
 
-    useEffect(() => {
-        console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
-        axios.get('/user/' + userId + '/friendRequests')
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log(response);
-                    setData(response.data);
-                }
-            })
-            .catch(e => console.log(e));
-    }, [setData, userId]);
+
+    // useEffect(() => {
+    //     console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
+    //     axios.get('/user/' + userId + '/friendRequests')
+    //         .then((response) => {
+    //             if (response.status === 200) {
+    //                 console.log(response);
+    //                 setData(response.data);
+    //             }
+    //         })
+    //         .catch(e => console.log(e));
+    // }, [setData, userId]);
+
 
     const accept = (friendId) => {
         setShowConfirmDialog(true);
@@ -73,7 +75,7 @@ const FriendRequestList = () => {
                            notConfirmButtonText="Nei"
                            open={showConfirmDialog}
             />
-           
+
             {data.map(item => (
                 <Grid item key={item.user1.id} xs={12}>
 

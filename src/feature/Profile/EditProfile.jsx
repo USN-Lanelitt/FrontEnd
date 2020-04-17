@@ -257,7 +257,7 @@ const EditProfile = ({history}) => {
                                             </div>
                                         </Box>
                                     </DialogContent>
-                                  
+
                                     <DialogActions>
                                         <Button autoFocus onClick={()=>{handleClose(); ProfileImageUpload(file);}} color="primary">
                                             {t('editProfile.4')}

@@ -3,6 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles(theme => ({
     textBox: {
@@ -33,7 +34,7 @@ function ChatWindow ({selectedChat}) {
     const classes = useStyles();
 
     return (
-        <div >
+        <Box height={1} >
             <List>
                 {
                     selectedChat.map((chat) => (
@@ -53,7 +54,7 @@ function ChatWindow ({selectedChat}) {
                     ))
                 }
             </List>
-        </div>
+        </Box>
     )
 }
 
