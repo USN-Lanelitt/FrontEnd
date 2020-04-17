@@ -12,7 +12,7 @@ const AssetsList = ({categoryId}) => {
     }, []);
 
     const getAssetsByCategory = () => {
-        axios.get(sessionStorage.getItem('API_URL')+"/assets/getAssetType/" + sessionStorage.getItem("userId") + "/" + categoryId)
+        axios.get("/assets/getAssetType/" + sessionStorage.getItem("userId") + "/" + categoryId)
             .then(result => setAssetByCategory(result.data))
             .catch(error => console.log(error))
 

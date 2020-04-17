@@ -66,7 +66,7 @@ const SignUp = ({history}) => {
         }
         else {
             let iCode = 0;
-            axios.post(sessionStorage.getItem('API_URL')+'/api/register', {
+            axios.post('/api/register', {
                 firstname: firstname.value,
                 middlename: middlename.value,
                 lastname: lastname.value,

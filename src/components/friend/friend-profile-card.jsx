@@ -80,7 +80,7 @@ const FriendProfileCard = ({userId2, firstname, middlename, lastname, imageUrl})
 
     useEffect(() => {
         console.log("getUsers", sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/user/'+userId+'/'+ userId2)
+        axios.get('/user/'+userId+'/'+ userId2)
             .then(result => {
                 console.log(result.data);
                 setFriendStatus(result.data);

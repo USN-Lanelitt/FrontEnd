@@ -13,7 +13,7 @@ const CategoryList = ({onChange, categoryId}) => {
     const [labelWidth, setLabelWidth] = React.useState(0);
 
     const getCategories = () => {
-        axios.get(sessionStorage.getItem('API_URL')+"/assets/AllTypes")
+        axios.get("/assets/AllTypes")
             .then(result => {
                 setCategories(result.data);
                 console.log(result.data);

@@ -12,7 +12,7 @@ const AdminTable = () => {
     const [users, setUsers] = useState([]);
         useEffect(()=> {
             console.log("admin", sessionStorage.getItem('userId'));
-            axios.get(sessionStorage.getItem('API_URL')+'/users')
+            axios.get('/users')
                 .then((response) => {
                     if (response.status === 200) {
                         console.log('data');

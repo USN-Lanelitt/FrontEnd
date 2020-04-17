@@ -61,7 +61,7 @@ const SearchFriends = () => {
 
     useEffect(() => {
         console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/users')
+        axios.get('/users')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);

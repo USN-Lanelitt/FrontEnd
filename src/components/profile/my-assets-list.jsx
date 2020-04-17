@@ -40,7 +40,7 @@ const MyAssetsList = () => {
     };
 
     function onDeleteAssetConfirm() {
-        axios.delete(sessionStorage.getItem('API_URL')+'/assets/removeAsset/' + assetId)
+        axios.delete('/assets/removeAsset/' + assetId)
             .then(result => {
                 fetchAssets(userId, setAssets);
                 console.log(result);

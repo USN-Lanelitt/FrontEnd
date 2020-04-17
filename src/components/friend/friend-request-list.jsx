@@ -19,7 +19,7 @@ const FriendRequestList = () => {
 
     useEffect(() => {
         console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/user/' + userId + '/friendRequests')
+        axios.get('/user/' + userId + '/friendRequests')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response);
@@ -47,7 +47,7 @@ const FriendRequestList = () => {
 
     function reply() {
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/user/' + userId + '/friendRequest/' + friendId + '/' + statuss)
+        axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' + statuss)
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);

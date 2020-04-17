@@ -46,7 +46,7 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     const onlyFriends = () => {
         asset.public = !asset.public;
         console.log(JSON.stringify(asset));
-        axios.put(sessionStorage.getItem('API_URL')+"/assets/editAsset/" + userId + "/" + asset.id, asset)
+        axios.put("/assets/editAsset/" + userId + "/" + asset.id, asset)
             .then(result => refresh())
             .catch(error => console.log(error))
     }
@@ -57,7 +57,7 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     }, []);
 
     const publishAsset = () => {
-        axios.post(sessionStorage.getItem('API_URL')+/setPublished/ + userId + "/" + asset.id + "/" + published)
+        axios.post(/setPublished/ + userId + "/" + asset.id + "/" + published)
             .then(result => {
                 console.log(result);
                 setPublished(true);

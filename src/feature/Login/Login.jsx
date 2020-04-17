@@ -57,7 +57,7 @@ const Login = ({ history }) => {
         }
         else {
             let iCode = 0;
-            axios.get(sessionStorage.getItem('API_URL')+'/api/login/' + email.value + '/' + password.value)
+            axios.get('/api/login/' + email.value + '/' + password.value)
                 .then(res=>{
                     console.log(res);
                     console.log(res.data);

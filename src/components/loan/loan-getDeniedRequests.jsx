@@ -18,7 +18,7 @@ const LoanGetDeniedRequests = () => {
 
     const getDeniedRequests = () => {
         console.log("getDeniedRequests", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/user/'+userId+'/loanDenied')
+        axios.get('/user/'+userId+'/loanDenied')
             .then((response) => {
                 console.log("hellooooo2");
                 if (response.status === 200) {

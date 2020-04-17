@@ -23,7 +23,7 @@ const FriendProfile = () => {
 
 /*     useEffect(() => {
         console.log("getUser", sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/user/' + id)
+        axios.get('/user/' + id)
             .then(result => {
                 console.log(result.data);
                 setUsers(result.data);
@@ -35,7 +35,7 @@ const FriendProfile = () => {
     console.log("dette er id" + id);
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/user/'+userId+'/friend/'+id)
+        axios.get('/user/'+userId+'/friend/'+id)
             .then(result => {
                 console.log(result.data);
                 setUser(result.data);

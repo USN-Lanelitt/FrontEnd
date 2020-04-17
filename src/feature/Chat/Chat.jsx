@@ -69,7 +69,7 @@ export default function Chat() {
 
     useEffect(() => {
         console.log("getChatUsers", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/users/getChats/' + userId)
+        axios.get('/users/getChats/' + userId)
             .then(result => {
                 console.log(result.data);
                 setChatUsers(result.data);
@@ -79,7 +79,7 @@ export default function Chat() {
 
     function showChat(userId2) {
         console.log("getChat", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/users/chat/' + userId + '/' + userId2)
+        axios.get('/users/chat/' + userId + '/' + userId2)
             .then(result => {
                 console.log(result.data);
                 setSelectedChat(result.data);
@@ -89,7 +89,7 @@ export default function Chat() {
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/users/writeMessage/' + userId + '/' + userId2, {
+        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
             message: message
         })
             .then(result => {

@@ -20,7 +20,7 @@ const LoanGetAcceptedRequests = () => {
 
     const getAcceptedRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/user/'+userId+'/loanAccepted')
+        axios.get('/user/'+userId+'/loanAccepted')
             .then((response) => {
 
                 if (response.status === 200) {

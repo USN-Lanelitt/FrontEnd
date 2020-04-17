@@ -45,7 +45,7 @@ const AssetSite = () => {
     const {id} = useParams();
 
     const getAssetOwner = () => {
-        axios.get(sessionStorage.getItem('API_URL') + '/assets/getAsset/' + id)
+        axios.get( '/assets/getAsset/' + id)
             .then(result => {
                 console.log(result.data);
                 setAsset(result.data);
