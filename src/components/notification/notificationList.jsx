@@ -121,8 +121,6 @@ const NotificationList = () => {
                                 </Typography>
 
                                 {data && <FriendRequestList data={data}/>}
-
-                                      <FriendRequestList/>
                                       <LoanGetAcceptedRequests/>
                                       <LoanGetDeniedRequests/>
 
