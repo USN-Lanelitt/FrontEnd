@@ -10,6 +10,9 @@ import FriendRequestList from "../friend/friend-request-list";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import Badge from "@material-ui/core/Badge";
+import LoanGetAcceptedRequests from "../loan/loan-getAcceptedRequests";
+import LoanGetDeniedRequests from "../loan/loan-getDeniedRequests";
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +31,6 @@ const NotificationList = () => {
     const [arrowRef, setArrowRef] = React.useState(null);
     const [data, setData] = useState([]);
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
-
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
@@ -120,6 +122,9 @@ const NotificationList = () => {
 
                                 {data && <FriendRequestList data={data}/>}
 
+                                      <FriendRequestList/>
+                                      <LoanGetAcceptedRequests/>
+                                      <LoanGetDeniedRequests/>
 
                             </MenuList>
                         </ClickAwayListener>

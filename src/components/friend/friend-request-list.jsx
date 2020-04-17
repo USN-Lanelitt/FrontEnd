@@ -17,6 +17,7 @@ const FriendRequestList = ({data}) => {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
 
+
     // useEffect(() => {
     //     console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
     //     axios.get('/user/' + userId + '/friendRequests')
@@ -28,6 +29,7 @@ const FriendRequestList = ({data}) => {
     //         })
     //         .catch(e => console.log(e));
     // }, [setData, userId]);
+
 
     const accept = (friendId) => {
         setShowConfirmDialog(true);
@@ -75,9 +77,10 @@ const FriendRequestList = ({data}) => {
             />
 
             {data.map(item => (
-                <Grid item key={item} xs={12}>
+                <Grid item key={item.user1.id} xs={12}>
 
                     <FriendRequest
+                        id={item.user1.id}
                         firstname={item.user1.firstName}
                         lastname={item.user1.lastName}
                         middlename={item.user1.middleName}

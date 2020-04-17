@@ -35,7 +35,6 @@ const FriendAssets = () => {
 
 
     return (
-
         <Container>
 
             <main>

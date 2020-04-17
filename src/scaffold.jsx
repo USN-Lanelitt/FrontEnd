@@ -1,14 +1,23 @@
 import React from 'react';
+import {Route} from "react-router-dom";
+import FriendRequest from "./components/friend/friend-request";
+import FriendAll from "./feature/Friend/friend-all";
+import CategoryCard from "./components/profile/category-card";
+import AssetContainer from "./feature/Assets/asset-container";
+import MyAssetsList from "./components/profile/my-assets-list";
+import NewAsset from "./components/profile/new-asset";
+import PrivateRoute from "./PrivateRoute";
 import Box from "@material-ui/core/Box";
 import {useMediaQuery} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import useTheme from "@material-ui/core/styles/useTheme";
 import Routes from "./components/routes";
 import Nav from "./components/nav/Nav";
+  
+  
+{/*sessionStorage.setItem('API_URL', 'https://api.lanelitt.no');
+sessionStorage.setItem('API_URL', 'http://127.0.0.1:8000');*/}
 
-{/*sessionStorage.setItem('API_URL', 'https://api.lanelitt.no');*/
-}
-sessionStorage.setItem('API_URL', 'http://127.0.0.1:8000');
 
 
 const useStyles = makeStyles(theme => ({

@@ -43,7 +43,6 @@ const LoanRequests = () => {
             })
             .catch(e => console.log(e));
     }
-
     return (
         <Grid container spacing={4}>
             {data.map(user => (

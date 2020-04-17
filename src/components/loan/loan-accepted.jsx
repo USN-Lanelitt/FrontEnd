@@ -5,6 +5,7 @@ import axios from "axios";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
+import {getRatings} from "../rating/getRating";
 
 //her er det kort med godkjente forespørsel (alle lånene personen har) (jeg låner denne av en vennn)
 const useStyles = makeStyles(theme => ({
@@ -20,6 +21,7 @@ const LoanAccepted = () => {
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
+
 
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
@@ -53,11 +55,11 @@ const LoanAccepted = () => {
                                 middlename={loan.assets.users.middleName}
                                 lastname={loan.assets.users.lastName}
                                 assetname={loan.assets.assetName}
-                                description={loan.assets.description}
                                 assetImage={loan.assets.assetImages}
                                 loanStatus={loan.statusLoan.status}
                                 selectedDate={loan.dateStart}
                                 selectedDate2={loan.dateEnd}
+                                assetId={loan.assets.id}
                                 />
 
                         </Grid>
