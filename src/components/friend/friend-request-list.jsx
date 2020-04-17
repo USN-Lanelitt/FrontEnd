@@ -75,9 +75,10 @@ const FriendRequestList = () => {
             />
            
             {data.map(item => (
-                <Grid item key={item} xs={12}>
+                <Grid item key={item.user1.id} xs={12}>
 
                     <FriendRequest
+                        id={item.user1.id}
                         firstname={item.user1.firstName}
                         lastname={item.user1.lastName}
                         middlename={item.user1.middleName}

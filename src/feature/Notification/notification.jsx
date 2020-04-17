@@ -87,6 +87,7 @@ const Notification = () => {
                         <Grid item key={item}>
 
                             <FriendRequestCard
+                                id={item.user1.id}
                                 firstname={item.user1.firstName}
                                 lastname={item.user1.lastName}
                                 middlename={item.user1.middleName}

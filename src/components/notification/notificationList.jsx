@@ -9,8 +9,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import IconButton from "@material-ui/core/IconButton";
 import FriendRequestList from "../friend/friend-request-list";
 import Typography from "@material-ui/core/Typography";
-import Menu from "@material-ui/core/Menu";
-import LoanRequestList from "../loan/loan-request-list";
+import LoanGetAcceptedRequests from "../loan/loan-getAcceptedRequests";
+import LoanGetDeniedRequests from "../loan/loan-getDeniedRequests";
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -26,6 +27,7 @@ const NotificationList = () => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
+    const ITEM_HEIGHT = 3;
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
@@ -88,6 +90,10 @@ const NotificationList = () => {
                                         </Typography>
 
                                       <FriendRequestList/>
+                                      <LoanGetAcceptedRequests/>
+                                      <LoanGetDeniedRequests/>
+
+
 
 
                                     </MenuList>

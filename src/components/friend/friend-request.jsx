@@ -9,18 +9,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import {Link} from "react-router-dom";
+import CardActionArea from "@material-ui/core/CardActionArea";
 
 //VenneVarselListe
 
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        maxWidth: '36ch',
+        maxWidth: '10ch',
         backgroundColor: theme.palette.background.paper,
-    },
-
-    inline: {
-        display: 'inline',
     },
 
     list: {
@@ -42,6 +40,9 @@ const useStyles = makeStyles(theme => ({
         display: 'Grid',
        padding: theme.spacing(1),
     },
+    accepdbt: {
+        color: 'Black',
+    },
 
 }));
 
@@ -61,9 +62,8 @@ const FriendRequest = ({id,firstname, middlename, lastname, imageUrl, onDenied, 
 
     return (
         <React.Fragment>
-            <StyledMenuItem>
-                <Grid className={classes.list}>
-
+            <StyledMenuItem >
+                <Grid className={classes.list} component = {Link} to={"/FriendProfile/" + id} style={{backgroundColor: 'transparent'}}>
                     <ListItemAvatar>
                         <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                     </ListItemAvatar>
@@ -74,7 +74,7 @@ const FriendRequest = ({id,firstname, middlename, lastname, imageUrl, onDenied, 
                 </Grid>
                 <Divider variant = "inset" />
                 <ListItemSecondaryAction className={classes.button}>
-                    <Button onClick= {onAccept} size="small" color="primary">
+                    <Button className={classes.accepdbt} Click= {onAccept} size="small" color="primary">
                         Godta
                     </Button>
                     <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">

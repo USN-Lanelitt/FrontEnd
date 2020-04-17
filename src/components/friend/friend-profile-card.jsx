@@ -102,7 +102,7 @@ const FriendProfileCard = ({id, firstname, middlename, lastname, imageUrl}) => {
             <Box mt={4}>
                 <Box display="flex" flexDirection="row">
                     <Box m={2}>
-                    <Button className={classes.button} type="submit"  variant="contained" color="primary">
+                    <Button className={classes.button} type="submit" variant="contained" color="primary">
                         Legg til
                     </Button>
                     </Box>

@@ -41,7 +41,7 @@ const LoanRequestSend = () => {
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
+        axios.post(sessionStorage.getItem('API_URL')+'/users/writeMessage/' + userId + '/' + userId2, {
             message: message
         })
             .then(result => {

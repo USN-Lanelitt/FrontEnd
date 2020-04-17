@@ -8,7 +8,7 @@ import axios from "axios";
 import app from "../../fire";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessage from "../../components/chat/send-message";
-import getFriend from "../../components/friend/friend-profile";
+
 
 
 const useStyles = makeStyles(theme => ({

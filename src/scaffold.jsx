@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route} from "react-router-dom";
-import FriendList from "./components/friend/friend-list";
 import FriendRequest from "./components/friend/friend-request";
 import FriendAll from "./feature/Friend/friend-all";
 import CategoryCard from "./components/profile/category-card";
@@ -26,8 +25,8 @@ import LoanRequestSend from "./components/loan/loan-request-send";
 import LoanAccepted from "./components/loan/loan-accepted";
 import Ratings from "./feature/rating/ratings";
 
-sessionStorage.setItem('API_URL', 'https://api.lanelitt.no');
-{/*sessionStorage.setItem('API_URL', 'http://127.0.0.1:8000');*/}
+{/*sessionStorage.setItem('API_URL', 'https://api.lanelitt.no');*/}
+sessionStorage.setItem('API_URL', 'http://127.0.0.1:8000');
 
 
 const useStyles = makeStyles(theme => ({
@@ -51,16 +50,16 @@ const Scaffold = () => {
     return (
         <main>
             <Box p={extraSmallScreen ? 1 : 3} mt={12}>
-                <Route exact path="/friendReques" component={FriendRequest}/>
+                <Route path="/friendReques/:id" component={FriendRequest}/>
                 <Route path="/friendAll" exact component={FriendAll}/>
                 <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
-                <Route exact path="/searchfriends" component={SearchFriends}/>
+                <Route path="/searchfriends/:id" component={SearchFriends}/>
                 <Route exact path="/category" componenet={CategoryCard}/>
                 <Route path="/assets/:id" component={AssetContainer}/>
                 <Route exact path="/my/assets" component={MyAssetsList}/>
                 <Route exact path="/new/asset" component={NewAsset}/>
-                <Route exact path="/notification" component={Notification}/>
-                <Route exact path="/notificationList" component={NotificationList}/>
+                <Route path="/notification" component={Notification}/>
+                <Route path="/notificationList/:id" component={NotificationList}/>
                 <Route path="/friendprofile/:id" exact component={FriendProfile}/>
                 <Route exact path="/loanCard" component={LoanCard}/>
                 <Route exact path="/assetSite" component={AssetSite}/>
