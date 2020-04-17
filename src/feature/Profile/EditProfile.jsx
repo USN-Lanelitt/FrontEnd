@@ -125,7 +125,7 @@ const EditProfile = ({history}) => {
         // Henter verdier som er utfylt i tekst feltene på form skjema
         const {nickname, phone, address1, address2, zipcode, city, currentPassword, newPassword} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
-        axios.post(sessionStorage.getItem('API_URL')+'/url', {
+        axios.post('/url', {
             nickname: nickname.value,
             phone: phone.value,
             address1: address1.value,
@@ -257,7 +257,7 @@ const EditProfile = ({history}) => {
                                             </div>
                                         </Box>
                                     </DialogContent>
-                                  
+
                                     <DialogActions>
                                         <Button autoFocus onClick={()=>{handleClose(); ProfileImageUpload(file);}} color="primary">
                                             {t('editProfile.4')}

@@ -80,7 +80,7 @@ const NewAsset = () => {
         asset.append('public', isPublic);
         asset.append('typeId', category);
 
-        axios.post(sessionStorage.getItem('API_URL')+"/assets/addAsset", asset)
+        axios.post("/assets/addAsset", asset)
             .then(result => {
                 console.log(result);
                 setShowStatusMessage(true);

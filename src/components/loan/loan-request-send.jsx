@@ -44,7 +44,7 @@ const LoanRequestSend = () => {
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/users/writeMessage/' + userId /*+ '/' + userid2*/, {
+        axios.post('/users/writeMessage/' + userId /*+ '/' + userid2*/, {
             message: message
         })
             .then(result => {
@@ -56,7 +56,7 @@ const LoanRequestSend = () => {
 
     function sendRequest() {
         console.log("sendRequest", sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/user/'+userId+'/asset/'+id+'/request' , {
+        axios.post('/user/'+userId+'/asset/'+id+'/request' , {
             startDate: selectedDate,
             endDate: selectedDate2
 

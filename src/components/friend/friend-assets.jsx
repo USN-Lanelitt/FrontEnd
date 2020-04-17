@@ -28,7 +28,7 @@ const FriendAssets = () => {
 
     }, []);
     const getUserAssets = () => {
-        axios.get(sessionStorage.getItem('API_URL')+'/assets/getUsersAssets/' + userId + '/' + id)
+        axios.get('/assets/getUsersAssets/' + userId + '/' + id)
             .then(result => setfriendassets(result.data))
             .catch(error => console.log(error))
     }

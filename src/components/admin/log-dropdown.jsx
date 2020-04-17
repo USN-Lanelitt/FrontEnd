@@ -25,7 +25,7 @@ const LogDropdown = () => {
 
     useEffect(() => {
         console.log("getLevels ", sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/getLevels').then((response) => {
+        axios.get('/getLevels').then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
                 setLevels(response.data);
@@ -36,7 +36,7 @@ const LogDropdown = () => {
 
     useEffect(() => {
         console.log("getLevel ", sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/getLevel').then((response) => {
+        axios.get('/getLevel').then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
                 setSelectedLevel(response.data);
@@ -47,7 +47,7 @@ const LogDropdown = () => {
 
     const setLevel = (newLevel) => {
         console.log("setLevel ", sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/setLevel/'+newLevel).then((response) => {
+        axios.post('/setLevel/'+newLevel).then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
             }

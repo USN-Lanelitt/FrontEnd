@@ -10,7 +10,7 @@ const NewRatingsList = () => {
 
     useEffect(() => {
         console.log("unratedLoans", sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/unratedLoans/'+userId)
+        axios.get('/unratedLoans/'+userId)
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);

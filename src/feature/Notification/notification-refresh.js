@@ -2,7 +2,7 @@ import axios from "axios";
 import MyAssetsList from "../../components/profile/my-assets-list";
 
  export const notificationRefresh = (userId, setData) =>{
-    axios.get(sessionStorage.getItem('API_URL')+'/user/' + userId + '/friendRequests')
+    axios.get('/user/' + userId + '/friendRequests')
         .then((response) => {
             if (response.status === 200) {
                 console.log(response);
@@ -13,7 +13,7 @@ import MyAssetsList from "../../components/profile/my-assets-list";
 }
 
  export const notificationRefresh1 = (userId, setData) =>{
-    axios.get(sessionStorage.getItem('API_URL')+'/user/'+userId+'/loanRequest')
+    axios.get('/user/'+userId+'/loanRequest')
         .then((response) => {
             if (response.status === 200) {
                 console.log(response.data);

@@ -4,7 +4,7 @@ import axios from "axios";
 const AssetAmount  = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [assetNr, setAssetNr] = useState();
-    axios.get(sessionStorage.getItem('API_URL')+'/assets/AssetAmount')
+    axios.get('/assets/AssetAmount')
         .then((response) => {
             if (response.status === 200) {
                 setAssetNr(response.data);

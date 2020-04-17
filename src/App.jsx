@@ -25,14 +25,9 @@ function App(){
                     stastikk og skjemaoppdateriger. Hvis du godtar dette, kan du fortsette å bruke våre nettsider som vanlig."
 
                 />
-                <Nav />
 
-                <Route path="/" exact component={Home} />
-                <PrivateRoute path="/admin" exact component={Admin} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={SignUp} />
-                <PrivateRoute path="/prof" component={Profile} />
-                <PrivateRoute path="/editprof" component={EditProfile} />
+
+
                 <Scaffold/>
 
             </div>

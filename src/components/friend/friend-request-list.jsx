@@ -9,25 +9,25 @@ let statuss = 0;
 let statusTittel = "";
 let statusBesk = "";
 
-const FriendRequestList = () => {
+const FriendRequestList = ({data}) => {
 
-    const [data, setData] = useState([]);
+    //const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
 
-    useEffect(() => {
-        console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/user/' + userId + '/friendRequests')
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log(response);
-                    setData(response.data);
-                }
-            })
-            .catch(e => console.log(e));
-    }, [setData, userId]);
+    // useEffect(() => {
+    //     console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
+    //     axios.get('/user/' + userId + '/friendRequests')
+    //         .then((response) => {
+    //             if (response.status === 200) {
+    //                 console.log(response);
+    //                 setData(response.data);
+    //             }
+    //         })
+    //         .catch(e => console.log(e));
+    // }, [setData, userId]);
 
     const accept = (friendId) => {
         setShowConfirmDialog(true);
@@ -47,7 +47,7 @@ const FriendRequestList = () => {
 
     function reply() {
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/user/' + userId + '/friendRequest/' + friendId + '/' + statuss)
+        axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' + statuss)
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
@@ -73,7 +73,7 @@ const FriendRequestList = () => {
                            notConfirmButtonText="Nei"
                            open={showConfirmDialog}
             />
-           
+
             {data.map(item => (
                 <Grid item key={item} xs={12}>
 

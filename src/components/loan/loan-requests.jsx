@@ -21,7 +21,7 @@ const LoanRequests = () => {
 
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL')+'/user/'+userId+'/loanRequest')
+        axios.get('/user/'+userId+'/loanRequest')
             .then((response) => {
                 notificationRefresh1 (userId, setData)
                 if (response.status === 200) {
@@ -34,7 +34,7 @@ const LoanRequests = () => {
 
     function ReplyLoan (loanId,statuss) {
         console.log("", userId, sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/user/'+userId+'/loanRequest/'+loanId+'/'+statuss)
+        axios.post('/user/'+userId+'/loanRequest/'+loanId+'/'+statuss)
             .then((response) => {
                 notificationRefresh1 (userId, setData)
                 if (response.status === 200) {
