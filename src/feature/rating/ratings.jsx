@@ -93,7 +93,7 @@ export default function Ratings() {
                         <RadioGroup row aria-label="position" name="position" value={value} onChange={handleRadioChange}>
                             <FormControlLabel value="fått" control={<Radio color="primary" />} label={t('ratings.2')} />
                             <FormControlLabel value="gitt" control={<Radio color="primary" />} label={t('ratings.3')} />
-                            <FormControlLabel  value='ny' control={<Radio color="primary" />} label={t('ratings.3')} />
+                            <FormControlLabel  value='ny' control={<Radio color="primary" />} label={t('ratings.4')} />
                         </RadioGroup>
                     </FormControl>
                     </Container>

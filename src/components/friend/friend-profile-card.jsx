@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from "@material-ui/core/Card";
 import cx from "clsx";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,7 +13,11 @@ import {grey} from "@material-ui/core/colors";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
+import axios from "axios";
+import friendCheck from "./friendCheck";
+import ReceivedRatingsList from "../rating/received-ratings-list-";
+import MyRatingsList from "../rating/my-ratings-list";
+import NewRatingsList from "../rating/new-rating-list";
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     button: {
         paddingRight: '40px',
         paddingLeft: '40px',
-
     }
 }));
 
@@ -68,9 +71,36 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 
-const FriendProfileCard = ({id, firstname, middlename, lastname, imageUrl}) => {
+const FriendProfileCard = ({userId2, firstname, middlename, lastname, imageUrl}) => {
     const classes = useStyles();
     const styles = useStyles();
+    const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const [friendStatus, setFriendStatus] = useState(0);
+    const [buttonText, setButtonText] = useState([]);
+
+    useEffect(() => {
+        console.log("getUsers", sessionStorage.getItem('userId'));
+        axios.get(sessionStorage.getItem('API_URL')+'/user/'+userId+'/'+ userId2)
+            .then(result => {
+                console.log(result.data);
+                setFriendStatus(result.data);
+            })
+            .catch(e => console.log(e));
+        if (friendStatus === 1) {
+            deleteFriend();
+            console.log('deleteFriend');
+        } else
+            sendFriendRequest();
+            console.log('sendFriendRequest');
+    },[]);
+
+    const deleteFriend = () => {
+        setButtonText('Slett venn');
+    }
+
+    const sendFriendRequest = () => {
+        setButtonText('Legg til');
+    }
 
     return (
         <div>
@@ -103,7 +133,7 @@ const FriendProfileCard = ({id, firstname, middlename, lastname, imageUrl}) => {
                 <Box display="flex" flexDirection="row">
                     <Box m={2}>
                     <Button className={classes.button} type="submit"  variant="contained" color="primary">
-                        Legg til
+                        {buttonText}
                     </Button>
                     </Box>
                     <Box m={2}>

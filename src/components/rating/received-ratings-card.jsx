@@ -5,17 +5,20 @@ import {CardContent} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
+import Button from "@material-ui/core/Button";
+import setRating from "./setRating";
 
 const useStyles = makeStyles(theme => ({
     card: {
-        height: 270,
-        width: 650,
+        height: 235,
+        width: 670,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
         padding: 15,
-        height: 170,
+        height: 130,
         width: 450,
+        marginBottom: 0,
     },
     paddingRight: {
         paddingRight:10,
@@ -31,9 +34,15 @@ const useStyles = makeStyles(theme => ({
         width: '77%',
         height: 90,
     },
-    resize:{
-        fontSize:80
+    comment:{
+        width: '80%',
+        height: 90,
     },
+    button:{
+        marginTop: 70,
+        width: '20%'
+    },
+
 }));
 
 const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2, comment, rating}) => {
@@ -50,7 +59,7 @@ const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, 
                             </Typography>
                         </Box>
                         <Box>
-                            <Typography gutterBottom variant="subtitle1" component="h2">
+                            <Typography gutterBottom variant="subtitle2" component="h2">
                                 {selectedDate} - {selectedDate2}
                             </Typography>
                         </Box>
@@ -69,13 +78,24 @@ const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, 
                                 <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                             </Box>
                         </Box>
-                        <Box>
-                            <Typography  variant="subtitle1" component="h2">
-                                {comment}
-                            </Typography>
+                        <Box display="flex" flexDirection="row">
+                            <Box className={classes.comment}>
+                                <Typography  variant="subtitle1" component="h2">
+                                    {comment}
+                                </Typography>
+                            </Box>
+                            <Box className={classes.button}>
+                                <Button
+                                    type="submit"
+                                    size="small"
+                                >
+                                    Rapporter
+                                </Button>
+                            </Box>
                         </Box>
                     </Card>
                 </CardContent>
+
             </Card>
         </div>
     );
