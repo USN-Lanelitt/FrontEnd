@@ -62,12 +62,9 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 
-
-
-
 const AssetOwnerInfo = ({asset}) => {
     const styles = useStyles();
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     return (
         <div>
@@ -99,14 +96,16 @@ const AssetOwnerInfo = ({asset}) => {
                     <Box display="flex" flexDirection="column">
                         <Box m={2}>
                             {t('assetOwner.2')}
+
                         </Box>
                         <Box m={2}>
                             <Button type="submit"
                                     variant="contained"
                                     color="primary"
-                                    component={Link} to="/LoanRequestSend">
+                                    component={Link} to={"/LoanRequestSend/"}>
                                  {t('assetOwner.1')}
                             </Button>
+
                         </Box>
                     </Box>
                 </Box>

@@ -12,6 +12,7 @@ import Rating from "@material-ui/lab/Rating";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {getRatings} from "../../components/rating/getRating";
+import {useParams} from "react-router";
 
 const useStyles = makeStyles({
     card: {

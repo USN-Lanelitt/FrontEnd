@@ -14,7 +14,7 @@ import setRating from "./setRating";
 const useStyles = makeStyles(theme => ({
     card: {
         height: 270,
-        width: 650,
+        width: 670,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
@@ -33,11 +33,11 @@ const useStyles = makeStyles(theme => ({
         marginTop: 20,
         marginRight: 15,
         padding: 10,
-        width: '77%',
+        width: '73%',
         height: 90,
     },
-    resize:{
-        fontSize:80
+    button:{
+        margin:7,
     },
 }));
 
@@ -61,7 +61,7 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                                 </Typography>
                             </Box>
                             <Box>
-                                <Typography gutterBottom variant="subtitle1" component="h2">
+                                <Typography gutterBottom variant="subtitle2" component="h2">
                                     {selectedDate} - {selectedDate2}
                                 </Typography>
                             </Box>
@@ -89,18 +89,13 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                             </Box>
                             <form className={classes.form} >
                                 <textarea
-                                    inputprops={{
-                                        classes: {
-                                            input: classes.resize,
-                                        },
-                                    }}
                                     className={classes.textarea}
                                     {...bindComment} />
 
                                 <Button
                                     type="submit"
                                     color="primary"
-                                    className={classes.submit}
+                                    className={classes.button}
                                     onClick={() => setRating(userId, loanId, value, comment)}
                                 >
                                     {t('rating-card.1')}
