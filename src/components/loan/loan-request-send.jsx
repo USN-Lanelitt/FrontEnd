@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
+import {useParams} from "react-router";
 
 //Mangler assetID, assetName og userId2!!!
 //her skal fra og til dato komme opp, søke om å låne
@@ -39,26 +40,30 @@ const LoanRequestSend = () => {
     const [textValue, setTextValue] = useState('');
     const [selectedDate, setSelectedDate] = React.useState(new Date() );
     const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
+    const {id} = useParams();
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/users/writeMessage/' + userId + '/' + userId2, {
+        axios.post(sessionStorage.getItem('API_URL')+'/users/writeMessage/' + userId /*+ '/' + userid2*/, {
             message: message
         })
             .then(result => {
                 console.log(result.data);
+                /*console.log(userid2);*/
             })
             .catch(e => console.log(e));
     }
 
     function sendRequest() {
         console.log("sendRequest", sessionStorage.getItem('userId'));
-        axios.post(sessionStorage.getItem('API_URL')+'/user/'+userId+'/asset/'+assetId+'/request' , {
+        axios.post(sessionStorage.getItem('API_URL')+'/user/'+userId+'/asset/'+id+'/request' , {
             startDate: selectedDate,
             endDate: selectedDate2
+
         }).then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
+                console.log(id);
             }
         })
             .catch(e => console.log(e));
