@@ -9,6 +9,7 @@ import Rating from "@material-ui/lab/Rating";
 import useInput from "./use-input";
 import {useTranslation} from "react-i18next";
 import setRating from "./setRating";
+import TextField from "@material-ui/core/TextField";
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,19 +26,20 @@ const useStyles = makeStyles(theme => ({
     paddingRight: {
         paddingRight:10,
     },
+    stars: {
+        marginTop:10,
+    },
     flex: {
         display: 'flex',
         alignItems: 'center',
     },
-    textarea: {
-        marginTop: 20,
-        marginRight: 15,
-        padding: 10,
-        width: '73%',
-        height: 90,
+    textfield: {
+        marginTop: 12,
+        width: '80%',
     },
     button:{
-        margin:7,
+        marginTop:95,
+        marginLeft: 12,
     },
 }));
 
@@ -71,9 +73,9 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                             <Box display="flex" flexDirection="row" alignItems="center">
                                 <Box className={classes.flex}>
                                     <Box className={classes.paddingRight}>
-                                        <Typography  variant="h5" component="h2">
+                                        <Box style={{margin:0}} fontSize={25} fontWeight="fontWeightBold" m={1}>
                                             {assetname}
-                                        </Typography>
+                                        </Box>
                                     </Box>
                                 </Box>
                                 <Box borderColor="transparent">
@@ -81,6 +83,7 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                                         name="simple-controlled"
                                         value={value}
                                         precision={0.5}
+                                        className={classes.stars}
                                         onChange={(event, newValue) => {
                                             setValue(newValue);
                                         }}
@@ -88,9 +91,14 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                                 </Box>
                             </Box>
                             <form className={classes.form} >
-                                <textarea
-                                    className={classes.textarea}
-                                    {...bindComment} />
+                                <TextField
+                                    id="standard-multiline-static"
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                    className={classes.textfield}
+                                    {...bindComment}
+                                />
 
                                 <Button
                                     type="submit"
