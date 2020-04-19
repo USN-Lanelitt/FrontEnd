@@ -27,6 +27,7 @@ import LoanRequestSend from "./loan/loan-request-send";
 import LoanAccepted from "./loan/loan-accepted";
 import Ratings from "../feature/rating/ratings";
 import AssetOwnerInfo from "../feature/Assets/asset-owner-info";
+import LoanRequestNotification from "./loan/loan-request-notification";
 
 const Routes = props => {
     return (
@@ -59,6 +60,9 @@ const Routes = props => {
             <Route exact path="/loanAccepted" component={LoanAccepted}/>
             <Route exact path="/ratings" component={Ratings}/>
             <Route exact path="/owner/info" component={AssetOwnerInfo}/>
+
+
+
 
         </>
     );

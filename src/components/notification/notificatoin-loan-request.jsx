@@ -10,12 +10,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import Button from "@material-ui/core/Button";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
-
     },
     photo: {
         width: theme.spacing(5),
@@ -37,6 +38,14 @@ const useStyles = makeStyles(theme => ({
         padding: '0',
 
     },
+    top: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom: theme.spacing(2),
+    },
+    status: {
+        padding: theme.spacing(0.5),
+    },
 }));
 
 const StyledMenuItem = withStyles(theme => ({
@@ -51,33 +60,27 @@ const StyledMenuItem = withStyles(theme => ({
 }))(MenuItem);
 
 
-const LoanRequestNotification = ({id, firstname, middlename, imageUrl, lastname, loanStatus, reply}) => {
+const NotificationLoanRequest = ({id, firstname, middlename, imageUrl, lastname, reply}) => {
     const classes = useStyles();
     return (
-        <React.Fragment>
-            <Box>
-                <Grid className={classes.list}>
-                    <Box display='flex' flexDirection="row">
+        <Card className={classes.paper}>
+            <Divider variant="li"/>
+            <CardContent>
+                <Grid className={classes.top}>
+                    <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {firstname} {middlename} {lastname}
+                    </Typography>
+                    <Box className={classes.status} display="flex" justifyContent="center" flexDirection="row">
+                        <Button className={classes.button} onClick={reply}>
+                            <CloseIcon/>
+                        </Button>
 
-                        <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
-                        <Box display='flex' flexDirection="row" margin='10px'>
-                            <Typography gutterBottom variant="h7" component="h7" display={"inline"}>
-                                {firstname} {middlename} {lastname} {loanStatus} lånet
-                            </Typography>
-
-                            <Button className={classes.button} onClick={reply}>
-                                <CloseIcon/>
-                            </Button>
-
-                        </Box>
                     </Box>
-
                 </Grid>
-                <Divider variant="li"/>
-            </Box>
-
-        </React.Fragment>
+            </CardContent>
+        </Card>
     );
 };
 
-export default LoanRequestNotification;
+export default NotificationLoanRequest;

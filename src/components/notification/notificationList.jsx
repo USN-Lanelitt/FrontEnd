@@ -12,16 +12,20 @@ import axios from "axios";
 import Badge from "@material-ui/core/Badge";
 import LoanGetAcceptedRequests from "../loan/loan-getAcceptedRequests";
 import LoanGetDeniedRequests from "../loan/loan-getDeniedRequests";
-
-
-
+import {Box} from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 const useStyles = makeStyles(theme => ({
     paper: {
         border: '1px solid #d3d4d5',
+        margin: '0',
     },
     typo: {
         padding: theme.spacing(1),
-    }
+    },
+    root: {
+        margin: '0',
+    },
+
 }));
 
 const NotificationList = () => {
@@ -31,6 +35,8 @@ const NotificationList = () => {
     const [arrowRef, setArrowRef] = React.useState(null);
     const [data, setData] = useState([]);
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
+    const [dataAccept, setDataAccept] = useState([]);
+    const [dataDenied, setDataDeniend] = useState([]);
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
@@ -60,6 +66,9 @@ const NotificationList = () => {
 
         prevOpen.current = open;
 
+        getAcceptedRequests();
+        getDeniedRequests();
+
         axios.get('/user/' + userId + '/friendRequests')
             .then((response) => {
                 if (response.status === 200) {
@@ -68,13 +77,42 @@ const NotificationList = () => {
                 }
             })
             .catch(e => console.log(e));
+
+
     }, [open]);
 
+    const getAcceptedRequests = () => {
+        console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
+        axios.get(sessionStorage.getItem('API_URL') + '/user/' + userId + '/loanAccepted')
+            .then((response) => {
+
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setDataAccept(response.data);
+                }
+            })
+            .catch(error => console.log(error))
+    }
+
+
+    const getDeniedRequests = () => {
+        console.log("getDeniedRequests", userId, sessionStorage.getItem('userId'));
+        axios.get('/user/' + userId + '/loanDenied')
+            .then((response) => {
+                console.log("hellooooo2");
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setDataDeniend(response.data);
+                }
+            })
+            .catch(error => console.log(error))
+
+    }
 
     return (
         <div className={classes.root}>
             <div>
-                <Badge badgeContent={data.length} color="primary">
+                <Badge badgeContent={data.length + dataAccept.length + dataDenied.length} color="secondary">
                     <IconButton
                         ref={anchorRef}
                         aria-controls={open ? 'menu-list-grow' : undefined}
@@ -82,8 +120,6 @@ const NotificationList = () => {
                         color="inherit"
                         variant="contained"
                         onClick={handleToggle}
-
-
                     >
                         <NotificationsIcon/>
                     </IconButton>
@@ -110,30 +146,23 @@ const NotificationList = () => {
                 >
                     <span className={classes.arrow} ref={setArrowRef}/>
                     <Paper>
-
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="menu-list-grow"
                                       onKeyDown={handleListKeyDown}>
-
-                                <Typography className={classes.typo} variant="h6"
-                                            align="center" color="textPrimary" gutterBottom>
-                                    Varsler
-                                </Typography>
-
-                                {data && <FriendRequestList data={data}/>}
-
-
-                                      <LoanGetAcceptedRequests/>
-                                      <LoanGetDeniedRequests/>
-
+                                <Box maxWidth="48ch"  overflow="auto" >
+                                    <Typography className={classes.typo} variant="h6" align="center" color="textPrimary" gutterBottom>
+                                        Varsler
+                                    </Typography>
+                                    <Divider variant="li"/>
+                                    {data && <FriendRequestList data={data}/>}
+                                    {data && <LoanGetAcceptedRequests data={dataAccept}/>}
+                                    {data && <LoanGetDeniedRequests data={dataDenied}/>}
+                                </Box>
                             </MenuList>
                         </ClickAwayListener>
                     </Paper>
-
                 </Popper>
             </div>
-
-
         </div>
     );
 }

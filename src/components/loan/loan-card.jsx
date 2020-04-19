@@ -26,8 +26,6 @@ const useStyles = makeStyles(theme => ({
     },
     status: {
         padding: theme.spacing(0.5),
-
-
     },
     image: {
         width: "60%",

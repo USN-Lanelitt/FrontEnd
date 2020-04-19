@@ -6,17 +6,15 @@ import Grid from "@material-ui/core/Grid";
 import FriendRequestCard from "../../components/friend/friend-requestCard";
 import Divider from "@material-ui/core/Divider";
 import axios from "axios";
-import ConfirmDialog from "../../components/profile/confirm-dialog";
 import LoanRequests from "../../components/loan/loan-requests";
 import {notificationRefresh} from "./notification-refresh";
 import {useTranslation} from "react-i18next";
+import NotificationLoanDenied from "../../components/notification/notification-loan-denied";
+import NotificationLoanAccepted from "../../components/notification/notification-loan-accepted";
 
 
 //siden på mobil, (en hel side)
 
-let statuss=0;
-let statusTittel="";
-let statusBesk="";
 const useStyles = makeStyles(theme => ({
 
     heroContent: {
@@ -37,7 +35,6 @@ const Notification = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
-
     useEffect(() => {
         console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
         axios.get('/user/' + userId + '/friendRequests')
@@ -48,8 +45,9 @@ const Notification = () => {
                 }
             })
             .catch(e => console.log(e));
-    }, [setData, userId]);
 
+
+        },[setData, userId]);
 
     function reply(friendId, statuss) {
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
@@ -101,12 +99,15 @@ const Notification = () => {
                 </Grid>
             </Container>
 
-            <Container >
+            <Container>
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
                     {t('notification.3')}
                     <Divider/>
                 </Typography>
                 <LoanRequests/>
+                <NotificationLoanAccepted/>
+                <NotificationLoanDenied/>
+
             </Container>
         </React.Fragment>
     );
