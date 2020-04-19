@@ -9,6 +9,8 @@ import AssetOwnerInfo from "./asset-owner-info";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import {useParams} from "react-router";
+import Typography from "@material-ui/core/Typography";
+import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -42,6 +44,7 @@ const AssetSite = () => {
 
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [asset, setAsset] = useState(null);
+    const [rating, setRating] = useState(null);
     const {id} = useParams();
 
     const getAssetOwner = () => {
@@ -73,14 +76,39 @@ const AssetSite = () => {
                     </Carousel>
                 </Box>
             </Box>
-            <Grid container direction="row" justify="center" alignItems="center">
 
-                <Grid>
-                    <AssetOwnerInfo
-                        asset={asset}
-                    />
-                </Grid>
-            </Grid>
+            <Box display='flex' justifyContent='center'>
+                <Box width={'70%'}>
+            <Paper elevation="0">
+
+                        <Box component="fieldset" borderColor="transparent" ml={2}>
+                            <Rating name="read-only" precision={0.5} value={rating} readOnly/>
+                        </Box>
+                        <Box display='flex' flexDirection='row'>
+                            <Box display='flex' flexDirection='column' justifyContent='flex-start' m={5} width={2 / 3}>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {asset && asset.assetName}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {asset && asset.description}
+                                </Typography>
+
+                            </Box>
+                            <Box display='flex' justifyContent='flex-end' m={5} width={1 / 3}>
+                                <Grid container direction="row" justify="center" alignItems="center">
+                                    <Grid>
+                                        <AssetOwnerInfo
+                                            asset={asset}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        </Box>
+
+            </Paper>
+                </Box>
+            </Box>
+
         </div>
 
     );

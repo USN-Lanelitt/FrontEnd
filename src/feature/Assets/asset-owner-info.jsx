@@ -68,7 +68,7 @@ const AssetOwnerInfo = ({asset}) => {
 
     return (
         <div>
-            <Card className={styles.card}>
+            <Card className={styles.card} elevation="20" square={true}>
                 <CardContent>
                     <IconButton>
                         <StyledBadge

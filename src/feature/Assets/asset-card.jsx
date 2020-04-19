@@ -7,12 +7,10 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {getRatings} from "../../components/rating/getRating";
-import {useParams} from "react-router";
 
 const useStyles = makeStyles({
     card: {
@@ -21,7 +19,7 @@ const useStyles = makeStyles({
 });
 
 const AssetCard = ({asset}) => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const classes = useStyles();
     const [rating, setRating] = useState(null);
 
@@ -33,7 +31,7 @@ const AssetCard = ({asset}) => {
     return (
         <div>
             <Card className={classes.card}>
-                <CardActionArea >
+                <CardActionArea>
                     <CardMedia
                         component="img"
                         alt="bilde"
@@ -44,19 +42,13 @@ const AssetCard = ({asset}) => {
                         <Typography gutterBottom variant="h5" component="h2">
                             {asset.assetName}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {asset.description}
-                        </Typography>
-                        <Box component="fieldset" mb={3} borderColor="transparent">
-                            <Rating name="read-only" precision={0.5} value={rating} readOnly/>
-                        </Box>
+                        <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary" component={Link} to={"/assetSite/" + asset.id}>
                         {t('asset-card.1')}
                     </Button>
-
                 </CardActions>
             </Card>
         </div>
