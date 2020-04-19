@@ -11,6 +11,8 @@ import axios from "axios";
 import {useParams} from "react-router";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
+import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -79,33 +81,42 @@ const AssetSite = () => {
 
             <Box display='flex' justifyContent='center'>
                 <Box width={'70%'}>
-            <Paper elevation="0">
-
-                        <Box component="fieldset" borderColor="transparent" ml={2}>
-                            <Rating name="read-only" precision={0.5} value={rating} readOnly/>
-                        </Box>
-                        <Box display='flex' flexDirection='row'>
-                            <Box display='flex' flexDirection='column' justifyContent='flex-start' m={5} width={2 / 3}>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {asset && asset.assetName}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {asset && asset.description}
-                                </Typography>
-
+                    <Paper elevation="0">
+                        <Box>
+                            <Box component="fieldset" borderColor="transparent" ml={3}>
+                                <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                             </Box>
-                            <Box display='flex' justifyContent='flex-end' m={5} width={1 / 3}>
-                                <Grid container direction="row" justify="center" alignItems="center">
-                                    <Grid>
-                                        <AssetOwnerInfo
-                                            asset={asset}
-                                        />
-                                    </Grid>
+                            <Box ml={5}>
+                                <Button type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                        component={Link} to={"/LoanRequestSend/"}>
+                                    {t('assetOwner.1')}
+                                </Button>
+                            </Box>
+                        </Box>
+
+                        <Box display='flex' flexDirection='column' justifyContent='flex-start' m={5}>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {asset && asset.assetName}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {asset && asset.description}
+                            </Typography>
+
+                        </Box>
+                        <Box display='flex' justifyContent='center' m={5}>
+                            <Grid container direction="row" justify="center" alignItems="center">
+                                <Grid>
+                                    <AssetOwnerInfo
+                                        asset={asset}
+                                    />
                                 </Grid>
-                            </Box>
+                            </Grid>
                         </Box>
 
-            </Paper>
+
+                    </Paper>
                 </Box>
             </Box>
 
