@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from "@material-ui/core/Container";
@@ -15,6 +15,9 @@ import Box from "@material-ui/core/Box";
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormLabel from "@material-ui/core/FormLabel";
 import {useTranslation} from "react-i18next";
+import Card from "@material-ui/core/Card";
+import ReportModal from "../../components/report/report-modal";
+import {Redirect, useParams} from "react-router";
 
 const drawerWidth = 240;
 
@@ -67,19 +70,30 @@ const useStyles = makeStyles(theme => ({
 
 export default function Ratings() {
     const { t } = useTranslation();
+    const {pageNr} = useParams();
     const classes = useStyles();
-    const [show, setShow] = React.useState(<ReceivedRatingsList/>);
-    const [value, setValue] = React.useState('fått');
+    const [show, setShow] = React.useState();
+    const [value, setValue] = React.useState(pageNr);
+
+    useEffect(() => {
+            if (value === '1') {
+                setShow(<ReceivedRatingsList/>);
+            } else if (value === '2') {
+                setShow(<MyRatingsList/>);
+            } else
+                setShow(<NewRatingsList/>);
+        },[setShow, 1]);
 
     const handleRadioChange = (event) => {
         setValue(event.target.value);
-        if (event.target.value === 'fått') {
+        if (event.target.value === '1') {
             setShow(<ReceivedRatingsList/>);
-        } else if (event.target.value === 'gitt') {
+        } else if (event.target.value === '2') {
             setShow(<MyRatingsList/>);
         } else
             setShow(<NewRatingsList/>);
     };
+
 
     return (
         <React.Fragment>
@@ -89,30 +103,25 @@ export default function Ratings() {
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                             {t('ratings.1')}
                         </Typography>
-                    <FormControl component="fieldset">
-                        <RadioGroup row aria-label="position" name="position" value={value} onChange={handleRadioChange}>
-                            <FormControlLabel value="fått" control={<Radio color="primary" />} label={t('ratings.2')} />
-                            <FormControlLabel value="gitt" control={<Radio color="primary" />} label={t('ratings.3')} />
-                            <FormControlLabel  value='ny' control={<Radio color="primary" />} label={t('ratings.4')} />
-                        </RadioGroup>
-                    </FormControl>
                     </Container>
                 </div>
+                <Container maxWidth="sm">
+                    <Box style={{paddingLeft:30}} display="flex" aligns="center">
+                        <FormControl component="fieldset" align="center">
+                            <RadioGroup row aria-label="position" name="position" value={value} onChange={handleRadioChange}>
+                                <FormControlLabel value='1' control={<Radio color="primary" />} label={t('ratings.2')} />
+                                <FormControlLabel value='2' control={<Radio color="primary" />} label={t('ratings.3')} />
+                                <FormControlLabel  value='3' control={<Radio color="primary" />} label={t('ratings.4')} />
+                            </RadioGroup>
+                        </FormControl>
+                    </Box>
+                </Container>
                 <Container className={classes.cardGrid}>
                     <Grid container spacing={12}>
                         {show}
                     </Grid>
                 </Container>
             </main>
-            <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                    Lånelitt
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    ProgTeam Lånelitt
-                </Typography>
-                <Copyright/>
-            </footer>
         </React.Fragment>
     );
 }
