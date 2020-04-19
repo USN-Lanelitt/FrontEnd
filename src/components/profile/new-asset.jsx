@@ -86,7 +86,7 @@ const NewAsset = () => {
                 setShowStatusMessage(true);
                 setStatusMessage("Eiendelen ble opprettet!")
                 setStatusMessageSeverity("success");
-               setTimeout(() => setRedirect(true), 1000) ;
+                setTimeout(() => setRedirect(true), 1000) ;
             })
             .catch(error => {
                 console.log(error);

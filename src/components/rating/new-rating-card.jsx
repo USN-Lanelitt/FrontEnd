@@ -6,21 +6,22 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
-import useInput from "./use-input";
+import useInput from "../div/use-input";
 import {useTranslation} from "react-i18next";
 import setRating from "./setRating";
 import TextField from "@material-ui/core/TextField";
+import {Redirect} from "react-router";
 
 
 const useStyles = makeStyles(theme => ({
     card: {
         height: 270,
-        width: 670,
+        width: 680,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
         padding: 15,
-        height: 170,
+        height: 168,
         width: 450,
     },
     paddingRight: {
@@ -47,10 +48,12 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [value, setValue] = React.useState(0);
+    const [ratingValue, setRatingValue] = React.useState(0);
     const { value:newRating, bind:bindNewRating} = useInput('');
     const { value:comment, bind:bindComment } = useInput('');
+    const [redirect, setRedirect] = React.useState(false);
 
+    if (redirect) return <Redirect to="/rating/3"/>;
 
     return (
         <div>
@@ -80,19 +83,19 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                                 </Box>
                                 <Box borderColor="transparent">
                                     <Rating
-                                        name="simple-controlled"
-                                        value={value}
+                                        name={assetId}
+                                        value={ratingValue}
                                         precision={0.5}
                                         className={classes.stars}
                                         onChange={(event, newValue) => {
-                                            setValue(newValue);
+                                            setRatingValue(newValue)
                                         }}
                                     />
                                 </Box>
                             </Box>
                             <form className={classes.form} >
                                 <TextField
-                                    id="standard-multiline-static"
+                                    id={assetId}
                                     multiline
                                     rows={4}
                                     variant="outlined"
@@ -104,7 +107,7 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                                     type="submit"
                                     color="primary"
                                     className={classes.button}
-                                    onClick={() => setRating(userId, loanId, value, comment)}
+                                    onClick={() => setRating(userId, loanId, ratingValue, comment, setRedirect)}
                                 >
                                     {t('rating-card.1')}
                                 </Button>

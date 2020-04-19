@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-import ReceivedRatingsCard from "./received-ratings-card";
 import NewRatingCard from "./new-rating-card";
 
 const NewRatingsList = () => {
