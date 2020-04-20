@@ -10,6 +10,7 @@ import AdminTable from "../../components/admin/admin-table";
 import ReportList from "../../components/admin/report-list";
 import LogDropdown from "../../components/admin/log-dropdown";
 import {useTranslation} from "react-i18next";
+import LogList from "../../components/admin/log-list";
 
 
 const useStyles = makeStyles(theme => ({
@@ -67,19 +68,10 @@ export default function Admin() {
                     </Grid>
                     <Grid>
                         <LogDropdown/>
+                        <LogList/>
                     </Grid>
                 </Container>
             </main>
-            {/* Footer */}
-            <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                    Lånelitt
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    ProgTeam Lånelitt
-                </Typography>
-                <Copyright/>
-            </footer>
         </React.Fragment>
     );
 }
