@@ -11,24 +11,9 @@ let statusBesk = "";
 
 const FriendRequestList = ({data}) => {
 
-    //const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-
-
-
-    // useEffect(() => {
-    //     console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
-    //     axios.get('/user/' + userId + '/friendRequests')
-    //         .then((response) => {
-    //             if (response.status === 200) {
-    //                 console.log(response);
-    //                 setData(response.data);
-    //             }
-    //         })
-    //         .catch(e => console.log(e));
-    // }, [setData, userId]);
 
 
     const accept = (friendId) => {

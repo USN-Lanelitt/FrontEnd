@@ -8,7 +8,6 @@ import {Box} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from '@material-ui/icons/Close';
 import Button from "@material-ui/core/Button";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 
 
@@ -39,19 +38,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const StyledMenuItem = withStyles(theme => ({
-    root: {
-        '&:focus': {
-            backgroundColor: theme.palette.primary.main,
-            '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-                color: theme.palette.common.white,
-            },
-        },
-    },
-}))(MenuItem);
-
-
-const LoanRequestNotification = ({id, firstname, middlename, imageUrl, lastname, loanStatus, reply}) => {
+const LoanRequestNotification = ({id, firstname, middlename, imageUrl, lastname, loanStatus, selectedDate, selectedDate2,reply}) => {
     const classes = useStyles();
     return (
         <React.Fragment>
@@ -64,12 +51,15 @@ const LoanRequestNotification = ({id, firstname, middlename, imageUrl, lastname,
                             <Typography gutterBottom variant="h7" component="h7" display={"inline"}>
                                 {firstname} {middlename} {lastname} {loanStatus} lånet
                             </Typography>
-
                             <Button className={classes.button} onClick={reply}>
                                 <CloseIcon/>
                             </Button>
-
                         </Box>
+                        <Box display='flex' flexDirection="column">
+                            <Typography gutterBottom variant="subtitle1" component="h2">
+                                {selectedDate} - {selectedDate2}
+                            </Typography>
+                    </Box>
                     </Box>
 
                 </Grid>

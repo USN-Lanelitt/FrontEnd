@@ -14,6 +14,8 @@ import LoanGetAcceptedRequests from "../loan/loan-getAcceptedRequests";
 import LoanGetDeniedRequests from "../loan/loan-getDeniedRequests";
 import {Box} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
+
+
 const useStyles = makeStyles(theme => ({
     paper: {
         border: '1px solid #d3d4d5',
@@ -83,9 +85,8 @@ const NotificationList = () => {
 
     const getAcceptedRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL') + '/user/' + userId + '/loanAccepted')
+        axios.get( '/user/' + userId + '/loanAccepted')
             .then((response) => {
-
                 if (response.status === 200) {
                     console.log(response.data);
                     setDataAccept(response.data);

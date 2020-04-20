@@ -4,20 +4,12 @@ import cx from "clsx";
 import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
-import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
-import {useFadedShadowStyles} from "@mui-treasury/styles/shadow/faded";
-import {useGutterBorderedGridStyles} from "@mui-treasury/styles/grid/gutterBordered";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
-import {grey} from "@material-ui/core/colors";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import friendCheck from "./friendCheck";
-import ReceivedRatingsList from "../rating/received-ratings-list-";
-import MyRatingsList from "../rating/my-ratings-list";
-import NewRatingsList from "../rating/new-rating-list";
 
 
 const useStyles = makeStyles(theme => ({

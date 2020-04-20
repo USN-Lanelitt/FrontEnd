@@ -10,18 +10,21 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {Link} from "react-router-dom";
-
+import CardActionArea from "@material-ui/core/CardActionArea";
 
 //VenneVarselListe
 
 const useStyles = makeStyles(theme => ({
     root: {
-
+        width: '100%',
+        maxWidth: '10ch',
         backgroundColor: theme.palette.background.paper,
     },
 
     list: {
         display: 'flex',
+        padding: theme.spacing(2),
+
     },
 
     photo: {

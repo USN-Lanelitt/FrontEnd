@@ -13,6 +13,7 @@ import NotificationLoanDenied from "../../components/notification/notification-l
 import NotificationLoanAccepted from "../../components/notification/notification-loan-accepted";
 
 
+
 //siden på mobil, (en hel side)
 
 const useStyles = makeStyles(theme => ({
@@ -105,7 +106,15 @@ const Notification = () => {
                     <Divider/>
                 </Typography>
                 <LoanRequests/>
+                <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
+                    Godtatte låneforespørsler
+                    <Divider/>
+                </Typography>
                 <NotificationLoanAccepted/>
+                <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
+                   Avslåtte låneforespørsler
+                    <Divider/>
+                </Typography>
                 <NotificationLoanDenied/>
 
             </Container>

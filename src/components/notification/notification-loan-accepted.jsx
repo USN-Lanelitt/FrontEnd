@@ -1,16 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
-import LoanRequestNotification from "./loan-request-notification";
-import {makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import NotificationLoanRequest from "./notificatoin-loan-request";
-
-const useStyles = makeStyles(theme => ({
-
-}));
+import {notificationRefreshLoanAccepted} from "../../feature/Notification/notification-refresh";
 
 const NotificationLoanAccepted = () => {
-    const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
@@ -20,9 +14,9 @@ const NotificationLoanAccepted = () => {
 
     const getAcceptedLoanRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
-        axios.get(sessionStorage.getItem('API_URL') + '/user/' + userId + '/loanAccepted')
+        axios.get( '/user/' + userId + '/loanAccepted')
             .then((response) => {
-
+                notificationRefreshLoanAccepted(userId, setData);
                 if (response.status === 200) {
                     console.log(response.data);
                     setData(response.data);
@@ -42,7 +36,9 @@ const NotificationLoanAccepted = () => {
                         lastname={loan.assets.users.lastName}
                         imageUrl={loan.assets.users.assetImages}
                         loanStatus={loan.statusLoan.status}
-                        /* onDenied={() => denied(loan.user1.id)}*/
+                        selectedDate={loan.dateStart}
+                        selectedDate2={loan.dateEnd}
+                        refresh={() => notificationRefreshLoanAccepted(userId, setData)}
 
                     />
                 </Grid>
@@ -52,4 +48,5 @@ const NotificationLoanAccepted = () => {
 };
 
 export default NotificationLoanAccepted;
+
 
