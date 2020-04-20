@@ -24,29 +24,44 @@ const useStyles = makeStyles(theme => ({
 const AssetContainer = () => {
     const classes = useStyles();
     const {id} = useParams();
+    const [assetType, setAssetType] = useState();
+
+    useEffect(() => {
+        axios.get(  "/assets/type/" + id)
+            .then(result => {
+                if (result.data.length === 1) {
+                setAssetType(result.data[0]);
+                }
+                else {
+                    setAssetType('Kategori');
+                }
+            })
+            .catch(error => console.log(error))
+    }, [id]);
+
 
     return (
         <div>
             <div className={classes.heroContent}>
                 <Container>
                     <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        {id}
+                        {assetType && assetType.assetType}
                     </Typography>
                 </Container>
             </div>
-            <CssBaseline />
+            <CssBaseline/>
             <main>
                 <Container className={classes.cardGrid}>
 
-                   <Box m={5}>
-                    <hr/>
-                   </Box>
-                    <Grid >
+                    <Box m={5}>
+                        <hr/>
+                    </Box>
+                    <Grid>
                         <AssetsList categoryId={id}/>
                     </Grid>
                 </Container>
             </main>
-</div>
+        </div>
 
     );
 };

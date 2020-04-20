@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
-import {MuiPickersUtilsProvider, KeyboardDatePicker,} from '@material-ui/pickers';
+import {KeyboardDatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -31,20 +30,19 @@ const useStyles = makeStyles(theme => ({
 
 }));
 const LoanRequestSend = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [userId2, setId2] = useState(52);
-    const [assetId, setAssetId] = useState(1);
     const [assetName, setAssetName] = useState('Laptop');
     const [textValue, setTextValue] = useState('');
-    const [selectedDate, setSelectedDate] = React.useState(new Date() );
-    const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
+    const [selectedDate2, setSelectedDate2] = React.useState(new Date());
     const {id} = useParams();
+
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId /*+ '/' + userid2*/, {
+        axios.post('/users/writeMessage/' + userId + '/' + id, {
             message: message
         })
             .then(result => {
@@ -56,7 +54,7 @@ const LoanRequestSend = () => {
 
     function sendRequest() {
         console.log("sendRequest", sessionStorage.getItem('userId'));
-        axios.post('/user/'+userId+'/asset/'+id+'/request' , {
+        axios.post('/user/' + userId + '/asset/' + id + '/request', {
             startDate: selectedDate,
             endDate: selectedDate2
 
@@ -78,7 +76,7 @@ const LoanRequestSend = () => {
     };
 
     const handleClick = () => {
-        sendMessage(assetName+': '+textValue);
+        sendMessage(assetName + ': ' + textValue);
         console.log(textValue);
         sendRequest();
     };
@@ -95,7 +93,7 @@ const LoanRequestSend = () => {
                             </Typography>
 
                         </CardContent>
-                   </Box>
+                    </Box>
                     <Box m={4}>
                         <CardActions>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>

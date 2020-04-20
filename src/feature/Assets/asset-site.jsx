@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -49,10 +50,11 @@ const AssetSite = () => {
     const [rating, setRating] = useState(null);
     const {id} = useParams();
 
+
     const getAssetOwner = () => {
         axios.get('/assets/getAsset/' + id)
             .then(result => {
-                console.log(result.data);
+                console.log('assetsite', result.data);
                 setAsset(result.data);
             })
             .catch(e => console.log(e));
@@ -62,6 +64,7 @@ const AssetSite = () => {
         getAssetOwner();
     }, []);
 
+    if (asset === null) return <Box display='flex' justifyContent='center'><CircularProgress/></Box>;
 
     return (
         <div>
@@ -90,7 +93,7 @@ const AssetSite = () => {
                                 <Button type="submit"
                                         variant="contained"
                                         color="primary"
-                                        component={Link} to={"/LoanRequestSend/"}>
+                                        component={Link} to={"/LoanRequestSend/" + asset.users.id}>
                                     {t('assetOwner.1')}
                                 </Button>
                             </Box>
