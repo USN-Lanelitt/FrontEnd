@@ -6,7 +6,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import Button from "@material-ui/core/Button";
 import ConfirmDialog from "../user/confirm-dialog";
 import {Visibility} from "@material-ui/icons";
 import {useTranslation} from "react-i18next";

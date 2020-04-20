@@ -227,7 +227,7 @@ export default function SidePanel() {
                     </ListItemIcon>
                     <ListItemText primary={t('sidepanel.8')}/>
                 </ListItem>
-                <ListItem button component = {Link} to={"/Ratings/1"}>
+                <ListItem button component = {Link} to={"/rating/1"}>
                     <ListItemIcon>
                         <StarIcon/>
                     </ListItemIcon>
