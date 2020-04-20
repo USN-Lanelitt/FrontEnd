@@ -123,10 +123,13 @@ const EditProfile = ({history}) => {
         event.preventDefault();
         let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        const {nickname, phone, address1, address2, zipcode, city, currentPassword, newPassword} = event.target.elements;
+        const {nickname, firstname, middlename, lastname, phone, address1, address2, zipcode, city, currentPassword, newPassword} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
         axios.post('/url', {
             nickname: nickname.value,
+            firstname: firstname.value,
+            middlename: middlename.value,
+            lastname: lastname.value,
             phone: phone.value,
             address1: address1.value,
             address2: address2.value,
@@ -274,6 +277,36 @@ const EditProfile = ({history}) => {
                                 id="nickname"
                                 label={t('editProfile.5')}
                                 value={sessionStorage.getItem('nickname')}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                name="firstname"
+                                fullWidth
+                                autoFocus
+                                id="firstname"
+                                label={t('editProfile.15')}
+                                value={sessionStorage.getItem('firstname')}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                name="middlename"
+                                fullWidth
+                                autoFocus
+                                id="middlename"
+                                label={t('editProfile.16')}
+                                value={sessionStorage.getItem('middlename')}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                name="lastname"
+                                fullWidth
+                                autoFocus
+                                id="lastname"
+                                label={t('editProfile.17')}
+                                value={sessionStorage.getItem('lastname')}
                             />
                         </Grid>
                         <Grid item xs={12}>

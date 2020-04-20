@@ -183,7 +183,10 @@
     "11": "Change password",
     "12": "Current password",
     "13": "New Password",
-    "14": "Save"
+    "14": "Save",
+    "15": "Firstname",
+    "16": "Middlename",
+    "17": "Lastname"
   },
   "profile": {
     "1": "My Assets"
