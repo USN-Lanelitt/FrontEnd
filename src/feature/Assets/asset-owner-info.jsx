@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
@@ -7,15 +7,11 @@ import Box from "@material-ui/core/Box";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import {Link, useParams} from "react-router-dom";
-import axios from "axios";
 import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
     card: {
-        borderRadius: 12,
         minWidth: 256,
         maxWidth: 256,
         textAlign: 'center',
@@ -64,11 +60,11 @@ const StyledBadge = withStyles(theme => ({
 
 const AssetOwnerInfo = ({asset}) => {
     const styles = useStyles();
-    const { t } = useTranslation()
+    const {t} = useTranslation()
 
     return (
         <div>
-            <Card className={styles.card}>
+            <Card className={styles.card}  elevation="0">
                 <CardContent>
                     <IconButton>
                         <StyledBadge

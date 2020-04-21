@@ -55,7 +55,8 @@ const Routes = props => {
             <Route exact path="/chat" component={Chat}/>
             <Route exact path="/friendProfileCard" component={FriendProfileCard}/>
             <Route exact path="/loantofriends" component={LoanToFriends}/>
-            <Route path="/loanrequestsend/:userId2/:assetId" component={LoanRequestSend}/>
+            <Route path="/loanrequestsend/:id/:assetId" component={LoanRequestSend}/>
+
             <Route exact path="/loanAccepted" component={LoanAccepted}/>
             <Route path="/rating/:pageNr" component={Ratings}/>
             <Route exact path="/owner/info" component={AssetOwnerInfo}/>

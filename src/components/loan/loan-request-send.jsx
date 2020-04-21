@@ -31,15 +31,15 @@ const LoanRequestSend = () => {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [assetName, setAssetName] = useState('Laptop');
+    const [assetName, setAssetName] = useState('');
     const [textValue, setTextValue] = useState('');
-    const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD"));
-    const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD"));
-    const {userId2, assetId} = useParams();
+    const [selectedDate, setSelectedDate] = React.useState(new Date() );
+    const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
+    const {id, assetId} = useParams();
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
+        axios.post('/users/writeMessage/' + userId + '/' + id, {
             message: message
         })
             .then(result => {
@@ -51,7 +51,7 @@ const LoanRequestSend = () => {
 
     function sendRequest() {
         console.log("sendRequest", sessionStorage.getItem('userId'));
-        axios.post('/user/'+userId+'/asset/'+ assetId+'/request' , {
+        axios.post('/user/'+userId+'/asset/'+assetId+'/request' , {
             startDate: selectedDate,
             endDate: selectedDate2
 
