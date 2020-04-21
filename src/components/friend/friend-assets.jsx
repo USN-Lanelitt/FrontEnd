@@ -38,7 +38,7 @@ const FriendAssets = () => {
             <main>
                 <Container className={classes.cardGrid}>
                     <Box m={5}>
-                        <h3>Lån</h3>
+
                         <hr/>
                     </Box>
                     <Grid container spacing={3} justify="center">

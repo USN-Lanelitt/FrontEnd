@@ -65,9 +65,9 @@ const FriendRequest = ({id,firstname, middlename, lastname, imageUrl, onDenied, 
 
     return (
         <React.Fragment>
-            <StyledMenuItem >
+            <StyledMenuItem component = {Link} to={"/FriendProfile/" + id} style={{textDecoration: "none", color: "black"}}>
                 <Divider variant = "li"/>
-                <Grid className={classes.list} component = {Link} to={"/FriendProfile/" + id} style={{backgroundColor: "transparent"}}>
+                <Grid className={classes.list}>
 
                     <ListItemAvatar>
                         <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>

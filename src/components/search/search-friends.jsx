@@ -6,8 +6,9 @@ import axios from "axios";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {fade} from "@material-ui/core";
 import {Link} from "react-router-dom";
-
 import {useTranslation} from 'react-i18next';
+import {useParams} from "react-router";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +59,7 @@ const SearchFriends = () => {
     const [search, setSearch] = useState();
     const classes = useStyles();
     const {t} = useTranslation();
+    const {id} = useParams();
 
     const handleChange = (event) => {
         setSearch(event.target.value);
@@ -65,13 +67,13 @@ const SearchFriends = () => {
         console.log('search', data.filter((user) => user && user.firstName.includes(event.target.value)))
     }
     useEffect(() => {
-        console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
+        console.log("getearch", userId, sessionStorage.getItem('userId'));
         axios.get('/users')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
                     setData(response.data);
-                    console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
+                    console.log("getsearch1", userId, sessionStorage.getItem('userId'));
                 }
             })
             .catch(e => console.log(e));
@@ -81,11 +83,11 @@ const SearchFriends = () => {
     return (
         <Box m={2} display="flex" alignItems="center" flexDirection="column">
             <div className={classes.search}>
-                <Autocomplete component={Link} to="/FriendProfile"
+                <Autocomplete component = {Link} to={"/FriendProfile/" + id}
                               id="combo-box-demo"
                               options={dataFilterd}
                               getOptionLabel={option => option && option.firstName}
-                              style={{width: 210}}
+                              style={{width: 210, backgroundColor: 'transparent'}}
                               filterOptions={(x) => x}
                               renderInput={params => <TextField   {...params}
                                                                   classes={{
@@ -94,7 +96,8 @@ const SearchFriends = () => {
                                                                   }}
                                                                   label={t('nav.1')}
                                                                   variant="filled"
-                                                                  onChange={handleChange}/>}
+                                                                  onChange={handleChange}
+                                                                   />}
                 />
 
             </div>
