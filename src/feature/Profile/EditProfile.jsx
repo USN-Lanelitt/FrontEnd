@@ -31,6 +31,8 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import HandleImageUpload from "../../components/profile/handle-image-upload";
 import ProfileImageUpload from "./profile-image-upload";
 import {useTranslation} from "react-i18next";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 
 const useStyles = makeStyles(theme => ({
@@ -123,20 +125,21 @@ const EditProfile = ({history}) => {
         event.preventDefault();
         let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        const {nickname, firstname, middlename, lastname, phone, address1, address2, zipcode, city, currentPassword, newPassword} = event.target.elements;
+        const {nickname, firstname, middlename, lastname, phone, address1, address2, zipcode, city} = event.target.elements;
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
-        axios.post('/url', {
+        axios.post('/user/'+sessionStorage.getItem('userId')+'/edit', {
             nickname: nickname.value,
             firstname: firstname.value,
             middlename: middlename.value,
             lastname: lastname.value,
             phone: phone.value,
-            address1: address1.value,
+            address: address1.value,
             address2: address2.value,
             zipcode: zipcode.value,
             city: city.value,
-            currentPassword: currentPassword.value,
-            newPassword: newPassword.value
+            newsSubscription: '',
+            usertype: '',
+            active: ''
         })
             .then(res => {
                     //Symfony
@@ -147,17 +150,17 @@ const EditProfile = ({history}) => {
             .then(
                 // Bruker må re-autentiseres for å kunne endre passord/epost og bli godkjent på Firebase. (Sikkerhetstiltak)
                 // Prompt the user to re-provide their sign-in credentials
-                user.reauthenticateWithCredential(credential).then(function () {
+                /*user.reauthenticateWithCredential(credential).then(function () {
                     // User re-authenticated.
                 }).catch(function (error) {
                     // An error happened.
-                })
+                })*/
             )
             .then(
                 //Firebase
-                user.updatePassword(newPassword.value).then(function() {
-                    // Update successful.
-                  })
+                //user.updatePassword(newPassword.value).then(function() {
+                    //Update successful.
+                //})
             )
             .catch(function (error) {
                 // An error happened.
@@ -276,7 +279,7 @@ const EditProfile = ({history}) => {
                                 autoFocus
                                 id="nickname"
                                 label={t('editProfile.5')}
-                                value={sessionStorage.getItem('nickname')}
+                                defaultValue={sessionStorage.getItem('nickname')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -286,7 +289,7 @@ const EditProfile = ({history}) => {
                                 autoFocus
                                 id="firstname"
                                 label={t('editProfile.15')}
-                                value={sessionStorage.getItem('firstname')}
+                                defaultValue={sessionStorage.getItem('firstname')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -296,7 +299,7 @@ const EditProfile = ({history}) => {
                                 autoFocus
                                 id="middlename"
                                 label={t('editProfile.16')}
-                                value={sessionStorage.getItem('middlename')}
+                                defaultValue={sessionStorage.getItem('middlename')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -306,7 +309,7 @@ const EditProfile = ({history}) => {
                                 autoFocus
                                 id="lastname"
                                 label={t('editProfile.17')}
-                                value={sessionStorage.getItem('lastname')}
+                                defaultValue={sessionStorage.getItem('lastname')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -315,7 +318,7 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="phone"
                                 label={t('editProfile.6')}
-                                value={sessionStorage.getItem('phone')}
+                                defaultValue={sessionStorage.getItem('phone')}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -325,7 +328,7 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="sAddress"
                                 label={t('editProfile.7')}
-                                value={sessionStorage.getItem('address')}
+                                defaultValue={sessionStorage.getItem('address')}
 
                             />
                         </Grid>
@@ -336,7 +339,7 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="sAddress2"
                                 label={t('editProfile.8')}
-                                value={sessionStorage.getItem('address2')}
+                                defaultValue={sessionStorage.getItem('address2')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -346,7 +349,7 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="iZipcode"
                                 label={t('editProfile.9')}
-                                value={sessionStorage.getItem('zipcode')}
+                                defaultValue={sessionStorage.getItem('zipcode')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -356,6 +359,13 @@ const EditProfile = ({history}) => {
                                 fullWidth
                                 id="sCity"
                                 label={t('editProfile.10')}
+                                defaultValue={sessionStorage.getItem('city')}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FormControlLabel
+                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
+                                label={t('register.10')}
                             />
                         </Grid>
                         <Grid item xs={12}>
