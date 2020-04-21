@@ -58,6 +58,7 @@ const SearchFriends = () => {
     const [dataFilterd, setDataFilterd] = useState([]);
     const [search, setSearch] = useState();
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
     const {t} = useTranslation();
     const {id} = useParams();
 
@@ -79,24 +80,29 @@ const SearchFriends = () => {
             .catch(e => console.log(e));
     }, []);
 
+    function handleListKeyDown(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            setOpen(false);
+
+        }
+    }
 
     return (
         <Box m={2} display="flex" alignItems="center" flexDirection="column">
             <div className={classes.search}>
-                <Autocomplete component = {Link} to={"/FriendProfile/" + id}
+                <Autocomplete component = {Link} to = {"/FriendProfile/" + id}
                               id="combo-box-demo"
                               options={dataFilterd}
                               getOptionLabel={option => option && option.firstName}
                               style={{width: 210, backgroundColor: 'transparent'}}
                               filterOptions={(x) => x}
                               renderInput={params => <TextField   {...params}
-                                                                  classes={{
-                                                                      root: classes.inputRoot,
-                                                                      input: classes.inputInput,
-                                                                  }}
+                                                                  classes={{root: classes.inputRoot, input: classes.inputInput,}}
                                                                   label={t('nav.1')}
                                                                   variant="filled"
                                                                   onChange={handleChange}
+                                                                  onKeyDown={handleListKeyDown}
                                                                    />}
                 />
 

@@ -28,6 +28,10 @@ const useStyles = makeStyles(theme => ({
         margin: '0',
 
     },
+    button: {
+        padding: '0',
+        marginBottom: '3px',
+    }
 
 }));
 
@@ -114,18 +118,22 @@ const NotificationList = () => {
     return (
         <div className={classes.root}>
             <div>
+
                 <Badge badgeContent={data.length + dataAccept.length + dataDenied.length} color="secondary">
                     <IconButton
+                        className={classes.button}
                         ref={anchorRef}
                         aria-controls={open ? 'menu-list-grow' : undefined}
                         aria-haspopup="true"
                         color="inherit"
                         variant="contained"
-                        onClick={handleToggle}
-                    >
+                        onClick={handleToggle}>
+
                         <NotificationsIcon/>
+
                     </IconButton>
                 </Badge>
+
 
                 <Popper open={open}
                         anchorEl={anchorRef.current}

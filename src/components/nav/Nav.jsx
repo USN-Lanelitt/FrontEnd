@@ -26,6 +26,7 @@ import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
 import { useTranslation } from 'react-i18next';
+import Box from "@material-ui/core/Box";
 
 
 const drawerWidth = 240;
@@ -314,6 +315,7 @@ export default function NavBar(props) {
 
                         {loggedIn && (<div>
                             {/*----------Notification Icon knapp--------------*/}
+
                             <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent'}}>
                                 <NotificationList/>
                             </IconButton>
