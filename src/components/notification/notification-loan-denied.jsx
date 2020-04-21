@@ -11,13 +11,13 @@ const NotificationLoanDenied = () => {
 
     useEffect(()=>{
         getDeniedLoanRequests();
-    })
+    }, []);
 
     const getDeniedLoanRequests = () => {
         console.log("getDeniedRequests", userId, sessionStorage.getItem('userId'));
         axios.get('/user/' + userId + '/loanDenied')
             .then((response) => {
-                notificationRefreshLoanDenien(userId, setData);
+                notificationRefreshLoanDenien(userId, setData)
                 if (response.status === 200) {
                     console.log(response.data);
                     setData(response.data);
@@ -39,7 +39,7 @@ const NotificationLoanDenied = () => {
                         loanStatus={loan.statusLoan.status}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
-                        refresh={() => notificationRefreshLoanDenien(userId, setData)}
+
                     />
                 </Grid>
             ))}

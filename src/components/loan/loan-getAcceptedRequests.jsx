@@ -19,7 +19,6 @@ const LoanGetAcceptedRequests = ({data}) => {
                         loanStatus={loan.statusLoan.status}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
-
                     />
                 </Grid>
             ))}

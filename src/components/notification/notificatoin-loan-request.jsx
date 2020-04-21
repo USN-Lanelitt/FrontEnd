@@ -1,6 +1,9 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
+import MenuItem from "@material-ui/core/MenuItem";
 import {makeStyles} from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import {Box} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from '@material-ui/icons/Close';
@@ -19,7 +22,16 @@ const useStyles = makeStyles(theme => ({
         height: theme.spacing(7),
     },
 
+    inline: {
+        display: 'flex',
 
+    },
+
+    list: {
+        display: 'flex',
+        marginLeft: '20px',
+
+    },
     button: {
         display: 'flex',
         padding: '0',

@@ -35,13 +35,14 @@ export const notificationRefreshLoanDenien = (userId, setData) =>{
 
 }
 export const notificationRefreshLoanAccepted = (userId, setData) =>{
-    axios.get('/user/' + userId + '/loanDenied')
+    axios.get( '/user/' + userId + '/loanAccepted')
         .then((response) => {
+
             if (response.status === 200) {
                 console.log(response.data);
                 setData(response.data);
             }
         })
-        .catch(error => console.log(error));
+        .catch(error => console.log(error))
 
 }

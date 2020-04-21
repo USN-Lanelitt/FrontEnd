@@ -10,13 +10,13 @@ const NotificationLoanAccepted = () => {
 
     useEffect(()=>{
         getAcceptedLoanRequests();
-    })
+   }, []);
 
     const getAcceptedLoanRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
         axios.get( '/user/' + userId + '/loanAccepted')
             .then((response) => {
-                notificationRefreshLoanAccepted(userId, setData);
+                notificationRefreshLoanAccepted(userId, setData)
                 if (response.status === 200) {
                     console.log(response.data);
                     setData(response.data);
@@ -38,7 +38,7 @@ const NotificationLoanAccepted = () => {
                         loanStatus={loan.statusLoan.status}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
-                        refresh={() => notificationRefreshLoanAccepted(userId, setData)}
+
 
                     />
                 </Grid>
