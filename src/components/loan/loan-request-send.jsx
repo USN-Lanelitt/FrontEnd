@@ -33,8 +33,8 @@ const LoanRequestSend = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [assetName, setAssetName] = useState('');
     const [textValue, setTextValue] = useState('');
-    const [selectedDate, setSelectedDate] = React.useState(new Date() );
-    const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
+    const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD") );
+    const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD") );
     const {id, assetId} = useParams();
 
     function sendMessage(message) {
