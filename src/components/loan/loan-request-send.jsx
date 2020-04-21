@@ -13,9 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
 import {useParams} from "react-router";
-
-//Mangler assetID, assetName og userId2!!!
-//her skal fra og til dato komme opp, søke om å låne
+import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -33,47 +31,47 @@ const LoanRequestSend = () => {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [userId2, setId2] = useState(52);
-    const [assetId, setAssetId] = useState(1);
     const [assetName, setAssetName] = useState('Laptop');
     const [textValue, setTextValue] = useState('');
-    const [selectedDate, setSelectedDate] = React.useState(new Date() );
-    const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
-    const {id} = useParams();
+    const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD"));
+    const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD"));
+    const {userId2, assetId} = useParams();
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId /*+ '/' + userid2*/, {
+        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
             message: message
         })
             .then(result => {
                 console.log(result.data);
-                /*console.log(userid2);*/
+                console.log(userId2);
             })
             .catch(e => console.log(e));
     }
 
     function sendRequest() {
         console.log("sendRequest", sessionStorage.getItem('userId'));
-        axios.post('/user/'+userId+'/asset/'+id+'/request' , {
+        axios.post('/user/'+userId+'/asset/'+ assetId+'/request' , {
             startDate: selectedDate,
             endDate: selectedDate2
 
         }).then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
-                console.log(id);
+                console.log(assetId);
+                console.log(selectedDate);
+                console.log(selectedDate2);
             }
         })
             .catch(e => console.log(e));
     }
 
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
+    const handleDateChange = () => {
+        setSelectedDate(moment(selectedDate).format("YYYY-MM-DD"));
     };
 
-    const handleDateChange2 = (date) => {
-        setSelectedDate2(date);
+    const handleDateChange2 = () => {
+        setSelectedDate2(moment(selectedDate2).format("YYYY-MM-DD"))
     };
 
     const handleClick = () => {

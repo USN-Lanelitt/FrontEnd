@@ -33,7 +33,7 @@ const LoanRequests = () => {
     }, [setData, userId]);
 
     function ReplyLoan (loanId,statuss) {
-        console.log("", userId, sessionStorage.getItem('userId'));
+        console.log("replyLoan", sessionStorage.getItem('userId'));
         axios.post('/user/'+userId+'/loanRequest/'+loanId+'/'+statuss)
             .then((response) => {
                 notificationRefresh1 (userId, setData)

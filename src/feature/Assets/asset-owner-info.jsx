@@ -96,17 +96,21 @@ const AssetOwnerInfo = ({asset}) => {
                     <Box display="flex" flexDirection="column">
                         <Box m={2}>
                             {t('assetOwner.2')}
-
                         </Box>
-                        <Box m={2}>
-                            <Button type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    component={Link} to={"/LoanRequestSend/"}>
-                                 {t('assetOwner.1')}
-                            </Button>
-
-                        </Box>
+                        {asset &&
+                            (
+                                <Box m={2}>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                        component={Link} to={"/LoanRequestSend/" + asset.users.id + "/" + asset.id}
+                                    >
+                                        {t('assetOwner.1')}
+                                    </Button>
+                                </Box>
+                            )
+                        }
                     </Box>
                 </Box>
                 </CardContent>
