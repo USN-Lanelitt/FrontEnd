@@ -12,7 +12,6 @@ const NewRatingsList = () => {
         axios.get('/unratedLoans/'+userId)
             .then((response) => {
                 if (response.status === 200) {
-                    console.log(response.data);
                     setData(response.data);
                 }
             })

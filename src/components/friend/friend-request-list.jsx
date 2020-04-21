@@ -88,7 +88,6 @@ const FriendRequestList = ({data}) => {
                         friendId={item.user1.id}
                         onDenied={() => denied(item.user1.id)}
                         onAccept={() => accept(item.user1.id)}
-
                     />
                 </Grid>
             ))}
