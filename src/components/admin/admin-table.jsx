@@ -31,7 +31,6 @@ const AdminTable = () => {
             { title: 'Fornavn', field: 'firstName' },
             { title: 'Mellomnavn', field: 'middleName' },
             { title: 'Etternavn', field: 'lastName' },
-            { title: 'E-post', field: 'email' },
             { title: 'Brukertype', field: 'usertype' },
             { title: 'Aktiv', field: 'active'},
             { title: 'Nyheter', field: 'newsSubscription'},
@@ -69,7 +68,6 @@ const AdminTable = () => {
                                     newData.middleName,
                                     newData.lastName,
                                     newData.phone,
-                                    newData.email,
                                     newData.usertype,
                                     newData.active,
                                     newData.newsSubscription);
@@ -80,7 +78,6 @@ const AdminTable = () => {
                                     newData.middleName,
                                     newData.lastName,
                                     newData.phone,
-                                    newData.email,
                                     newData.usertype,
                                     newData.active,
                                     newData.newsSubscription);

@@ -4,49 +4,61 @@ import {makeStyles} from "@material-ui/core/styles";
 import {CardContent} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Rating from "@material-ui/lab/Rating";
 import Button from "@material-ui/core/Button";
+import Rating from "@material-ui/lab/Rating";
+import useInput from "../div/use-input";
+import {useTranslation} from "react-i18next";
 import setRating from "./setRating";
+import TextField from "@material-ui/core/TextField";
+import ReportModal from "../report/report-modal";
+
 
 const useStyles = makeStyles(theme => ({
     card: {
-        height: 235,
-        width: 670,
+        height: 260,
+        width: 680,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
         padding: 15,
-        height: 130,
+        height: 156,
         width: 450,
-        marginBottom: 0,
     },
     paddingRight: {
         paddingRight:10,
+    },
+    stars: {
+        marginTop:10,
     },
     flex: {
         display: 'flex',
         alignItems: 'center',
     },
-    textarea: {
-        marginTop: 20,
-        marginRight: 15,
-        padding: 10,
-        width: '77%',
-        height: 90,
-    },
     comment:{
-        width: '80%',
+        marginTop: 12,
+        width: '90%',
         height: 90,
-    },
-    button:{
-        marginTop: 70,
-        width: '20%'
     },
 
 }));
 
-const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2, comment, rating}) => {
+const RatingCard = ({userId2, firstname, middlename, lastname, assetname, selectedDate, selectedDate2, comment, rating, type}) => {
+    const { t } = useTranslation();
     const classes = useStyles();
+    const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const [botton, setBotton] = useState('');
+
+    useEffect(() => {
+        if(type === 1)
+            setBotton(reportBotten);
+        else
+            setBotton('');
+    }, [setBotton, userId]);
+
+
+    const reportBotten  = (
+        <ReportModal userId2={userId2}/>
+    );
 
     return (
         <div>
@@ -69,31 +81,30 @@ const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, 
                         <Box display="flex" flexDirection="row" alignItems="center">
                             <Box className={classes.flex}>
                                 <Box className={classes.paddingRight}>
-                                    <Typography  variant="h5" component="h2">
+                                    <Box style={{margin:0}} fontSize={25} fontWeight="fontWeightBold" m={1}>
                                         {assetname}
-                                    </Typography>
+                                    </Box>
                                 </Box>
                             </Box>
-                            <Box component="fieldset" borderColor="transparent" display="flex">
-                                <Rating name="read-only" precision={0.5} value={rating} readOnly/>
+                            <Box borderColor="transparent">
+                                <Rating
+                                    name="read-only"
+                                    precision={0.5}
+                                    value={rating}
+                                    className={classes.stars}
+                                    readOnly
+                                />
                             </Box>
                         </Box>
                         <Box display="flex" flexDirection="row">
                             <Box className={classes.comment}>
-                                <Typography  variant="subtitle1" component="h2">
+                                <Box style={{margin:0}} fontSize={17}  m={1}>
                                     {comment}
-                                </Typography>
-                            </Box>
-                            <Box className={classes.button}>
-                                <Button
-                                    type="submit"
-                                    size="small"
-                                >
-                                    Rapporter
-                                </Button>
+                                </Box>
                             </Box>
                         </Box>
                     </Card>
+                    {botton}
                 </CardContent>
 
             </Card>
@@ -101,4 +112,4 @@ const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, 
     );
 };
 
-export default ReceivedRatingsCard;
+export default RatingCard;

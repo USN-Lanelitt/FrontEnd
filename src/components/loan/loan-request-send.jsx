@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
 import {MuiPickersUtilsProvider, KeyboardDatePicker,} from '@material-ui/pickers';
@@ -14,9 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
 import {useParams} from "react-router";
-
-//Mangler assetID, assetName og userId2!!!
-//her skal fra og til dato komme opp, søke om å låne
+import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -47,7 +44,7 @@ const LoanRequestSend = () => {
         })
             .then(result => {
                 console.log(result.data);
-                /*console.log(userid2);*/
+                console.log(userId2);
             })
             .catch(e => console.log(e));
     }
@@ -61,18 +58,20 @@ const LoanRequestSend = () => {
         }).then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
-                console.log(id);
+                console.log(assetId);
+                console.log(selectedDate);
+                console.log(selectedDate2);
             }
         })
             .catch(e => console.log(e));
     }
 
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
+    const handleDateChange = () => {
+        setSelectedDate(moment(selectedDate).format("YYYY-MM-DD"));
     };
 
-    const handleDateChange2 = (date) => {
-        setSelectedDate2(date);
+    const handleDateChange2 = () => {
+        setSelectedDate2(moment(selectedDate2).format("YYYY-MM-DD"))
     };
 
     const handleClick = () => {

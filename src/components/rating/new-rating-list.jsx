@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-import ReceivedRatingsCard from "./received-ratings-card";
 import NewRatingCard from "./new-rating-card";
 
 const NewRatingsList = () => {
@@ -13,7 +12,6 @@ const NewRatingsList = () => {
         axios.get('/unratedLoans/'+userId)
             .then((response) => {
                 if (response.status === 200) {
-                    console.log(response.data);
                     setData(response.data);
                 }
             })

@@ -1,13 +1,12 @@
 import axios from "axios";
 
-function editUser(id, nickname, firstname, middlename, lastname, email, usertype, active, newsSubscription) {
+function editUser(id, nickname, firstname, middlename, lastname, usertype, active, newsSubscription) {
     console.log("editUser ", id, sessionStorage.getItem('userId'));
     axios.post('/user/'+id+'/edit', {
         nickname: nickname,
         firstname: firstname,
         middlename: middlename,
         lastname: lastname,
-        email: email,
         usertype: usertype,
         active: active,
         newsSubscription: newsSubscription,

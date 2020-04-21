@@ -37,7 +37,6 @@ const Scaffold = () => {
     const theme = useTheme();
     const extraSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
 
-
     return (
         <main>
             <Nav />

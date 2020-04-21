@@ -1,23 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Card from "@material-ui/core/Card";
 import cx from "clsx";
 import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
-import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
-import {useFadedShadowStyles} from "@mui-treasury/styles/shadow/faded";
-import {useGutterBorderedGridStyles} from "@mui-treasury/styles/grid/gutterBordered";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
-import {grey} from "@material-ui/core/colors";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import friendCheck from "./friendCheck";
-import ReceivedRatingsList from "../rating/received-ratings-list-";
-import MyRatingsList from "../rating/my-ratings-list";
-import NewRatingsList from "../rating/new-rating-list";
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -71,35 +64,36 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 
-const FriendProfileCard = ({userId2, firstname, middlename, lastname, imageUrl}) => {
+const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
     const classes = useStyles();
     const styles = useStyles();
-    const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [friendStatus, setFriendStatus] = useState(0);
-    const [buttonText, setButtonText] = useState([]);
+    const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
+    const [buttonText, setButtonText] = useState(null);
+    const [done, setDone] = useState(false);
+    const [value, setValue] = useState(null);
 
-    useEffect(() => {
-        console.log("getUsers", sessionStorage.getItem('userId'));
-        axios.get('/user/'+userId+'/'+ userId2)
+
+    if(done === false && user){
+        console.log("check", sessionStorage.getItem('userId'));
+        axios.get('/user/' + userId + '/check/' + user.id)
             .then(result => {
                 console.log(result.data);
-                setFriendStatus(result.data);
+                if (result.data === 1) {
+                    setValue(1)
+                    setButtonText('slett venn');
+                } else {
+                    setButtonText('Legg til');
+                }
             })
             .catch(e => console.log(e));
-        if (friendStatus === 1) {
-            deleteFriend();
-            console.log('deleteFriend');
-        } else
-            sendFriendRequest();
-            console.log('sendFriendRequest');
-    },[]);
-
-    const deleteFriend = () => {
-        setButtonText('Slett venn');
+       setDone(true);
     }
 
-    const sendFriendRequest = () => {
-        setButtonText('Legg til');
+    const handleOnClick = () => {
+        if(value === 1)
+            deleteFriend()
+        else
+            sendRequest()
     }
 
     return (
@@ -120,11 +114,11 @@ const FriendProfileCard = ({userId2, firstname, middlename, lastname, imageUrl})
                     </IconButton>
                     <Box display="flex" flexDirection="column" p={2}>
                         <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
-                            {firstname} {middlename} {lastname}
+                            {user && user.firstName} {user && user.middleName} {user && user.lastName}
                         </Typography>
 
                         <Typography variant="subtitle1" component="h2" display={"inline"}>
-                            Nickname
+                            {user && user.nickname}
                         </Typography>
                     </Box>
                 </CardContent>
@@ -132,19 +126,18 @@ const FriendProfileCard = ({userId2, firstname, middlename, lastname, imageUrl})
             <Box mt={4}>
                 <Box display="flex" flexDirection="row">
                     <Box m={2}>
-                    <Button className={classes.button} type="submit"  variant="contained" color="primary">
-                        {buttonText}
-                    </Button>
+                        <Button onClick={handleOnClick} className={classes.button} type="submit"  variant="contained" color="primary">
+                            {buttonText}
+                        </Button>
                     </Box>
                     <Box m={2}>
-                    <Button type="submit"  variant="contained" color="primary">
-                        Send Melding
-                    </Button>
+                        <Button onClick= {getChat} component={Link} to="/chat" type="submit"  variant="contained" color="primary">
+                            Send Melding
+                        </Button>
                     </Box>
                 </Box>
             </Box>
         </div>
-
     );
 };
 

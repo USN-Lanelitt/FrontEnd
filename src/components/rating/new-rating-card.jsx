@@ -6,38 +6,41 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
-import useInput from "./use-input";
+import useInput from "../div/use-input";
 import {useTranslation} from "react-i18next";
 import setRating from "./setRating";
+import TextField from "@material-ui/core/TextField";
+import {Redirect} from "react-router";
 
 
 const useStyles = makeStyles(theme => ({
     card: {
         height: 270,
-        width: 670,
+        width: 680,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
         padding: 15,
-        height: 170,
+        height: 168,
         width: 450,
     },
     paddingRight: {
         paddingRight:10,
     },
+    stars: {
+        marginTop:10,
+    },
     flex: {
         display: 'flex',
         alignItems: 'center',
     },
-    textarea: {
-        marginTop: 20,
-        marginRight: 15,
-        padding: 10,
-        width: '73%',
-        height: 90,
+    textfield: {
+        marginTop: 12,
+        width: '80%',
     },
     button:{
-        margin:7,
+        marginTop:95,
+        marginLeft: 12,
     },
 }));
 
@@ -45,10 +48,12 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [value, setValue] = React.useState(0);
+    const [ratingValue, setRatingValue] = React.useState(0);
     const { value:newRating, bind:bindNewRating} = useInput('');
     const { value:comment, bind:bindComment } = useInput('');
+    const [redirect, setRedirect] = React.useState(false);
 
+    if (redirect) return <Redirect to="/rating/3"/>;
 
     return (
         <div>
@@ -71,32 +76,38 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                             <Box display="flex" flexDirection="row" alignItems="center">
                                 <Box className={classes.flex}>
                                     <Box className={classes.paddingRight}>
-                                        <Typography  variant="h5" component="h2">
+                                        <Box style={{margin:0}} fontSize={25} fontWeight="fontWeightBold" m={1}>
                                             {assetname}
-                                        </Typography>
+                                        </Box>
                                     </Box>
                                 </Box>
                                 <Box borderColor="transparent">
                                     <Rating
-                                        name="simple-controlled"
-                                        value={value}
+                                        name={assetId}
+                                        value={ratingValue}
                                         precision={0.5}
+                                        className={classes.stars}
                                         onChange={(event, newValue) => {
-                                            setValue(newValue);
+                                            setRatingValue(newValue)
                                         }}
                                     />
                                 </Box>
                             </Box>
                             <form className={classes.form} >
-                                <textarea
-                                    className={classes.textarea}
-                                    {...bindComment} />
+                                <TextField
+                                    id={assetId}
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                    className={classes.textfield}
+                                    {...bindComment}
+                                />
 
                                 <Button
                                     type="submit"
                                     color="primary"
                                     className={classes.button}
-                                    onClick={() => setRating(userId, loanId, value, comment)}
+                                    onClick={() => setRating(userId, loanId, ratingValue, comment, setRedirect)}
                                 >
                                     {t('rating-card.1')}
                                 </Button>
