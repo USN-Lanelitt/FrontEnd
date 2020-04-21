@@ -71,14 +71,16 @@ const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loan
                     />
 
                     <Box display="flex" flexDirection="column" margin="auto">
+                        <Box m={1}>
                         <Typography gutterBottom variant="h5" component="h2">
                             {assetname}
                         </Typography>
-                        <Box component="fieldset" mb={3} borderColor="transparent">
+                        </Box>
+                        <Box component="fieldset" p={0} borderColor="transparent">
                             <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                         </Box>
 
-                        <Box display="flex" flexDirection="column" paddingTop="70px">
+                        <Box display="flex" flexDirection="column" mt={9}>
                             <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h6">
                                 Dato for lån:
                             </Typography>
