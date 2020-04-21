@@ -4,16 +4,19 @@ import Grid from "@material-ui/core/Grid";
 import AssetCard from "./asset-card";
 import axios from "axios";
 
-const AssetsList = ({categoryId}) => {
-   const [assetByCategory, setAssetByCategory] = useState([]);
+const AssetsList = ({searchTherm}) => {
+   const [assetBySearch, setAssetBySearch] = useState([]);
 
     useEffect( () => {
         getAssetsByCategory();
     }, []);
 
+
     const getAssetsByCategory = () => {
-        axios.get("/assets/getAssetType/" + sessionStorage.getItem("userId") + "/" + categoryId)
-            .then(result => setAssetByCategory(result.data))
+        axios.get("/assets/search/" + sessionStorage.getItem("userId") + "/" + searchTherm)
+            .then(result => {
+                setAssetBySearch(result.data)
+            })
             .catch(error => console.log(error))
 
     }
@@ -23,7 +26,7 @@ const AssetsList = ({categoryId}) => {
             <Grid container spacing={3} justify="center">
 
                 {
-                    assetByCategory.map(asset => (
+                    assetBySearch.map(asset => (
                             <Grid item>
                                 <AssetCard asset={asset}/>
                             </Grid>

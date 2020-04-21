@@ -5,32 +5,18 @@ import {useTranslation} from "react-i18next";
 import {Redirect} from "react-router";
 import useInput from "../rating/use-input";
 
-const AssetSearch = () => {
+const AssetSearchTextfield = () => {
     const { t, i18n } = useTranslation();
 
-    const [categories, setCategories] = useState([]);
     const [redirect, setRedirect] = useState(false);
     const { value:search, bind:bindSearch} = useInput('');
 
 
 
-    const getCategories = () => {
-        axios.get("/assets/AllTypes")
-            .then(result => {
-                setCategories(result.data);
-                console.log(result.data);
-            })
-            .catch(error => console.log(error));
-    };
 
-    useEffect(() => {
-        getCategories();
-    }, [])
 
     if(redirect==true){
         return <Redirect to={"/assetsearch/"+search}/>
-
-        //component={Link}to={"/assetsearch/" + "tel"
     }
 
     return (
@@ -60,4 +46,4 @@ const AssetSearch = () => {
     );
 };
 
-export default AssetSearch;
+export default AssetSearchTextfield;
