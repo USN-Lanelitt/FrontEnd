@@ -27,7 +27,6 @@ const AssetCard = ({asset}) => {
 
     useEffect(() => {
         getRatings(asset.id, setRating)
-        console.log(rating);
     }, []);
 
     return (

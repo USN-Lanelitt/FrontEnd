@@ -46,7 +46,7 @@ const LoanRequests = () => {
     return (
         <Grid container spacing={4}>
             {data.map(user => (
-                <Grid item key={user}>
+                <Grid item key={user.id}>
                     <LoanReplyCard
                         firstname={user.users.firstName}
                         middlename={user.users.middleName}
