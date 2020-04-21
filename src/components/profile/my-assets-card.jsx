@@ -89,17 +89,22 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                                 alt="bilde"
                                 image={imageUrl}
                             />
-                            <Box diplay="flex" flexDirectrion="column">
+                            <Box diplay="flex" flexDirectrion="column" ml={2}>
+                                <Box ml={1.5}>
                                 <Typography gutterBottom variant="h5" component="h2">
                                     {asset.assetName}
                                 </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {asset.description}
+                                </Box>
+                                <Box m={2}>
+                                <Typography variant="body2" color="textSecondary" >
+                                    {asset.description.length > 50 ? asset.description.substring(0,50) + '...' : asset.description}
                                 </Typography>
+                                </Box>
                                 <Box component="fieldset" borderColor="transparent" display="flex">
                                     <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                                 </Box>
                             </Box>
+
                         </Box>
                     </CardContent>
                 </CardActionArea>

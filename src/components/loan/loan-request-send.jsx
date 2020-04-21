@@ -43,8 +43,7 @@ const LoanRequestSend = () => {
             message: message
         })
             .then(result => {
-                console.log(result.data);
-                console.log(userId2);
+
             })
             .catch(e => console.log(e));
     }
