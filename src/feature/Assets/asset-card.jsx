@@ -11,6 +11,8 @@ import Rating from "@material-ui/lab/Rating";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {getRatings} from "../../components/rating/getRating";
+import LocationOn from "@material-ui/icons/LocationOn";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
     card: {
@@ -28,6 +30,7 @@ const AssetCard = ({asset}) => {
         console.log(rating);
     }, []);
 
+
     return (
         <div>
             <Card className={classes.card}>
@@ -39,9 +42,17 @@ const AssetCard = ({asset}) => {
                         image={asset.assetImages.length > 0 ? asset.assetImages[0] : 'https://source.unsplash.com/random'}
                     />
                     <CardContent>
+                        <Box ml={0.5}>
                         <Typography gutterBottom variant="h5" component="h2">
                             {asset.assetName}
                         </Typography>
+                        </Box>
+                        <Box display='flex' flexDirection='row'>
+                            <Box mr={1}>
+                                <LocationOn/>
+                            </Box>
+                            <Typography component="h2">{asset.users.zipCode ? asset.users.zipCode.city : 'N/A'}</Typography>
+                        </Box>
                         <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                     </CardContent>
                 </CardActionArea>

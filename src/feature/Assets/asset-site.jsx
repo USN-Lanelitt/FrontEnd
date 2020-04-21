@@ -14,6 +14,8 @@ import Rating from "@material-ui/lab/Rating";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import LocationOn from "@material-ui/icons/LocationOn";
+
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -72,11 +74,12 @@ const AssetSite = () => {
                 <Box width={'70%'} height={1 / 4}>
                     <Carousel infiniteLoop={true}>
                         {
-                            images.map(image =>
-                                <Paper>
-                                    <img src={image.imageUrl}/>
-                                </Paper>
-                            )
+                            asset.assetImages.length > 0 ?
+                                asset.assetImages.map(image =>
+                                    <Paper>
+                                        <img src={image.imageUrl}/>
+                                    </Paper>
+                                ) : <img src="https://source.unsplash.com/ukzHlkoz1IE"/>
                         }
                     </Carousel>
                 </Box>
@@ -86,6 +89,12 @@ const AssetSite = () => {
                 <Box width={'70%'}>
                     <Paper elevation="0">
                         <Box>
+                            <Box display='flex' flexDirection='row' ml={5} alignItems='center'>
+                                <Box mr={1}>
+                                    <LocationOn/>
+                                </Box>
+                                {asset.users.zipCode && asset.users.zipCode.city}
+                            </Box>
                             <Box component="fieldset" borderColor="transparent" ml={3}>
                                 <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                             </Box>
@@ -97,6 +106,7 @@ const AssetSite = () => {
                                     {t('assetOwner.1')}
                                 </Button>
                             </Box>
+
                         </Box>
 
                         <Box display='flex' flexDirection='column' justifyContent='flex-start' m={5}>

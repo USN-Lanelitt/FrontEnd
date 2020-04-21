@@ -80,6 +80,7 @@ const NewAsset = () => {
         asset.append('public', isPublic);
         asset.append('typeId', category);
 
+
         axios.post("/assets/addAsset", asset)
             .then(result => {
                 console.log(result);
