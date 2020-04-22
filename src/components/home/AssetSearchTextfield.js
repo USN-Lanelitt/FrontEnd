@@ -3,7 +3,7 @@ import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import {useTranslation} from "react-i18next";
 import {Redirect} from "react-router";
-import useInput from "../rating/use-input";
+import useInput from "../div/use-input";
 
 const AssetSearchTextfield = () => {
     const { t, i18n } = useTranslation();
