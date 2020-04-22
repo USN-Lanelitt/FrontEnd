@@ -20,7 +20,8 @@
     "4": "Husk meg",
     "5": "Glemt passord",
     "6": "Har ikke konto? Opprett her",
-    "7": "Logg inn"
+    "7": "Logg inn",
+    "8": "FEIL! Vennligst sjekk at feltene merket med * er fylt ut riktig."
   },
   "register": {
     "1": "Opprett konto",

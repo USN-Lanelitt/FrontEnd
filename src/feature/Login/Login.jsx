@@ -26,7 +26,11 @@ import { AuthContext } from "../../Auth";
 import Copyright from '../../components/home/Copyright';
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
-
+import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -49,11 +53,12 @@ const useStyles = makeStyles(theme => ({
 
 const Login = ({ history }) => {
     const { t } = useTranslation();
+    const [errors, setErrors] = useState(false);
     const handleLogin = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
         if (email.value.length === 0 || password.value.length === 0) {
-            alert("Alle feltene må fylles ut.");
+            setErrors(true);
         }
         else {
             let iCode = 0;
@@ -73,6 +78,7 @@ const Login = ({ history }) => {
                         sessionStorage.setItem('address', res.data[0]['address']);
                         sessionStorage.setItem('address2', res.data[0]['address2']);
                         sessionStorage.setItem('zipcode', res.data[0]['zipcode']);
+                        sessionStorage.setItem('usertype', res.data[0]['usertype']);
                         //sessionStorage.setItem('city', res.data[0]['city']);
                     }
                 })
@@ -90,7 +96,7 @@ const Login = ({ history }) => {
                         }
                     }
                     else {
-                        alert('FEIL ved innlogging');
+                        alert('Ukjent FEIL ved innlogging');
                     }
                 })
                 .catch(e=>console.log(e));
@@ -108,6 +114,14 @@ const Login = ({ history }) => {
 
     const handleMouseDownPassword = event => {
         event.preventDefault();
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setErrors(false);
     };
 
     const { currentUser } = useContext(AuthContext);
@@ -187,6 +201,13 @@ const Login = ({ history }) => {
                     </Grid>
 
                 </form>
+                <div className={classes.root}>
+                    <Snackbar open={errors} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="error">
+                            {t('login.8')}
+                        </Alert>
+                    </Snackbar>
+                </div>
             </div>
             <Box mt={8}>
                 <Copyright />

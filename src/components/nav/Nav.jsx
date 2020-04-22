@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import clsx from "clsx";
 import {Link} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
@@ -137,12 +137,18 @@ export default function NavBar(props) {
         i18n.changeLanguage(lang);
         setSelectedLang(false);
     }
-
     function handleLanguageEN(lang) {
         i18n.changeLanguage(lang);
         setSelectedLang(true);
     }
 
+    useEffect(()=>{
+        if (i18n.language === 'en'){
+            setSelectedLang(true);
+        }else{
+            setSelectedLang(false);
+        }
+    });
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -268,6 +274,7 @@ export default function NavBar(props) {
         </Menu>
     );
 
+
     return (
         //------------DESKTOP / PC SKJERM NAVBAR MENY----------------
         <div className={classes.grow}>
@@ -326,12 +333,11 @@ export default function NavBar(props) {
                             </IconButton>
 
                             {/*----------AdminSide Icon knapp--------------*/}
-                                <IconButton color="inherit" component={Link} to="/admin">
+                             <IconButton color="inherit" component={Link} to="/admin">
                                     <Badge color="secondary">
                                         <SupervisorAccountIcon/>
                                     </Badge>
                                 </IconButton>
-
                         </div>)}
 
                         {/*----------Logg på/av Icon knapp--------------*/}

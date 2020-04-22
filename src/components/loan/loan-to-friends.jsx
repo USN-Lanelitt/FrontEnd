@@ -45,8 +45,8 @@ const LoanToFriends = () => {
                 </Container>
             </div>
             <Grid container spacing={3} justify="center">
-            {
-                data.map(loan => (
+
+            {data.map(loan => (
                         <Grid item key={loan.id}>
                             <LoanCard
                                 firstname={loan.users.firstName}

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import LoanRequestNotification from "./loan-request-notification";
-import {useParams} from "react-router";
 
 const LoanGetDeniedRequests = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -35,7 +34,6 @@ const LoanGetDeniedRequests = () => {
             {
                 dataDenied.map(loan => (
                     <Grid item key={loan.id} xs={12}>
-
                         <LoanRequestNotification
                             firstname={loan.assets.users.firstName}
                             middlename={loan.assets.users.middleName}
