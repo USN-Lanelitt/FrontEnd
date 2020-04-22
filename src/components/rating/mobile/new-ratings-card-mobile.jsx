@@ -6,26 +6,24 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
-import useInput from "../div/use-input";
+import useInput from "../../div/use-input";
 import {useTranslation} from "react-i18next";
-import setRating from "./setRating";
+import setRating from "../setRating";
 import TextField from "@material-ui/core/TextField";
 import {Redirect} from "react-router";
 
 
 const useStyles = makeStyles(theme => ({
     card: {
-        height: 270,
-        width: 680,
+        height: 300,
+        width: 350,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
+        paddingTop:10,
         padding: 15,
-        height: 168,
-        width: 450,
-    },
-    paddingRight: {
-        paddingRight:10,
+        height: 210,
+        width: 288,
     },
     stars: {
         marginTop:10,
@@ -36,15 +34,14 @@ const useStyles = makeStyles(theme => ({
     },
     textfield: {
         marginTop: 12,
-        width: '80%',
+        width: '100%',
     },
     button:{
-        marginTop:95,
-        marginLeft: 12,
+
     },
 }));
 
-const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2}) => {
+const NewRatingsCardMobile = ({loanId, firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2}) => {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -60,25 +57,18 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
             <Card className={classes.card}>
                     <CardContent>
                         <div className={classes.flex}>
-                            <Box className={classes.paddingRight}>
-                                <Typography gutterBottom variant="h6" component="h2">
-                                    {firstname} {middlename} {lastname}
-                                </Typography>
-                            </Box>
                             <Box>
-                                <Typography gutterBottom variant="subtitle2" component="h2">
+                                <Typography gutterBottom variant="subtitle1" component="h2">
                                     {selectedDate} - {selectedDate2}
                                 </Typography>
                             </Box>
                         </div>
 
                         <Card className={classes.assetCard}>
-                            <Box display="flex" flexDirection="row" alignItems="center">
-                                <Box className={classes.flex}>
-                                    <Box className={classes.paddingRight}>
-                                        <Box style={{margin:0}} fontSize={25} fontWeight="fontWeightBold" m={1}>
-                                            {assetname}
-                                        </Box>
+                            <Box style={{height:30}}  display="flex" flexDirection="row" alignItems="center">
+                                <Box style={{paddingRight:10}}>
+                                    <Box style={{margin:0}} fontSize={20} fontWeight="fontWeightBold" m={1}>
+                                        {assetname}
                                     </Box>
                                 </Box>
                                 <Box borderColor="transparent">
@@ -92,6 +82,12 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
                                         }}
                                     />
                                 </Box>
+
+                            </Box>
+                            <Box>
+                                <Typography gutterBottom variant="subtitle1" component="h2">
+                                    {firstname} {middlename} {lastname}
+                                </Typography>
                             </Box>
                             <form className={classes.form} >
                                 <TextField
@@ -120,4 +116,4 @@ const NewRatingCard = ({loanId, firstname, middlename, lastname, assetId, assetn
     );
 };
 
-export default NewRatingCard;
+export default NewRatingsCardMobile;

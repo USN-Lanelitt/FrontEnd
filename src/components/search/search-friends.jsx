@@ -8,6 +8,7 @@ import {fade} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 import {useTranslation} from 'react-i18next';
+import ListItem from "@material-ui/core/ListItem";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -94,7 +95,11 @@ const SearchFriends = () => {
                                                                   }}
                                                                   label={t('nav.1')}
                                                                   variant="filled"
-                                                                  onChange={handleChange}/>}
+                                                                  onChange={handleChange}
+                                                                  component={Link} to="/"
+                              />
+                              }
+
                 />
 
             </div>
