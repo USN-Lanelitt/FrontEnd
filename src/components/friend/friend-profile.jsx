@@ -41,7 +41,7 @@ const FriendProfile = () => {
                 ))}
             </Grid>
             <CssBaseline/>
-            <FriendAssets/>
+            <FriendAssets id={id}/>
         </React.Fragment>
 
 

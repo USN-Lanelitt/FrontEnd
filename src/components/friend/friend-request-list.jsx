@@ -10,7 +10,6 @@ let statusTittel = "";
 let statusBesk = "";
 
 const FriendRequestList = ({data}) => {
-
     const [friendId, setFriendId] = useState(null);
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);

@@ -8,7 +8,7 @@ import {fade} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import {useTranslation} from 'react-i18next';
 import {useParams} from "react-router";
-
+import MenuItem from "@material-ui/core/MenuItem";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
             width: '20ch',
         },
     },
+    link: {
+        textDecoration: 'none'
+    }
 
 }));
 
@@ -58,7 +61,7 @@ const SearchFriends = () => {
     const [dataFilterd, setDataFilterd] = useState([]);
     const [search, setSearch] = useState();
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const [enter, setEnter] = React.useState(false);
     const {t} = useTranslation();
     const {id} = useParams();
 
@@ -66,6 +69,7 @@ const SearchFriends = () => {
         setSearch(event.target.value);
         setDataFilterd(data.filter((user) => user.firstName.includes(search)));
         console.log('search', data.filter((user) => user && user.firstName.includes(event.target.value)))
+
     }
     useEffect(() => {
         console.log("getearch", userId, sessionStorage.getItem('userId'));
@@ -80,31 +84,36 @@ const SearchFriends = () => {
             .catch(e => console.log(e));
     }, []);
 
-    function handleListKeyDown(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            setOpen(false);
+    function onClickFriend(event) {
+        console.log("on enter", event.target.value);
 
-        }
     }
 
     return (
         <Box m={2} display="flex" alignItems="center" flexDirection="column">
             <div className={classes.search}>
-                <Autocomplete component = {Link} to = {"/FriendProfile/" + id}
-                              id="combo-box-demo"
-                              options={dataFilterd}
-                              getOptionLabel={option => option && option.firstName}
-                              style={{width: 210, backgroundColor: 'transparent'}}
-                              filterOptions={(x) => x}
-                              renderInput={params => <TextField   {...params}
-                                                                  classes={{root: classes.inputRoot, input: classes.inputInput,}}
-                                                                  label={t('nav.1')}
-                                                                  variant="filled"
-                                                                  onChange={handleChange}
-                                                                  onKeyDown={handleListKeyDown}
-                                                                   />}
+                <Autocomplete
+                    id="combo-box-demo"
+                    options={dataFilterd}
+                    getOptionValue={option => option && option.id}
+                    getOptionLabel={option => option && option.firstName}
+                    style={{width: 210, backgroundColor: 'transparent'}}
+                    filterOptions={(x) => x}
+                    renderInput={params => <TextField   {...params}
+                                                        classes={{root: classes.inputRoot, input: classes.inputInput,}}
+                                                        label={t('nav.1')}
+                                                        variant="filled"
+                                                        onChange={handleChange}
+                    />}
+                    renderOption={(option => (
+                        <MenuItem key={option.id} onClick={onClickFriend} value={option.id}>
+                            <Link className={classes.link} to={'/FriendProfile/' + option.id}>
+                                {`${option.firstName} ${option.lastName}`}
+                            </Link>
+                        </MenuItem>
+                    ))}
                 />
+
 
             </div>
 

@@ -15,11 +15,10 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const FriendAssets = () => {
+const FriendAssets = ({id}) => {
     const classes = useStyles();
     const [friendassets, setfriendassets] = useState([]);
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const {id} = useParams();
 
     useEffect(() => {
         getUserAssets();
