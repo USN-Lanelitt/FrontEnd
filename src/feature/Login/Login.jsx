@@ -90,6 +90,7 @@ const Login = ({ history }) => {
                         sessionStorage.setItem('city', res.data[0]['city']);
                         if (typeof res.data[0]['city'] === 'undefined' || res.data[0]['city'] === null)
                             sessionStorage.setItem('city', '');
+                        sessionStorage.setItem('newsletter', (res.data[0]['newsletter'] == 1));
                     }
                 })
                 .then(()=>{

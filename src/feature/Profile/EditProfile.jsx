@@ -34,7 +34,6 @@ import {useTranslation} from "react-i18next";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         '& > *': {
@@ -125,7 +124,20 @@ const EditProfile = ({history}) => {
         event.preventDefault();
         let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
-        const {nickname, firstname, middlename, lastname, phone, address1, address2, zipcode, city} = event.target.elements;
+        const {nickname, firstname, middlename, lastname, phone, address1, address2, zipcode, city, newsletter} = event.target.elements;
+        //Sette nye verdier i sessionStorage
+        sessionStorage.setItem('nickname', nickname.value);
+        sessionStorage.setItem('firstname', firstname.value);
+        sessionStorage.setItem('middlename', middlename.value);
+        sessionStorage.setItem('lastname', lastname.value);
+        sessionStorage.setItem('phone', phone.value);
+        sessionStorage.setItem('address', address1.value);
+        sessionStorage.setItem('address2', address2.value);
+        sessionStorage.setItem('zipcode', zipcode.value);
+
+        sessionStorage.setItem('newsletter', newsletter.checked);
+        console.log(sessionStorage.getItem('newsletter'));
+
         // Sender ut info til API Url. Rekkefølge: 1.Symfony -> 2.Firebase.
         axios.post('/user/'+sessionStorage.getItem('userId')+'/edit', {
             nickname: nickname.value,
@@ -137,35 +149,37 @@ const EditProfile = ({history}) => {
             address2: address2.value,
             zipcode: zipcode.value,
             city: city.value,
-            newsSubscription: '',
+            newsSubscription: newsletter.checked,
             usertype: '',
-            active: ''
+            active: true, // brukeren må være active for å kunne redigere sin egen profil
         })
             .then(res => {
-                    //Symfony
-                    console.log(res);
-                    console.log(res.data);
-                }
-            )
-            .then(
-                // Bruker må re-autentiseres for å kunne endre passord/epost og bli godkjent på Firebase. (Sikkerhetstiltak)
-                // Prompt the user to re-provide their sign-in credentials
-                /*user.reauthenticateWithCredential(credential).then(function () {
-                    // User re-authenticated.
-                }).catch(function (error) {
-                    // An error happened.
-                })*/
-            )
-            .then(
-                //Firebase
-                //user.updatePassword(newPassword.value).then(function() {
-                    //Update successful.
-                //})
-            )
-            .catch(function (error) {
+                //Symfony
+                console.log(res);
+                console.log(res.data);
+                sessionStorage.setItem('city', res.data['city']);
+                alert('Info er lagret');
+            }
+        )
+        .then(
+            // Bruker må re-autentiseres for å kunne endre passord/epost og bli godkjent på Firebase. (Sikkerhetstiltak)
+            // Prompt the user to re-provide their sign-in credentials
+            /*user.reauthenticateWithCredential(credential).then(function () {
+                // User re-authenticated.
+            }).catch(function (error) {
                 // An error happened.
-                console.log(error)
-            });
+            })*/
+        )
+        .then(
+            //Firebase
+            //user.updatePassword(newPassword.value).then(function() {
+                //Update successful.
+            //})
+        )
+        .catch(function (error) {
+            // An error happened.
+            console.log(error)
+        });
     }, [history]);
 
     const classes = useStyles();
@@ -189,6 +203,14 @@ const EditProfile = ({history}) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    const [checked, setChecked] = React.useState(sessionStorage.getItem('newsletter'));
+    console.log(checked);
+    const handleChangeCheckboxNewsletter = (event) => {
+        console.log(checked);
+        setChecked(event.target.checked);
+        console.log(checked);
+    };
+
     const handleClickShowCurrentPassword = () => {
         setValues({...values, showCurrentPassword: !values.showCurrentPassword});
     };
@@ -209,7 +231,6 @@ const EditProfile = ({history}) => {
             raw: e.target.files[0]
         })
     }
-
 
     return (
         <Container component="main" maxWidth="xs">
@@ -285,6 +306,7 @@ const EditProfile = ({history}) => {
                         <Grid item xs={12}>
                             <TextField
                                 name="firstname"
+                                required
                                 fullWidth
                                 autoFocus
                                 id="firstname"
@@ -305,6 +327,7 @@ const EditProfile = ({history}) => {
                         <Grid item xs={12}>
                             <TextField
                                 name="lastname"
+                                required
                                 fullWidth
                                 autoFocus
                                 id="lastname"
@@ -364,7 +387,15 @@ const EditProfile = ({history}) => {
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
+                                control={
+                                    <Checkbox
+                                        name="newsletter"
+                                        value="allowExtraEmails"
+                                        color="primary"
+                                        checked={checked}
+                                        onChange={handleChangeCheckboxNewsletter}
+                                    />
+                                }
                                 label={t('register.10')}
                             />
                         </Grid>
