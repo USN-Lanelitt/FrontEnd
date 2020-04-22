@@ -161,6 +161,7 @@ export default function NavBar(props) {
     const [open, setOpen] = useState(false);
 
 
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -185,8 +186,9 @@ export default function NavBar(props) {
     };
 
 
-    {/*Sjekker om bruker er innlogget eller ikke*/}
+    {/*Sjekker om bruker er innlogget eller ikke og admin eller ikke*/}
     const [loggedIn, setloggedIn] = useState(false);
+    const isAdmin = (sessionStorage.getItem("usertype") === "admin");
     app.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
@@ -333,11 +335,14 @@ export default function NavBar(props) {
                             </IconButton>
 
                             {/*----------AdminSide Icon knapp--------------*/}
-                             <IconButton color="inherit" component={Link} to="/admin">
+                            {isAdmin && (
+                                <IconButton color="inherit" component={Link} to="/admin">
                                     <Badge color="secondary">
                                         <SupervisorAccountIcon/>
                                     </Badge>
                                 </IconButton>
+                            )}
+
                         </div>)}
 
                         {/*----------Logg på/av Icon knapp--------------*/}
