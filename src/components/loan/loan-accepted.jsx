@@ -28,6 +28,8 @@ const LoanAccepted = () => {
         axios.get('/user/'+userId+'/loanAccepted')
             .then((response) => {
                 if (response.status === 200) {
+                    console.log("HEr kommer data");
+                    console.log(response);
                     console.log(response.data);
                     setData(response.data);
                 }

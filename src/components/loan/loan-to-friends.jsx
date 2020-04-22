@@ -27,8 +27,11 @@ const LoanToFriends = () => {
         axios.get('/user/'+userId+'/loans')
             .then((response) => {
                 if (response.status === 200) {
+                    console.log("HEr kommer data");
+                    console.log(response);
                     console.log(response.data);
                     setData(response.data);
+
                 }
             })
             .catch(e => console.log(e));
