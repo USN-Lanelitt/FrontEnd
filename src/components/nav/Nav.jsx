@@ -320,8 +320,8 @@ export default function NavBar(props) {
                                 <NotificationList/>
                             </IconButton>
 
-                            {/*----------Epost/melding Icon knapp--------------*/}
-                            <IconButton aria-label="show 1 new mails" color="inherit">
+                            {/*--------------Melding Icon knapp--------------*/}
+                            <IconButton aria-label="show 1 new mails" color="inherit" component={Link} to="/chat">
                                 <Badge badgeContent={1} color="secondary">
                                     <MailIcon/>
                                 </Badge>

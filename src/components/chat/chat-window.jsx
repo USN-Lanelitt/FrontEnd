@@ -6,6 +6,11 @@ import ListItem from "@material-ui/core/ListItem";
 import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles(theme => ({
+    list: {
+        padding: '0px',
+        maxHeight: '100%',
+        overflow: "auto",
+    },
     textBox: {
         display: "inline-block",
         width: "85%",
@@ -14,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: 0
     },
     bubble: {
-        backgroundColor: "silver",
+        backgroundColor: "gainsboro",
         textAlign: "left",
         borderRadius: "20px",
         padding: "5px 15px",
@@ -30,26 +35,25 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function ChatWindow ({selectedChat}) {
-    const [userId, setId] = useState('nicole');
     const classes = useStyles();
 
     return (
         <Box height={1} >
-            <List>
+            <List className={classes.list}>
                 {
                     selectedChat.map((chat) => (
                         <ListItem className={classes.item} key={chat.id}>
-                            <div className={classes.textBox}>
+                            <Box className={classes.textBox}>
                                 <Typography variant="caption" >
                                     {chat.user1.firstName}
                                 </Typography>
                                 <div className={classes.bubble}>
                                     <Typography variant="subtitle2" >{chat.message}</Typography>
                                 </div>
-                            </div>
-                            <div className={classes.time}>
+                            </Box>
+                            <Box className={classes.time}>
                                 <Typography variant="caption">{chat.timestampSent}</Typography>
-                            </div>
+                            </Box>
                         </ListItem>
                     ))
                 }
