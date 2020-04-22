@@ -27,6 +27,7 @@ import LoanRequestSend from "./loan/loan-request-send";
 import LoanAccepted from "./loan/loan-accepted";
 import Ratings from "../feature/rating/ratings";
 import AssetOwnerInfo from "../feature/Assets/asset-owner-info";
+import AssetSearch from "../feature/Assets/asset-search";
 
 const Routes = props => {
     return (
@@ -45,6 +46,7 @@ const Routes = props => {
             <Route exact path="/searchfriends" component={SearchFriends}/>
             <Route exact path="/category" componenet={CategoryCard}/>
             <Route path="/assets/:id" component={AssetContainer}/>
+            <Route path="/assetsearch/:search" component={AssetSearch}/>
             <Route exact path="/my/assets" component={MyAssetsList}/>
             <Route exact path="/new/asset" component={NewAsset}/>
             <Route exact path="/notification" component={Notification}/>

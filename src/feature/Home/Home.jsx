@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import Copyright from '../../components/home/Copyright';
 import TextField from '@material-ui/core/TextField';
 import HomeMenu from "../../components/home/home-menu";
+import AssetSearchTextfield from "../../components/home/AssetSearchTextfield";
 
 import { useTranslation } from 'react-i18next';
 
@@ -65,19 +66,7 @@ export default function Home() {
 
           <Container className={classes.cardGrid}>
             <div>
-              <TextField
-                  id="outlined-full-width"
-                  label={t('home.4')}
-                  style={{margin: 8}}
-                  placeholder={t('home.2')}
-                  helperText={t('home.5')}
-                  fullWidth
-                  margin="normal"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  variant="outlined"
-              />
+              <AssetSearchTextfield/>
             </div>
             <h3>{t('home.1')}</h3>
             <hr/>
