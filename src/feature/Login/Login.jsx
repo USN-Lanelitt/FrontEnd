@@ -54,6 +54,7 @@ const useStyles = makeStyles(theme => ({
 const Login = ({ history }) => {
     const { t } = useTranslation();
     const [errors, setErrors] = useState(false);
+    const [warnings, setWarnings] = useState(false);
     const handleLogin = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
@@ -91,15 +92,16 @@ const Login = ({ history }) => {
                                 .signInWithEmailAndPassword(email.value, password.value);
                             history.push("/");
                         } catch (error) {
-                            alert("Feil brukernavn og passord");
+                            setErrors(true);
 
                         }
                     }
                     else {
-                        alert('Ukjent FEIL ved innlogging');
+                        setErrors(true);
                     }
                 })
-                .catch(e=>console.log(e));
+                .catch(e=>console.log(e))
+                setWarnings(true);
         }
         }, [history]);
 
@@ -122,6 +124,7 @@ const Login = ({ history }) => {
         }
 
         setErrors(false);
+        setWarnings(false);
     };
 
     const { currentUser } = useContext(AuthContext);
@@ -145,6 +148,7 @@ const Login = ({ history }) => {
                         variant="outlined"
                         margin="normal"
                         id="sEmail"
+                        error={errors}
                         label={t('login.2')}
                         type="text"
                         required
@@ -154,6 +158,7 @@ const Login = ({ history }) => {
                         <InputLabel htmlFor="outlined-adornment-password" required>{t('login.3')}</InputLabel>
                         <OutlinedInput
                             name="password"
+                            error={errors}
                             id="outlined-adornment-password"
                             type={values.showPassword ? 'text' : 'password'}
                             endAdornment={
@@ -203,8 +208,15 @@ const Login = ({ history }) => {
                 </form>
                 <div className={classes.root}>
                     <Snackbar open={errors} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="error">
+                        <Alert onClose={handleClose} severity="warning">
                             {t('login.8')}
+                        </Alert>
+                    </Snackbar>
+                </div>
+                <div className={classes.root}>
+                    <Snackbar open={warnings} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="error">
+                            {t('login.9')}
                         </Alert>
                     </Snackbar>
                 </div>

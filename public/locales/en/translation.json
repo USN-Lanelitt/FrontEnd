@@ -21,7 +21,8 @@
     "5": "Forgot password",
     "6": "No accounts yet? Create an account here",
     "7": "Login",
-    "8": "ERROR! Please check required fields marked with *."
+    "8": "Fields marked with * are required and cannot be empty.",
+    "9": "Authentication Error! Vennligst sjekk at feltene merket med * er fylt ut riktig."
   },
   "register": {
     "1": "Create account",
