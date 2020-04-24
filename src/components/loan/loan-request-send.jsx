@@ -73,12 +73,14 @@ const LoanRequestSend = () => {
     }
 
 
-    const handleDateChange = () => {
-        setSelectedDate(moment(selectedDate).format("YYYY-MM-DD"));
+    const handleDateChange = (date) => {
+
+        setSelectedDate(moment(date).format("YYYY-MM-DD"));
     };
 
-    const handleDateChange2 = () => {
-        setSelectedDate2(moment(selectedDate2).format("YYYY-MM-DD"))
+    const handleDateChange2 = (date) => {
+
+        setSelectedDate2(moment(date).format("YYYY-MM-DD"))
     };
 
     const handleClick = () => {

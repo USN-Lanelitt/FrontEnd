@@ -12,18 +12,19 @@ import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     outer: {
-        width: '80%',
+        width: '900px',
         height: '500px'
     },
     inner:{
-        width: '100%',
+        minWidth: '100%',
         height: '440px',
         display: "flex",
         justifyContent: 'space-evenly',
 
     },
     list: {
-        padding: '0px',
+        minWidth: '100%',
+        padding: '1%',
         height: '100%',
         overflow: "auto",
     }
