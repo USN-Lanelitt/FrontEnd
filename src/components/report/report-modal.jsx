@@ -32,10 +32,7 @@ const useStyles = makeStyles((theme) => ({
         width:'100%',
         marginBottom: 20,
     },
-    button:{
-        width: 475,
-        padding:0,
-    },
+
 }));
 
 const ReportModal = ({userId2}) => {
@@ -64,6 +61,10 @@ const ReportModal = ({userId2}) => {
     };
 
     const handleSubmit = () => {
+        setOpen(false);
+    };
+
+    const handleClose = () => {
         setOpen(false);
     };
 
@@ -104,29 +105,27 @@ const ReportModal = ({userId2}) => {
     );
 
     return (
-        <div>
-            <Box display="flex" justifyContent="flex-end"  className={classes.button} >
-                <Button
-                    type="submit"
-                    color="primary"
-                    style={{padding:2}}
-                    onClick={handleOpen}
-                >
-                    <Box style={{margin:0}} fontSize={10}>
-                        RAPPORTER
-                    </Box>
-                </Button>
-            </Box>
+        <>
+            <Button
+                color="primary"
+                onClick={handleOpen}
+            >
+                <Box style={{marginBottom:-20, marginTop:0}} fontSize={12}>
+                    RAPPORTER
+                </Box>
+            </Button>
+
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
                 open={open}
+                onClose={handleClose}
                 closeAfterTransition
             >
                 {body}
             </Modal>
-        </div>
+        </>
     );
 };
 

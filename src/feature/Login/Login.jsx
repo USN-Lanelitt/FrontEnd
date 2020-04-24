@@ -63,17 +63,34 @@ const Login = ({ history }) => {
                     console.log(res.data);
                     iCode = parseInt(res.data['code']);
                     if (typeof res.data[0] !== 'undefined') {
+                        // sette all info i sessionStorage. Felter som er undefiend, sette som blank
+
                         sessionStorage.setItem('userId', res.data[0]['id']);
+                        sessionStorage.setItem('profileImage', res.data[0]['profileImage']);
                         sessionStorage.setItem('firstname', res.data[0]['firstname']);
                         sessionStorage.setItem('middlename', res.data[0]['middlename']);
+                        if (typeof res.data[0]['middlename'] === 'undefined')
+                            sessionStorage.setItem('middlename', '');
                         sessionStorage.setItem('lastname', res.data[0]['lastname']);
                         sessionStorage.setItem('phone', res.data[0]['phone']);
-                        sessionStorage.setItem('profileImage', res.data[0]['profileImage']);
+                        if (typeof res.data[0]['phone'] === 'undefined' || res.data[0]['phone'] === null)
+                            sessionStorage.setItem('phone', '');
                         sessionStorage.setItem('nickname', res.data[0]['nickname']);
+                        if (typeof res.data[0]['nickname'] === 'undefined')
+                            sessionStorage.setItem('nickname', '');
                         sessionStorage.setItem('address', res.data[0]['address']);
+                        if (typeof res.data[0]['address'] === 'undefined' || res.data[0]['address'] === null)
+                            sessionStorage.setItem('address', '');
                         sessionStorage.setItem('address2', res.data[0]['address2']);
+                        if (typeof res.data[0]['address2'] === 'undefined' || res.data[0]['address2'] === null)
+                            sessionStorage.setItem('address2', '');
                         sessionStorage.setItem('zipcode', res.data[0]['zipcode']);
-                        //sessionStorage.setItem('city', res.data[0]['city']);
+                        if (typeof res.data[0]['zipcode'] === 'undefined' || res.data[0]['zipcode'] === null)
+                            sessionStorage.setItem('zipcode', '');
+                        sessionStorage.setItem('city', res.data[0]['city']);
+                        if (typeof res.data[0]['city'] === 'undefined' || res.data[0]['city'] === null)
+                            sessionStorage.setItem('city', '');
+                        sessionStorage.setItem('newsletter', (res.data[0]['newsletter'] == 1));
                     }
                 })
                 .then(()=>{

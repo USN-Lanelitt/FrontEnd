@@ -183,7 +183,10 @@
     "11": "Endre Passord",
     "12": "Nåværende passord",
     "13": "Nytt Passord",
-    "14": "Lagre"
+    "14": "Lagre",
+    "15": "Fornavn",
+    "16": "Mellomnavn",
+    "17": "Etternavn"
   },
   "profile": {
     "1": "Mine Eiendeler"

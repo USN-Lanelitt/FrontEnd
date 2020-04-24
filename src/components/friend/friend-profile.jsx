@@ -5,7 +5,7 @@ import FriendAssets from "./friend-assets";
 import axios from "axios";
 import {useParams} from "react-router";
 import FriendProfileCard from "./friend-profile-card";
-import sendMessage from "../chat/send-message";
+import sendMessageNewChat from "../chat/send-message-new-chat";
 import deleteFriend from "./delete-friend";
 import sendRequest from "./send-friend-request";
 
@@ -30,7 +30,7 @@ const FriendProfile = () => {
                  <Grid>
                     <FriendProfileCard
                         user={user}
-                        getChat={() => sendMessage(userId, id)}
+                        getChat={() => sendMessageNewChat(userId, id)}
                         deleteFriend={() => deleteFriend(userId, id)}
                         sendRequest={() => sendRequest(userId, id)}
                     />

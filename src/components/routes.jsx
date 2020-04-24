@@ -20,13 +20,16 @@ import NotificationList from "./notification/notificationList";
 import FriendProfile from "./friend/friend-profile";
 import LoanCard from "./loan/loan-card";
 import AssetSite from "../feature/Assets/asset-site";
-import Chat from "../feature/Chat/Chat";
 import FriendProfileCard from "./friend/friend-profile-card";
 import LoanToFriends from "./loan/loan-to-friends";
 import LoanRequestSend from "./loan/loan-request-send";
 import LoanAccepted from "./loan/loan-accepted";
 import Ratings from "../feature/rating/ratings";
 import AssetOwnerInfo from "../feature/Assets/asset-owner-info";
+import AssetSearch from "../feature/Assets/asset-search";
+import Chat from "../feature/Chat/chat";
+import ChatWinMobile from "./chat/chat-win-mobile";
+
 
 const Routes = props => {
     return (
@@ -45,6 +48,7 @@ const Routes = props => {
             <Route exact path="/searchfriends" component={SearchFriends}/>
             <Route exact path="/category" componenet={CategoryCard}/>
             <Route path="/assets/:id" component={AssetContainer}/>
+            <Route path="/assetsearch/:search" component={AssetSearch}/>
             <Route exact path="/my/assets" component={MyAssetsList}/>
             <Route exact path="/new/asset" component={NewAsset}/>
             <Route exact path="/notification" component={Notification}/>
@@ -53,14 +57,13 @@ const Routes = props => {
             <Route exact path="/loanCard" component={LoanCard}/>
             <Route path="/assetSite/:id" component={AssetSite}/>
             <Route exact path="/chat" component={Chat}/>
+            <Route exact path="/chat/:userId2" component={ChatWinMobile}/>
             <Route exact path="/friendProfileCard" component={FriendProfileCard}/>
             <Route exact path="/loantofriends" component={LoanToFriends}/>
             <Route path="/loanrequestsend/:id/:assetId" component={LoanRequestSend}/>
-
             <Route exact path="/loanAccepted" component={LoanAccepted}/>
             <Route path="/rating/:pageNr" component={Ratings}/>
             <Route exact path="/owner/info" component={AssetOwnerInfo}/>
-
         </>
     );
 };
