@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Box from "@material-ui/core/Box";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -34,8 +35,9 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-function ChatWindow ({selectedChat}) {
+function ChatList ({selectedChat}) {
     const classes = useStyles();
+
 
     return (
         <Box height={1} >
@@ -62,4 +64,4 @@ function ChatWindow ({selectedChat}) {
     )
 }
 
-export default ChatWindow;
+export default ChatList;

@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import TextField from '@material-ui/core/TextField';
-import Button from "@material-ui/core/Button";
-import ChatWindow from "../../components/chat/chat-window";
+import ChatList from "./chat-list";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
 import {useTranslation} from "react-i18next";
-import getChatUsers from "../../components/chat/get-chats";
+import getChatUsers from "./get-chats";
+import showChat from "./show-chat";
+import TextfieldMobile from "./textfield-mobile";
 
 
 const useStyles = makeStyles(theme => ({
@@ -64,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function Chat() {
+export default function ChatDesktop() {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
@@ -78,7 +77,7 @@ export default function Chat() {
         getChatUsers(userId, setChatUsers)
     }, [setChatUsers, userId]);
 
-    function showChat(userId2) {
+/*    function showChat(userId2) {
         console.log("getChat", userId, sessionStorage.getItem('userId'));
         axios.get('/users/chat/' + userId + '/' + userId2)
             .then(result => {
@@ -86,9 +85,9 @@ export default function Chat() {
                 setSelectedChat(result.data);
             })
             .catch(e => console.log(e));
-    }
+    }*/
 
-    function sendMessage(message) {
+/*    function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
         axios.post('/users/writeMessage/' + userId + '/' + userId2, {
             message: message
@@ -98,25 +97,26 @@ export default function Chat() {
                 setSelectedChat(result.data);
             })
             .catch(e => console.log(e));
-    }
+    }*/
 
-    const onSelected = (id) => {
-        showChat(id);
-        console.log(id);
+    const onSelected = (userId2) => {
+        showChat(userId, userId2, setSelectedChat);
+        console.log(userId2);
     };
 
-    const handleClick = () => {
+/*    const handleClick = () => {
         sendMessage(textValue);
         console.log(textValue);
-    };
+    };*/
 
     return (
         <React.Fragment>
             <Container>
                 <Paper className={classes.chat}>
+                    {/*----------top------------*/}
                     <Box style={{borderBottom: '1px solid grey', padding: '10px'}} display="flex" alignItems="center">
                         <Box style={{width:'30%'}}>
-                            <Box fontSize={30} fontWeight="fontWeightBold" m={1}gutterBottom>
+                            <Box fontSize={30} fontWeight="fontWeightBold" m={1} gutterBottom>
                                 {t('chat.2')}
                             </Box>
                         </Box>
@@ -126,6 +126,7 @@ export default function Chat() {
                     </Box>
 
                     <Box display="flex" alignItems="center">
+                        {/*----------sidelist------------*/}
                         <Box height={1} className={classes.chatListWindow}>
                             <List className={classes.list}>
                                 {
@@ -156,7 +157,6 @@ export default function Chat() {
                                                             {user.firstName} {user.lastName}
                                                         </Box>
                                                     </Box>
-
                                                 </Box>
                                             </ListItem>
                                         </Box>
@@ -164,42 +164,18 @@ export default function Chat() {
                                 }
                             </List>
                         </Box>
+                        {/*----------chat window------------*/}
                         <Box className={classes.chatWindow}>
                             <Box className={classes.messageBox}>
                                 {selectedChat ?
-                                    <ChatWindow selectedChat={selectedChat}/> :
+                                    <ChatList selectedChat={selectedChat}/> :
                                     <Typography component="h4" variant="h5" align="center" style={{color: 'grey'}}>
                                         {t('chat.3')}
                                     </Typography>
                                 }
                             </Box>
-                            <Box display="flex" alignItems="center">
-                                <Box className={classes.chatBox}>
-                                    <TextField
-                                        label="Dense"
-                                        id="outlined-margin-dense"
-                                        defaultValue="Default Value"
-                                        className={classes.textField}
-                                        margin="dense"
-                                        variant="outlined"
-                                        label={t('chat.4')}
-                                        className={classes.textField}
-                                        value={textValue}
-                                        onChange={e => setTextValue(e.target.value)}
-                                    />
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        className={classes.button}
-                                        onClick={() => {
-                                            handleClick();
-                                            setTextValue('');
-                                        }}
-                                    >
-                                        Send
-                                    </Button>
-                                </Box>
-                            </Box>
+                            <TextfieldMobile userId2={userId2}/>
+
                         </Box>
                     </Box>
                 </Paper>

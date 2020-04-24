@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export default function sendMessage(userId, userId2) {
-        /* getChat funksjonen*/
-    console.log("sendMessage", sessionStorage.getItem('userId'));
-    axios.get('/users/chat/'+userId+'/'+userId2)
-        .then(response => {
-            if (response.status === 200) {
-                console.log(response.data);
-            }
+export default function sendMessage(userId, userId2, message, setSelectedChat) {
+        console.log("sendMessage", userId, sessionStorage.getItem('userId'));
+        axios.post('/users/writeMessage/' + userId + '/' + userId2, {
+            message: message
         })
-        .catch(e => console.log(e));
+            .then(result => {
+                console.log(result.data);
+                setSelectedChat(result.data);
+            })
+            .catch(e => console.log(e));
 }

@@ -13,11 +13,8 @@ import MyRatings from "../../components/rating/my-ratings-size-check";
 import ReceivedRatings from "../../components/rating/received-size-check";
 import NewRatings from "../../components/rating/new-ratings-size-check";
 import CheckWinSize from "../../components/div/check-win-size";
-import MyRatingsMobile from "../../components/rating/mobile/my-ratings-mobile";
-import MyRatingsDesktop from "../../components/rating/desktop/my-ratings-desktop";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-import {Link} from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -78,19 +75,19 @@ export default function Ratings() {
 
             {width < breakpoint
             &&
-                <Box style={{marginButton: 20}}>
-                    <ButtonGroup  size="small" color="primary" aria-label="small outlined button group">
+
+                    <ButtonGroup  fullWidth size="small" color="primary" aria-label="small outlined button group" style={{marginBottom: 20}}>
                         <Button type="submit" onClick={handleChange1}>
-                            {t('ratings.2')}
+                            FÅTT
                         </Button>
                         <Button type="submit" onClick={handleChange2}>
-                            {t('ratings.3')}
+                            GITT
                         </Button>
                         <Button type="submit" onClick={handleChange3}>
-                            {t('ratings.4')}
+                            NYE
                         </Button>
                     </ButtonGroup>
-                </Box>
+
             }
 
 
