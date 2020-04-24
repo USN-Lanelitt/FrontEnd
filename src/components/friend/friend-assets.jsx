@@ -15,10 +15,11 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const FriendAssets = ({id}) => {
+const FriendAssets = () => {
     const classes = useStyles();
     const [friendassets, setfriendassets] = useState([]);
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const {id} = useParams();
 
     useEffect(() => {
         getUserAssets();
@@ -29,7 +30,6 @@ const FriendAssets = ({id}) => {
             .then(result => setfriendassets(result.data))
             .catch(error => console.log(error))
     }
-
 
     return (
         <Container>

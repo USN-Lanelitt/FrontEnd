@@ -12,15 +12,14 @@ import Avatar from "@material-ui/core/Avatar";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
-        maxWidth: '40ch',
+        maxWidth: '40',
         width: '100%',
-
-
     },
     photo: {
         width: theme.spacing(5),
@@ -58,6 +57,7 @@ const StyledMenuItem = withStyles(theme => ({
 
 const LoanRequestNotification = ({id, firstname, middlename, imageUrl, lastname, loanStatus, selectedDate, selectedDate2, reply}) => {
     const classes = useStyles();
+    const { t } = useTranslation();
     return (
         <React.Fragment>
             <StyledMenuItem>
@@ -65,7 +65,7 @@ const LoanRequestNotification = ({id, firstname, middlename, imageUrl, lastname,
                 <Grid className={classes.list}>
                     <Box mt={1}>
                     <ListItemAvatar>
-                        <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
+                        <Avatar className={classes.photo} ml={2} alt="Remy Sharp" src={imageUrl}/>
                     </ListItemAvatar>
                     </Box>
                     <Box display='flex' flexDirection="column">
@@ -74,7 +74,7 @@ const LoanRequestNotification = ({id, firstname, middlename, imageUrl, lastname,
                             {firstname} {middlename} {lastname}
                         </ListItemText>
                             <ListItemText gutterBottom variant="h4" component="h7" display={"flex"}>
-                                {loanStatus} lånet
+                                {loanStatus} {t('loan-request-notification.1')}
                             </ListItemText>
                         </Box>
                         <Box display='flex' flexDirection="row">

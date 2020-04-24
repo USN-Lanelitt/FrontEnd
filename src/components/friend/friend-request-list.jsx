@@ -3,6 +3,7 @@ import FriendRequest from "./friend-request";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import ConfirmDialog from "../profile/confirm-dialog";
+import {notificationFriendRequest} from "../../feature/Notification/notification-refresh";
 
 
 let statuss = 0;
@@ -19,15 +20,15 @@ const FriendRequestList = ({data}) => {
         setShowConfirmDialog(true);
         setFriendId(friendId);
         statusTittel = "Godkjenn forespørsel?";
-        statusBesk = "Ønsker du å godkjenne denne vennen?";
+        statusBesk = "Ønsker du å godkjenne forespørselen?";
         statuss = 1;
     };
 
     const denied = (friendId) => {
         setShowConfirmDialog(true);
         setFriendId(friendId);
-        statusTittel = "Slett forespørsel?";
-        statusBesk = "Ønsker du å slette denne vennen?";
+        statusTittel = "Avslå forespørsel?";
+        statusBesk = "Ønsker du å avslå forespørselen?";
         statuss = 2;
     };
 
@@ -35,6 +36,7 @@ const FriendRequestList = ({data}) => {
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' + statuss)
             .then((response) => {
+                notificationFriendRequest(userId, friendId, statuss)
                 if (response.status === 200) {
                     console.log(response.data);
                 }
@@ -72,6 +74,7 @@ const FriendRequestList = ({data}) => {
                         friendId={item.user1.id}
                         onDenied={() => denied(item.user1.id)}
                         onAccept={() => accept(item.user1.id)}
+                        refresh={() => notificationFriendRequest(userId, friendId, statuss)}
                     />
                 </Grid>
             ))}

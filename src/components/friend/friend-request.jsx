@@ -10,7 +10,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {Link} from "react-router-dom";
-import CardActionArea from "@material-ui/core/CardActionArea";
+import {useTranslation} from "react-i18next";
 
 //VenneVarselListe
 
@@ -62,6 +62,7 @@ const StyledMenuItem = withStyles(theme => ({
 
 const FriendRequest = ({id,firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
     const classes = useStyles();
+    const { t } = useTranslation();
 
     return (
         <React.Fragment>
@@ -79,11 +80,11 @@ const FriendRequest = ({id,firstname, middlename, lastname, imageUrl, onDenied, 
                 </Grid>
                 <Divider variant = "li" />
                 <ListItemSecondaryAction className={classes.button}>
-                    <Button className={classes.accepdbt} Click= {onAccept} size="small" color="primary">
-                        Godta
+                    <Button className={classes.accepdbt} onClick= {onAccept} size="small" color="primary">
+                        {t('friendRequest.1')}
                     </Button>
                     <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">
-                        Avslå
+                        {t('friendRequest.2')}
                     </Button>
                 </ListItemSecondaryAction>
 

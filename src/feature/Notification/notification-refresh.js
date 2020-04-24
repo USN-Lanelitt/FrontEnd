@@ -1,5 +1,4 @@
 import axios from "axios";
-import MyAssetsList from "../../components/profile/my-assets-list";
 
  export const notificationRefresh = (userId, setData) =>{
     axios.get('/user/' + userId + '/friendRequests')
@@ -35,14 +34,23 @@ export const notificationRefreshLoanDenien = (userId, setData) =>{
 
 }
 export const notificationRefreshLoanAccepted = (userId, setData) =>{
-    axios.get( '/user/' + userId + '/loanAccepted')
-        .then((response) => {
+axios.get( '/user/' + userId + '/loanAccepted')
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setData(response.data);
+        }
+    })
+    .catch(error => console.log(error))
+}
 
+export const notificationFriendRequest = (userId, friendId, statuss) => {
+    axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' + statuss)
+        .then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
-                setData(response.data);
             }
-        })
-        .catch(error => console.log(error))
 
+        })
+        .catch(e => console.log(e));
 }

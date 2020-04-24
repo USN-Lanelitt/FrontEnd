@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
@@ -50,6 +51,7 @@ const useStyles = makeStyles(theme => ({
 
 const NotificationLoanRequest = ({id, firstname, middlename, imageUrl, lastname, loanStatus, selectedDate, selectedDate2, reply}) => {
     const classes = useStyles();
+    const { t } = useTranslation();
     return (
         <Card className={classes.paper}>
 
@@ -59,7 +61,7 @@ const NotificationLoanRequest = ({id, firstname, middlename, imageUrl, lastname,
                         <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                         <Box display="flex" flexDirection="column">
                             <Typography gutterBottom variant="h5" component="h2" display={"inline"}>
-                                {firstname} {middlename} {lastname} {loanStatus} lånet
+                                {firstname} {middlename} {lastname} {loanStatus}  {t('notification-loan-request.1')}
                             </Typography>
                             <Typography gutterBottom variant="subtitle1" component="h2">
                                 {selectedDate} - {selectedDate2}

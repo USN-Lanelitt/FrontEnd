@@ -29,6 +29,7 @@ import Ratings from "../feature/rating/ratings";
 import AssetOwnerInfo from "../feature/Assets/asset-owner-info";
 import AssetSearch from "../feature/Assets/asset-search";
 
+
 const Routes = props => {
     return (
         <>

@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import {getRatings} from "../rating/getRating";
+import {useTranslation} from "react-i18next";
 
 //her er det kort med ventende forespørsel/avist - kort
 
@@ -41,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loanStatus, selectedDate, selectedDate2, assetId}) => {
     const classes = useStyles();
     const [rating, setRating] = useState(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         getRatings(assetId, setRating)
@@ -82,7 +84,7 @@ const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loan
 
                         <Box display="flex" flexDirection="column" mt={9}>
                             <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h6">
-                                Dato for lån:
+                                {t('loan-card.1')}
                             </Typography>
                             <Typography gutterBottom variant="body2" color="textPrimary" component="body1"
                                         flexDirection="row">

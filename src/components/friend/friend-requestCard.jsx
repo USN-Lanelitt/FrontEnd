@@ -10,11 +10,14 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
-
+import Box from "@material-ui/core/Box";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(theme => ({
     card: {
         padding: theme.spacing(1),
+        width: '400px',
+
     },
     photo: {
         width: theme.spacing(7),
@@ -30,38 +33,50 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const FriendRequestCard = ({id,firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
+const FriendRequestCard = ({id, firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
     const classes = useStyles();
+    const { t } = useTranslation();
 
     return (
 
-            <Card className={classes.card}>
-                <CardActionArea component = {Link} to={"/FriendProfile/" + id} style={{backgroundColor: 'transparent'}}>
-                    <CardContent>
-                        <Grid container zeroMinWidth justify="flex-start">
-                            <CardMedia>
+        <Card className={classes.card}>
+            <Box>
 
-                                <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
-                            </CardMedia>
-                            <Grid className={classes.text}>
-                                <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
-                                    {firstname} {middlename} {lastname}
-                                </Typography>
-                            </Grid>
-                        </Grid>
+                    <CardActionArea component={Link} to={"/FriendProfile/" + id} style={{backgroundColor: 'transparent'}}>
+                    <CardContent>
+
+                            <Box display="flex" flexDirection="row">
+                                <Box display="flex" flexDirection="row">
+                                    <CardMedia>
+                                        <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
+                                    </CardMedia>
+                                    <Grid className={classes.text}>
+                                        <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
+                                            {firstname} {middlename} {lastname}
+                                        </Typography>
+                                    </Grid>
+                                </Box>
+
+                            </Box>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <Button onClick= {onAccept} size="small" color="primary">
-                        Legg til
-                    </Button>
-                    <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">
-                        Avslå
-                    </Button>
-                </CardActions>
-            </Card>
+                <Box display="flex" flexDirection="row">
+                    <CardActions>
+                        <Button onClick={onAccept} size="small" color="primary">
+                            {t('friendRequestCard.1')}
+                        </Button>
+                        <Button className={classes.Button} onClick={onDenied} size="small" color="primary">
+                            {t('friendRequestCard.2')}
+                        </Button>
 
-    );
+                    </CardActions>
+                </Box>
+            </Box>
+
+</Card>
+
+)
+    ;
 }
 
 export default FriendRequestCard;

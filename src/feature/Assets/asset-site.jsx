@@ -16,7 +16,6 @@ import {Link} from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import LocationOn from "@material-ui/icons/LocationOn";
 
-
 const useStyles = makeStyles(theme => ({
     button: {
         display: 'flex',
