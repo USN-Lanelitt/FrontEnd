@@ -226,5 +226,9 @@
   },
   "loan-accepted": {
     "1": "Borrowed loan"
+  },
+  "freind-card": {
+    "1":"Delete friend",
+    "2": "Send message"
   }
   }

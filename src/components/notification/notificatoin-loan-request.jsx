@@ -52,8 +52,9 @@ const useStyles = makeStyles(theme => ({
 const NotificationLoanRequest = ({id, firstname, middlename, imageUrl, lastname, loanStatus, selectedDate, selectedDate2, reply}) => {
     const classes = useStyles();
     const { t } = useTranslation();
+
     return (
-        <Card className={classes.paper}>
+        <Card>
 
             <CardContent>
                 <Grid className={classes.top} zeroMinWidth justify="flex-start">

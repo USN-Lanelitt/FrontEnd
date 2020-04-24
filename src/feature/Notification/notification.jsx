@@ -70,7 +70,7 @@ const Notification = () => {
         statuss = 2;
     };
 
-    function reply(friendId, statuss) {
+    function reply() {
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' +statuss)
             .then((response) => {
