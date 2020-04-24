@@ -184,8 +184,7 @@ export default function NavBar(props) {
     app.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
-            setloggedIn(true);
-
+            {( ! parseInt(sessionStorage.getItem('userId')) > 0) ? Logout() : setloggedIn(true)}
         } else {
             // No user is signed in.
             setloggedIn(false);
@@ -208,9 +207,10 @@ export default function NavBar(props) {
         >
             {!loggedIn ?
                 <MenuItem onClick={handleMenuClose} component={Link} to="/login">Logg på</MenuItem>
-             : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>}
-
+                : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>
+            }
         </Menu>
+
     );
 
     const names = [
