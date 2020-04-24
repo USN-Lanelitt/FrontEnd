@@ -124,7 +124,7 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                             </Button>
 
                             <Button onClick={publishAsset}>
-                                {published ? 'publisert' : 'publiser'}
+                                {asset.published ? 'publisert' : 'publiser'}
                             </Button>
                         </Box>
 

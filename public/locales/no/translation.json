@@ -196,6 +196,11 @@
   },
   "assetOwner": {
     "1": "Send forespørsel",
-    "2": "Ønsker du å låne denne eiendelen?"
+    "2": "Rapporter"
+  },
+  "assetReport": {
+    "1": "Emne",
+    "2": "Kommentar",
+    "3": "Rapporter sak"
   }
 }

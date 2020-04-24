@@ -14,6 +14,7 @@ import {useTranslation} from "react-i18next";
 import axios from "axios";
 import {useParams} from "react-router";
 import moment from "moment";
+import StatusMessage from "../profile/status-message";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -35,6 +36,9 @@ const LoanRequestSend = () => {
     const [textValue, setTextValue] = useState('');
     const [selectedDate, setSelectedDate] = React.useState(new Date() );
     const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
     const {id, assetId} = useParams();
 
     function sendMessage(message) {
@@ -56,14 +60,18 @@ const LoanRequestSend = () => {
 
         }).then((response) => {
             if (response.status === 200) {
-                console.log(response.data);
-                console.log(assetId);
-                console.log(selectedDate);
-                console.log(selectedDate2);
+                setShowStatusMessage(true);
+                setStatusMessage("Forespørsel sendt");
+                setStatusMessageSeverity("success");
             }
         })
-            .catch(e => console.log(e));
+            .catch(e => {
+                console.log(e)
+                setShowStatusMessage(true);
+                setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+            });
     }
+
 
     const handleDateChange = () => {
         setSelectedDate(moment(selectedDate).format("YYYY-MM-DD"));
@@ -80,8 +88,12 @@ const LoanRequestSend = () => {
     };
 
 
+
+
     return (
         <Box display="flex" justifyContent="center">
+            <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                           onClose={setShowStatusMessage}/>
             <Box width={1 / 2} height={'100%'}>
                 <Card className={classes.paper}>
                     <Box borderBottom={1}>
