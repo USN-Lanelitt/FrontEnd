@@ -16,7 +16,6 @@ import {Link} from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import AssetReport from "./asset-report";
 
-
 const useStyles = makeStyles(theme => ({
     button: {
         display: 'flex',
