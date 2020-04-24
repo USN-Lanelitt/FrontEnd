@@ -9,13 +9,32 @@ import TableBody from "@material-ui/core/TableBody";
 import ConfirmDialog from "../user/confirm-dialog";
 import {Visibility} from "@material-ui/icons";
 import {useTranslation} from "react-i18next";
+import {makeStyles} from "@material-ui/core/styles";
+import {Box} from "@material-ui/core";
 
+const useStyles = makeStyles(theme => ({
+    outer: {
+        height: '500px'
+    },
+    inner:{
+        height: '440px',
+        display: "flex",
+        justifyContent: 'space-evenly',
+
+    },
+    list: {
+        padding: '0px',
+        height: '100%',
+        overflow: "auto",
+    }
+}));
 
 const ReportTable = ({reports}) => {
     const { t } = useTranslation();
     const [title, setTitle] = React.useState(false);
     const [text, setText] = React.useState(false);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const classes = useStyles();
     console.log('reportModal');
 
     const onShow = (subject, comment) => {
@@ -31,7 +50,7 @@ const ReportTable = ({reports}) => {
     }
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer className={classes.outer} component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -43,7 +62,7 @@ const ReportTable = ({reports}) => {
                         <TableCell>{t('report-table.6')}</TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody className={classes.list}>
                     {
                         reports.map((report) =>
                             (<TableRow key={report.id}>

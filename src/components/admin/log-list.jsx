@@ -4,7 +4,7 @@ import axios from "axios";
 import LogTable from "./log-table";
 
 const LogList = () => {
-    const [logs, setLogs] = useState([]);
+    const [logs, setLogs] = useState(null);
 
     useEffect(() => {
         console.log("getlog", sessionStorage.getItem('userId'));
@@ -13,7 +13,6 @@ const LogList = () => {
                 if (response.status === 200) {
                     console.log(response.data);
                     setLogs(response.data);
-                    console.log('getloggggggggg');
                 }
             })
             .catch((e) => {
@@ -25,7 +24,7 @@ const LogList = () => {
     return (
         <div>
             <Box m={4} display="flex" alignItems="center" flexDirection="column">
-                { logs ?  'tom' : <LogTable log={logs}/> }
+                { logs ?   <LogTable log={logs}/> :'tom' }
             </Box>
 
         </div>

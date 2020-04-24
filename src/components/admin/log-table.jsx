@@ -7,28 +7,47 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {useTranslation} from "react-i18next";
+import {makeStyles} from "@material-ui/core/styles";
+import {Box} from "@material-ui/core";
 
+const useStyles = makeStyles(theme => ({
+    outer: {
+        width: '80%',
+        height: '500px'
+    },
+    inner:{
+        width: '100%',
+        height: '440px',
+        display: "flex",
+        justifyContent: 'space-evenly',
 
-const LogTable = ({logs}) => {
+    },
+    list: {
+        padding: '0px',
+        height: '100%',
+        overflow: "auto",
+    }
+}));
+
+const LogTable = ({log}) => {
     const { t } = useTranslation();
+    const classes = useStyles();
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer className={classes.outer} component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
-                    <TableRow>
-                        <TableCell>Logg</TableCell>
+                    <TableRow display="flex" alignItems="center">
+                        <TableCell m={1} gutterBottom >Logg</TableCell>
                     </TableRow>
                 </TableHead>
- {/*               <TableBody>
-                    {
-                        logs.map((log) =>
-                            (<TableRow key={log}>
-                                <TableCell> {log}</TableCell>
-                            </TableRow>)
-                        )
-                    }
-                </TableBody>*/}
+                <Box className={classes.inner}>
+                <TableBody className={classes.list}>
+                    {log.map((logs) =>
+                        <TableRow>{logs}</TableRow>
+                    )}
+                </TableBody></Box>
+
             </Table>
         </TableContainer>
     );
