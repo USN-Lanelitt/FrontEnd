@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
     button:{
         width: 475,
         padding:0,
+        margin:0,
     },
 
 }));
@@ -47,17 +48,17 @@ const RatingCardDesktop = ({userId2, firstname, middlename, lastname, assetname,
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [botton, setBotton] = useState('');
+    const [button, setButton] = useState('');
 
     useEffect(() => {
         if(type === 1)
-            setBotton(reportBotten);
+            setButton(reportButten);
         else
-            setBotton('');
-    }, [setBotton, userId]);
+            setButton('');
+    }, [setButton, userId]);
 
 
-    const reportBotten  = (
+    const reportButten  = (
         <ReportModal userId2={userId2}/>
     );
 
@@ -72,7 +73,7 @@ const RatingCardDesktop = ({userId2, firstname, middlename, lastname, assetname,
                             </Typography>
                         </Box>
                         <Box>
-                            <Typography  variant="subtitle1" component="h2">
+                            <Typography  gutterBottom variant="subtitle1" component="h2">
                                 {selectedDate} - {selectedDate2}
                             </Typography>
                         </Box>
@@ -106,7 +107,7 @@ const RatingCardDesktop = ({userId2, firstname, middlename, lastname, assetname,
                         </Box>
                     </Card>
                     <Box display="flex" justifyContent="flex-end"  className={classes.button} >
-                        {botton}
+                        {button}
                     </Box>
                 </CardContent>
 

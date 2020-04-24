@@ -20,7 +20,6 @@ import NotificationList from "./notification/notificationList";
 import FriendProfile from "./friend/friend-profile";
 import LoanCard from "./loan/loan-card";
 import AssetSite from "../feature/Assets/asset-site";
-import ChatDesktop from "./chat/chat-desktop";
 import FriendProfileCard from "./friend/friend-profile-card";
 import LoanToFriends from "./loan/loan-to-friends";
 import LoanRequestSend from "./loan/loan-request-send";
@@ -28,7 +27,6 @@ import LoanAccepted from "./loan/loan-accepted";
 import Ratings from "../feature/rating/ratings";
 import AssetOwnerInfo from "../feature/Assets/asset-owner-info";
 import AssetSearch from "../feature/Assets/asset-search";
-import ChatUsersMobile from "./chat/chat-users-mobile";
 import Chat from "../feature/Chat/chat";
 import ChatWinMobile from "./chat/chat-win-mobile";
 
