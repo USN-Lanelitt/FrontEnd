@@ -64,6 +64,10 @@ const ReportModal = ({userId2}) => {
         setOpen(false);
     };
 
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const body = (
         <Fade in={open}>
             <Card className={classes.card}>
@@ -103,7 +107,6 @@ const ReportModal = ({userId2}) => {
     return (
         <>
             <Button
-                type="submit"
                 color="primary"
                 onClick={handleOpen}
             >
@@ -117,6 +120,7 @@ const ReportModal = ({userId2}) => {
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
                 open={open}
+                onClose={handleClose}
                 closeAfterTransition
             >
                 {body}
