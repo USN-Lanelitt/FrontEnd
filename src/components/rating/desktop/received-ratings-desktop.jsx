@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-import RatingCard from "./rating-card";
+import RatingCardDesktop from "./rating-card-desktop";
 
-const ReceivedRatingsList = () => {
+const ReceivedRatingsDesktop = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
@@ -24,7 +24,7 @@ const ReceivedRatingsList = () => {
                 {
                     data.map(loan => (
                             <Grid item key={loan.id}>
-                                <RatingCard
+                                <RatingCardDesktop
                                     userId2={loan.loans.users.id}
                                     firstname={loan.loans.users.firstName}
                                     middlename={loan.loans.users.middleName}
@@ -45,4 +45,4 @@ const ReceivedRatingsList = () => {
     );
 };
 
-export default ReceivedRatingsList;
+export default ReceivedRatingsDesktop;

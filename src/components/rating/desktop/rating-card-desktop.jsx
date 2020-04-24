@@ -4,24 +4,21 @@ import {makeStyles} from "@material-ui/core/styles";
 import {CardContent} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
-import useInput from "../div/use-input";
 import {useTranslation} from "react-i18next";
-import setRating from "./setRating";
-import TextField from "@material-ui/core/TextField";
-import ReportModal from "../report/report-modal";
+import ReportModal from "../../report/report-modal";
 
 
 const useStyles = makeStyles(theme => ({
     card: {
+        padding:3,
         height: 260,
         width: 680,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
         padding: 15,
-        height: 156,
+        height: 154,
         width: 450,
     },
     paddingRight: {
@@ -39,10 +36,14 @@ const useStyles = makeStyles(theme => ({
         width: '90%',
         height: 90,
     },
+    button:{
+        width: 475,
+        padding:0,
+    },
 
 }));
 
-const RatingCard = ({userId2, firstname, middlename, lastname, assetname, selectedDate, selectedDate2, comment, rating, type}) => {
+const RatingCardDesktop = ({userId2, firstname, middlename, lastname, assetname, selectedDate, selectedDate2, comment, rating, type}) => {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -65,13 +66,13 @@ const RatingCard = ({userId2, firstname, middlename, lastname, assetname, select
             <Card className={classes.card}>
                 <CardContent>
                     <div className={classes.flex}>
-                        <Box className={classes.paddingRight}>
+                        <Box style={{paddingLeft:5, paddingRight:10}}>
                             <Typography gutterBottom variant="h6" component="h2">
                                 {firstname} {middlename} {lastname}
                             </Typography>
                         </Box>
                         <Box>
-                            <Typography gutterBottom variant="subtitle2" component="h2">
+                            <Typography  variant="subtitle1" component="h2">
                                 {selectedDate} - {selectedDate2}
                             </Typography>
                         </Box>
@@ -104,7 +105,9 @@ const RatingCard = ({userId2, firstname, middlename, lastname, assetname, select
                             </Box>
                         </Box>
                     </Card>
-                    {botton}
+                    <Box display="flex" justifyContent="flex-end"  className={classes.button} >
+                        {botton}
+                    </Box>
                 </CardContent>
 
             </Card>
@@ -112,4 +115,4 @@ const RatingCard = ({userId2, firstname, middlename, lastname, assetname, select
     );
 };
 
-export default RatingCard;
+export default RatingCardDesktop;
