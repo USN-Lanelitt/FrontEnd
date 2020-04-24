@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -10,6 +10,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 
 
@@ -32,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove, getChat}) => {
     const classes = useStyles();
+    const { t } = useTranslation();
 
 
     return (
@@ -53,10 +55,10 @@ const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove, get
                 </CardActionArea>
                 <CardActions>
                     <Button className={classes.Button} onClick= {onRemove} size="small" color="primary">
-                        Slett venn
+                        {t('freind-card.1')}
                     </Button>
                     <Button onClick= {getChat} component={Link} to="/chat" size="small" color="primary">
-                        Send melding
+                        {t('freind-card.2')}
                     </Button>
                 </CardActions>
             </Card>

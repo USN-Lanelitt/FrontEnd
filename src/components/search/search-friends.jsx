@@ -6,9 +6,9 @@ import axios from "axios";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {fade} from "@material-ui/core";
 import {Link} from "react-router-dom";
-
 import {useTranslation} from 'react-i18next';
-import ListItem from "@material-ui/core/ListItem";
+import {useParams} from "react-router";
+import MenuItem from "@material-ui/core/MenuItem";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
             width: '20ch',
         },
     },
+    link: {
+        textDecoration: 'none'
+    }
 
 }));
 
@@ -58,49 +61,59 @@ const SearchFriends = () => {
     const [dataFilterd, setDataFilterd] = useState([]);
     const [search, setSearch] = useState();
     const classes = useStyles();
+    const [enter, setEnter] = React.useState(false);
     const {t} = useTranslation();
+    const {id} = useParams();
 
     const handleChange = (event) => {
         setSearch(event.target.value);
         setDataFilterd(data.filter((user) => user.firstName.includes(search)));
         console.log('search', data.filter((user) => user && user.firstName.includes(event.target.value)))
+
     }
     useEffect(() => {
-        console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
+        console.log("getearch", userId, sessionStorage.getItem('userId'));
         axios.get('/users')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
                     setData(response.data);
-                    console.log("getcombosearch", userId, sessionStorage.getItem('userId'));
+                    console.log("getsearch1", userId, sessionStorage.getItem('userId'));
                 }
             })
             .catch(e => console.log(e));
     }, []);
 
+    function onClickFriend(event) {
+        console.log("on enter", event.target.value);
+
+    }
 
     return (
         <Box m={2} display="flex" alignItems="center" flexDirection="column">
             <div className={classes.search}>
-                <Autocomplete component={Link} to="/FriendProfile"
-                              id="combo-box-demo"
-                              options={dataFilterd}
-                              getOptionLabel={option => option && option.firstName}
-                              style={{width: 210}}
-                              filterOptions={(x) => x}
-                              renderInput={params => <TextField   {...params}
-                                                                  classes={{
-                                                                      root: classes.inputRoot,
-                                                                      input: classes.inputInput,
-                                                                  }}
-                                                                  label={t('nav.1')}
-                                                                  variant="filled"
-                                                                  onChange={handleChange}
-                                                                  component={Link} to="/"
-                              />
-                              }
-
+                <Autocomplete
+                    id="combo-box-demo"
+                    options={dataFilterd}
+                    getOptionValue={option => option && option.id}
+                    getOptionLabel={option => option && option.firstName}
+                    style={{width: 210, backgroundColor: 'transparent'}}
+                    filterOptions={(x) => x}
+                    renderInput={params => <TextField   {...params}
+                                                        classes={{root: classes.inputRoot, input: classes.inputInput,}}
+                                                        label={t('nav.1')}
+                                                        variant="filled"
+                                                        onChange={handleChange}
+                    />}
+                    renderOption={(option => (
+                        <MenuItem key={option.id} onClick={onClickFriend} value={option.id}>
+                            <Link className={classes.link} to={'/FriendProfile/' + option.id}>
+                                {`${option.firstName} ${option.lastName}`}
+                            </Link>
+                        </MenuItem>
+                    ))}
                 />
+
 
             </div>
 

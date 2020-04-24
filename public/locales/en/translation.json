@@ -52,8 +52,8 @@
     "3": "Notifications",
     "4": "Friends",
     "5": "Messages",
-    "6": "My Assets",
-    "7": "Lent Assets",
+    "6": "My assets",
+    "7": "Lent assets",
     "8": "Borrowed assets",
     "9": "Ratings",
     "10": "Edit profile",
@@ -88,8 +88,8 @@
   "report-table": {
     "1": "Actions",
     "2": "Id",
-    "3": "From User",
-    "4": "About User",
+    "3": "From user",
+    "4": "About user",
     "5": "Subject",
     "6": "Timestamp"
   },
@@ -97,28 +97,32 @@
     "1": "SELECT IMAGE"
   },
   "loan-request-send": {
-    "1": "Set time amount for loan: ",
+    "1": "Select time for loan: ",
     "2": "Start date:",
     "3": "End date:",
     "4": "Send message ...",
     "5": "Send"
   },
   "loan-to-friends": {
-    "1": "My loaned out assets"
+    "1": "Lent assets"
   },
   "forgotpass": {
-    "1": "Forgot Password?",
-    "2": "Forgot Password",
+    "1": "Forgot password?",
+    "2": "Forgot password",
     "3": "Please write down your e-mail to receive link to\n reset your password.\n Please check your bin if you haven't heard back from us!",
     "4": "E-mail",
     "5": "Cancel",
     "6": "Send"
   },
   "nav": {
-    "1": "Search for users..."
+    "1": "Search for users...",
+    "2": "Notification",
+    "3": "Message",
+    "4": "Sign inn",
+    "5": "Sign out"
   },
   "new-asset": {
-    "1": "Add Asset",
+    "1": "Add asset",
     "2": "Title",
     "3": "Description",
     "4": "SELECT IMAGE",
@@ -152,16 +156,17 @@
     "4": "Write a message.."
   },
   "friend-all": {
-    "1": "My friends",
-    "2": "Delete as friend?",
+    "1": "Friends",
+    "2": "Delete friend?",
     "3": "Do you wish to delete this friend?",
     "4": "Yes",
     "5": "No"
   },
   "notification": {
-    "1": "Varsler",
-    "2": "Friend Request",
-    "3": "Loan Request"
+    "1": "Friend request",
+    "2": "Loan request",
+    "3": "Accepted loan requests",
+    "4": "Denied loan requests"
   },
   "changePasswordForm": {
     "1": "Current password",
@@ -170,7 +175,7 @@
     "4": "Save"
   },
   "editProfile": {
-    "1": "Edit Profile Settings",
+    "1": "Edit profile settings",
     "2": "Edit profile image",
     "3": "SELECT IMAGE",
     "4": "Save",
@@ -182,20 +187,20 @@
     "10": "City",
     "11": "Change password",
     "12": "Current password",
-    "13": "New Password",
+    "13": "New password",
     "14": "Save",
     "15": "Firstname",
     "16": "Middlename",
     "17": "Lastname"
   },
   "profile": {
-    "1": "My Assets"
+    "1": "My assets"
   },
   "ratings": {
     "1": "Ratings",
-    "2": "Received Ratings",
-    "3": "Given Ratings",
-    "4": "New Rating"
+    "2": "Received ratings",
+    "3": "Given ratings",
+    "4": "New rating"
   },
   "assetOwner": {
     "1": "Send request",
@@ -205,5 +210,34 @@
     "1": "Subject",
     "2": "Comment",
     "3": "Report user"
+
+  },
+  "loan-replay-card": {
+    "1": "Accept",
+    "2": "Denied"
+  },
+  "friendRequestCard": {
+    "1": "Accept",
+    "2": "Denied"
+  },
+  "friendRequest": {
+    "1": "Accept",
+    "2": "Denied"
+  },
+  "loan-request-notification": {
+    "1": "loan"
+  },
+  "notification-loan-request": {
+    "1": "loan"
+  } ,
+  "loan-card": {
+    "1": "Loan Duration:"
+  },
+  "loan-accepted": {
+    "1": "Borrowed loan"
+  },
+  "freind-card": {
+    "1":"Delete friend",
+    "2": "Send message"
   }
 }
