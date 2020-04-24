@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         paddingTop:10,
         padding: 15,
         minHeight: 152,
-        width: 288,
+        width: 300,
     },
     stars: {
         marginTop:10,
@@ -53,7 +53,7 @@ const RatingCardMobile = ({userId2, firstname, middlename, lastname, assetname, 
     return (
         <>
             <Card className={classes.card}>
-                <CardContent style={{paddingBottom:20}}>
+                <CardContent style={{padding:12}}>
                     <Box>
                         <Typography gutterBottom variant="subtitle1" component="h2">
                             {selectedDate} - {selectedDate2}

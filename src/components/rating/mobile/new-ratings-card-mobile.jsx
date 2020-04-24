@@ -16,14 +16,14 @@ import {Redirect} from "react-router";
 const useStyles = makeStyles(theme => ({
     card: {
         height: 300,
-        width: 350,
+        width: 355,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
         paddingTop:10,
         padding: 15,
         height: 210,
-        width: 288,
+        width: 300,
     },
     stars: {
         marginTop:10,
@@ -55,7 +55,7 @@ const NewRatingsCardMobile = ({loanId, firstname, middlename, lastname, assetId,
     return (
         <div>
             <Card className={classes.card}>
-                    <CardContent>
+                    <CardContent style={{padding:12}}>
                         <div className={classes.flex}>
                             <Box>
                                 <Typography gutterBottom variant="subtitle1" component="h2">
