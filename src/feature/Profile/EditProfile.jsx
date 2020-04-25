@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -27,12 +27,11 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import HandleImageUpload from "../../components/profile/handle-image-upload";
 import ProfileImageUpload from "./profile-image-upload";
 import {useTranslation} from "react-i18next";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -203,13 +202,16 @@ const EditProfile = ({history}) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    const [checked, setChecked] = React.useState(sessionStorage.getItem('newsletter'));
-    console.log(checked);
-    const handleChangeCheckboxNewsletter = (event) => {
-        console.log(checked);
-        setChecked(event.target.checked);
-        console.log(checked);
-    };
+    const [checkedNews, setCheckedNews] = useState(sessionStorage.getItem('newsletter') === 'true');
+
+    const handleCheck = () => {
+        if (checkedNews === true){
+            setCheckedNews(false);
+        }else {
+            setCheckedNews(true);
+        }
+    }; console.log(checkedNews);
+
 
     const handleClickShowCurrentPassword = () => {
         setValues({...values, showCurrentPassword: !values.showCurrentPassword});
@@ -391,8 +393,8 @@ const EditProfile = ({history}) => {
                                         name="newsletter"
                                         value="allowExtraEmails"
                                         color="primary"
-                                        checked={checked}
-                                        onChange={handleChangeCheckboxNewsletter}
+                                        checked={checkedNews}
+                                        onChange={handleCheck}
                                     />
                                 }
                                 label={t('register.10')}
