@@ -117,11 +117,10 @@ const Login = ({ history }) => {
                         }
                     }
                     else {
-                        setErrors(true);
+                        setWarnings(true);
                     }
                 })
                 .catch(e=>console.log(e))
-                setWarnings(true);
         }
         }, [history]);
 
