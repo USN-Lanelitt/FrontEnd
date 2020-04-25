@@ -7,7 +7,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import app from "../../fire";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
-import sendMessage from "../../components/chat/send-message";
+import sendMessageNewChat from "../../components/chat/send-message-new-chat";
 import getFriend from "../../components/friend/friend-profile";
 import {useTranslation} from "react-i18next";
 
@@ -100,7 +100,7 @@ const FriendAll = () => {
                                 imageUrl={item.user2.profileImage}
                                 friendId={item.user2.id}
                                 onRemove={() => remove(item.user2.id)}
-                                getChat={() => sendMessage(userId, item.user2.id)}
+                                getChat={() => sendMessageNewChat(userId, item.user2.id)}
                             />
                         </Grid>
                     ))}

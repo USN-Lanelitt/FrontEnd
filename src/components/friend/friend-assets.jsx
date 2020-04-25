@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
-import AssetsList from "../../feature/Assets/assets-list";
 import {makeStyles} from "@material-ui/core/styles";
 import AssetCard from "../../feature/Assets/asset-card";
 import axios from "axios";
@@ -33,14 +31,13 @@ const FriendAssets = () => {
             .catch(error => console.log(error))
     }
 
-
     return (
         <Container>
 
             <main>
                 <Container className={classes.cardGrid}>
                     <Box m={5}>
-                        <h3>Lån</h3>
+
                         <hr/>
                     </Box>
                     <Grid container spacing={3} justify="center">

@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import {useTranslation} from "react-i18next";
 
 //her er det kort med ventende forespørsel/avist - kort
 
@@ -41,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 
 const LoanReplyCard = ({firstname, middlename, lastname, assetname, description, assetImages, loanStatus, selectedDate, selectedDate2, onDenied, onAccept}) => {
     const classes = useStyles();
+    const { t } = useTranslation();
 
     return (
         <Card className={classes.paper}>
@@ -79,10 +81,10 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     </Typography>
                 </Box>
                     <Button onClick= {onAccept} size="small" color="primary">
-                        Godta
+                        {t('loan-replay-card.1')}
                     </Button>
                     <Button className={classes.Button} onClick={onDenied} size="small" color="primary">
-                        Avslå
+                        {t('loan-replay-card.2')}
                     </Button>
             </CardContent>
         </Card>

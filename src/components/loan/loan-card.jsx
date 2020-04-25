@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import {getRatings} from "../rating/getRating";
+import {useTranslation} from "react-i18next";
 
 //her er det kort med ventende forespørsel/avist - kort
 
@@ -26,8 +27,6 @@ const useStyles = makeStyles(theme => ({
     },
     status: {
         padding: theme.spacing(0.5),
-
-
     },
     image: {
         width: "60%",
@@ -43,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loanStatus, selectedDate, selectedDate2, assetId}) => {
     const classes = useStyles();
     const [rating, setRating] = useState(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         getRatings(assetId, setRating)
@@ -73,16 +73,18 @@ const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loan
                     />
 
                     <Box display="flex" flexDirection="column" margin="auto">
+                        <Box m={1}>
                         <Typography gutterBottom variant="h5" component="h2">
                             {assetname}
                         </Typography>
-                        <Box component="fieldset" mb={3} borderColor="transparent">
+                        </Box>
+                        <Box component="fieldset" p={0} borderColor="transparent">
                             <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                         </Box>
 
-                        <Box display="flex" flexDirection="column" paddingTop="70px">
+                        <Box display="flex" flexDirection="column" mt={9}>
                             <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h6">
-                                Dato for lån:
+                                {t('loan-card.1')}
                             </Typography>
                             <Typography gutterBottom variant="body2" color="textPrimary" component="body1"
                                         flexDirection="row">

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
 import {MuiPickersUtilsProvider, KeyboardDatePicker,} from '@material-ui/pickers';
@@ -14,9 +13,8 @@ import TextField from "@material-ui/core/TextField";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
 import {useParams} from "react-router";
-
-//Mangler assetID, assetName og userId2!!!
-//her skal fra og til dato komme opp, søke om å låne
+import moment from "moment";
+import StatusMessage from "../profile/status-message";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -34,47 +32,55 @@ const LoanRequestSend = () => {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [userId2, setId2] = useState(52);
-    const [assetId, setAssetId] = useState(1);
-    const [assetName, setAssetName] = useState('Laptop');
+    const [assetName, setAssetName] = useState('');
     const [textValue, setTextValue] = useState('');
-    const [selectedDate, setSelectedDate] = React.useState(new Date() );
-    const [selectedDate2, setSelectedDate2] = React.useState(new Date() );
-    const {id} = useParams();
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
+    const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD") );
+    const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD") );
+    const {id, assetId} = useParams();
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
-        axios.post('/users/writeMessage/' + userId /*+ '/' + userid2*/, {
+        axios.post('/users/writeMessage/' + userId + '/' + id, {
             message: message
         })
             .then(result => {
-                console.log(result.data);
-                /*console.log(userid2);*/
+
             })
             .catch(e => console.log(e));
     }
 
     function sendRequest() {
         console.log("sendRequest", sessionStorage.getItem('userId'));
-        axios.post('/user/'+userId+'/asset/'+id+'/request' , {
+        axios.post('/user/'+userId+'/asset/'+assetId+'/request' , {
             startDate: selectedDate,
             endDate: selectedDate2
 
         }).then((response) => {
             if (response.status === 200) {
-                console.log(response.data);
-                console.log(id);
+                setShowStatusMessage(true);
+                setStatusMessage("Forespørsel sendt");
+                setStatusMessageSeverity("success");
             }
         })
-            .catch(e => console.log(e));
+            .catch(e => {
+                console.log(e)
+                setShowStatusMessage(true);
+                setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+            });
     }
 
+
     const handleDateChange = (date) => {
-        setSelectedDate(date);
+
+        setSelectedDate(moment(date).format("YYYY-MM-DD"));
     };
 
     const handleDateChange2 = (date) => {
-        setSelectedDate2(date);
+
+        setSelectedDate2(moment(date).format("YYYY-MM-DD"))
     };
 
     const handleClick = () => {
@@ -84,8 +90,12 @@ const LoanRequestSend = () => {
     };
 
 
+
+
     return (
         <Box display="flex" justifyContent="center">
+            <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                           onClose={setShowStatusMessage}/>
             <Box width={1 / 2} height={'100%'}>
                 <Card className={classes.paper}>
                     <Box borderBottom={1}>

@@ -5,61 +5,75 @@ import {CardContent} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
-import Button from "@material-ui/core/Button";
-import setRating from "./setRating";
+import {useTranslation} from "react-i18next";
+import ReportModal from "../../report/report-modal";
+
 
 const useStyles = makeStyles(theme => ({
     card: {
-        height: 235,
-        width: 670,
+        padding:3,
+        height: 260,
+        width: 680,
         backgroundColor:'#cfd8dc',
     },
     assetCard: {
         padding: 15,
-        height: 130,
+        height: 154,
         width: 450,
-        marginBottom: 0,
     },
     paddingRight: {
         paddingRight:10,
+    },
+    stars: {
+        marginTop:10,
     },
     flex: {
         display: 'flex',
         alignItems: 'center',
     },
-    textarea: {
-        marginTop: 20,
-        marginRight: 15,
-        padding: 10,
-        width: '77%',
-        height: 90,
-    },
     comment:{
-        width: '80%',
+        marginTop: 12,
+        width: '90%',
         height: 90,
     },
     button:{
-        marginTop: 70,
-        width: '20%'
+        width: 475,
+        padding:0,
+        margin:0,
     },
 
 }));
 
-const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, assetname, selectedDate, selectedDate2, comment, rating}) => {
+const RatingCardDesktop = ({userId2, firstname, middlename, lastname, assetname, selectedDate, selectedDate2, comment, rating, type}) => {
+    const { t } = useTranslation();
     const classes = useStyles();
+    const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const [button, setButton] = useState('');
+
+    useEffect(() => {
+        if(type === 1)
+            setButton(reportButten);
+        else
+            setButton('');
+    }, [setButton, userId]);
+
+
+    const reportButten  = (
+        <ReportModal userId2={userId2}/>
+    );
 
     return (
         <div>
             <Card className={classes.card}>
                 <CardContent>
                     <div className={classes.flex}>
-                        <Box className={classes.paddingRight}>
+                        <Box style={{paddingLeft:5, paddingRight:10}}>
                             <Typography gutterBottom variant="h6" component="h2">
                                 {firstname} {middlename} {lastname}
                             </Typography>
                         </Box>
                         <Box>
-                            <Typography gutterBottom variant="subtitle2" component="h2">
+                            <Typography  gutterBottom variant="subtitle1" component="h2">
                                 {selectedDate} - {selectedDate2}
                             </Typography>
                         </Box>
@@ -69,31 +83,32 @@ const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, 
                         <Box display="flex" flexDirection="row" alignItems="center">
                             <Box className={classes.flex}>
                                 <Box className={classes.paddingRight}>
-                                    <Typography  variant="h5" component="h2">
+                                    <Box style={{margin:0}} fontSize={25} fontWeight="fontWeightBold" m={1}>
                                         {assetname}
-                                    </Typography>
+                                    </Box>
                                 </Box>
                             </Box>
-                            <Box component="fieldset" borderColor="transparent" display="flex">
-                                <Rating name="read-only" precision={0.5} value={rating} readOnly/>
+                            <Box borderColor="transparent">
+                                <Rating
+                                    name="read-only"
+                                    precision={0.5}
+                                    value={rating}
+                                    className={classes.stars}
+                                    readOnly
+                                />
                             </Box>
                         </Box>
                         <Box display="flex" flexDirection="row">
                             <Box className={classes.comment}>
-                                <Typography  variant="subtitle1" component="h2">
+                                <Box style={{margin:0}} fontSize={17}  m={1}>
                                     {comment}
-                                </Typography>
-                            </Box>
-                            <Box className={classes.button}>
-                                <Button
-                                    type="submit"
-                                    size="small"
-                                >
-                                    Rapporter
-                                </Button>
+                                </Box>
                             </Box>
                         </Box>
                     </Card>
+                    <Box display="flex" justifyContent="flex-end"  className={classes.button} >
+                        {button}
+                    </Box>
                 </CardContent>
 
             </Card>
@@ -101,4 +116,4 @@ const ReceivedRatingsCard = ({loanId, firstname, middlename, lastname, assetId, 
     );
 };
 
-export default ReceivedRatingsCard;
+export default RatingCardDesktop;

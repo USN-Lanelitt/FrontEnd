@@ -1,118 +1,112 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Copyright from "../../components/home/Copyright";
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
-import MyRatingsList from "../../components/rating/my-ratings-list";
-import ReceivedRatingsList from "../../components/rating/received-ratings-list-";
-import NewRatingsList from "../../components/rating/new-rating-list";
 import Box from "@material-ui/core/Box";
-import withStyles from "@material-ui/core/styles/withStyles";
-import FormLabel from "@material-ui/core/FormLabel";
 import {useTranslation} from "react-i18next";
+import {Redirect, useParams} from "react-router";
+import MyRatings from "../../components/rating/my-ratings-size-check";
+import ReceivedRatings from "../../components/rating/received-size-check";
+import NewRatings from "../../components/rating/new-ratings-size-check";
+import CheckWinSize from "../../components/div/check-win-size";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Button from "@material-ui/core/Button";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-    icons: {
+    buttons: {
         marginRight: theme.spacing(2),
-    },
-    root: {
-        display: 'flex',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
-    toolbar: theme.mixins.toolbar,
-    icon: {
-        marginRight: theme.spacing(2),
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(4, 0, 6),
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4),
-    },
-    cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-    },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardContent: {
-        flexGrow: 1,
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
     },
 }));
 
 export default function Ratings() {
     const { t } = useTranslation();
+    const {pageNr} = useParams();
     const classes = useStyles();
-    const [show, setShow] = React.useState(<ReceivedRatingsList/>);
-    const [value, setValue] = React.useState('fått');
+    const [show, setShow] = React.useState();
+    const [value, setValue] = React.useState(pageNr);
+    const { width } = CheckWinSize()
+    const breakpoint = 620;
+
+    useEffect(() => {
+        if (value === '1') {
+            setShow(<ReceivedRatings/>);
+        } else if (value === '2') {
+            setShow(<MyRatings/>);
+        } else
+            setShow(<NewRatings/>);
+    },[setShow, 1]);
 
     const handleRadioChange = (event) => {
         setValue(event.target.value);
-        if (event.target.value === 'fått') {
-            setShow(<ReceivedRatingsList/>);
-        } else if (event.target.value === 'gitt') {
-            setShow(<MyRatingsList/>);
+        if (event.target.value === '1') {
+            setShow(<ReceivedRatings/>);
+        } else if (event.target.value === '2') {
+            setShow(<MyRatings/>);
         } else
-            setShow(<NewRatingsList/>);
+            setShow(<NewRatings/>);
     };
+
+    function handleChange1() {
+        setShow(<ReceivedRatings/>);
+    }
+    function handleChange2() {
+        setShow(<MyRatings/>);
+    }
+    function handleChange3() {
+        setShow(<NewRatings/>);
+    }
 
     return (
         <React.Fragment>
-            <main>
-                <div className={classes.heroContent}>
-                    <Container maxWidth="sm">
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            {t('ratings.1')}
-                        </Typography>
-                    <FormControl component="fieldset">
-                        <RadioGroup row aria-label="position" name="position" value={value} onChange={handleRadioChange}>
-                            <FormControlLabel value="fått" control={<Radio color="primary" />} label={t('ratings.2')} />
-                            <FormControlLabel value="gitt" control={<Radio color="primary" />} label={t('ratings.3')} />
-                            <FormControlLabel  value='ny' control={<Radio color="primary" />} label={t('ratings.4')} />
+            {width > breakpoint
+            &&
+                <Container maxWidth="sm">
+                    <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                        {t('ratings.1')}
+                    </Typography>
+                </Container>
+            }
+
+            {width < breakpoint
+            &&
+
+                    <ButtonGroup  fullWidth size="small" color="primary" aria-label="small outlined button group" style={{marginBottom: 20}}>
+                        <Button type="submit" onClick={handleChange1}>
+                            FÅTT
+                        </Button>
+                        <Button type="submit" onClick={handleChange2}>
+                            GITT
+                        </Button>
+                        <Button type="submit" onClick={handleChange3}>
+                            NYE
+                        </Button>
+                    </ButtonGroup>
+
+            }
+
+
+            <Container maxWidth="sm">
+                {width > breakpoint
+                &&
+                <Box style={{paddingLeft: 30}} display="flex" aligns="center">
+                    <FormControl component="fieldset" align="center">
+                        <RadioGroup row aria-label="position" name="position" value={value}
+                                    onChange={handleRadioChange}>
+                            <FormControlLabel value='1' control={<Radio color="primary"/>} label={t('ratings.2')}/>
+                            <FormControlLabel value='2' control={<Radio color="primary"/>} label={t('ratings.3')}/>
+                            <FormControlLabel value='3' control={<Radio color="primary"/>} label={t('ratings.4')}/>
                         </RadioGroup>
                     </FormControl>
-                    </Container>
-                </div>
-                <Container className={classes.cardGrid}>
-                    <Grid container spacing={12}>
-                        {show}
-                    </Grid>
-                </Container>
-            </main>
-            <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                    Lånelitt
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    ProgTeam Lånelitt
-                </Typography>
-                <Copyright/>
-            </footer>
+                </Box>
+                }
+                    {show}
+            </Container>
         </React.Fragment>
     );
 }

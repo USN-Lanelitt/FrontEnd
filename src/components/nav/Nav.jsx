@@ -28,6 +28,7 @@ import SearchFriends from "../search/search-friends";
 import { useTranslation } from 'react-i18next';
 
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -192,8 +193,7 @@ export default function NavBar(props) {
     app.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
-            setloggedIn(true);
-
+            {( ! parseInt(sessionStorage.getItem('userId')) > 0) ? Logout() : setloggedIn(true)}
         } else {
             // No user is signed in.
             setloggedIn(false);
@@ -216,9 +216,10 @@ export default function NavBar(props) {
         >
             {!loggedIn ?
                 <MenuItem onClick={handleMenuClose} component={Link} to="/login">Logg på</MenuItem>
-             : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>}
-
+                : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>
+            }
         </Menu>
+
     );
 
     const names = [
@@ -239,22 +240,22 @@ export default function NavBar(props) {
             onClose={handleMobileMenuClose}
         >
             {loggedIn && (<div>
+                <MenuItem component={Link} to="/Notification">
+                    <IconButton aria-label="show new notifications" color="inherit">
+                        <Badge badgeContent={1} color="secondary">
+                            <NotificationsIcon/>
+                        </Badge>
+                    </IconButton>
+                    <p>Varsler</p>
+                </MenuItem>
                 <MenuItem>
                 <IconButton aria-label="show new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
                         <MailIcon/>
                     </Badge>
                 </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-                <MenuItem >
-                        <IconButton aria-label="show new notifications" color="inherit">
-                            <Badge badgeContent={5} color="secondary">
-                                <NotificationsIcon/>
-                            </Badge>
-                        </IconButton>
-                    <p>Notifications</p>
-                </MenuItem></div>)}
+                <p>Meldiger</p>
+            </MenuItem></div>)}
             {!loggedIn ?
                     <MenuItem component={Link} to="/login">
                         <IconButton
@@ -323,12 +324,13 @@ export default function NavBar(props) {
 
                         {loggedIn && (<div>
                             {/*----------Notification Icon knapp--------------*/}
+
                             <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent'}}>
                                 <NotificationList/>
                             </IconButton>
 
-                            {/*----------Epost/melding Icon knapp--------------*/}
-                            <IconButton aria-label="show 1 new mails" color="inherit">
+                            {/*--------------Melding Icon knapp--------------*/}
+                            <IconButton aria-label="show 1 new mails" color="inherit" component={Link} to="/chat">
                                 <Badge badgeContent={1} color="secondary">
                                     <MailIcon/>
                                 </Badge>

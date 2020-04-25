@@ -1,15 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import AssetsList from "./assets-list";
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import HomeMenu from "../../components/home/home-menu";
-import Copyright from "../../components/home/Copyright";
 import {useParams} from "react-router";
 import Box from "@material-ui/core/Box";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
     heroContent: {
@@ -26,7 +24,20 @@ const useStyles = makeStyles(theme => ({
 const AssetContainer = () => {
     const classes = useStyles();
     const {id} = useParams();
-    const [categoryId, setCategoriId] = useState([]);
+    const [assetType, setAssetType] = useState();
+
+    useEffect(() => {
+        axios.get(  "/assets/type/" + id)
+            .then(result => {
+                if (result.data.length === 1) {
+                setAssetType(result.data[0]);
+                }
+                else {
+                    setAssetType('Kategori');
+                }
+            })
+            .catch(error => console.log(error))
+    }, [id]);
 
 
     return (
@@ -34,24 +45,23 @@ const AssetContainer = () => {
             <div className={classes.heroContent}>
                 <Container>
                     <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        {categoryId}
-                        Kategorinavn
+                        {assetType && assetType.assetType}
                     </Typography>
                 </Container>
             </div>
-            <CssBaseline />
+            <CssBaseline/>
             <main>
                 <Container className={classes.cardGrid}>
 
-                   <Box m={5}>
-                    <hr/>
-                   </Box>
-                    <Grid >
+                    <Box m={5}>
+                        <hr/>
+                    </Box>
+                    <Grid>
                         <AssetsList categoryId={id}/>
                     </Grid>
                 </Container>
             </main>
-</div>
+        </div>
 
     );
 };

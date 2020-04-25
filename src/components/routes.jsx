@@ -20,13 +20,17 @@ import NotificationList from "./notification/notificationList";
 import FriendProfile from "./friend/friend-profile";
 import LoanCard from "./loan/loan-card";
 import AssetSite from "../feature/Assets/asset-site";
-import Chat from "../feature/Chat/Chat";
 import FriendProfileCard from "./friend/friend-profile-card";
 import LoanToFriends from "./loan/loan-to-friends";
 import LoanRequestSend from "./loan/loan-request-send";
 import LoanAccepted from "./loan/loan-accepted";
 import Ratings from "../feature/rating/ratings";
 import AssetOwnerInfo from "../feature/Assets/asset-owner-info";
+import AssetSearch from "../feature/Assets/asset-search";
+import Chat from "../feature/Chat/chat";
+import ChatWinMobile from "./chat/chat-win-mobile";
+
+
 
 const Routes = props => {
     return (
@@ -43,6 +47,7 @@ const Routes = props => {
             <PrivateRoute exact path="/searchfriends" component={SearchFriends}/>
             <Route exact path="/category" componenet={CategoryCard}/>
             <Route path="/assets/:id" component={AssetContainer}/>
+            <Route path="/assetsearch/:search" component={AssetSearch}/>
             <PrivateRoute exact path="/my/assets" component={MyAssetsList}/>
             <PrivateRoute exact path="/new/asset" component={NewAsset}/>
             <PrivateRoute exact path="/notification" component={Notification}/>
@@ -51,12 +56,14 @@ const Routes = props => {
             <PrivateRoute exact path="/loanCard" component={LoanCard}/>
             <PrivateRoute path="/assetSite/:id" component={AssetSite}/>
             <PrivateRoute exact path="/chat" component={Chat}/>
+            <PrivateRoute exact path="/chat/:userId2" component={ChatWinMobile}/>
             <PrivateRoute exact path="/friendProfileCard" component={FriendProfileCard}/>
             <PrivateRoute exact path="/loantofriends" component={LoanToFriends}/>
             <PrivateRoute path="/loanrequestsend/" component={LoanRequestSend}/>
             <PrivateRoute exact path="/loanAccepted" component={LoanAccepted}/>
             <PrivateRoute exact path="/ratings" component={Ratings}/>
             <PrivateRoute exact path="/owner/info" component={AssetOwnerInfo}/>
+
         </>
     );
 };
