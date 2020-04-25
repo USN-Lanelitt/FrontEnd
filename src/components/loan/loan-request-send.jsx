@@ -14,6 +14,7 @@ import {useTranslation} from "react-i18next";
 import axios from "axios";
 import {useParams} from "react-router";
 import moment from "moment";
+import StatusMessage from "../profile/status-message";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -33,6 +34,9 @@ const LoanRequestSend = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [assetName, setAssetName] = useState('');
     const [textValue, setTextValue] = useState('');
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
     const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD") );
     const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD") );
     const {id, assetId} = useParams();
@@ -56,21 +60,27 @@ const LoanRequestSend = () => {
 
         }).then((response) => {
             if (response.status === 200) {
-                console.log(response.data);
-                console.log(assetId);
-                console.log(selectedDate);
-                console.log(selectedDate2);
+                setShowStatusMessage(true);
+                setStatusMessage("Forespørsel sendt");
+                setStatusMessageSeverity("success");
             }
         })
-            .catch(e => console.log(e));
+            .catch(e => {
+                console.log(e)
+                setShowStatusMessage(true);
+                setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+            });
     }
 
-    const handleDateChange = () => {
-        setSelectedDate(moment(selectedDate).format("YYYY-MM-DD"));
+
+    const handleDateChange = (date) => {
+
+        setSelectedDate(moment(date).format("YYYY-MM-DD"));
     };
 
-    const handleDateChange2 = () => {
-        setSelectedDate2(moment(selectedDate2).format("YYYY-MM-DD"))
+    const handleDateChange2 = (date) => {
+
+        setSelectedDate2(moment(date).format("YYYY-MM-DD"))
     };
 
     const handleClick = () => {
@@ -80,8 +90,12 @@ const LoanRequestSend = () => {
     };
 
 
+
+
     return (
         <Box display="flex" justifyContent="center">
+            <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                           onClose={setShowStatusMessage}/>
             <Box width={1 / 2} height={'100%'}>
                 <Card className={classes.paper}>
                     <Box borderBottom={1}>

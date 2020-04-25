@@ -10,7 +10,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {Link} from "react-router-dom";
-import CardActionArea from "@material-ui/core/CardActionArea";
+import {useTranslation} from "react-i18next";
 
 //VenneVarselListe
 
@@ -38,10 +38,13 @@ const useStyles = makeStyles(theme => ({
 
     button: {
         display: 'Grid',
-       padding: theme.spacing(1),
+        padding: theme.spacing(1),
     },
     accepdbt: {
         color: 'Black',
+    },
+    dividerFullWidth: {
+        margin: `5px 0 0 ${theme.spacing(2)}px`,
     },
 
 }));
@@ -59,32 +62,35 @@ const StyledMenuItem = withStyles(theme => ({
 
 const FriendRequest = ({id,firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
     const classes = useStyles();
+    const { t } = useTranslation();
 
     return (
         <React.Fragment>
-            <StyledMenuItem >
-                <Grid className={classes.list} component = {Link} to={"/FriendProfile/" + id} style={{backgroundColor: 'transparent'}}>
+            <StyledMenuItem component = {Link} to={"/FriendProfile/" + id} style={{textDecoration: "none", color: "black"}}>
+                <Divider variant = "li"/>
+                <Grid className={classes.list}>
+
                     <ListItemAvatar>
                         <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                     </ListItemAvatar>
 
-                        <ListItemText gutterBottom variant="h6" component="h7" display={"inline"}>
+                        <ListItemText gutterBottom variant="h4" component="h7" display={"inline"}>
                             {firstname} {middlename} {lastname}
                         </ListItemText>
                 </Grid>
-                <Divider variant = "inset" />
+                <Divider variant = "li" />
                 <ListItemSecondaryAction className={classes.button}>
-                    <Button className={classes.accepdbt} Click= {onAccept} size="small" color="primary">
-                        Godta
+                    <Button className={classes.accepdbt} onClick= {onAccept} size="small" color="primary">
+                        {t('friendRequest.1')}
                     </Button>
                     <Button className={classes.Button} onClick= {onDenied} size="small" color="primary">
-                        Avslå
+                        {t('friendRequest.2')}
                     </Button>
                 </ListItemSecondaryAction>
 
 
         </StyledMenuItem>
-            <Divider variant = "inset" component = "li" />
+            <Divider variant = "li" />
 
         </React.Fragment>
 

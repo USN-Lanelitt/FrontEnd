@@ -6,17 +6,20 @@ import Grid from "@material-ui/core/Grid";
 import FriendRequestCard from "../../components/friend/friend-requestCard";
 import Divider from "@material-ui/core/Divider";
 import axios from "axios";
-import ConfirmDialog from "../../components/profile/confirm-dialog";
 import LoanRequests from "../../components/loan/loan-requests";
 import {notificationRefresh} from "./notification-refresh";
 import {useTranslation} from "react-i18next";
+import NotificationLoanDenied from "../../components/notification/notification-loan-denied";
+import NotificationLoanAccepted from "../../components/notification/notification-loan-accepted";
+import ConfirmDialog from "../../components/profile/confirm-dialog";
 
+
+let statuss = 0;
+let statusTittel = "";
+let statusBesk = "";
 
 //siden på mobil, (en hel side)
 
-let statuss=0;
-let statusTittel="";
-let statusBesk="";
 const useStyles = makeStyles(theme => ({
 
     heroContent: {
@@ -37,7 +40,6 @@ const Notification = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
-
     useEffect(() => {
         console.log("getuserrequest", userId, sessionStorage.getItem('userId'));
         axios.get('/user/' + userId + '/friendRequests')
@@ -48,10 +50,27 @@ const Notification = () => {
                 }
             })
             .catch(e => console.log(e));
-    }, [setData, userId]);
 
 
-    function reply(friendId, statuss) {
+        },[setData, userId]);
+
+    const accept = (friendId) => {
+        setShowConfirmDialog(true);
+        setFriendId(friendId);
+        statusTittel = "Godkjenn forespørsel?";
+        statusBesk = "Ønsker du å legge til denne vennen?";
+        statuss = 1;
+    };
+
+    const denied = (friendId) => {
+        setShowConfirmDialog(true);
+        setFriendId(friendId);
+        statusTittel = "Avslå forespørsel?";
+        statusBesk = "Ønsker du å avslå denne vennen?";
+        statuss = 2;
+    };
+
+    function reply() {
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' +statuss)
             .then((response) => {
@@ -64,23 +83,28 @@ const Notification = () => {
             .catch(e => console.log(e));
         setShowConfirmDialog(false);
     }
+    function onReplyCancel() {
+        setShowConfirmDialog(false);
+    }
 
     return (
+
         <React.Fragment>
-            <div className={classes.heroContent}>
-                <Container maxWidth="sm">
-                    <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        {t('notification.1')}
-                    </Typography>
-                </Container>
-            </div>
             <Container>
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
-                    {t('notification.2')}
+                    {t('notification.1')}
                     <Divider/>
                 </Typography>
             </Container>
 
+            <ConfirmDialog title={statusTittel}
+                           message={statusBesk}
+                           onConfirm={reply}
+                           onNotConfirm={onReplyCancel}
+                           confirmButtonText="Ja"
+                           notConfirmButtonText="Nei"
+                           open={showConfirmDialog}
+            />
             <Container>
                 <Grid container spacing={4}>
                     {data.map(item => (
@@ -92,8 +116,8 @@ const Notification = () => {
                                 middlename={item.user1.middleName}
                                 imageUrl={item.user1.profileImage}
                                 friendId={item.user1.id}
-                                onDenied={() => reply(item.user1.id,2)}
-                                onAccept={() => reply(item.user1.id,1)}
+                                onDenied={() => denied(item.user1.id)}
+                                onAccept={() => accept(item.user1.id)}
                                 refresh={() => notificationRefresh(userId, setData)}
                             />
                         </Grid>
@@ -101,12 +125,23 @@ const Notification = () => {
                 </Grid>
             </Container>
 
-            <Container >
+            <Container>
+                <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
+                    {t('notification.2')}
+                    <Divider/>
+                </Typography>
+                <LoanRequests/>
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
                     {t('notification.3')}
                     <Divider/>
                 </Typography>
-                <LoanRequests/>
+                <NotificationLoanAccepted/>
+                <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
+                    {t('notification.4')}
+                    <Divider/>
+                </Typography>
+                <NotificationLoanDenied/>
+
             </Container>
         </React.Fragment>
     );

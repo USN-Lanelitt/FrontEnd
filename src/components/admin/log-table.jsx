@@ -43,11 +43,11 @@ const LogTable = ({log}) => {
                     </TableRow>
                 </TableHead>
                 <Box className={classes.inner}>
-                    <TableBody className={classes.list}>
-                        {log.map((logs) =>
-                            <TableRow>{logs}</TableRow>
-                        )}
-                    </TableBody></Box>
+                <TableBody className={classes.list}>
+                    {log.map((logs) =>
+                        <TableRow>{logs}</TableRow>
+                    )}
+                </TableBody></Box>
 
             </Table>
         </TableContainer>

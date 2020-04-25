@@ -7,7 +7,7 @@ import Box from "@material-ui/core/Box";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 import Typography from "@material-ui/core/Typography";
-import {useTranslation} from "react-i18next";
+import LocationOn from "@material-ui/icons/LocationOn";
 
 
 const useStyles = makeStyles(theme => ({
@@ -58,12 +58,12 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 
-const AssetOwnerInfo = ({asset}) => {
+const AssetOwnerInfo = ({asset, children}) => {
     const styles = useStyles();
 
     return (
         <div>
-            <Card className={styles.card}  elevation="0">
+            <Card className={styles.card} elevation="0">
                 <CardContent>
                     <IconButton>
                         <StyledBadge
@@ -77,7 +77,7 @@ const AssetOwnerInfo = ({asset}) => {
                             />
                         </StyledBadge>
                     </IconButton>
-                    <Box display="flex" flexDirection="column" p={2}>
+                    <Box display="flex" flexDirection="column" alignItems='center' p={2}>
                         <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
                             {asset && asset.users.firstName} {asset && asset.users.middleName} {asset && asset.users.lastName}
                         </Typography>
@@ -85,7 +85,15 @@ const AssetOwnerInfo = ({asset}) => {
                         <Typography variant="subtitle1" component="h2" display={"inline"}>
                             {asset && asset.users.nickname}
                         </Typography>
+                        <Box display="flex">
+                            <Box mr={1}>
+                                <LocationOn/>
+                            </Box>
+                            {asset.users.zipCode && asset.users.zipCode.city}
+                        </Box>
+                        {children}
                     </Box>
+
 
                 </CardContent>
             </Card>

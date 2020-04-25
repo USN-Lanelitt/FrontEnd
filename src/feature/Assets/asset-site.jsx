@@ -14,8 +14,7 @@ import Rating from "@material-ui/lab/Rating";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import LocationOn from "@material-ui/icons/LocationOn";
-
+import AssetReport from "./asset-report";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -28,25 +27,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const images = [
-    {
-        imageUrl: "https://source.unsplash.com/ukzHlkoz1IE",
-    },
-    {
-        imageUrl: "https://source.unsplash.com/ukzHlkoz1IE",
-    },
-    {
-        imageUrl: "https://source.unsplash.com/ukzHlkoz1IE",
-    },
-    {
-        imageUrl: "https://source.unsplash.com/ukzHlkoz1IE",
-    }
-];
 
 const AssetSite = () => {
     const {t} = useTranslation();
     const classes = useStyles();
-
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [asset, setAsset] = useState(null);
     const [rating, setRating] = useState(null);
@@ -65,6 +49,7 @@ const AssetSite = () => {
     useEffect(() => {
         getAssetOwner();
     }, []);
+
 
     if (asset === null) return <Box display='flex' justifyContent='center'><CircularProgress/></Box>;
 
@@ -88,25 +73,25 @@ const AssetSite = () => {
             <Box display='flex' justifyContent='center'>
                 <Box width={'70%'}>
                     <Paper elevation="0">
-                        <Box>
-                            <Box display='flex' flexDirection='row' ml={5} alignItems='center'>
-                                <Box mr={1}>
-                                    <LocationOn/>
-                                </Box>
-                                {asset.users.zipCode && asset.users.zipCode.city}
-                            </Box>
+                        <Box display='flex' flexDirection='column'>
                             <Box component="fieldset" borderColor="transparent" ml={3}>
                                 <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                             </Box>
-                            <Box ml={5}>
-                                <Button type="submit"
-                                        variant="contained"
-                                        color="primary"
-                                        component={Link} to={"/LoanRequestSend/" + asset.users.id + "/" + asset.id}>
-                                    {t('assetOwner.1')}
-                                </Button>
-                            </Box>
+                            <Box display='flex' flexDirection='row'>
+                                <Box ml={5}>
+                                    <Button type="submit"
+                                            variant="contained"
+                                            color="primary"
+                                            component={Link} to={"/LoanRequestSend/" + asset.users.id + "/" + asset.id}>
+                                        {t('assetOwner.1')}
+                                    </Button>
+                                </Box>
 
+                            </Box>
+                            <Box display='flex' flexDirection='column'>
+
+
+                            </Box>
                         </Box>
 
                         <Box display='flex' flexDirection='column' justifyContent='flex-start' m={5}>
@@ -119,16 +104,23 @@ const AssetSite = () => {
 
                         </Box>
                         <Box display='flex' justifyContent='center' m={5}>
-                            <Grid container direction="row" justify="center" alignItems="center">
+                            <Grid container direction="column" justify="center" alignItems="center">
                                 <Grid>
                                     <AssetOwnerInfo
                                         asset={asset}
-                                    />
+                                    >
+                                        <AssetReport userId2={asset.users.id}/>
+                                    </AssetOwnerInfo>
                                 </Grid>
+                                <Grid>
+
+                                </Grid>
+
                             </Grid>
+
                         </Box>
-
-
+                        <Box display="flex" justifyContent="center">
+                        </Box>
                     </Paper>
                 </Box>
             </Box>

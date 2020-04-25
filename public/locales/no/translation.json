@@ -11,7 +11,11 @@
     "5": "Hva trenger du å låne?"
   },
   "nav": {
-    "1": "Søk på bruker..."
+    "1": "Søk på bruker...",
+    "2": "Varsler,",
+    "3": "Meldiger",
+    "4": "Logg inn",
+    "5": "Logg ut"
   },
   "login": {
     "1": "Logg inn",
@@ -152,22 +156,23 @@
     "4": "Skriv en melding.."
   },
   "friend-all": {
-  "1": "Mine Venner",
-  "2": "Slett som venn?",
-  "3": "Ønsker du å slette denne vennen?",
-  "4": "Ja",
-  "5": "Nei"
+    "1": "Venner",
+    "2": "Slett som venn?",
+    "3": "Ønsker du å slette denne vennen?",
+    "4": "Ja",
+    "5": "Nei"
   },
   "notification": {
-    "1": "Varsler",
-    "2": "Venneforespørsler",
-    "3": "Låneforespørsler"
+    "1": "Venneforespørsler",
+    "2": "Låneforespørsler",
+    "3": "Godtatte låneforespørsler",
+    "4": "Avslåtte låneforespørsler"
   },
   "changePasswordForm": {
-  "1": "Nåværende passord",
-  "2": "Nytt Passord",
-  "3": "Avbrutt",
-  "4": "Lagre"
+    "1": "Nåværende passord",
+    "2": "Nytt Passord",
+    "3": "Avbrutt",
+    "4": "Lagre"
   },
   "editProfile": {
     "1": "Rediger Profil Informasjon",
@@ -199,6 +204,40 @@
   },
   "assetOwner": {
     "1": "Send forespørsel",
+    "2": "Rapporter"
+  },
+  "assetReport": {
+    "1": "Emne",
+    "2": "Kommentar",
+    "3": "Rapporter sak",
     "2": "Ønsker du å låne denne eiendelen?"
+  },
+  "loan-replay-card": {
+    "1": "Godta",
+    "2": "Avslå"
+  },
+  "friendRequestCard": {
+    "1": "Godta",
+    "2": "Avslå"
+  },
+  "friendRequest": {
+    "1": "Godta",
+    "2": "Avslå"
+  },
+  "loan-request-notification": {
+    "1": "  lånet"
+  },
+  "notification-loan-request": {
+    "1": "lånet"
+  },
+  "loan-card": {
+    "1": "Dato for lån:"
+  },
+  "loan-accepted": {
+    "1": "Mine lån"
+  },
+  "freind-card": {
+    "1":"Slett venn",
+    "2": "Send melding"
   }
 }
