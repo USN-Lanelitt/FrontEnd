@@ -20,14 +20,16 @@
     "4": "Remember me",
     "5": "Forgot password",
     "6": "No accounts yet? Create an account here",
-    "7": "Login"
+    "7": "Login",
+    "8": "Fields marked with * are required and cannot be empty.",
+    "9": "Authentication Error! Vennligst sjekk at feltene merket med * er fylt ut riktig."
   },
   "register": {
     "1": "Create account",
     "2": "Firstname",
     "3": "Middlename",
     "4": "Lastname",
-    "5": "Phonenumber (Optional)",
+    "5": "Mobile number (Opt)",
     "6": "Birthdate",
     "7": "E-mail",
     "8": "Password",
@@ -133,7 +135,7 @@
     "1": "Save"
   },
   "termsandconditions": {
-    "1": "Accept Terms & Conditions",
+    "1": "I accept the Terms & Conditions",
     "2": "Cancel",
     "3": "Accept"
   },

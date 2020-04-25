@@ -56,15 +56,20 @@ const useStyles = makeStyles(theme => ({
 
 const SignUp = ({history}) => {
     const { t } = useTranslation();
+    const [values, setValues] = useState({
+        showPassword: false,
+    });
+
     const [errors, setErrors] = useState(false);
+
     const handleSignUp = useCallback(async event => {
-        const {firstname, middlename, birthdate, lastname, phone, email, password} = event.target.elements;
+        const {firstname, middlename, birthdate, lastname, phone, email, password, terms, newsletter} = event.target.elements;
         event.preventDefault();
-        if (firstname.value.length === 0 || lastname.value.length === 0 ||  email.value.length === 0 || password.value.length < 6 ) {
-            //alert('Feil ved registrering, vennligst se over alle feltene merket med *')
+        if (firstname.value.length === 0 || lastname.value.length === 0 ||  email.value.length === 0 || password.value.length < 6 || terms.checked === false) {
             setErrors(true);
         }
         else {
+            //console.log(terms.checked);
             let iCode = 0;
             axios.post('/api/register', {
                 firstname: firstname.value,
@@ -73,7 +78,10 @@ const SignUp = ({history}) => {
                 birthdate: birthdate.value,
                 phone: phone.value,
                 email: email.value,
-                password: password.value
+                password: password.value,
+                // newsletter: newsletter.checked,
+                // terms: terms.checked
+
             })
                 .then(res => {
                     console.log(res);
@@ -98,10 +106,6 @@ const SignUp = ({history}) => {
                 .catch(e => console.log(e));
         }
     }, [history]);
-
-    const [values, setValues] = useState({
-        showPassword: false,
-    });
 
     const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -243,16 +247,15 @@ const SignUp = ({history}) => {
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
+                                control={<Checkbox required={true} name="newsletter" value="allowExtraEmails" color="primary"/>}
                                 label={t('register.10')}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox value="termsAndConditions" color="primary"/>}
+                                control={<Checkbox required={true} name="terms" value="termsAndConditions" color="primary"/>}
                                 label={<BrukerVilkar/>}
                             />
-
                         </Grid>
                     </Grid>
                     <Button

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import clsx from "clsx";
 import {Link} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
@@ -138,12 +138,18 @@ export default function NavBar(props) {
         i18n.changeLanguage(lang);
         setSelectedLang(false);
     }
-
     function handleLanguageEN(lang) {
         i18n.changeLanguage(lang);
         setSelectedLang(true);
     }
 
+    useEffect(()=>{
+        if (i18n.language === 'en'){
+            setSelectedLang(true);
+        }else{
+            setSelectedLang(false);
+        }
+    });
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -154,6 +160,7 @@ export default function NavBar(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+
 
 
     const handleDrawerOpen = () => {
@@ -180,8 +187,9 @@ export default function NavBar(props) {
     };
 
 
-    {/*Sjekker om bruker er innlogget eller ikke*/}
+    {/*Sjekker om bruker er innlogget eller ikke og admin eller ikke*/}
     const [loggedIn, setloggedIn] = useState(false);
+    const isAdmin = (sessionStorage.getItem("usertype") === "admin");
     app.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
@@ -269,6 +277,7 @@ export default function NavBar(props) {
         </Menu>
     );
 
+
     return (
         //------------DESKTOP / PC SKJERM NAVBAR MENY----------------
         <div className={classes.grow}>
@@ -328,11 +337,13 @@ export default function NavBar(props) {
                             </IconButton>
 
                             {/*----------AdminSide Icon knapp--------------*/}
+                            {isAdmin && (
                                 <IconButton color="inherit" component={Link} to="/admin">
                                     <Badge color="secondary">
                                         <SupervisorAccountIcon/>
                                     </Badge>
                                 </IconButton>
+                            )}
 
                         </div>)}
 

@@ -352,7 +352,6 @@ const EditProfile = ({history}) => {
                                 id="sAddress"
                                 label={t('editProfile.7')}
                                 defaultValue={sessionStorage.getItem('address')}
-
                             />
                         </Grid>
                         <Grid item xs={12}>

@@ -41,30 +41,29 @@ const Routes = props => {
             <Route path="/signup" component={SignUp}/>
             <PrivateRoute path="/prof" component={Profile}/>
             <PrivateRoute path="/editprof" component={EditProfile}/>
-
-
-            <Route exact path="/friendReques" component={FriendRequest}/>
-            <Route path="/friendAll" exact component={FriendAll}/>
-            <Route exact path="/friendRequestCard" component={FriendRequestCard}/>
-            <Route exact path="/searchfriends" component={SearchFriends}/>
+            <PrivateRoute exact path="/friendReques" component={FriendRequest}/>
+            <PrivateRoute path="/friendAll" exact component={FriendAll}/>
+            <PrivateRoute exact path="/friendRequestCard" component={FriendRequestCard}/>
+            <PrivateRoute exact path="/searchfriends" component={SearchFriends}/>
             <Route exact path="/category" componenet={CategoryCard}/>
             <Route path="/assets/:id" component={AssetContainer}/>
             <Route path="/assetsearch/:search" component={AssetSearch}/>
-            <Route exact path="/my/assets" component={MyAssetsList}/>
-            <Route exact path="/new/asset" component={NewAsset}/>
-            <Route exact path="/notification" component={Notification}/>
-            <Route exact path="/notificationList" component={NotificationList}/>
-            <Route path="/friendprofile/:id" exact component={FriendProfile}/>
-            <Route exact path="/loanCard" component={LoanCard}/>
-            <Route path="/assetSite/:id" component={AssetSite}/>
-            <Route exact path="/chat" component={Chat}/>
-            <Route exact path="/chat/:userId2" component={ChatWinMobile}/>
-            <Route exact path="/friendProfileCard" component={FriendProfileCard}/>
-            <Route exact path="/loantofriends" component={LoanToFriends}/>
-            <Route path="/loanrequestsend/:id/:assetId" component={LoanRequestSend}/>
-            <Route exact path="/loanAccepted" component={LoanAccepted}/>
-            <Route path="/rating/:pageNr" component={Ratings}/>
-            <Route exact path="/owner/info" component={AssetOwnerInfo}/>
+            <PrivateRoute exact path="/my/assets" component={MyAssetsList}/>
+            <PrivateRoute exact path="/new/asset" component={NewAsset}/>
+            <PrivateRoute exact path="/notification" component={Notification}/>
+            <PrivateRoute exact path="/notificationList" component={NotificationList}/>
+            <PrivateRoute path="/friendprofile/:id" exact component={FriendProfile}/>
+            <PrivateRoute exact path="/loanCard" component={LoanCard}/>
+            <PrivateRoute path="/assetSite/:id" component={AssetSite}/>
+            <PrivateRoute exact path="/chat" component={Chat}/>
+            <PrivateRoute exact path="/chat/:userId2" component={ChatWinMobile}/>
+            <PrivateRoute exact path="/friendProfileCard" component={FriendProfileCard}/>
+            <PrivateRoute exact path="/loantofriends" component={LoanToFriends}/>
+            <PrivateRoute path="/loanrequestsend/" component={LoanRequestSend}/>
+            <PrivateRoute exact path="/loanAccepted" component={LoanAccepted}/>
+            <PrivateRoute exact path="/ratings" component={Ratings}/>
+            <PrivateRoute exact path="/owner/info" component={AssetOwnerInfo}/>
+
         </>
     );
 };

@@ -11,7 +11,6 @@ const LoanGetDeniedRequests = ({data}) => {
         <Grid container spacing={4} >
             {data.map(loan => (
                     <Grid item key={loan.id} xs={12}>
-
                         <LoanRequestNotification
                             firstname={loan.assets.users.firstName}
                             middlename={loan.assets.users.middleName}
