@@ -204,12 +204,8 @@ const EditProfile = ({history}) => {
 
     const [checkedNews, setCheckedNews] = useState(sessionStorage.getItem('newsletter') === 'true');
 
-    const handleCheck = () => {
-        if (checkedNews === true){
-            setCheckedNews(false);
-        }else {
-            setCheckedNews(true);
-        }
+    const handleNewsletterCheck = (event) => {
+        setCheckedNews(event.target.checked);
     }; console.log(checkedNews);
 
 
@@ -394,7 +390,7 @@ const EditProfile = ({history}) => {
                                         value="allowExtraEmails"
                                         color="primary"
                                         checked={checkedNews}
-                                        onChange={handleCheck}
+                                        onChange={handleNewsletterCheck}
                                     />
                                 }
                                 label={t('register.10')}
