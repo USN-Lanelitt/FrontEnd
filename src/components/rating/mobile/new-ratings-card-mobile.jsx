@@ -103,7 +103,7 @@ const NewRatingsCardMobile = ({loanId, firstname, middlename, lastname, assetId,
                                     type="submit"
                                     color="primary"
                                     className={classes.button}
-                                    onClick={() => setRating(userId, loanId, ratingValue, comment, setRedirect)}
+                                    onClick={() => setRating(userId, loanId, ratingValue, comment, setRedirect(true))}
                                 >
                                     {t('rating-card.1')}
                                 </Button>

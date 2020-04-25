@@ -56,12 +56,12 @@ const Routes = props => {
             <PrivateRoute exact path="/loanCard" component={LoanCard}/>
             <PrivateRoute path="/assetSite/:id" component={AssetSite}/>
             <PrivateRoute exact path="/chat" component={Chat}/>
-            <PrivateRoute exact path="/chat/:userId2" component={ChatWinMobile}/>
+            <PrivateRoute exact path="/chat/:userId2/:firstName/:lastName" component={ChatWinMobile}/>
             <PrivateRoute exact path="/friendProfileCard" component={FriendProfileCard}/>
             <PrivateRoute exact path="/loantofriends" component={LoanToFriends}/>
-            <PrivateRoute path="/loanrequestsend/" component={LoanRequestSend}/>
+            <PrivateRoute path="/loanrequestsend/:id/:assetId/:assetName" component={LoanRequestSend}/>
             <PrivateRoute exact path="/loanAccepted" component={LoanAccepted}/>
-            <PrivateRoute exact path="/ratings" component={Ratings}/>
+            <PrivateRoute exact path="/rating/:pageNr" component={Ratings}/>
             <PrivateRoute exact path="/owner/info" component={AssetOwnerInfo}/>
 
         </>

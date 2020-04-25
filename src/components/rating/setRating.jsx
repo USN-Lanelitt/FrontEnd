@@ -6,8 +6,5 @@ export default function setRating(userId, loanId, newRating, comment, setRedirec
     axios.post('/assets/'+loanId+'/rateAsset/'+userId+'/'+newRating, {
         comment:comment
         })
-        .then(result => {
-            setTimeout(() => setRedirect(true), 1000) ;
-        })
         .catch(e => console.log(e));
 }

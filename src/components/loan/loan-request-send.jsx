@@ -32,14 +32,14 @@ const LoanRequestSend = () => {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [assetName, setAssetName] = useState('');
+    //const [assetName, setAssetName] = useState('');
     const [textValue, setTextValue] = useState('');
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
     const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD") );
     const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD") );
-    const {id, assetId} = useParams();
+    const {id, assetId, assetName} = useParams();
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));

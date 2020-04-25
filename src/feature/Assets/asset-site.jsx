@@ -82,7 +82,7 @@ const AssetSite = () => {
                                     <Button type="submit"
                                             variant="contained"
                                             color="primary"
-                                            component={Link} to={"/LoanRequestSend/" + asset.users.id + "/" + asset.id}>
+                                            component={Link} to={"/LoanRequestSend/" + asset.users.id + "/" + asset.id+"/"+asset.assetName}>
                                         {t('assetOwner.1')}
                                     </Button>
                                 </Box>

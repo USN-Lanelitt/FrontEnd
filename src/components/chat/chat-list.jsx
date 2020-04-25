@@ -27,10 +27,12 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "5px",
         display: "inline-block",
         maxWidth: "70%",
+        wordWrap: "break-word"
     },
     time: {
         textAlign: "right",
         display: "inline-block",
+        color: "SILVER"
     },
 
 }))

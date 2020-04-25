@@ -53,18 +53,18 @@ const ChatUsersMobile = () => {
     return (
         <React.Fragment>
                 <Box className={classes.chat}>
-           {/*         <Box display="flex" alignItems="center">
-                        <Box fontSize={20}  m={1} gutterBottom >
+                    <Box display="flex" alignItems="center">
+                        <Box fontSize={30}  m={1} gutterBottom >
                             Meldinger
                         </Box>
-                    </Box>*/}
+                    </Box>
                     <Box display="flex" alignItems="center">
                         <Box className={classes.chatListWindow}>
                             <List className={classes.list}>
                                 {
                                     chatUsers.map((user) => (
                                         <Box display="flex" width={1}>
-                                            <ListItem key={user.id} button component={Link} to={"/chat/" + user.id}>
+                                            <ListItem key={user.id} button component={Link} to={"/chat/" + user.id+"/"+user.firstName+"/"+user.lastName}>
                                                 <Box
                                                     onClick={() => {
                                          /*               setSelectedUser(
