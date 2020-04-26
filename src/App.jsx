@@ -11,10 +11,23 @@ import {AuthProvider} from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import Scaffold from "./scaffold";
 import MUICookieConsent from "material-ui-cookie-consent";
+import {createMuiTheme} from "@material-ui/core/styles";
+import {red} from "@material-ui/core/colors";
+import {MuiThemeProvider} from "@material-ui/core";
 
 
 function App(){
+
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                main: '#198679',
+            },
+            secondary: red
+        },
+    });
     return (
+        <MuiThemeProvider theme={theme}>
         <AuthProvider>
             <Router>
             <div className="App">
@@ -33,6 +46,7 @@ function App(){
             </div>
         </Router>
         </AuthProvider>
+        </MuiThemeProvider>
     );
 }
 

@@ -1,8 +1,6 @@
 import React from 'react';
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import AssetsList from "../../feature/Assets/assets-list";
 import MyAssetsList from "./my-assets-list";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -18,7 +16,6 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(4),
     },
     cardGrid: {
-        paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
     },
     card: {
@@ -41,11 +38,9 @@ const MyAssetContainer = () => {
 
     return (
         <React.Fragment>
-            <CssBaseline />
+
             <main>
                 <Container className={classes.cardGrid}>
-
-                    <h3>Placeholder</h3>
                     <hr/>
                     <Grid container spacing={12}>
                         <MyAssetsList/>

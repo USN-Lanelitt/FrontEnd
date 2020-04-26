@@ -8,12 +8,27 @@ const HomeMenu = () => {
 
     const [categories, setCategories] = useState([]);
 
+    const images = [
+        "https://source.unsplash.com/D3nouOYbALc",
+        "https://source.unsplash.com/wn-KYaHwcis",
+        "https://source.unsplash.com/rjK8ifDLnIk",
+        "https://source.unsplash.com/ohWf6YuzOQk",
+        "https://source.unsplash.com/GurvlIZV3Ic",
+        "https://source.unsplash.com/f2Bi-VBs71M",
+        "https://source.unsplash.com/mrl0Gr8Y20s",
+        "https://source.unsplash.com/cv4bk-aedJE",
+        "https://source.unsplash.com/vD_qELkZaAs",
+    ];
+
 
     const getCategories = () => {
         axios.get("/assets/AllTypes")
             .then(result => {
-                setCategories(result.data);
-                console.log(result.data);
+                const assetTypes = result.data;
+                for (let i = 0; i < assetTypes.length; i++) {
+                    assetTypes[i].imageUrl = images[i];
+                }
+                setCategories(assetTypes);
             })
             .catch(error => console.log(error));
     };
@@ -31,7 +46,7 @@ const HomeMenu = () => {
                 {
                     categories.map(category => (
                             <Grid item key={category.id}>
-                                <CategoryCard id={category.id} title={category.assetType} imageUrl="https://source.unsplash.com/random"/>
+                                <CategoryCard id={category.id} title={category.assetType} imageUrl={category.imageUrl}/>
                             </Grid>
                         )
                     )

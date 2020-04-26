@@ -31,6 +31,8 @@ const CategoryList = ({onChange, categoryId}) => {
         setValue(event.target.value);
     };
 
+
+
     return (
         <Box mb={4} width={1}>
             <FormControl variant="outlined" fullWidth>

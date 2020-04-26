@@ -45,7 +45,7 @@ const AssetContainer = () => {
             <div className={classes.heroContent}>
                 <Container>
                     <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        {assetType && assetType.assetType}
+                        {assetType && assetType.assetType.toUpperCase()}
                     </Typography>
                 </Container>
             </div>
