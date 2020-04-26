@@ -67,7 +67,6 @@ const AdminTable = () => {
                                     newData.firstName,
                                     newData.middleName,
                                     newData.lastName,
-                                    newData.phone,
                                     newData.usertype,
                                     newData.active,
                                     newData.newsSubscription);
@@ -77,7 +76,6 @@ const AdminTable = () => {
                                     newData.firstName,
                                     newData.middleName,
                                     newData.lastName,
-                                    newData.phone,
                                     newData.usertype,
                                     newData.active,
                                     newData.newsSubscription);
