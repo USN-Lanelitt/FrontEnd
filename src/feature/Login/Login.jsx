@@ -82,7 +82,7 @@ const Login = ({ history }) => {
                         if (typeof res.data[0]['phone'] === 'undefined' || res.data[0]['phone'] === null)
                             sessionStorage.setItem('phone', '');
                         sessionStorage.setItem('nickname', res.data[0]['nickname']);
-                        if (typeof res.data[0]['nickname'] === 'undefined')
+                        if (typeof res.data[0]['nickname'] === 'undefined'|| res.data[0]['nickname'] === null)
                             sessionStorage.setItem('nickname', '');
                         sessionStorage.setItem('address', res.data[0]['address']);
                         if (typeof res.data[0]['address'] === 'undefined' || res.data[0]['address'] === null)

@@ -242,15 +242,15 @@ export default function NavBar(props) {
             {loggedIn && (<div>
                 <MenuItem component={Link} to="/Notification">
                     <IconButton aria-label="show new notifications" color="inherit">
-                        <Badge badgeContent={1} color="secondary">
+                        <Badge badgeContent={0} color="secondary">
                             <NotificationsIcon/>
                         </Badge>
                     </IconButton>
                     <p>Varsler</p>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem component={Link} to="/chat">
                 <IconButton aria-label="show new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
+                    <Badge badgeContent={0} color="secondary">
                         <MailIcon/>
                     </Badge>
                 </IconButton>
@@ -331,7 +331,7 @@ export default function NavBar(props) {
 
                             {/*--------------Melding Icon knapp--------------*/}
                             <IconButton aria-label="show 1 new mails" color="inherit" component={Link} to="/chat">
-                                <Badge badgeContent={1} color="secondary">
+                                <Badge badgeContent={0} color="secondary">
                                     <MailIcon/>
                                 </Badge>
                             </IconButton>

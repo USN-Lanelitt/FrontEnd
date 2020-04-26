@@ -68,6 +68,8 @@ const SearchFriends = () => {
     const handleChange = (event) => {
         setSearch(event.target.value);
         setDataFilterd(data.filter((user) => user.firstName.includes(search)));
+
+
         console.log('search', data.filter((user) => user && user.firstName.includes(event.target.value)))
 
     }
@@ -108,7 +110,7 @@ const SearchFriends = () => {
                     renderOption={(option => (
                         <MenuItem key={option.id} onClick={onClickFriend} value={option.id}>
                             <Link className={classes.link} to={'/FriendProfile/' + option.id}>
-                                {`${option.firstName} ${option.lastName}`}
+                                {`${option.firstName} ${option.middleName} ${option.lastName}`}
                             </Link>
                         </MenuItem>
                     ))}
