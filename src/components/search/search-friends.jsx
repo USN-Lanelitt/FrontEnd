@@ -88,7 +88,6 @@ const SearchFriends = () => {
 
     function onClickFriend(event) {
         console.log("on enter", event.target.value);
-
     }
 
     return (
@@ -101,6 +100,7 @@ const SearchFriends = () => {
                     getOptionLabel={option => option && option.firstName}
                     style={{width: 210, backgroundColor: 'transparent'}}
                     filterOptions={(x) => x}
+                    clearOnEscape
                     renderInput={params => <TextField   {...params}
                                                         classes={{root: classes.inputRoot, input: classes.inputInput,}}
                                                         label={t('nav.1')}

@@ -33,7 +33,7 @@ const AssetCard = ({asset}) => {
     return (
         <div>
             <Card className={classes.card}>
-                <CardActionArea>
+                <CardActionArea component={Link} to={"/assetSite/" + asset.id}>
                     <CardMedia
                         component="img"
                         alt="bilde"
@@ -54,12 +54,13 @@ const AssetCard = ({asset}) => {
                         </Box>
                         <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                     </CardContent>
-                </CardActionArea>
+
                 <CardActions>
                     <Button size="small" color="primary" component={Link} to={"/assetSite/" + asset.id}>
                         {t('asset-card.1')}
                     </Button>
                 </CardActions>
+                </CardActionArea>
             </Card>
         </div>
     );

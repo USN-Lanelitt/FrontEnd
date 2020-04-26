@@ -72,7 +72,7 @@ export default function Profile() {
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            {t('profile.1')}
+                            {t('profile.1').toUpperCase()}
                         </Typography>
 
                     </Container>

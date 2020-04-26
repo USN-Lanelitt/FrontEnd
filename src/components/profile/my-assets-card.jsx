@@ -26,13 +26,16 @@ const useStyles = makeStyles((theme) => ({
         width: "30%",
         height: 150,
         marginRight: theme.spacing(2),
+    },
+    button: {
+        marginRight: '20px'
     }
 
 }));
 
 
 const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [assetId, setAssetId] = useState('');
@@ -73,7 +76,6 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     };
 
 
-
     return (
         <div>
             <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
@@ -91,14 +93,14 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                             />
                             <Box diplay="flex" flexDirectrion="column" ml={2}>
                                 <Box ml={1.5}>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {asset.assetName}
-                                </Typography>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {asset.assetName}
+                                    </Typography>
                                 </Box>
                                 <Box m={2}>
-                                <Typography variant="body2" color="textSecondary" >
-                                    {asset.description.length > 50 ? asset.description.substring(0,50) + '...' : asset.description}
-                                </Typography>
+                                    <Typography variant="body2" color="textSecondary">
+                                        {asset.description.length > 50 ? asset.description.substring(0, 50) + '...' : asset.description}
+                                    </Typography>
                                 </Box>
                                 <Box component="fieldset" borderColor="transparent" display="flex">
                                     <Rating name="read-only" precision={0.5} value={rating} readOnly/>
@@ -112,18 +114,23 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                     <Box display="flex" flexDirection="row" alignItems="center" width={1}
                          justifyContent="space-between">
                         <Box>
-                            <IconButton aria-label="delete" onClick={onRemove}>
+                            <IconButton aria-label="delete" onClick={onRemove} color="primary">
                                 <DeleteIcon/>
                             </IconButton>
                         </Box>
 
                         <Box>
-                            <Button onClick={onlyFriends}
-                                    startIcon={<VisibilityIcon/>}>
+                            <Button className={classes.button}
+                                    variant="outlined"
+                                    onClick={onlyFriends}
+                                    startIcon={<VisibilityIcon/>}
+                                    color="primary">
                                 {asset.public ? 'Offentlig' : 'Bare venner'}
                             </Button>
 
-                            <Button onClick={publishAsset}>
+                            <Button variant="outlined"
+                                    onClick={publishAsset}
+                                    color="primary">
                                 {asset.published ? 'publisert' : 'publiser'}
                             </Button>
                         </Box>

@@ -59,7 +59,7 @@ export default function Home() {
           <div className={classes.heroContent}>
             <Container maxWidth="sm">
               <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-                Lånelitt
+                LÅNELITT
               </Typography>
             </Container>
           </div>

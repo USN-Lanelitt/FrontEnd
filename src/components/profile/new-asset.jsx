@@ -58,17 +58,6 @@ const NewAsset = () => {
     }
 
     const save = () => {
-        /*
-        const asset = {
-            assetName: title,
-            description: description,
-            userId: sessionStorage.getItem('userId'),
-            condition: "1",
-            public: isPublic,
-            typeId: category,
-            file: file.raw,
-            mainImage: true
-        };*/
 
         const asset = new FormData();
         asset.append('file', file.raw);
