@@ -26,6 +26,7 @@ import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
 import { useTranslation } from 'react-i18next';
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 
 
@@ -169,6 +170,9 @@ export default function NavBar(props) {
         setOpen(false);
     };
 
+    const handleClickAway = () => {
+        setOpen(false);
+    };
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
@@ -288,6 +292,7 @@ export default function NavBar(props) {
                 <Toolbar>
                     {loggedIn && (<div>
                         {/*----------Meny Icon knapp som blir vist når bruker er logget inn--------------*/}
+                        <ClickAwayListener onClickAway={handleClickAway}>
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
@@ -297,6 +302,7 @@ export default function NavBar(props) {
                         >
                             <MenuIcon/>
                         </IconButton>
+                        </ClickAwayListener>
                     </div>)}
                         <Typography className={classes.title} variant="h5" noWrap component={Link} to="/" style={{textDecoration: "none", color: "white"}}>
                             Lånelitt
