@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
         height: '30px',
     },
 }));
-function TextfieldWindow ({userId2}) {
+export default function TextfieldWindow (userId2) {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
@@ -65,6 +65,8 @@ function TextfieldWindow ({userId2}) {
         sendMessage(userId, userId2, textValue, setSelectedChat);
         console.log(textValue);
     };
+
+
 
     return (
         /*Textfield og send knapp*/
@@ -81,6 +83,13 @@ function TextfieldWindow ({userId2}) {
                     className={classes.textField}
                     value={textValue}
                     onChange={e => setTextValue(e.target.value)}
+                    onKeyPress={(ev) => {
+                        console.log(`Pressed enter`);
+                        if (ev.key === 'Enter') {
+                            handleClick();
+                            setTextValue('');
+                        }
+                    }}
                 />
                 <Button
                     variant="contained"
@@ -97,4 +106,3 @@ function TextfieldWindow ({userId2}) {
         </Box>
     )
 }
-export default TextfieldWindow;

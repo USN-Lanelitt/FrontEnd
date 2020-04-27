@@ -1,12 +1,19 @@
 import axios from "axios";
 
-export  default function sendRequest(userId, id) {
+export  default function sendRequest(userId, userId2, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity) {
     console.log("friendRequest", sessionStorage.getItem('userId'));
-    axios.post('/user/'+ userId +'/request/'+ id)
+    axios.post('/user/'+ userId +'/request/'+ userId2)
         .then((response) => {
             if (response.status === 200) {
-                console.log(response.data);
+                setShowStatusMessage(true);
+                setStatusMessage("Rapportert!")
+                setStatusMessageSeverity("success");
             }
         })
-        .catch(e => console.log(e));
+        .catch(error => {
+            console.log(error)
+            setShowStatusMessage(true);
+            setStatusMessage("Ups, dette gikk ikke helt etter planen!");})
+    ;
+
 }

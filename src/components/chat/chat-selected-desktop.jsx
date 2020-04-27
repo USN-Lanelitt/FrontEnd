@@ -12,6 +12,8 @@ import {useTranslation} from "react-i18next";
 import getChatUsers from "./get-chats";
 import showChat from "./show-chat";
 import TextfieldMobile from "./textfield-mobile";
+import {useParams} from "react-router";
+import ShowUser from "./show-user";
 
 
 const useStyles = makeStyles(theme => ({
@@ -63,28 +65,42 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function ChatDesktop() {
+export default function ChatSelectedDesktop() {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
-    const [userId2, setUserId2] = useState([]);
     const [chatUsers, setChatUsers] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
     const [selectedUser, setSelectedUser] = useState('');
+    const [user, setUser] = useState('');
+    const {userId2} = useParams();
 
     useEffect(() => {
         getChatUsers(userId, setChatUsers)
-        {userId2 &&
-            showChat(userId, userId2, setSelectedChat);
-        }
-    }, [setChatUsers, userId]);
 
+    }, []);
+
+    useEffect(() => {
+        showChat(userId, userId2, setSelectedChat);
+    }, []);
+
+    {user &&
+        setSelectedUser(
+            <Box display="flex" flexDirection="row" alignItems="center">
+                <Box mr={1}>
+                    <Avatar alt="img" src={user.profileImage} className={classes.smallAvatar}/>
+                </Box>
+                <Box fontSize={15} fontWeight="fontWeightBold" m={1}>
+                    {user.firstName} {user.lastName}
+                </Box>
+            </Box>
+        );
+    }
 
     const onSelected = (userId2) => {
         showChat(userId, userId2, setSelectedChat);
         console.log(userId2);
     };
-
 
 
     return (
@@ -99,7 +115,7 @@ export default function ChatDesktop() {
                             </Box>
                         </Box>
                         <Box style={{paddingLeft:'10px'}}>
-                            {selectedUser}
+                            {selectedUser ? selectedUser : <ShowUser userId2={userId2} />}
                         </Box>
                     </Box>
 
@@ -124,7 +140,6 @@ export default function ChatDesktop() {
                                                             </Box>
                                                         );
                                                         onSelected(user.id);
-                                                        setUserId2(user.id);
                                                     }}
                                                 >
                                                     <Box display="flex" flexDirection="row" alignItems="center">

@@ -9,7 +9,6 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import ConfirmDialog from "./confirm-dialog";
 import {fetchAssets} from "./asset-repository";
-import {getRatings} from "../rating/getRating";
 
 
 const useStyles = makeStyles(theme => ({
@@ -80,7 +79,6 @@ const MyAssetsList = () => {
                 }
 
             </Grid>
-
 
             <Fab color="primary" aria-label="add" className={classes.fab} component={Link} to="new/asset">
                 <AddIcon/>
