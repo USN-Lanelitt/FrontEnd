@@ -13,13 +13,10 @@ import HomeIcon from "@material-ui/icons/Home";
 import StorageIcon from "@material-ui/icons/Storage";
 import QueryBuilderIcon from "@material-ui/icons/QueryBuilder";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import Divider from "@material-ui/core/Divider";
 import EditIcon from "@material-ui/icons/Edit";
 import {fade, makeStyles} from "@material-ui/core/styles";
-import ContactSupportIcon from '@material-ui/icons/ContactSupport';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import StarIcon from "@material-ui/icons/Star";
-import CardActionArea from "@material-ui/core/CardActionArea";
 
 const drawerWidth = 240;
 
@@ -144,7 +141,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SidePanel() {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const [state, setState] = React.useState({
         left: false,
     });
@@ -227,29 +224,20 @@ export default function SidePanel() {
                     </ListItemIcon>
                     <ListItemText primary={t('sidepanel.8')}/>
                 </ListItem>
-                <ListItem button component = {Link} to={"/rating/1"}>
+
+                <ListItem button component={Link} to={"/rating/1"}>
                     <ListItemIcon>
                         <StarIcon/>
                     </ListItemIcon>
                     <ListItemText primary={t('sidepanel.9')}/>
                 </ListItem>
-            </List>
-            <Divider/>
-            <List>
+
                 <ListItem button component={Link} to="/editprof">
                     <ListItemIcon>
                         <EditIcon/>
                     </ListItemIcon>
                     <ListItemText primary={t('sidepanel.10')}/>
                 </ListItem>
-
-                <ListItem button>
-                    <ListItemIcon>
-                        <ContactSupportIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary={t('sidepanel.11')}/>
-                </ListItem>
-
             </List>
         </div>
     );
