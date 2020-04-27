@@ -160,6 +160,7 @@ export default function SidePanel() {
     };
 
     const Sidepanel = side => (
+
         <div
             className={classes.list}
             role="presentation"
@@ -241,9 +242,7 @@ export default function SidePanel() {
             </List>
         </div>
     );
-
     return (
         <Sidepanel/>
     )
-
 }
