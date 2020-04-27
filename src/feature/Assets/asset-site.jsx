@@ -15,6 +15,8 @@ import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import AssetReport from "./asset-report";
+import LocationOn from "@material-ui/icons/LocationOn";
+import {getRatings} from "../../components/rating/getRating";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -32,6 +34,7 @@ const AssetSite = () => {
     const {t} = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
+    const [assetId, setAssetId] = useState(null);
     const [asset, setAsset] = useState(null);
     const [rating, setRating] = useState(null);
     const {id} = useParams();
@@ -42,6 +45,8 @@ const AssetSite = () => {
             .then(result => {
                 console.log('assetsite', result.data);
                 setAsset(result.data);
+                getRatings(result.data.id, setRating)
+
             })
             .catch(e => console.log(e));
     };
@@ -59,52 +64,59 @@ const AssetSite = () => {
                 <Box width={'70%'} height={1 / 4}>
                     <Carousel infiniteLoop={true}>
                         {
-                            asset.assetImages.length > 0 ?
                                 asset.assetImages.map(image =>
                                     <Paper>
-                                        <img src={image.imageUrl}/>
+                                        <img src={"../AssetImages/"+image.imageUrl}/>
                                     </Paper>
-                                ) : <img src="https://source.unsplash.com/ukzHlkoz1IE"/>
-                        }
+                                )}
                     </Carousel>
                 </Box>
             </Box>
 
             <Box display='flex' justifyContent='center'>
                 <Box width={'70%'}>
-                    <Paper elevation="0">
+                    <Paper>
+
                         <Box display='flex' flexDirection='column'>
-                            <Box component="fieldset" borderColor="transparent" ml={3}>
+
+                            <Box display='flex' alignItems='center' mt={2} ml={2} justifyContent='flex-start'>
+                                <Box mr={1}>
+                                    <LocationOn/>
+                                </Box>
+                                {asset.users.zipCode && asset.users.zipCode.city}
+                            </Box>
+                            <Box component="fieldset" borderColor="transparent" >
                                 <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                             </Box>
-                            <Box display='flex' flexDirection='row'>
-                                <Box ml={5}>
+
+                            <Box m={3} display='flex' justifyContent='center'>
+                                <Box display='flex' flexDirection='column' justifyContent='center'>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {asset && asset.assetName}
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {asset && asset.description}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                        </Box>
+
+                        <Box display='flex' flexDirection='column'>
+
+                            <Box display='flex' flexDirection='row' justifyContent='center'>
+                                <Box mt={10}>
                                     <Button type="submit"
-                                            variant="contained"
+                                            variant="outlined"
                                             color="primary"
-                                            component={Link} to={"/LoanRequestSend/" + asset.users.id + "/" + asset.id+"/"+asset.assetName}>
+                                            component={Link}
+                                            to={"/LoanRequestSend/" + asset.users.id + "/" + asset.id + "/" + asset.assetName}>
                                         {t('assetOwner.1')}
                                     </Button>
                                 </Box>
-
-                            </Box>
-                            <Box display='flex' flexDirection='column'>
-
-
                             </Box>
                         </Box>
-
-                        <Box display='flex' flexDirection='column' justifyContent='flex-start' m={5}>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {asset && asset.assetName}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {asset && asset.description}
-                            </Typography>
-
-                        </Box>
-                        <Box display='flex' justifyContent='center' m={5}>
-                            <Grid container direction="column" justify="center" alignItems="center">
+                        <Box display='flex' justifyContent='center'>
+                            <Grid container direction="column" justifyContent="center" alignItems="center">
                                 <Grid>
                                     <AssetOwnerInfo
                                         asset={asset}
@@ -112,14 +124,7 @@ const AssetSite = () => {
                                         <AssetReport userId2={asset.users.id}/>
                                     </AssetOwnerInfo>
                                 </Grid>
-                                <Grid>
-
-                                </Grid>
-
                             </Grid>
-
-                        </Box>
-                        <Box display="flex" justifyContent="center">
                         </Box>
                     </Paper>
                 </Box>

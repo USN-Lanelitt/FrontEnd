@@ -55,7 +55,7 @@ const NewAsset = () => {
             preview: URL.createObjectURL(e.target.files[0]),
             raw: e.target.files[0]
         })
-    }
+    };
 
     const save = () => {
 

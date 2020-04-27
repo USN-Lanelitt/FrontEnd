@@ -7,7 +7,7 @@ import Box from "@material-ui/core/Box";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 import Typography from "@material-ui/core/Typography";
-import LocationOn from "@material-ui/icons/LocationOn";
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -85,13 +85,8 @@ const AssetOwnerInfo = ({asset, children}) => {
                         <Typography variant="subtitle1" component="h2" display={"inline"}>
                             {asset && asset.users.nickname}
                         </Typography>
-                        <Box display="flex">
-                            <Box mr={1}>
-                                <LocationOn/>
-                            </Box>
-                            {asset.users.zipCode && asset.users.zipCode.city}
-                        </Box>
-                        {children}
+
+                       {children}
                     </Box>
 
 

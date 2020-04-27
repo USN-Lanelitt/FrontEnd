@@ -29,6 +29,7 @@ const AssetContainer = () => {
     useEffect(() => {
         axios.get(  "/assets/type/" + id)
             .then(result => {
+                console.log('assetType:', result.data)
                 if (result.data.length === 1) {
                 setAssetType(result.data[0]);
                 }

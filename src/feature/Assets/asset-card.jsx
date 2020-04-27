@@ -38,8 +38,8 @@ const AssetCard = ({asset}) => {
                         component="img"
                         alt="bilde"
                         height="200"
-                        image={asset.assetImages.length > 0 ? asset.assetImages[0] : 'https://source.unsplash.com/random'}
-                    />
+                       image={asset.assetImages.length > 0 ? "../AssetImages/"+asset.assetImages[0].imageUrl : 'https://source.unsplash.com/random'}
+                />
                     <CardContent>
                         <Box ml={0.5}>
                         <Typography gutterBottom variant="h5" component="h2">
