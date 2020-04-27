@@ -161,8 +161,6 @@ export default function NavBar(props) {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
-
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
