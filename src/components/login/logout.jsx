@@ -8,7 +8,6 @@ async function Logout(history) {
             .signOut();
         history.push("/login");
     } catch (error) {
-        alert("Logger ut");
     }
 }
 
