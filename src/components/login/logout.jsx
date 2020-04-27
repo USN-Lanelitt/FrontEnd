@@ -6,6 +6,7 @@ async function Logout(history) {
         await app
             .auth()
             .signOut();
+            sessionStorage.clear();
         history.push("/login");
     } catch (error) {
     }

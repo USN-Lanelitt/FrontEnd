@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getRatings = (assetId, setRating) => {
     console.log("getRating", sessionStorage.getItem('userId'));
-    axios.get('/assets/'+assetId+'/AverageRating')
+    axios.get('/assets/' + assetId + '/AverageRating')
         .then(result => {
             setRating(result.data);
         })
