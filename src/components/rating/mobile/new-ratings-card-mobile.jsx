@@ -11,6 +11,8 @@ import {useTranslation} from "react-i18next";
 import setRating from "../setRating";
 import TextField from "@material-ui/core/TextField";
 import {Redirect} from "react-router";
+import StatusMessage from "../../profile/status-message";
+import Grid from "@material-ui/core/Grid";
 
 
 const useStyles = makeStyles(theme => ({
@@ -103,7 +105,10 @@ const NewRatingsCardMobile = ({loanId, firstname, middlename, lastname, assetId,
                                     type="submit"
                                     color="primary"
                                     className={classes.button}
-                                    onClick={() => setRating(userId, loanId, ratingValue, comment, setRedirect(true))}
+                                    onClick={() => {
+                                        setRating(userId, loanId, ratingValue, comment);
+                                        setRedirect(true);
+                                    }}
                                 >
                                     {t('rating-card.1')}
                                 </Button>

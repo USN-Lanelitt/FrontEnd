@@ -30,8 +30,8 @@ const AssetContainer = () => {
         axios.get(  "/assets/type/" + id)
             .then(result => {
                 console.log('assetType:', result.data)
-                if (result.data.length === 1) {
-                setAssetType(result.data[0]);
+                if (result.data) {
+                setAssetType(result.data.assetType);
                 }
                 else {
                     setAssetType('Kategori');
@@ -46,7 +46,7 @@ const AssetContainer = () => {
             <div className={classes.heroContent}>
                 <Container>
                     <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        {assetType && assetType.assetType.toUpperCase()}
+                        {assetType && assetType.toUpperCase()}
                     </Typography>
                 </Container>
             </div>
