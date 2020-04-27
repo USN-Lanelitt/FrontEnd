@@ -75,7 +75,6 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
             });
     };
 
-
     return (
         <div>
             <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}

@@ -8,19 +8,19 @@ import FriendProfileCard from "./friend-profile-card";
 import sendMessageNewChat from "../chat/send-message-new-chat";
 import deleteFriend from "./delete-friend";
 import sendRequest from "./send-friend-request";
+import StatusMessage from "../profile/status-message";
 
 const FriendProfile = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [user, setUser] = useState();
+    const {id} = useParams();
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
-    const [open, setOpen] = React.useState(false);
-    const {userId2} = useParams();
 
-     useEffect(() => {
+    useEffect(() => {
         console.log("getUser", sessionStorage.getItem('userId'));
-        axios.get('/getUser/' + userId2)
+        axios.get('/getUser/' + id)
             .then(result => {
                 console.log(result.data);
                 setUser(result.data);
@@ -32,11 +32,13 @@ const FriendProfile = () => {
         <div>
              <Grid container direction="row" justify="center" alignItems="center">
                  <Grid>
+                     <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                                    onClose={setShowStatusMessage}/>
                     <FriendProfileCard
                         user={user}
-                        getChat={() => sendMessageNewChat(userId, userId2)}
-                        deleteFriend={() => deleteFriend(userId, userId2, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity, setOpen)}
-                        sendRequest={() => sendRequest(userId, userId2, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity, setOpen)}
+                        getChat={() => sendMessageNewChat(userId, id)}
+                        deleteFriend={() => deleteFriend(userId, id)}
+                        sendRequest={() => sendRequest(userId, id, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity)}
                     />
                  </Grid>
              </Grid>

@@ -69,9 +69,13 @@ const MyAssetsList = () => {
                     assets.map(asset => (
                             <Grid item>
                                 <MyAssetsCard asset={asset}
-                                              imageUrl={"https://source.unsplash.com/random"}
-                                              onRemove={() => remove(asset.id)}
-                                              refresh={() => fetchAssets(userId, setAssets)}
+                                    imageUrl={
+                                          asset.assetImages.length > 0 ?
+                                          "AssetImages/"+asset.assetImages[0].imageUrl :
+                                          ""
+                                    }
+                                    onRemove={() => remove(asset.id)}
+                                    refresh={() => fetchAssets(userId, setAssets)}
                                 />
                             </Grid>
                         )
