@@ -37,11 +37,11 @@ const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove, get
 
 
     return (
-        <Grid xs={12}>
+        <Grid>
             <Card className={classes.card}>
                 <CardActionArea component = {Link} to={"/FriendProfile/" + id}  style={{backgroundColor: 'transparent'}}>
                     <CardContent>
-                        <Grid container zeroMinWidth justify="flex-start">
+                        <Grid container justify="flex-start">
                             <CardMedia>
                                 <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                             </CardMedia>
