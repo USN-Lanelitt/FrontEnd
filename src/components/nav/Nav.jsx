@@ -304,8 +304,9 @@ export default function NavBar(props) {
 
 
                         {/*----------Søke felt i Navbar Icon knapp--------------*/}
+                    {loggedIn &&
                     <SearchFriends/>
-
+                    }
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
 
