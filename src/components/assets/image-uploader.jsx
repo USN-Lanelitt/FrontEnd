@@ -119,7 +119,7 @@ const ImageUploader = (props) => {
             <div>
                 <label htmlFor="upload-button"
                        style={{
-                           backgroundColor: 'blue',
+                           backgroundColor: '#198679',
                            color: 'white',
                            padding: "4px 8px 4px 8px",
                            borderRadius: 4,

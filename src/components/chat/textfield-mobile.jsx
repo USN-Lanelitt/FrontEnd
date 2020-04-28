@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+/*Nicole har jobbet med denne siden*/
+
+import React, {useState} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import {useTranslation} from "react-i18next";
-import sendMessage from "./send-message";
+import {sendMessage, updateChat} from "./send-message";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +24,7 @@ const useStyles = makeStyles(theme => ({
         height: '30px',
     },
 }));
-function TextfieldMobile ({userId2}) {
+export default function TextfieldMobile (userId2) {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
@@ -36,16 +37,17 @@ function TextfieldMobile ({userId2}) {
     };
 
     return (
-        /*Textfield og send knapp*/
+        /*-----Tekstfelt og send knapp--------*/
         <Box display="flex" alignItems="center">
             <Box className={classes.chatBox}>
                 <TextField
                     className={classes.textField}
                     margin="dense"
                     variant="outlined"
-                    label={t('chat.4')}
+                    label={t('chat.3')}
                     value={textValue}
                     onChange={e => setTextValue(e.target.value)}
+
                 />
                 <SendIcon
                     fontSize="large"
@@ -61,4 +63,3 @@ function TextfieldMobile ({userId2}) {
         </Box>
     )
 }
-export default TextfieldMobile;

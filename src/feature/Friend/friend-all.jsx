@@ -5,12 +5,12 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
-import app from "../../fire";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessageNewChat from "../../components/chat/send-message-new-chat";
-import getFriend from "../../components/friend/friend-profile";
 import {useTranslation} from "react-i18next";
+import {Redirect} from "react-router";
 
+/*Henter alle vennene, laget av Mirsa*/
 
 const useStyles = makeStyles(theme => ({
 
@@ -24,12 +24,10 @@ const useStyles = makeStyles(theme => ({
 const FriendAll = () => {
     const { t } = useTranslation();
     const classes = useStyles();
-    const user = app.auth().currentUser;
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-    const [selectedChat, setSelectedChat] = useState([]);
 
     useEffect(() => {
             AllFriends();
@@ -50,12 +48,15 @@ const FriendAll = () => {
         setFriendId(friendId);
     };
 
-    function onDeleteFriendComfirm() {
+    function onDeleteFriendConfirm() {
         console.log("deletefriend", userId, sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/friend/' + friendId + '/delete')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
+                    setData(response.data);
+
+
                 }
 
             })
@@ -66,6 +67,7 @@ const FriendAll = () => {
 
     function onDeleteFriendCancel() {
         setShowConfirmDialog(false);
+
     }
 
     return (
@@ -81,7 +83,7 @@ const FriendAll = () => {
 
                 <ConfirmDialog title={t('friend-all.2')}
                                message={t('friend-all.3')}
-                               onConfirm ={onDeleteFriendComfirm}
+                               onConfirm ={onDeleteFriendConfirm}
                                onNotConfirm={onDeleteFriendCancel}
                                confirmButtonText={t('friend-all.4')}
                                notConfirmButtonText={t('friend-all.5')}
@@ -101,7 +103,9 @@ const FriendAll = () => {
                                 friendId={item.user2.id}
                                 onRemove={() => remove(item.user2.id)}
                                 getChat={() => sendMessageNewChat(userId, item.user2.id)}
+
                             />
+
                         </Grid>
                     ))}
                 </Grid>

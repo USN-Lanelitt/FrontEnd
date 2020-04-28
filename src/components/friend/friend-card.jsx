@@ -37,11 +37,11 @@ const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove, get
 
 
     return (
-        <Grid xs={12}>
+        <Grid>
             <Card className={classes.card}>
                 <CardActionArea component = {Link} to={"/FriendProfile/" + id}  style={{backgroundColor: 'transparent'}}>
                     <CardContent>
-                        <Grid container zeroMinWidth justify="flex-start">
+                        <Grid container justify="flex-start">
                             <CardMedia>
                                 <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                             </CardMedia>
@@ -57,7 +57,7 @@ const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove, get
                     <Button className={classes.Button} onClick= {onRemove} size="small" color="primary">
                         {t('freind-card.1')}
                     </Button>
-                    <Button onClick= {getChat} component={Link} to="/chat" size="small" color="primary">
+                    <Button onClick= {getChat} component={Link} to={"/chatSelected/" + id} size="small" color="primary">
                         {t('freind-card.2')}
                     </Button>
                 </CardActions>

@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useEffect, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
@@ -7,13 +9,8 @@ import {useTranslation} from "react-i18next";
 import showChat from "./show-chat";
 import {Redirect, useParams} from "react-router";
 import TextfieldMobile from "./textfield-mobile";
-import {Link} from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import SendIcon from "@material-ui/icons/Send";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import AirlineSeatIndividualSuiteRoundedIcon from '@material-ui/icons/AirlineSeatIndividualSuiteRounded';
-import ListItem from "@material-ui/core/ListItem";
-import sendMessage from "./send-message";
+import GetUser from "./get-user-object";
 
 const useStyles = makeStyles(theme => ({
     chat: {
@@ -26,7 +23,6 @@ const useStyles = makeStyles(theme => ({
     messageBox: {
         padding: '0px',
         height: '100%',
-        //overflow: "auto",
     },
     bubble: {
         backgroundColor: "silver",
@@ -48,22 +44,29 @@ export default function ChatWinMobile() {
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
     const [selectedChat, setSelectedChat] = useState(null);
-    const [selectedUser, setSelectedUser] = useState('');
-    const [textValue, setTextValue] = useState('');
-    const {userId2, firstName, lastName} = useParams();
+    const {userId2} = useParams();
     const [redirect, setRedirect] = useState(false);
+    const [user, setUser] = useState();
 
-    const onSelected = (userId2) => {
-        setSelectedUser(userId2);
-        console.log(userId2);
-    };
 
     useEffect(() => {
         showChat(userId, userId2, setSelectedChat);
         console.log(userId2);
     }, []);
 
-    if(redirect==true){
+    useEffect(() => {
+        GetUser(userId2, setUser);
+        console.log(userId2);
+    }, []);
+
+/*    const update = () => {
+        {
+            userId2 &&
+            showChat(userId, userId2, setSelectedChat);
+        }
+    }*/
+
+    if(redirect){
         return <Redirect to={"/chat"}/>
     }
 
@@ -71,10 +74,11 @@ export default function ChatWinMobile() {
         <React.Fragment>
             <Container style={{paddingLeft:0, paddingRight:0}}>
                 <Box className={classes.chat}>
+                    {/*---------topp-----------------*/}
                     <Box style={{width:'100%'}}>
-                        <Box fontSize={15} fontWeight="fontWeightBold"  m={1} gutterBottom>
+                        <Box display="flex" flexDirection="row">
+                            <Box>
                             <ArrowBackIosIcon
-                                fontSize="small"
                                 variant="contained"
                                 color="primary"
                                 aria-hidden={"false"}
@@ -82,15 +86,20 @@ export default function ChatWinMobile() {
                                     setRedirect(true)
                                 }}
                             />
-                            {firstName+" "+lastName}
+                            </Box>
+                            {user &&
+                            <Box fontSize={20} ml={5}>
+                                {user.firstName} {user.middleName} {user.lastName}
+                            </Box>
+                            }
                         </Box>
                     </Box>
-
+                    {/*-----------------chattevindu----------------*/}
                     <Box display="flex" alignItems="center">
                         <Box className={classes.chatWindow}>
                             <Box className={classes.messageBox}>
                                 {selectedChat &&
-                                    <ChatList selectedChat={selectedChat}/>
+                                    <ChatList selectedChat={selectedChat} user={user}/>
                                 }
                             </Box>
                             <TextfieldMobile userId2={userId2}/>
