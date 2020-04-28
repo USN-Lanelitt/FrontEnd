@@ -16,20 +16,19 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import {getRatings} from "../rating/getRating";
 import StatusMessage from "./status-message";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        height: 250,
-        maxWidth: 465,
+
+        maxWidth: 345
     },
     image: {
         width: "30%",
         height: 150,
         marginRight: theme.spacing(2),
     },
-    button: {
-        marginRight: '20px'
-    }
+
 
 }));
 
@@ -65,13 +64,13 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                 console.log(result);
                 setPublished(true);
                 setShowStatusMessage(true);
-                setStatusMessage("Eiendelen ble publisert!")
+                setStatusMessage(t("my-asset-card.1"));
                 setStatusMessageSeverity("success");
             })
             .catch(error => {
                 console.log(error);
                 setShowStatusMessage(true);
-                setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+                setStatusMessage(t("my-asset-card.2"));
             });
     };
 
@@ -80,28 +79,29 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
             <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
                            onClose={setShowStatusMessage}/>
             <Card className={classes.card}>
-                <CardActionArea>
+                <CardActionArea component={Link} to={"/assetSite/" + asset.id}>
 
+                    <CardMedia
+                        component="img"
+                        alt="bilde"
+                        height="200"
+                        image={asset.assetImages.length > 0 ? "../AssetImages/"+asset.assetImages[0].imageUrl : 'https://source.unsplash.com/random'}
+                    />
                     <CardContent>
                         <Box display="flex" flexDirection="row">
-                            <CardMedia
-                                className={classes.image}
-                                component="img"
-                                alt="bilde"
-                                image={imageUrl}
-                            />
-                            <Box diplay="flex" flexDirectrion="column" ml={2}>
-                                <Box ml={1.5}>
+
+                            <Box diplay="flex" flexDirectrion="column">
+                                <Box ml={1}>
                                     <Typography gutterBottom variant="h5" component="h2">
                                         {asset.assetName}
                                     </Typography>
                                 </Box>
-                                <Box m={2}>
+                                <Box m={1}>
                                     <Typography variant="body2" color="textSecondary">
                                         {asset.description.length > 50 ? asset.description.substring(0, 50) + '...' : asset.description}
                                     </Typography>
                                 </Box>
-                                <Box component="fieldset" borderColor="transparent" display="flex">
+                                <Box component="fieldset" borderColor="transparent" display="flex" p={0}>
                                     <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                                 </Box>
                             </Box>
@@ -117,22 +117,24 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                                 <DeleteIcon/>
                             </IconButton>
                         </Box>
-
                         <Box>
                             <Button className={classes.button}
                                     variant="outlined"
                                     onClick={onlyFriends}
                                     startIcon={<VisibilityIcon/>}
                                     color="primary">
-                                {asset.public ? 'Offentlig' : 'Bare venner'}
+                                {asset.public ? (t("my-asset-card.3")) : (t("my-asset-card.4"))}
                             </Button>
+                        </Box>
+                        <Box>
 
                             <Button variant="outlined"
                                     onClick={publishAsset}
                                     color="primary">
-                                {asset.published ? 'publisert' : 'publiser'}
+                                {asset.published ? (t("my-asset-card.5")) : (t("my-asset-card.6"))}
                             </Button>
                         </Box>
+
 
                     </Box>
                 </CardActions>
