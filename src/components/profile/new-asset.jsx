@@ -14,6 +14,8 @@ import CategoryList from "./category-list";
 import StatusMessage from "./status-message";
 import {Redirect} from "react-router";
 import {useTranslation} from "react-i18next";
+import Progress from "../progress";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -48,7 +50,7 @@ const NewAsset = () => {
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
-    const [file, setFile] = useState({ preview: null, raw: null })
+    const [file, setFile] = useState({ preview: null, raw: null });
 
     const handleChange = (e) => {
         setFile({
@@ -82,7 +84,7 @@ const NewAsset = () => {
                 console.log(error);
                 setShowStatusMessage(true);
                 setStatusMessage("Ups, dette gikk ikke helt etter planen!");
-            });
+            })
 
         console.log("new asset", asset);
     };
@@ -162,7 +164,7 @@ const NewAsset = () => {
                     />
                 </CardContent>
                 <CardActions>
-                    <Button>Avbryt</Button>
+                    <Button component={Link} to={"/my/assets"}>Avbryt</Button>
                     <Button onClick={()=>{
                         save();
                     }}

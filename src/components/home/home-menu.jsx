@@ -3,6 +3,7 @@ import CategoryCard from "../profile/category-card";
 import Grid from "@material-ui/core/Grid";
 import {Container} from "@material-ui/core";
 import axios from "axios";
+import Progress from "../progress";
 
 const HomeMenu = () => {
 
@@ -37,6 +38,7 @@ const HomeMenu = () => {
         getCategories();
     }, [])
 
+    if (categories.length === 0) return <Progress/>
 
     return (
         <Container>

@@ -3,6 +3,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import MyAssetsList from "./my-assets-list";
 import {makeStyles} from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -35,6 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 const MyAssetContainer = () => {
     const classes = useStyles();
+
 
     return (
         <React.Fragment>

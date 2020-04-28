@@ -3,6 +3,9 @@ import {Container} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import AssetCard from "./asset-card";
 import axios from "axios";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Box from "@material-ui/core/Box";
+import Progress from "../../components/progress";
 
 const AssetsList = ({categoryId}) => {
    const [assetByCategory, setAssetByCategory] = useState([]);
@@ -17,6 +20,8 @@ const AssetsList = ({categoryId}) => {
             .catch(error => console.log(error))
 
     }
+
+    if (assetByCategory.length === 0) return <Progress/>
     return (
         <Container>
 

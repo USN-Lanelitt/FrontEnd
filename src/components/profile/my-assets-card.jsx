@@ -39,7 +39,7 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [assetId, setAssetId] = useState('');
     const [rating, setRating] = useState(null);
-    const [published, setPublished] = useState(false);
+    const [published, setPublished] = useState(asset.published);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
     const [showStatusMessage, setShowStatusMessage] = useState(false);
@@ -59,13 +59,14 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     }, []);
 
     const publishAsset = () => {
-        axios.post(/setPublished/ + userId + "/" + asset.id + "/" + published)
+        axios.post(/setPublished/ + userId + "/" + asset.id + "/" + (asset.published ? 0 : 1))
             .then(result => {
                 console.log(result);
                 setPublished(true);
                 setShowStatusMessage(true);
                 setStatusMessage(t("my-asset-card.1"));
                 setStatusMessageSeverity("success");
+                refresh();
             })
             .catch(error => {
                 console.log(error);
