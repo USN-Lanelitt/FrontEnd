@@ -1,9 +1,8 @@
 /*Nicole har jobbet med denne siden*/
-
 import axios from "axios";
 
 function sendMessage(userId, userId2, message, setSelectedChat) {
-        console.log("sendMessage", userId, sessionStorage.getItem('userId'));
+        console.log("sendMessage", sessionStorage.getItem('userId'));
         axios.post('/users/writeMessage/' + userId + '/' + userId2, {
             message: message
         })

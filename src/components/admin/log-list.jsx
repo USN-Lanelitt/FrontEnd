@@ -24,7 +24,7 @@ const LogList = () => {
     return (
         <div>
             <Box m={4} display="flex" alignItems="center" flexDirection="column">
-                { logs ?   <LogTable log={logs}/> :'tom' }
+                { logs ?   <LogTable log={logs}/> :'' }
             </Box>
 
         </div>

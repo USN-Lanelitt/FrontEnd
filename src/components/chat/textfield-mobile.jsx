@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import {useTranslation} from "react-i18next";
-import {sendMessage, updateChat} from "./send-message";
+import {sendMessage} from "./send-message";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from '@material-ui/icons/Send';
 
@@ -23,12 +23,15 @@ const useStyles = makeStyles(theme => ({
         height: '30px',
     },
 }));
+
+
 export default function TextfieldMobile ({userId2}) {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId] = useState(sessionStorage.getItem('userId'));
     const [setSelectedChat] = useState(null);
     const [textValue, setTextValue] = useState('');
+    let nr = 90;
 
     const handleClick = () => {
         sendMessage(userId, userId2, textValue, setSelectedChat);

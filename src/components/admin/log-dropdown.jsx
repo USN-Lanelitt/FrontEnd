@@ -59,7 +59,7 @@ const LogDropdown = () => {
 
     const handleChange = (event) => {
         setLevel(event.target.value);
-        setRedirect(true);
+        //setRedirect(true);
     };
 
     if (redirect) return <Redirect to="/admin"/>;
@@ -67,7 +67,7 @@ const LogDropdown = () => {
     return (
         <div>
             <FormControl className={classes.formControl}>
-                <InputLabel id="demo-controlled-open-select-label">{t('log-dropdown.1')}</InputLabel>
+                <InputLabel id="demo-controlled-open-select-label">Log Level</InputLabel>
                 <Select
                     labelId="demo-controlled-open-select-label"
                     id="demo-controlled-open-select"
