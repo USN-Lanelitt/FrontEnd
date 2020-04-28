@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function ChatSelectedDesktop() {
+export default function ChatSelectedDesktop({userId2}) {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
@@ -75,7 +75,7 @@ export default function ChatSelectedDesktop() {
     const [selectedChat, setSelectedChat] = useState(null);
     const [selectedUser, setSelectedUser] = useState('');
     const [user, setUser] = useState('');
-    const {userId2} = useParams();
+
 
     useEffect(() => {
         getChatUsers(userId, setChatUsers)

@@ -137,7 +137,7 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
                         </Button>
                     </Box>
                     <Box m={2}>
-                        <Button onClick={getChat} component={Link} to={"/chatSelected/" + user.id} type="submit"
+                        <Button onClick={getChat} component={Link} to={"/chat/" + user.id} type="submit"
                                 variant="contained" color="primary">
                             Send Melding
                         </Button>
