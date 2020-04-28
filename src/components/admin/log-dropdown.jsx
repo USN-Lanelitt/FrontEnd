@@ -6,6 +6,7 @@ import React, {useEffect} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
+import {Redirect} from "react-router";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -22,6 +23,7 @@ const LogDropdown = () => {
     const classes = useStyles();
     const [levels, setLevels] = React.useState('');
     const [selectedLevel, setSelectedLevel] = React.useState('');
+    const [redirect, setRedirect] = React.useState(false);
 
     useEffect(() => {
         console.log("getLevels ", sessionStorage.getItem('userId'));
@@ -57,18 +59,21 @@ const LogDropdown = () => {
 
     const handleChange = (event) => {
         setLevel(event.target.value);
+        //setRedirect(true);
     };
 
+    if (redirect) return <Redirect to="/admin"/>;
 
     return (
         <div>
             <FormControl className={classes.formControl}>
-                <InputLabel id="demo-controlled-open-select-label">{t('log-dropdown.1')}</InputLabel>
+                <InputLabel id="demo-controlled-open-select-label">Log Level</InputLabel>
                 <Select
                     labelId="demo-controlled-open-select-label"
                     id="demo-controlled-open-select"
                     value={selectedLevel}
                     onChange={handleChange}
+                    defaultValue={sessionStorage.getItem('firstname')}
                 >
                     <MenuItem value={0}>No Logging</MenuItem>
                     <MenuItem value={1}>Simple change log, 1 file</MenuItem>

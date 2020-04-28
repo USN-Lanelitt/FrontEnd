@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 
 });
 
-const AmountTable = () => {
+const ReportTitle = () => {
     const classes = useStyles();
     return (
         <div>
@@ -29,22 +29,7 @@ const AmountTable = () => {
 
                         <TableRow>
                             <TableCell component="th" scope="row">
-                                <UserAmount/>
-                                {"\n"}
-                                Users
-                            </TableCell>
-                            <TableCell>
-                                <AssetAmount/>
-                                {"\n"}
-                                Assets
-                            </TableCell>
-                            <TableCell>
-                                <ReportAmount/>
-                                {"\n"}
                                 Reports
-                            </TableCell>
-                            <TableCell>
-
                             </TableCell>
                         </TableRow>
                     </TableBody>
@@ -57,4 +42,4 @@ const AmountTable = () => {
     );
 };
 
-export default AmountTable;
+export default ReportTitle;

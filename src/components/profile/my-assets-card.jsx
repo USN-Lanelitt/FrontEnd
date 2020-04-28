@@ -59,7 +59,7 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
     }, []);
 
     const publishAsset = () => {
-        axios.post(/setPublished/ + userId + "/" + asset.id + "/" + published)
+        axios.post("/setPublished/" + userId + "/" + asset.id + "/" + published)
             .then(result => {
                 console.log(result);
                 setPublished(true);
@@ -73,7 +73,6 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                 setStatusMessage(t("my-asset-card.2"));
             });
     };
-
 
     return (
         <div>

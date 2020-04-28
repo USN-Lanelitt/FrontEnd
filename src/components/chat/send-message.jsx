@@ -1,7 +1,8 @@
+/*Nicole har jobbet med denne siden*/
 import axios from "axios";
 
-export default function sendMessage(userId, userId2, message, setSelectedChat) {
-        console.log("sendMessage", userId, sessionStorage.getItem('userId'));
+function sendMessage(userId, userId2, message, setSelectedChat) {
+        console.log("sendMessage", sessionStorage.getItem('userId'));
         axios.post('/users/writeMessage/' + userId + '/' + userId2, {
             message: message
         })
@@ -11,3 +12,5 @@ export default function sendMessage(userId, userId2, message, setSelectedChat) {
             })
             .catch(e => console.log(e));
 }
+
+export {sendMessage};

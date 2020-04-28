@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+/*Nicole har jobbet med denne siden*/
+import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Box from "@material-ui/core/Box";
-import axios from "axios";
+import Avatar from "@material-ui/core/Avatar";
+
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -37,9 +39,8 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-function ChatList ({selectedChat}) {
+function ChatList ({selectedChat, user}) {
     const classes = useStyles();
-
 
     return (
         <Box height={1} >
@@ -48,6 +49,11 @@ function ChatList ({selectedChat}) {
                     selectedChat.map((chat) => (
                         <ListItem className={classes.item} key={chat.id}>
                             <Box className={classes.textBox}>
+                    {/*            {user &&
+                                <Box mr={1}>
+                                    <Avatar alt="img" src={user.profileImage} className={classes.smallAvatar}/>
+                                </Box>
+                                }*/}
                                 <Typography variant="caption" >
                                     {chat.user1.firstName}
                                 </Typography>

@@ -8,13 +8,17 @@ import FriendProfileCard from "./friend-profile-card";
 import sendMessageNewChat from "../chat/send-message-new-chat";
 import deleteFriend from "./delete-friend";
 import sendRequest from "./send-friend-request";
+import StatusMessage from "../profile/status-message";
 
 const FriendProfile = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [user, setUser] = useState();
     const {id} = useParams();
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
 
-     useEffect(() => {
+    useEffect(() => {
         console.log("getUser", sessionStorage.getItem('userId'));
         axios.get('/getUser/' + id)
             .then(result => {
@@ -28,11 +32,13 @@ const FriendProfile = () => {
         <div>
              <Grid container direction="row" justify="center" alignItems="center">
                  <Grid>
+                     <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                                    onClose={setShowStatusMessage}/>
                     <FriendProfileCard
                         user={user}
                         getChat={() => sendMessageNewChat(userId, id)}
-                        deleteFriend={() => deleteFriend(userId, id)}
-                        sendRequest={() => sendRequest(userId, id)}
+                        deleteFriend={() => deleteFriend(userId, id, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity)}
+                        sendRequest={() => sendRequest(userId, id, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity)}
                     />
                  </Grid>
              </Grid>

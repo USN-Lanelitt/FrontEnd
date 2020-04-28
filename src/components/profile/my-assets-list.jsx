@@ -9,7 +9,6 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import ConfirmDialog from "./confirm-dialog";
 import {fetchAssets} from "./asset-repository";
-import {getRatings} from "../rating/getRating";
 
 
 const useStyles = makeStyles(theme => ({
@@ -70,6 +69,7 @@ const MyAssetsList = () => {
                     assets.map(asset => (
                             <Grid item>
                                 <MyAssetsCard asset={asset}
+
                                               imageUrl={
                                                   asset.assetImages.length > 0 ?
                                                       "AssetImages/"+asset.assetImages[0].imageUrl :
@@ -77,6 +77,7 @@ const MyAssetsList = () => {
                                               }
                                               onRemove={() => remove(asset.id)}
                                               refresh={() => fetchAssets(userId, setAssets)}
+
                                 />
                             </Grid>
                         )
@@ -84,7 +85,6 @@ const MyAssetsList = () => {
                 }
 
             </Grid>
-
 
             <Fab color="primary" aria-label="add" className={classes.fab} component={Link} to="new/asset">
                 <AddIcon/>

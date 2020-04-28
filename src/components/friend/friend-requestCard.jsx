@@ -9,9 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from '@material-ui/core/Avatar';
 import {Link} from "react-router-dom";
-import Box from "@material-ui/core/Box";
 import {useTranslation} from "react-i18next";
 import Grid from "@material-ui/core/Grid";
+
+/*Kortet til venneforespørsel, laget av Mirsa*/
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -19,17 +20,13 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 0,
         maxWidth: "100%",
         flexBasis: "100%"
-
     },
-
     photo: {
         width: theme.spacing(7),
         height: theme.spacing(7),
-
     },
     text: {
         padding: theme.spacing(2),
-
     },
     Button: {
         color: 'red',

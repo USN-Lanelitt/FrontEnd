@@ -11,13 +11,15 @@ import {useTranslation} from "react-i18next";
 import setRating from "../setRating";
 import TextField from "@material-ui/core/TextField";
 import {Redirect} from "react-router";
+import StatusMessage from "../../profile/status-message";
+import Grid from "@material-ui/core/Grid";
 
 
 const useStyles = makeStyles(theme => ({
     card: {
         height: 270,
         width: 680,
-        backgroundColor:'#cfd8dc',
+        backgroundColor:'#c8e6c9',
     },
     assetCard: {
         padding: 15,
@@ -108,7 +110,8 @@ const NewRatingsCardDesktop = ({loanId, firstname, middlename, lastname, assetId
                                     color="primary"
                                     className={classes.button}
                                     onClick={() => {
-                                        setRating(userId, loanId, ratingValue, comment, setRedirect(true))
+                                        setRating(userId, loanId, ratingValue, comment);
+                                        setRedirect(true);
                                     }}
                                 >
                                     {t('rating-card.1')}

@@ -6,7 +6,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import {useTranslation} from "react-i18next";
 import {makeStyles} from "@material-ui/core/styles";
 import {Box} from "@material-ui/core";
 
@@ -31,7 +30,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LogTable = ({log}) => {
-    const { t } = useTranslation();
     const classes = useStyles();
 
     return (
@@ -39,7 +37,7 @@ const LogTable = ({log}) => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow display="flex" alignItems="center">
-                        <TableCell m={1} gutterBottom >Logg</TableCell>
+                        <TableCell m={1} gutterBottom >Log</TableCell>
                     </TableRow>
                 </TableHead>
                 <Box className={classes.inner}>
