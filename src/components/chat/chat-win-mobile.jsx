@@ -39,12 +39,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function ChatWinMobile() {
+export default function ChatWinMobile({userId2}) {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
     const [selectedChat, setSelectedChat] = useState(null);
-    const {userId2} = useParams();
     const [redirect, setRedirect] = useState(false);
     const [user, setUser] = useState();
 
@@ -52,6 +51,11 @@ export default function ChatWinMobile() {
     useEffect(() => {
         GetUser(userId2, setUser);
         console.log(userId2);
+    }, []);
+
+
+    useEffect(() => {
+        showChat(userId, userId2, setSelectedChat);
     }, []);
 
     if(redirect){
