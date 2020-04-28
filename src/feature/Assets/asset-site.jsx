@@ -94,7 +94,12 @@ const AssetSite = () => {
                                     <Typography gutterBottom variant="h5" component="h2">
                                         {asset && asset.assetName}
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    <Typography variant="body2"
+                                                color="textSecondary"
+                                                component="p"
+                                                style={{whiteSpace: "normal",
+                                                    wordWrap: "break-word"}}
+                                    >
                                         {asset && asset.description}
                                     </Typography>
                                 </Box>

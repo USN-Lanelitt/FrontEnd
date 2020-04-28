@@ -241,5 +241,13 @@
   "freind-card": {
     "1":"Slett venn",
     "2": "Send melding"
+  },
+  "my-asset-card": {
+    "1": "Eiendelen ble opprettet!",
+    "2": "Ups, noe gikk galt!",
+    "3": "Offentlig",
+    "4": "Bare venner",
+    "5": "Publisert",
+    "6": "Publiser"
   }
 }

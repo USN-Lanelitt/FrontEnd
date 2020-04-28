@@ -15,6 +15,7 @@ import axios from "axios";
 import {useParams} from "react-router";
 import moment from "moment";
 import StatusMessage from "../profile/status-message";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     paper: {

@@ -241,5 +241,13 @@
   "freind-card": {
     "1":"Delete friend",
     "2": "Send message"
+  },
+  "my-asset-card": {
+    "1": "Asset published!",
+    "2": "Something went wrong!",
+    "3": "Public",
+    "4": "Only Friends",
+    "5": "Published",
+    "6": "Not published"
   }
 }
