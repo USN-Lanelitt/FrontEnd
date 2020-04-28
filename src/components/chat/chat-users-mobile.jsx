@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useEffect, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
@@ -52,7 +54,7 @@ const ChatUsersMobile = () => {
                 <Box className={classes.chat}>
                     <Box display="flex" alignItems="center">
                         <Box fontSize={25}  ml={15} gutterbottom >
-                            Meldinger
+                            {t('chat.1')}
                         </Box>
                     </Box>
                     <Box display="flex" alignItems="center">
@@ -64,16 +66,6 @@ const ChatUsersMobile = () => {
                                             <ListItem key={user.id} button component={Link} to={"/chat/" + user.id}>
                                                 <Box
                                                     onClick={() => {
-                                         /*               setSelectedUser(
-                                                            <Box display="flex" flexDirection="row" alignItems="center">
-                                                                <Box mr={1}>
-                                                                    <Avatar alt="img" src={user.profileImage} className={classes.smallAvatar}/>
-                                                                </Box>
-                                                                <Box fontSize={15} fontWeight="fontWeightBold" m={1}>
-                                                                    {user.firstName} {user.lastName}
-                                                                </Box>
-                                                            </Box>
-                                                        );*/
                                                         setUserId2(user.id);
                                                     }}
                                                 >

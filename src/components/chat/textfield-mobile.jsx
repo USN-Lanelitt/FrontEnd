@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useState} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -35,14 +37,14 @@ export default function TextfieldMobile (userId2) {
     };
 
     return (
-        /*Textfield og send knapp*/
+        /*-----Tekstfelt og send knapp--------*/
         <Box display="flex" alignItems="center">
             <Box className={classes.chatBox}>
                 <TextField
                     className={classes.textField}
                     margin="dense"
                     variant="outlined"
-                    label={t('chat.4')}
+                    label={t('chat.3')}
                     value={textValue}
                     onChange={e => setTextValue(e.target.value)}
 

@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useEffect, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -107,11 +109,11 @@ export default function ChatSelectedDesktop() {
         <React.Fragment>
             <Container>
                 <Paper className={classes.chat}>
-                    {/*----------top------------*/}
+                    {/*----------topp------------*/}
                     <Box style={{borderBottom: '1px solid grey', padding: '10px'}} display="flex" alignItems="center">
                         <Box style={{width:'30%'}}>
                             <Box fontSize={30} fontWeight="fontWeightBold" m={1} gutterBottom>
-                                {t('chat.2')}
+                                {t('chat.1')}
                             </Box>
                         </Box>
                         <Box style={{paddingLeft:'10px'}}>
@@ -120,7 +122,7 @@ export default function ChatSelectedDesktop() {
                     </Box>
 
                     <Box display="flex" alignItems="center">
-                        {/*----------sidelist------------*/}
+                        {/*----------sideliste------------*/}
                         <Box height={1} className={classes.chatListWindow}>
                             <List className={classes.list}>
                                 {
@@ -157,13 +159,13 @@ export default function ChatSelectedDesktop() {
                                 }
                             </List>
                         </Box>
-                        {/*----------chat window------------*/}
+                        {/*----------chatte vindu------------*/}
                         <Box className={classes.chatWindow}>
                             <Box className={classes.messageBox}>
                                 {selectedChat ?
                                     <ChatList selectedChat={selectedChat}/> :
                                     <Typography component="h4" variant="h5" align="center" style={{color: 'grey'}}>
-                                        {t('chat.3')}
+                                        {t('chat.2')}
                                     </Typography>
                                 }
                             </Box>

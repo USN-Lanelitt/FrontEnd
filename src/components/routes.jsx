@@ -53,7 +53,7 @@ const Routes = props => {
             <PrivateRoute exact path="/new/asset" component={NewAsset}/>
             <PrivateRoute exact path="/notification" component={Notification}/>
             <PrivateRoute exact path="/notificationList" component={NotificationList}/>
-            <PrivateRoute path="/friendprofile/:userId2" exact component={FriendProfile}/>
+            <PrivateRoute path="/friendprofile/:id" exact component={FriendProfile}/>
             <PrivateRoute exact path="/loanCard" component={LoanCard}/>
             <PrivateRoute path="/assetSite/:id" component={AssetSite}/>
             <PrivateRoute exact path="/chat" component={Chat}/>

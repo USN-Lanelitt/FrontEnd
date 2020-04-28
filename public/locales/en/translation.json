@@ -153,9 +153,8 @@
   },
   "chat": {
     "1": "Messages",
-    "2": "Meldinger",
-    "3": "Choose the person you wish to chat with",
-    "4": "Write a message.."
+    "2": "Choose the person you wish to chat with",
+    "3": "Write a message.."
   },
   "friend-all": {
     "1": "Friends",

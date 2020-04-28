@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import axios from "axios";
 
 export default function updateChat(setSelectedChat) {

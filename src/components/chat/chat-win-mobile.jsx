@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useEffect, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
@@ -21,7 +23,6 @@ const useStyles = makeStyles(theme => ({
     messageBox: {
         padding: '0px',
         height: '100%',
-        //overflow: "auto",
     },
     bubble: {
         backgroundColor: "silver",
@@ -47,10 +48,6 @@ export default function ChatWinMobile() {
     const [redirect, setRedirect] = useState(false);
     const [user, setUser] = useState();
 
-/*    const onSelected = (userId2) => {
-        setSelectedUser(userId2);
-        console.log(userId2);
-    };*/
 
     useEffect(() => {
         showChat(userId, userId2, setSelectedChat);
@@ -77,7 +74,7 @@ export default function ChatWinMobile() {
         <React.Fragment>
             <Container style={{paddingLeft:0, paddingRight:0}}>
                 <Box className={classes.chat}>
-                    {/*---------top-----------------*/}
+                    {/*---------topp-----------------*/}
                     <Box style={{width:'100%'}}>
                         <Box display="flex" flexDirection="row">
                             <Box>
@@ -97,7 +94,7 @@ export default function ChatWinMobile() {
                             }
                         </Box>
                     </Box>
-                    {/*-----------------chatwindow----------------*/}
+                    {/*-----------------chattevindu----------------*/}
                     <Box display="flex" alignItems="center">
                         <Box className={classes.chatWindow}>
                             <Box className={classes.messageBox}>
