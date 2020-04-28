@@ -78,8 +78,8 @@ const SignUp = ({history}) => {
                 phone: phone.value,
                 email: email.value,
                 password: password.value,
-                // newsletter: newsletter.checked,
-                // terms: terms.checked
+                newsletter: newsletter.checked,
+                terms: terms.checked
 
             })
                 .then(res => {
