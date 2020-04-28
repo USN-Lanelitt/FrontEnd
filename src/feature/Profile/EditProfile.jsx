@@ -17,7 +17,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import CloseIcon from '@material-ui/icons/Close';
 import Copyright from '../../components/home/Copyright';
 import axios from "axios";
-import app from "../../fire";
+import StatusMessage from "../../components/profile/status-message";
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import ProfileCard from "../../components/profile/profile-card";
 import FormControl from "@material-ui/core/FormControl";
@@ -117,6 +117,9 @@ const DialogTitle = withStyles(styles)(props => {
 
 const EditProfile = ({history}) => {
     const { t } = useTranslation();
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
     const handleUpdate = useCallback(async event => {
         event.preventDefault();
         // Henter verdier som er utfylt i tekst feltene på form skjema
@@ -154,7 +157,9 @@ const EditProfile = ({history}) => {
                 console.log(res);
                 console.log(res.data);
                 sessionStorage.setItem('city', res.data['city']);
-                alert('Info er lagret');
+                setShowStatusMessage(true);
+                setStatusMessage(t('editProfile.18'));
+                setStatusMessageSeverity("info");
             }
         )
         .then(
@@ -231,6 +236,8 @@ const EditProfile = ({history}) => {
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div className={classes.paper}>
+                <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                               onClose={setShowStatusMessage}/>
                 <Avatar className={classes.avatar}>
                     <EditTwoToneIcon/>
                 </Avatar>

@@ -47,7 +47,7 @@ export default function TextfieldMobile ({userId2}) {
                     className={classes.textField}
                     margin="dense"
                     variant="outlined"
-                    label={t('chat.4')}
+                    label={t('chat.3')}
                     onKeyPress={(ev) => {
                         console.log(`Pressed keyCode ${ev.key}`);
                         if (ev.key === 'Enter') {
