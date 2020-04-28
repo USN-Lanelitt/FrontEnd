@@ -71,6 +71,7 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
     const [buttonText, setButtonText] = useState(null);
     const [done, setDone] = useState(false);
     const [value, setValue] = useState(null);
+    const [disabled, setDisabled] = useState(false);
 
 
     if(done === false && user){
@@ -90,11 +91,14 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
     }
 
     const handleOnClick = () => {
+        setDisabled(true);
         if(value === 1)
             deleteFriend()
         else
             sendRequest()
     }
+
+
 
     return (
         <div>
@@ -124,18 +128,22 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
                 </CardContent>
             </Card>
             <Box mt={4}>
+                {user &&
                 <Box display="flex" flexDirection="row">
                     <Box m={2}>
-                        <Button onClick={handleOnClick} className={classes.button} type="submit"  variant="contained" color="primary">
+                        <Button onClick={handleOnClick} disabled={disabled} className={classes.button} type="submit" variant="contained"
+                                color="primary">
                             {buttonText}
                         </Button>
                     </Box>
                     <Box m={2}>
-                        <Button onClick= {getChat} component={Link} to="/chat" type="submit"  variant="contained" color="primary">
+                        <Button onClick={getChat} component={Link} to={"/chatSelected/" + user.id} type="submit"
+                                variant="contained" color="primary">
                             Send Melding
                         </Button>
                     </Box>
                 </Box>
+                }
             </Box>
         </div>
     );

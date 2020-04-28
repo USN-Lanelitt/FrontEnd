@@ -57,7 +57,7 @@ const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove, get
                     <Button className={classes.Button} onClick= {onRemove} size="small" color="primary">
                         {t('freind-card.1')}
                     </Button>
-                    <Button onClick= {getChat} component={Link} to="/chat" size="small" color="primary">
+                    <Button onClick= {getChat} component={Link} to={"/chatSelected/" + id} size="small" color="primary">
                         {t('freind-card.2')}
                     </Button>
                 </CardActions>

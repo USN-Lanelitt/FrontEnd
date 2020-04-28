@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     card: {
         height: 300,
         width: 355,
-        backgroundColor:'#cfd8dc',
+        backgroundColor:'#c8e6c9',
     },
     assetCard: {
         paddingTop:10,

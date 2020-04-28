@@ -110,7 +110,7 @@ const SearchFriends = () => {
                     renderOption={(option => (
                         <MenuItem key={option.id} onClick={onClickFriend} value={option.id}>
                             <Link className={classes.link} to={'/FriendProfile/' + option.id}>
-                                {`${option.firstName} ${option.middleName} ${option.lastName}`}
+                                {`${option.firstName}  ${option.lastName}`}
                             </Link>
                         </MenuItem>
                     ))}
