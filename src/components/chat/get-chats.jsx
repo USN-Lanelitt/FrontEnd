@@ -1,5 +1,6 @@
-import axios from "axios";
+/*Nicole har jobbet med denne siden*/
 
+import axios from "axios";
 
 export default function getChatUsers(userId, setChatUsers) {
 console.log("getChatUsers", sessionStorage.getItem('userId'));

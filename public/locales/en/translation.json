@@ -19,10 +19,10 @@
     "3": "Password",
     "4": "Remember me",
     "5": "Forgot password",
-    "6": "No accounts yet? Create an account here",
+    "6": "Don't have an account? Sign up here",
     "7": "Login",
-    "8": "Fields marked with * are required and cannot be empty.",
-    "9": "Authentication Error! Vennligst sjekk at feltene merket med * er fylt ut riktig."
+    "8": "All fields must be filled out!",
+    "9": "Something went wrong... Please check username and password."
   },
   "register": {
     "1": "Create account",
@@ -33,12 +33,13 @@
     "6": "Birthdate",
     "7": "E-mail",
     "8": "Password",
-    "9": "Password needs to have a minimum of 6 charachters",
-    "10": "I would like to subscribe to newsletter. (Will be sent to e-mail)",
-    "11": "",
+    "9": "Needs to have a minimum of 6 characters",
+    "10": "Subscribe to newsletter",
+    "11": "E-mail already in use. Click forgot password to reset your password",
     "12": "CREATE ACCOUNT",
     "13": "Already have an account? Login here!",
-    "14": "ERROR! Please check required fields marked with *."
+    "14": "ERROR! Please check required fields marked with *.",
+    "15": "You must accept Terms & Conditions."
   },
   "categories": {
     "1": "Tools",
@@ -56,7 +57,7 @@
     "5": "Messages",
     "6": "My assets",
     "7": "Lent assets",
-    "8": "Borrowed assets",
+    "8": "Borrowed items",
     "9": "Ratings",
     "10": "Edit profile",
     "11": "Contact"
@@ -153,12 +154,11 @@
   },
   "chat": {
     "1": "Messages",
-    "2": "Meldinger",
-    "3": "Choose the person you wish to chat with",
-    "4": "Write a message.."
+    "2": "Choose the person you wish to chat with",
+    "3": "Write a message.."
   },
   "friend-all": {
-    "1": "Friends",
+    "1": "FRIENDS",
     "2": "Delete friend?",
     "3": "Do you wish to delete this friend?",
     "4": "Yes",
@@ -236,7 +236,7 @@
     "1": "Loan Duration:"
   },
   "loan-accepted": {
-    "1": "Borrowed loan"
+    "1": "BORROWED ASSET"
   },
   "freind-card": {
     "1":"Delete friend",

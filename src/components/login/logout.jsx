@@ -9,7 +9,6 @@ async function Logout(history) {
             sessionStorage.clear();
         history.push("/login");
     } catch (error) {
-        alert("Logger ut");
     }
 }
 

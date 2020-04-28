@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(4, 4, 3),
-        width: 300,
-        height: 400,
+        width: 250,
+        height: 350,
     },
     textfield: {
         width:'100%',
@@ -74,6 +74,7 @@ const ReportModal = ({userId2}) => {
                 <Typography component="h1" variant="h5">
                     Rapporter sak
                 </Typography>
+
                 <form className={classes.form}  onSubmit={handleSubmit}>
                     <TextField
                         label="Emne"
@@ -84,7 +85,7 @@ const ReportModal = ({userId2}) => {
                     />
                     <TextField
                         multiline
-                        rows={10}
+                        rows={7}
                         label="Kommentar"
                         variant="outlined"
                         className={classes.textarea}

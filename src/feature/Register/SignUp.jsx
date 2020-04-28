@@ -26,13 +26,14 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import BrukerVilkar from '../../components/register/termsandconditions';
 import Copyright from '../../components/home/Copyright';
 import axios from 'axios';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 import { useTranslation } from 'react-i18next';
+import StatusMessage from "../../components/profile/status-message";
+import {register} from "../../serviceWorker";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import {element} from "prop-types";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -56,17 +57,17 @@ const useStyles = makeStyles(theme => ({
 
 const SignUp = ({history}) => {
     const { t } = useTranslation();
-    const [values, setValues] = useState({
-        showPassword: false,
-    });
-
-    const [errors, setErrors] = useState(false);
-
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [showStatusMessageEmail, setShowStatusMessageEmail] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
     const handleSignUp = useCallback(async event => {
         const {firstname, middlename, birthdate, lastname, phone, email, password, terms, newsletter} = event.target.elements;
         event.preventDefault();
         if (firstname.value.length === 0 || lastname.value.length === 0 ||  email.value.length === 0 || password.value.length < 6 || terms.checked === false) {
-            setErrors(true);
+            setShowStatusMessage(true);
+            setStatusMessage(t('login.8'));
+            setStatusMessageSeverity("error");
         }
         else {
             //console.log(terms.checked);
@@ -97,20 +98,42 @@ const SignUp = ({history}) => {
                             history.push("/login");
                             console.log(history)
                         } catch (error) {
-                            alert(error);
+                            setShowStatusMessageEmail(true);
+                            setStatusMessage(t('register.11'));
+                            setStatusMessageSeverity("error");
                         }
                     } else {
-                        alert('FEIL: feil ved registrering');
+                        setShowStatusMessageEmail(true);
+                        setStatusMessage(t('register.11'));
+                        setStatusMessageSeverity("error");
                     }
                 })
                 .catch(e => console.log(e));
         }
     }, [history]);
 
+    const [values, setValues] = useState({
+        showPassword: false,
+        firstname: '',
+        lastname:'',
+        email:'',
+        passwordField:'',
+        terms: false
+    });
+
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     const handleDateChange = date => {
         setSelectedDate(date);
+    };
+
+    const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+
+    const error = values.terms === false && showStatusMessage;
+    const handleCheck = (event) => {
+        setValues({ ...values, [event.target.name]: event.target.checked });
     };
 
     const classes = useStyles();
@@ -123,19 +146,14 @@ const SignUp = ({history}) => {
         event.preventDefault();
     };
 
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setErrors(false);
-    };
 
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
+                    <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                                   onClose={setShowStatusMessage}/>
                     <LockOutlinedIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -151,7 +169,9 @@ const SignUp = ({history}) => {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                error={errors}
+                                onChange={handleChange('firstname')}
+                                error={values.firstname.length === 0 && showStatusMessage}
+                                helperText={values.firstname.length === 0 && showStatusMessage ? t('login.8') : "" }
                                 id="sFirstname"
                                 label={t('register.2')}
                                 autoFocus
@@ -173,7 +193,9 @@ const SignUp = ({history}) => {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                error={errors}
+                                onChange={handleChange('lastname')}
+                                error={values.lastname.length === 0 && showStatusMessage}
+                                helperText={values.lastname.length === 0 && showStatusMessage ? t('login.8') : "" }
                                 id="sLastname"
                                 label={t('register.4')}
                             />
@@ -210,7 +232,9 @@ const SignUp = ({history}) => {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                error={errors}
+                                onChange={handleChange('email')}
+                                error={showStatusMessageEmail || values.email.length === 0 && showStatusMessage }
+                                helperText={values.email.length === 0 && showStatusMessage ? t('login.8') : "" || showStatusMessageEmail ? t('register.11') : ""}
                                 id="sEmail"
                                 label={t('register.7')}
                             />
@@ -218,16 +242,15 @@ const SignUp = ({history}) => {
                         <Grid item xs={12}>
                             <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined"
                                          fullWidth>
-                                <TextField
+                                <InputLabel htmlFor="outlined-adornment-password" required>{t('register.8')}</InputLabel>
+                                <OutlinedInput
                                     name="password"
-                                    variant="outlined"
-                                    label={t('register.8')}
-                                    required
                                     id="outlined-adornment-password"
-                                    error={errors}
+                                    error={values.passwordField.length === 0 && showStatusMessage}
+                                    onChange={handleChange('passwordField')}
                                     type={values.showPassword ? 'text' : 'password'}
                                     value={values.password}
-                                    helperText={t('register.9')}
+                                    placeholder={t('register.9')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -252,10 +275,13 @@ const SignUp = ({history}) => {
                             />
                         </Grid>
                         <Grid item xs={12}>
+                            <FormControl required onChange={handleCheck} error={error} component="fieldset">
                             <FormControlLabel
                                 control={<Checkbox required={true} name="terms" value="termsAndConditions" color="primary"/>}
                                 label={<BrukerVilkar/>}
                             />
+                                <FormHelperText>{t('register.15')}</FormHelperText>
+                            </FormControl>
                         </Grid>
                     </Grid>
                     <Button
@@ -274,13 +300,6 @@ const SignUp = ({history}) => {
                         </Grid>
                     </Grid>
                 </form>
-                <div className={classes.root}>
-                    <Snackbar open={errors} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="error">
-                            {t('register.14')}
-                        </Alert>
-                    </Snackbar>
-                </div>
             </div>
             <Box mt={5}>
                 <Copyright/>

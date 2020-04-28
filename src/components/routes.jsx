@@ -29,6 +29,7 @@ import AssetOwnerInfo from "../feature/Assets/asset-owner-info";
 import AssetSearch from "../feature/Assets/asset-search";
 import Chat from "../feature/Chat/chat";
 import ChatWinMobile from "./chat/chat-win-mobile";
+import ChatSelectedDesktop from "./chat/chat-selected-desktop";
 
 
 
@@ -56,7 +57,8 @@ const Routes = props => {
             <PrivateRoute exact path="/loanCard" component={LoanCard}/>
             <PrivateRoute path="/assetSite/:id" component={AssetSite}/>
             <PrivateRoute exact path="/chat" component={Chat}/>
-            <PrivateRoute exact path="/chat/:userId2/:firstName/:lastName" component={ChatWinMobile}/>
+            <PrivateRoute exact path="/chatSelected/:userId2" component={ChatSelectedDesktop}/>
+            <PrivateRoute exact path="/chat/:userId2" component={ChatWinMobile}/>
             <PrivateRoute exact path="/friendProfileCard" component={FriendProfileCard}/>
             <PrivateRoute exact path="/loantofriends" component={LoanToFriends}/>
             <PrivateRoute path="/loanrequestsend/:id/:assetId/:assetName" component={LoanRequestSend}/>

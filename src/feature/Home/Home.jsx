@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyright from '../../components/home/Copyright';
-import TextField from '@material-ui/core/TextField';
 import HomeMenu from "../../components/home/home-menu";
 import AssetSearchTextfield from "../../components/home/AssetSearchTextfield";
 

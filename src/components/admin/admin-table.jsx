@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden med hjelp av John og Farhad*/
+
 import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from "axios";
@@ -5,10 +7,10 @@ import editUser from "./edit-user";
 import { useTranslation } from 'react-i18next';
 
 const AdminTable = () => {
-    let list = [];
     const { t } = useTranslation();
-
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
+
+    /*--------------Henter alle brukerne-------------*/
     const [users, setUsers] = useState([]);
         useEffect(()=> {
             console.log("admin", sessionStorage.getItem('userId'));
