@@ -99,7 +99,7 @@ export default function ChatDesktop() {
             .catch(e => console.log(e));
     }*/
 
-    const onSelected = (userId2) => {
+   const onSelected = (userId2) => {
         showChat(userId, userId2, setSelectedChat);
         console.log(userId2);
     };
@@ -166,7 +166,7 @@ export default function ChatDesktop() {
                         </Box>
                         {/*----------chat window------------*/}
                         <Box className={classes.chatWindow}>
-                            <Box className={classes.messageBox}>
+                            <Box className={classes.messageBox} onChange={onSelected(userId2)}>
                                 {selectedChat ?
                                     <ChatList selectedChat={selectedChat}/> :
                                     <Typography component="h4" variant="h5" align="center" style={{color: 'grey'}}>

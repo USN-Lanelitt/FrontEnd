@@ -1,21 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React, {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import {useTranslation} from "react-i18next";
 import {Redirect} from "react-router";
 import useInput from "../div/use-input";
 
 const AssetSearchTextfield = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const [redirect, setRedirect] = useState(false);
     const { value:search, bind:bindSearch} = useInput('');
 
-
-
-
-
-    if(redirect==true){
+    if(redirect===true){
         return <Redirect to={"/assetsearch/"+search}/>
     }
 

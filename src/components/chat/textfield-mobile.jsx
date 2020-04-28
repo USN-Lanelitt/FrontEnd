@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import {useTranslation} from "react-i18next";
 import sendMessage from "./send-message";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles(theme => ({
@@ -26,13 +25,14 @@ const useStyles = makeStyles(theme => ({
 function TextfieldMobile ({userId2}) {
     const { t } = useTranslation();
     const classes = useStyles();
-    const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
-    const [selectedChat, setSelectedChat] = useState(null);
+    const [userId] = useState(sessionStorage.getItem('userId'));
+    const [setSelectedChat] = useState(null);
     const [textValue, setTextValue] = useState('');
 
     const handleClick = () => {
         sendMessage(userId, userId2, textValue, setSelectedChat);
         console.log(textValue);
+        setTextValue("");
     };
 
     return (
@@ -44,6 +44,15 @@ function TextfieldMobile ({userId2}) {
                     margin="dense"
                     variant="outlined"
                     label={t('chat.4')}
+                    onKeyPress={(ev) => {
+                        console.log(`Pressed keyCode ${ev.key}`);
+                        if (ev.key === 'Enter') {
+                            console.log(`Pressed keyCode ${ev.key}`);
+                            // Do code here
+                            handleClick();
+                            ev.preventDefault();
+                        }
+                    }}
                     value={textValue}
                     onChange={e => setTextValue(e.target.value)}
                 />
