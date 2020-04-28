@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -7,6 +7,9 @@ import Grid from "@material-ui/core/Grid";
 import Copyright from "../../components/home/Copyright";
 import MyAssetContainer from "../../components/profile/my-asset-container";
 import {useTranslation} from "react-i18next";
+import {useMediaQuery} from "@material-ui/core";
+import StatusMessage from "../../components/profile/status-message";
+import {useParams} from "react-router";
 
 const drawerWidth = 240;
 
@@ -71,7 +74,13 @@ export default function Profile() {
                 <hr/>
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                        <Typography component="h1"
+                                    variant="h2"
+                                    align="center"
+                                    color="textPrimary"
+                                    gutterBottom
+
+                        >
                             {t('profile.1').toUpperCase()}
                         </Typography>
 

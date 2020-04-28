@@ -7,6 +7,8 @@ import Box from "@material-ui/core/Box";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 import Typography from "@material-ui/core/Typography";
+import {Link} from "react-router-dom";
+import CardActionArea from "@material-ui/core/CardActionArea";
 
 
 
@@ -64,6 +66,7 @@ const AssetOwnerInfo = ({asset, children}) => {
     return (
         <div>
             <Card className={styles.card} elevation="0">
+                <CardActionArea component={Link} to={"/friendprofile/" + asset.users.id}>
                 <CardContent>
                     <IconButton>
                         <StyledBadge
@@ -91,6 +94,7 @@ const AssetOwnerInfo = ({asset, children}) => {
 
 
                 </CardContent>
+                </CardActionArea>
             </Card>
 
         </div>

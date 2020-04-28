@@ -15,7 +15,8 @@ import axios from "axios";
 import {useParams} from "react-router";
 import moment from "moment";
 import StatusMessage from "../profile/status-message";
-import {Link} from "react-router-dom";
+import {Redirect} from "react-router";
+
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -41,6 +42,8 @@ const LoanRequestSend = () => {
     const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD") );
     const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD") );
     const {id, assetId, assetName} = useParams();
+    const [redirect, setRedirect] = React.useState(false);
+
 
     function sendMessage(message) {
         console.log("sendMessage", userId, sessionStorage.getItem('userId'));
@@ -64,6 +67,7 @@ const LoanRequestSend = () => {
                 setShowStatusMessage(true);
                 setStatusMessage("Forespørsel sendt");
                 setStatusMessageSeverity("success");
+                setRedirect(true);
             }
         })
             .catch(e => {
@@ -91,7 +95,7 @@ const LoanRequestSend = () => {
     };
 
 
-
+    if (redirect) return <Redirect to={"/assetSite/" + assetId} />;
 
     return (
         <Box display="flex" justifyContent="center">

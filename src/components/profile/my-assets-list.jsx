@@ -9,6 +9,9 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import ConfirmDialog from "./confirm-dialog";
 import {fetchAssets} from "./asset-repository";
+import Progress from "../progress";
+
+        
 
 
 const useStyles = makeStyles(theme => ({
@@ -52,6 +55,7 @@ const MyAssetsList = () => {
         setShowConfirmDialog(false);
     }
 
+    if (assets.length === 0) return <Progress/>
 
     return (
         <Container>
