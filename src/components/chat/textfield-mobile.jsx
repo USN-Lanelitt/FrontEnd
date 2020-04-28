@@ -1,5 +1,4 @@
-/*Nicole har jobbet med denne siden*/
-
+/*Nicole har jobbet med denne siden og Farhad(refresh window)*/
 import React, {useState} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -25,17 +24,19 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
 export default function TextfieldMobile ({userId2}) {
     const { t } = useTranslation();
     const classes = useStyles();
-    const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
-    const [selectedChat, setSelectedChat] = useState(null);
+    const [userId] = useState(sessionStorage.getItem('userId'));
+    const [setSelectedChat] = useState(null);
     const [textValue, setTextValue] = useState('');
     let nr = 90;
 
     const handleClick = () => {
         sendMessage(userId, userId2, textValue, setSelectedChat);
         console.log(textValue);
+        setTextValue("");
     };
 
     return (
@@ -46,6 +47,15 @@ export default function TextfieldMobile ({userId2}) {
                     className={classes.textField}
                     margin="dense"
                     variant="outlined"
+                    label={t('chat.4')}
+                    onKeyPress={(ev) => {
+                        console.log(`Pressed keyCode ${ev.key}`);
+                        if (ev.key === 'Enter') {
+                            console.log(`Pressed keyCode ${ev.key}`);
+                            handleClick();
+                            ev.preventDefault();
+                        }
+                    }}
                     label={t('chat.3')}
                     value={textValue}
                     onChange={e => setTextValue(e.target.value)}

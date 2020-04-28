@@ -133,7 +133,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function NavBar(props) {
 
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const [selectedLang, setSelectedLang] = useState(false);
     function handleLanguageNO(lang) {
         i18n.changeLanguage(lang);
@@ -242,6 +242,17 @@ export default function NavBar(props) {
             onClose={handleMobileMenuClose}
         >
             {loggedIn && (<div>
+                <MenuItem>
+                    {selectedLang ?
+                        <IconButton color="inherit" style={{fontSize: 'medium'}} onClick={()=>handleLanguageNO('no')}>
+                            <LanguageIcon/>
+                           <p>Norsk</p>
+                        </IconButton> :
+                        <IconButton color="inherit" style={{fontSize: 'medium'}}  onClick={()=>handleLanguageEN('en')}>
+                            <LanguageIcon/>
+                            <p>English</p>
+                        </IconButton>}
+                </MenuItem>
                 <MenuItem component={Link} to="/Notification">
                     <IconButton aria-label="show new notifications" color="inherit">
                         <Badge badgeContent={0} color="secondary">
@@ -271,7 +282,7 @@ export default function NavBar(props) {
                         <p>Logg på</p>
                     </MenuItem>:
                 <MenuItem onClick={() => Logout()}>
-                    <IconButton aria-label="show 1 new notifications" color="inherit">
+                    <IconButton color="inherit">
                         <ExitToAppIcon/>
                     </IconButton>
                     <p>Logg ut</p>
