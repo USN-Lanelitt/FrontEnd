@@ -1,13 +1,13 @@
 /*Nicole har jobbet med denne siden*/
-
+import React from "react";
 import React, {useEffect, useState} from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Box from "@material-ui/core/Box";
-import axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
+
 
 const useStyles = makeStyles(theme => ({
     list: {
