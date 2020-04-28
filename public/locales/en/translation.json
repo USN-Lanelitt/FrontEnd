@@ -130,7 +130,9 @@
     "3": "Description",
     "4": "SELECT IMAGE",
     "5": "Public",
-    "6": "Create"
+    "6": "Create",
+    "7": "The asset is created!",
+    "8": "Something went wrong!"
   },
   "rating-card": {
     "1": "Save"
@@ -248,6 +250,7 @@
     "3": "Public",
     "4": "Only Friends",
     "5": "Published",
-    "6": "Not published"
+    "6": "publish",
+    "7": "Unpublished"
   }
 }

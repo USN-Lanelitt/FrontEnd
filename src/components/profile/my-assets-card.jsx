@@ -65,7 +65,7 @@ const MyAssetsCard = ({asset, imageUrl, onRemove, refresh}) => {
                 console.log(result);
                 setPublished(true);
                 setShowStatusMessage(true);
-                setStatusMessage(t("my-asset-card.1"));
+                setStatusMessage(asset.published ? t("my-asset-card.7") : t("my-asset-card.1"));
                 setStatusMessageSeverity("success");
                 refresh();
             })

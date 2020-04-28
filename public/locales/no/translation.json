@@ -130,7 +130,9 @@
     "3": "Beskrivelse",
     "4": "VELG BILDE",
     "5": "Offentlig",
-    "6": "Opprett"
+    "6": "Opprett",
+    "7": "Eiendelen ble opprettet!",
+    "8": "Ups, noe gikk galt!"
   },
   "rating-card": {
     "1": "Lagre"
@@ -244,11 +246,12 @@
     "2": "Send melding"
   },
   "my-asset-card": {
-    "1": "Eiendelen ble opprettet!",
+    "1": "Eiendelen ble publisert!",
     "2": "Ups, noe gikk galt!",
     "3": "Offentlig",
     "4": "Bare venner",
     "5": "Publisert",
-    "6": "Publiser"
+    "6": "Publiser",
+    "7": "Eiendelen er ikke lenger synlig for andre"
   }
 }
