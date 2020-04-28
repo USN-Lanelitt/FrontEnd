@@ -133,7 +133,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function NavBar(props) {
 
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const [selectedLang, setSelectedLang] = useState(false);
     function handleLanguageNO(lang) {
         i18n.changeLanguage(lang);
