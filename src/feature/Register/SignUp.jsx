@@ -28,10 +28,8 @@ import Copyright from '../../components/home/Copyright';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import StatusMessage from "../../components/profile/status-message";
-import {register} from "../../serviceWorker";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
-import {element} from "prop-types";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
 const useStyles = makeStyles(theme => ({
