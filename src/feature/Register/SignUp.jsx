@@ -290,13 +290,6 @@ const SignUp = ({history}) => {
                         className={classes.submit}
                     >{t('register.12')}
                     </Button>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link href="/login" variant="body2" style={{textDecoration: "none"}}>
-                                {t('register.13')}
-                            </Link>
-                        </Grid>
-                    </Grid>
                 </form>
             </div>
             <Box mt={5}>

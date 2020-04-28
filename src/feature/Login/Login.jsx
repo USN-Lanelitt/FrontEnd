@@ -27,6 +27,11 @@ import Copyright from '../../components/home/Copyright';
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
 import StatusMessage from "../../components/profile/status-message";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Badge from "@material-ui/core/Badge";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MenuItem from "@material-ui/core/MenuItem";
+import SportsHandballIcon from "@material-ui/icons/SportsHandball";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -146,6 +151,8 @@ const Login = ({ history }) => {
         return <Redirect to="/" />;
     }
 
+    const menuId = 'primary-search-account-menu';
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -207,20 +214,13 @@ const Login = ({ history }) => {
                     >
                         {t('login.7')}
                     </Button>
-
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
                                 {t('login.5')}
                             </Link>
                         </Grid>
-                        <Grid item>
-                            <Link href="/signup" variant="body2">
-                                {t('login.6')}
-                            </Link>
-                        </Grid>
                     </Grid>
-
                 </form>
             </div>
             <Box mt={8}>

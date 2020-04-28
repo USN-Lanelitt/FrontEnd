@@ -18,13 +18,13 @@
     "5": "Logg ut"
   },
   "login": {
-    "1": "Logg inn",
+    "1": "Logg på",
     "2": "Brukernavn",
     "3": "Passord",
     "4": "Husk meg",
     "5": "Glemt passord",
-    "6": "Har ikke konto? Opprett her",
-    "7": "Logg inn",
+    "6": "Har ikke konto?",
+    "7": "Logg ut",
     "8": "Felt merket med * må fylles ut!",
     "9": "Oi! noe gikk galt... vennligst sjekk brukernavn / passord og prøv på nytt. "
   },

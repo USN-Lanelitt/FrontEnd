@@ -27,6 +27,7 @@ import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
 import { useTranslation } from 'react-i18next';
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import SportsHandballIcon from '@material-ui/icons/SportsHandball';
 
 
 
@@ -133,7 +134,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function NavBar(props) {
 
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [selectedLang, setSelectedLang] = useState(false);
     function handleLanguageNO(lang) {
         i18n.changeLanguage(lang);
@@ -218,7 +219,7 @@ export default function NavBar(props) {
         >
             {!loggedIn ?
                 <MenuItem onClick={handleMenuClose} component={Link} to="/login">Logg på</MenuItem>
-                : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>
+                : <MenuItem onClick={() => Logout()}>{t('login.7')}</MenuItem>
             }
         </Menu>
 
@@ -241,18 +242,18 @@ export default function NavBar(props) {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
+            <MenuItem>
+                {selectedLang ?
+                    <IconButton color="inherit" style={{fontSize: 'medium'}} onClick={()=>handleLanguageNO('no')}>
+                        <LanguageIcon/>
+                        <p>Norsk</p>
+                    </IconButton> :
+                    <IconButton color="inherit" style={{fontSize: 'medium'}}  onClick={()=>handleLanguageEN('en')}>
+                        <LanguageIcon/>
+                        <p>English</p>
+                    </IconButton>}
+            </MenuItem>
             {loggedIn && (<div>
-                <MenuItem>
-                    {selectedLang ?
-                        <IconButton color="inherit" style={{fontSize: 'medium'}} onClick={()=>handleLanguageNO('no')}>
-                            <LanguageIcon/>
-                           <p>Norsk</p>
-                        </IconButton> :
-                        <IconButton color="inherit" style={{fontSize: 'medium'}}  onClick={()=>handleLanguageEN('en')}>
-                            <LanguageIcon/>
-                            <p>English</p>
-                        </IconButton>}
-                </MenuItem>
                 <MenuItem component={Link} to="/Notification">
                     <IconButton aria-label="show new notifications" color="inherit">
                         <Badge badgeContent={0} color="secondary">
@@ -269,6 +270,20 @@ export default function NavBar(props) {
                 </IconButton>
                 <p>Meldiger</p>
             </MenuItem></div>)}
+            {!loggedIn && (
+                <MenuItem component={Link} to="/signup">
+                <IconButton
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    size="small"
+                    color="inherit"
+                >
+                    <SportsHandballIcon/>
+                    {t('login.6')}
+                </IconButton>
+                </MenuItem>
+            )}
             {!loggedIn ?
                     <MenuItem component={Link} to="/login">
                         <IconButton
@@ -279,13 +294,13 @@ export default function NavBar(props) {
                         >
                             <AccountCircle/>
                         </IconButton>
-                        <p>Logg på</p>
+                        <p>{t('login.1')}</p>
                     </MenuItem>:
                 <MenuItem onClick={() => Logout()}>
                     <IconButton color="inherit">
                         <ExitToAppIcon/>
                     </IconButton>
-                    <p>Logg ut</p>
+                    <p>{t('login.7')}</p>
                 </MenuItem>}
         </Menu>
     );
@@ -363,7 +378,20 @@ export default function NavBar(props) {
 
                         </div>)}
 
-                        {/*----------Logg på/av Icon knapp--------------*/}
+                        {/*----------Opprett konto / Logg på/av Icon knapp--------------*/}
+                        {!loggedIn && (
+                                <IconButton
+                                    aria-label="account of current user"
+                                    aria-controls="primary-search-account-menu"
+                                    aria-haspopup="true"
+                                    size="small"
+                                    color="inherit"
+                                    component={Link} to="/signup"
+                                >
+                                    <SportsHandballIcon/>
+                                    {t('login.6')}
+                                </IconButton>
+                                )}
                         {!loggedIn ?
                                 <IconButton
                                     edge="end"
@@ -371,9 +399,11 @@ export default function NavBar(props) {
                                     aria-controls={menuId}
                                     aria-haspopup="true"
                                     color="inherit"
+                                    size="small"
                                     component={Link} to="/login"
                                 >
                                     <AccountCircle/>
+                                    {t('login.1')}
                                 </IconButton>
                          :
                             <IconButton
