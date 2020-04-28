@@ -49,18 +49,10 @@ export default function ChatWinMobile() {
     const [user, setUser] = useState();
 
 
-
     useEffect(() => {
         GetUser(userId2, setUser);
         console.log(userId2);
     }, []);
-
-/*    const update = () => {
-        {
-            userId2 &&
-            showChat(userId, userId2, setSelectedChat);
-        }
-    }*/
 
     if(redirect){
         return <Redirect to={"/chat"}/>

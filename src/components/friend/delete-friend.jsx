@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function deleteFriend(userId, userId2, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity) {
     console.log("deleteFriend", sessionStorage.getItem('userId'));
-    axios.delete('/user/'+ userId +'/friend/'+ userId2 + '/delete')
+    axios.post('/user/'+ userId +'/friend/'+ userId2 + '/delete')
         .then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
