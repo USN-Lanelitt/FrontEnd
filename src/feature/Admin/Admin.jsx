@@ -11,23 +11,10 @@ import ReportList from "../../components/admin/report-list";
 import LogDropdown from "../../components/admin/log-dropdown";
 import {useTranslation} from "react-i18next";
 import LogList from "../../components/admin/log-list";
+import ReportTitle from "../../components/admin/report-title";
 
 
 const useStyles = makeStyles(theme => ({
-    icon: {
-        marginRight: theme.spacing(2),
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6),
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4),
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
-    },
     reportBox: {
         padding:"100px",
     },
@@ -35,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Admin() {
-    const { t } = useTranslation();
     const classes = useStyles();
 
     return (
@@ -45,28 +31,35 @@ export default function Admin() {
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            {t('admin.1')}
+                            Administrator
                         </Typography>
-                        <Typography variant="h5" align="center" color="textSecondary" paragraph>
+           {/*             <Typography variant="h5" align="center" color="textSecondary" paragraph>
                             {t('admin.2')}
-                        </Typography>
+                        </Typography>*/}
                     </Container>
                 </div>
 
-                <Container className={classes.cardGrid} >
-                    <h3>{t('admin.3')}</h3>
-                    <hr/>
-                    <Grid item xs={12}>
+                <Container item m={8}>
+                   {/* <h3>{t('admin.3')}</h3>
+                    <hr/>*/}
+                    <Grid>
                         <AmountTable/>
                         <AdminTable/>
                     </Grid>
 
-                    <Grid className={classes.reportBox} item xs={12}>
-                    <h3>{t('admin.4')}</h3>
-                    <hr/>
-                    <ReportList/>
-                    </Grid>
+                    {/*<h3>{t('admin.4')}</h3>
+                    <hr/>*/}
                     <Grid>
+                        <ReportList/>
+                    </Grid>
+
+                    <Grid
+                        style={{marginTop: 50}}
+                        container
+                        direction="row"
+                        justify="space-evenly"
+                        alignItems="flex-start"
+                    >
                         <LogDropdown/>
                         <LogList/>
                     </Grid>

@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden med hjelp av John og Farhad*/
+
 import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from "axios";
@@ -5,10 +7,9 @@ import editUser from "./edit-user";
 import { useTranslation } from 'react-i18next';
 
 const AdminTable = () => {
-    let list = [];
-    const { t } = useTranslation();
-
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
+
+    /*--------------Henter alle brukerne-------------*/
     const [users, setUsers] = useState([]);
         useEffect(()=> {
             console.log("admin", sessionStorage.getItem('userId'));
@@ -27,13 +28,12 @@ const AdminTable = () => {
     const [state, setState] = React.useState({
         columns: [
             { title: 'Id', field: 'id' },
-            { title: 'Visningsnavn', field: 'nickname' },
-            { title: 'Fornavn', field: 'firstName' },
-            { title: 'Mellomnavn', field: 'middleName' },
-            { title: 'Etternavn', field: 'lastName' },
-            { title: 'Brukertype', field: 'usertype' },
-            { title: 'Aktiv', field: 'active'},
-            { title: 'Nyheter', field: 'newsSubscription'},
+            { title: 'Nickname', field: 'nickname' },
+            { title: 'Firstname', field: 'firstName' },
+            { title: 'Middlename', field: 'middleName' },
+            { title: 'Lastname', field: 'lastName' },
+            { title: 'Usertype', field: 'usertype' },
+            { title: 'Active', field: 'active'},
         ],
         data: users
     });
@@ -42,7 +42,7 @@ const AdminTable = () => {
     return (
         <div >
             <MaterialTable
-                title={t('admin-table.10')}
+                title='User administration'
                 columns={state.columns}
                 data={users}
                 editable={{
@@ -68,8 +68,8 @@ const AdminTable = () => {
                                     newData.middleName,
                                     newData.lastName,
                                     newData.usertype,
-                                    newData.active,
-                                    newData.newsSubscription);
+                                    newData.active
+                                );
                                 console.log(
                                     newData.id,
                                     newData.nickname,
@@ -77,8 +77,8 @@ const AdminTable = () => {
                                     newData.middleName,
                                     newData.lastName,
                                     newData.usertype,
-                                    newData.active,
-                                    newData.newsSubscription);
+                                    newData.active
+                                );
                                 if (oldData) {
                                     setState((prevState) => {
                                         console.log(oldData.id);

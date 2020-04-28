@@ -8,7 +8,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import ConfirmDialog from "../user/confirm-dialog";
 import {Visibility} from "@material-ui/icons";
-import {useTranslation} from "react-i18next";
 import {makeStyles} from "@material-ui/core/styles";
 import {Box} from "@material-ui/core";
 
@@ -20,7 +19,6 @@ const useStyles = makeStyles(theme => ({
         height: '440px',
         display: "flex",
         justifyContent: 'space-evenly',
-
     },
     list: {
         padding: '0px',
@@ -30,36 +28,36 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ReportTable = ({reports}) => {
-    const { t } = useTranslation();
     const [title, setTitle] = React.useState(false);
     const [text, setText] = React.useState(false);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
     const classes = useStyles();
-    console.log('reportModal');
 
     const onShow = (subject, comment) => {
         setShowConfirmDialog(true);
         setTitle(subject);
         setText(comment);
-        console.log('reportshow');
     };
 
     function onClose() {
         setShowConfirmDialog(false);
-        console.log('reportclose');
     }
 
     return (
         <TableContainer className={classes.outer} component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
+                    <Box style={{margin:20}} fontSize={20} >
+                        Reports
+                    </Box>
+
                     <TableRow>
-                        <TableCell>{t('report-table.1')}</TableCell>
-                        <TableCell>{t('report-table.2')}</TableCell>
-                        <TableCell>{t('report-table.3')}</TableCell>
-                        <TableCell>{t('report-table.4')}</TableCell>
-                        <TableCell>{t('report-table.5')}</TableCell>
-                        <TableCell>{t('report-table.6')}</TableCell>
+                        <TableCell>Actions</TableCell>
+                        <TableCell>Id</TableCell>
+                        <TableCell>From user</TableCell>
+                        <TableCell>About user</TableCell>
+                        <TableCell>Subject</TableCell>
+                        <TableCell>Timestamp</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody className={classes.list}>
@@ -79,7 +77,7 @@ const ReportTable = ({reports}) => {
                                         title={title}
                                         message={text}
                                         onConfirm={onClose}
-                                        confirmButtonText="Lukk"
+                                        confirmButtonText="Close"
                                         open={showConfirmDialog}
                                     />
                                 </TableCell>

@@ -26,6 +26,8 @@ import NotificationList from "../notification/notificationList";
 import SidePanel from "./SidePanel";
 import SearchFriends from "../search/search-friends";
 import { useTranslation } from 'react-i18next';
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import SportsHandballIcon from '@material-ui/icons/SportsHandball';
 
 
 
@@ -161,8 +163,6 @@ export default function NavBar(props) {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
-
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -171,6 +171,9 @@ export default function NavBar(props) {
         setOpen(false);
     };
 
+    const handleClickAway = () => {
+        setOpen(false);
+    };
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
@@ -216,7 +219,7 @@ export default function NavBar(props) {
         >
             {!loggedIn ?
                 <MenuItem onClick={handleMenuClose} component={Link} to="/login">Logg på</MenuItem>
-                : <MenuItem onClick={() => Logout()}>Logg av</MenuItem>
+                : <MenuItem onClick={() => Logout()}>{t('login.7')}</MenuItem>
             }
         </Menu>
 
@@ -239,6 +242,17 @@ export default function NavBar(props) {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
+            <MenuItem>
+                {selectedLang ?
+                    <IconButton color="inherit" style={{fontSize: 'medium'}} onClick={()=>handleLanguageNO('no')}>
+                        <LanguageIcon/>
+                        <p>Norsk</p>
+                    </IconButton> :
+                    <IconButton color="inherit" style={{fontSize: 'medium'}}  onClick={()=>handleLanguageEN('en')}>
+                        <LanguageIcon/>
+                        <p>English</p>
+                    </IconButton>}
+            </MenuItem>
             {loggedIn && (<div>
                 <MenuItem component={Link} to="/Notification">
                     <IconButton aria-label="show new notifications" color="inherit">
@@ -256,6 +270,20 @@ export default function NavBar(props) {
                 </IconButton>
                 <p>Meldiger</p>
             </MenuItem></div>)}
+            {!loggedIn && (
+                <MenuItem component={Link} to="/signup">
+                <IconButton
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    size="small"
+                    color="inherit"
+                >
+                    <SportsHandballIcon/>
+                    {t('login.6')}
+                </IconButton>
+                </MenuItem>
+            )}
             {!loggedIn ?
                     <MenuItem component={Link} to="/login">
                         <IconButton
@@ -266,13 +294,13 @@ export default function NavBar(props) {
                         >
                             <AccountCircle/>
                         </IconButton>
-                        <p>Logg på</p>
+                        <p>{t('login.1')}</p>
                     </MenuItem>:
                 <MenuItem onClick={() => Logout()}>
-                    <IconButton aria-label="show 1 new notifications" color="inherit">
+                    <IconButton color="inherit">
                         <ExitToAppIcon/>
                     </IconButton>
-                    <p>Logg ut</p>
+                    <p>{t('login.7')}</p>
                 </MenuItem>}
         </Menu>
     );
@@ -290,6 +318,7 @@ export default function NavBar(props) {
                 <Toolbar>
                     {loggedIn && (<div>
                         {/*----------Meny Icon knapp som blir vist når bruker er logget inn--------------*/}
+                        <ClickAwayListener onClickAway={handleClickAway}>
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
@@ -299,6 +328,7 @@ export default function NavBar(props) {
                         >
                             <MenuIcon/>
                         </IconButton>
+                        </ClickAwayListener>
                     </div>)}
                         <Typography className={classes.title} variant="h5" noWrap component={Link} to="/" style={{textDecoration: "none", color: "white"}}>
                             Lånelitt
@@ -306,8 +336,9 @@ export default function NavBar(props) {
 
 
                         {/*----------Søke felt i Navbar Icon knapp--------------*/}
+                    {loggedIn &&
                     <SearchFriends/>
-
+                    }
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
 
@@ -347,7 +378,20 @@ export default function NavBar(props) {
 
                         </div>)}
 
-                        {/*----------Logg på/av Icon knapp--------------*/}
+                        {/*----------Opprett konto / Logg på/av Icon knapp--------------*/}
+                        {!loggedIn && (
+                                <IconButton
+                                    aria-label="account of current user"
+                                    aria-controls="primary-search-account-menu"
+                                    aria-haspopup="true"
+                                    size="small"
+                                    color="inherit"
+                                    component={Link} to="/signup"
+                                >
+                                    <SportsHandballIcon/>
+                                    {t('login.6')}
+                                </IconButton>
+                                )}
                         {!loggedIn ?
                                 <IconButton
                                     edge="end"
@@ -355,9 +399,11 @@ export default function NavBar(props) {
                                     aria-controls={menuId}
                                     aria-haspopup="true"
                                     color="inherit"
+                                    size="small"
                                     component={Link} to="/login"
                                 >
                                     <AccountCircle/>
+                                    {t('login.1')}
                                 </IconButton>
                          :
                             <IconButton

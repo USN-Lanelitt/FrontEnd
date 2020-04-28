@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useEffect, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
@@ -16,10 +18,10 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles(theme => ({
     chat: {
         width: '100%',
-        height: '500px',
+
     },
     chatListWindow: {
-        height: '100%',
+        height: '550px',
         width: '100%',
     },
     list: {
@@ -33,9 +35,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-/*const [selectedUser, setSelectedUser] = useState('');
-
-const globalStateContext = React.createContext(globalState);*/
 
 const ChatUsersMobile = () => {
     const { t } = useTranslation();
@@ -54,8 +53,8 @@ const ChatUsersMobile = () => {
         <React.Fragment>
                 <Box className={classes.chat}>
                     <Box display="flex" alignItems="center">
-                        <Box fontSize={30}  m={1} gutterBottom >
-                            Meldinger
+                        <Box fontSize={25}  ml={15} gutterbottom >
+                            {t('chat.1')}
                         </Box>
                     </Box>
                     <Box display="flex" alignItems="center">
@@ -63,20 +62,10 @@ const ChatUsersMobile = () => {
                             <List className={classes.list}>
                                 {
                                     chatUsers.map((user) => (
-                                        <Box display="flex" width={1}>
-                                            <ListItem key={user.id} button component={Link} to={"/chat/" + user.id+"/"+user.firstName+"/"+user.lastName}>
+                                        <Box display="flex" width={1} key={user.id}>
+                                            <ListItem key={user.id} button component={Link} to={"/chat/" + user.id}>
                                                 <Box
                                                     onClick={() => {
-                                         /*               setSelectedUser(
-                                                            <Box display="flex" flexDirection="row" alignItems="center">
-                                                                <Box mr={1}>
-                                                                    <Avatar alt="img" src={user.profileImage} className={classes.smallAvatar}/>
-                                                                </Box>
-                                                                <Box fontSize={15} fontWeight="fontWeightBold" m={1}>
-                                                                    {user.firstName} {user.lastName}
-                                                                </Box>
-                                                            </Box>
-                                                        );*/
                                                         setUserId2(user.id);
                                                     }}
                                                 >
@@ -84,7 +73,7 @@ const ChatUsersMobile = () => {
                                                         <Box m={1}>
                                                             <Avatar alt="img" src={user.profileImage} className={classes.largeAvatar}/>
                                                         </Box>
-                                                        <Box fontSize={20}  m={1} gutterBottom >
+                                                        <Box fontSize={20}  m={1} gutterbottom >
                                                             {user.firstName} {user.middleName} {user.lastName}
                                                         </Box>
                                                     </Box>

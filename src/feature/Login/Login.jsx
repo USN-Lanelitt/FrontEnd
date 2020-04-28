@@ -26,11 +26,13 @@ import { AuthContext } from "../../Auth";
 import Copyright from '../../components/home/Copyright';
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
-import MuiAlert from "@material-ui/lab/Alert";
-import Snackbar from "@material-ui/core/Snackbar";
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+import StatusMessage from "../../components/profile/status-message";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Badge from "@material-ui/core/Badge";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MenuItem from "@material-ui/core/MenuItem";
+import SportsHandballIcon from "@material-ui/icons/SportsHandball";
+
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -53,13 +55,17 @@ const useStyles = makeStyles(theme => ({
 
 const Login = ({ history }) => {
     const { t } = useTranslation();
-    const [errors, setErrors] = useState(false);
-    const [warnings, setWarnings] = useState(false);
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
+
     const handleLogin = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
         if (email.value.length === 0 || password.value.length === 0) {
-            setErrors(true);
+            setShowStatusMessage(true);
+            setStatusMessage(t('login.8'));
+            setStatusMessageSeverity("error");
         }
         else {
             let iCode = 0;
@@ -106,18 +112,21 @@ const Login = ({ history }) => {
                 .then(()=>{
                     if (iCode === 200) {
                         try {
-                            //alert(sessionStorage.getItem('userId'));
                             app
                                 .auth()
                                 .signInWithEmailAndPassword(email.value, password.value);
                             history.push("/");
                         } catch (error) {
-                            setErrors(true);
+                            setShowStatusMessage(true);
+                            setStatusMessage(t('login.8'));
+                            setStatusMessageSeverity("error");
 
                         }
                     }
                     else {
-                        setWarnings(true);
+                        setShowStatusMessage(true);
+                        setStatusMessage(t('login.9'));
+                        setStatusMessageSeverity("error");
                     }
                 })
                 .catch(e=>console.log(e))
@@ -137,24 +146,19 @@ const Login = ({ history }) => {
         event.preventDefault();
     };
 
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setErrors(false);
-        setWarnings(false);
-    };
-
     const { currentUser } = useContext(AuthContext);
     if (currentUser) {
         return <Redirect to="/" />;
     }
 
+    const menuId = 'primary-search-account-menu';
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
+                <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                               onClose={setShowStatusMessage}/>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
@@ -167,7 +171,7 @@ const Login = ({ history }) => {
                         variant="outlined"
                         margin="normal"
                         id="sEmail"
-                        error={errors}
+                        error={showStatusMessage}
                         label={t('login.2')}
                         type="text"
                         required
@@ -177,7 +181,7 @@ const Login = ({ history }) => {
                         <InputLabel htmlFor="outlined-adornment-password" required>{t('login.3')}</InputLabel>
                         <OutlinedInput
                             name="password"
-                            error={errors}
+                            error={showStatusMessage}
                             id="outlined-adornment-password"
                             type={values.showPassword ? 'text' : 'password'}
                             endAdornment={
@@ -210,35 +214,14 @@ const Login = ({ history }) => {
                     >
                         {t('login.7')}
                     </Button>
-
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
                                 {t('login.5')}
                             </Link>
                         </Grid>
-                        <Grid item>
-                            <Link href="/signup" variant="body2">
-                                {t('login.6')}
-                            </Link>
-                        </Grid>
                     </Grid>
-
                 </form>
-                <div className={classes.root}>
-                    <Snackbar open={errors} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="warning">
-                            {t('login.8')}
-                        </Alert>
-                    </Snackbar>
-                </div>
-                <div className={classes.root}>
-                    <Snackbar open={warnings} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="error">
-                            {t('login.9')}
-                        </Alert>
-                    </Snackbar>
-                </div>
             </div>
             <Box mt={8}>
                 <Copyright />

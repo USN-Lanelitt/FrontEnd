@@ -17,7 +17,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import CloseIcon from '@material-ui/icons/Close';
 import Copyright from '../../components/home/Copyright';
 import axios from "axios";
-import app from "../../fire";
+import StatusMessage from "../../components/profile/status-message";
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import ProfileCard from "../../components/profile/profile-card";
 import FormControl from "@material-ui/core/FormControl";
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%',
         marginTop: theme.spacing(1),
     },
     submit: {
@@ -69,8 +69,8 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "95px",
     },
     imageBox: {
-        height: "135px",
-        width: "350px",
+        height: "180px",
+        width: "250px",
     }
 }));
 
@@ -115,13 +115,13 @@ const DialogTitle = withStyles(styles)(props => {
     );
 });
 
-const user = app.auth().currentUser;
-
 const EditProfile = ({history}) => {
     const { t } = useTranslation();
+    const [showStatusMessage, setShowStatusMessage] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
     const handleUpdate = useCallback(async event => {
         event.preventDefault();
-        let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
         const {nickname, firstname, middlename, lastname, phone, address1, address2, zipcode, city, newsletter} = event.target.elements;
         //Sette nye verdier i sessionStorage
@@ -157,7 +157,9 @@ const EditProfile = ({history}) => {
                 console.log(res);
                 console.log(res.data);
                 sessionStorage.setItem('city', res.data['city']);
-                alert('Info er lagret');
+                setShowStatusMessage(true);
+                setStatusMessage(t('editProfile.18'));
+                setStatusMessageSeverity("info");
             }
         )
         .then(
@@ -234,6 +236,8 @@ const EditProfile = ({history}) => {
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div className={classes.paper}>
+                <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                               onClose={setShowStatusMessage}/>
                 <Avatar className={classes.avatar}>
                     <EditTwoToneIcon/>
                 </Avatar>
@@ -247,7 +251,7 @@ const EditProfile = ({history}) => {
                               direction="row"
                               justify="center"
                               alignItems="center">
-                            <CardContent>
+                            <CardContent >
                                 <IconButton onClick={handleClickOpen}>
                                     <ProfileCard/>
                                 </IconButton>
@@ -256,7 +260,7 @@ const EditProfile = ({history}) => {
                                         {t('editProfile.2')}
                                     </DialogTitle>
                                     <DialogContent dividers>
-                                        <Box display="flex" justifyContent="space-between" alignItems="flex-end" flexDirection="row"  className={classes.imageBox}>
+                                        <Box display="flex" justifyContent="space-between" alignItems="center" flexDirection="column" className={classes.imageBox}>
                                             <Box className={classes.media}
                                             >
                                                 {
@@ -270,11 +274,13 @@ const EditProfile = ({history}) => {
                                             <div>
                                                 <label htmlFor="upload-button"
                                                        style={{
-                                                           backgroundColor: 'blue',
+                                                           backgroundColor: '#198679',
                                                            color: 'white',
                                                            padding: "10px 8px 10px 8px",
                                                            borderRadius: 4,
-                                                           textAlign: "center"    }}
+                                                           textAlign: "center",
+                                                           marginTop: 10
+                                                       }}
                                                 >
                                                     {t('editProfile.3')}
                                                 </label>

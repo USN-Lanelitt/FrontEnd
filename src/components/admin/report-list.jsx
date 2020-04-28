@@ -22,12 +22,12 @@ const ReportList = () => {
     },[]);
 
     return (
-        <div>
-                <Box m={4} display="flex" alignItems="center" flexDirection="column">
-                    <ReportTable reports={reports}/>
-                </Box>
+        <>
+            <Box style={{marginTop:50}} display="flex" alignItems="center" flexDirection="column">
+                <ReportTable reports={reports}/>
+            </Box>
 
-        </div>
+        </>
     );
 };
 

@@ -18,15 +18,15 @@
     "5": "Logg ut"
   },
   "login": {
-    "1": "Logg inn",
+    "1": "Logg på",
     "2": "Brukernavn",
     "3": "Passord",
     "4": "Husk meg",
     "5": "Glemt passord",
-    "6": "Har ikke konto? Opprett her",
-    "7": "Logg inn",
-    "8": "Felt merket med * kan ikke stå tomt.",
-    "9": "Autentiserings feil! Vennligst sjekk at feltene merket med * er fylt ut riktig."
+    "6": "Har ikke konto?",
+    "7": "Logg ut",
+    "8": "Felt merket med * må fylles ut!",
+    "9": "Oi! noe gikk galt... vennligst sjekk brukernavn / passord og prøv på nytt. "
   },
   "register": {
     "1": "Opprett konto",
@@ -37,12 +37,13 @@
     "6": "Fødselsdato",
     "7": "E-post",
     "8": "Passord",
-    "9": "Passord må være minst 6 tegn",
+    "9": "Må være minst 6 tegn",
     "10": "Jeg ønsker å motta nyheter på e-post",
-    "11": "",
+    "11": "E-post finnes fra før, trykk glemt passord hvis du har glemt passordet.",
     "12": "OPPRETT KONTO",
     "13": "Har allerede en konto? Logg på!",
-    "14": "FEIL! Vennligst sjekk at feltene merket med * er fylt ut riktig."
+    "14": "FEIL! Vennligst sjekk at feltene merket med * er fylt ut riktig.",
+    "15": "Brukervilkår må aksepteres."
   },
   "categories": {
     "1": "Verktøy",
@@ -110,7 +111,7 @@
     "5": "Send"
   },
   "loan-to-friends": {
-    "1": "Mine utlånte eiendeler"
+    "1": "MINE UTLÅNTE EIENDELER"
   },
   "forgotpass": {
     "1": "Glemt passord?",
@@ -153,12 +154,11 @@
   },
   "chat": {
     "1": "Meldinger",
-    "2": "Chats",
-    "3": "Velg en du ønsker å chatte med",
-    "4": "Skriv en melding.."
+    "2": "Velg en du ønsker å chatte med",
+    "3": "Skriv en melding.."
   },
   "friend-all": {
-    "1": "Venner",
+    "1": "VENNER",
     "2": "Slett som venn?",
     "3": "Ønsker du å slette denne vennen?",
     "4": "Ja",
@@ -193,7 +193,8 @@
     "14": "Lagre",
     "15": "Fornavn",
     "16": "Mellomnavn",
-    "17": "Etternavn"
+    "17": "Etternavn",
+    "18": "Endringer lagret!"
   },
   "profile": {
     "1": "Mine Eiendeler"
@@ -236,10 +237,10 @@
     "1": "Dato for lån:"
   },
   "loan-accepted": {
-    "1": "Mine lån"
+    "1": "MINNE LÅN"
   },
   "freind-card": {
-    "1":"Slett venn",
+    "1": "Slett venn",
     "2": "Send melding"
   },
   "my-asset-card": {

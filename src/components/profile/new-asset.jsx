@@ -74,11 +74,16 @@ const NewAsset = () => {
 
         axios.post("/assets/addAsset", asset)
             .then(result => {
-                console.log(result);
-                setShowStatusMessage(true);
-                setStatusMessage("Eiendelen ble opprettet!")
-                setStatusMessageSeverity("success");
-                setTimeout(() => setRedirect(true), 1000) ;
+                console.log("result"+result.data);
+                if(result.data){
+                    setShowStatusMessage(true);
+                    setStatusMessage("Eiendelen ble opprettet!")
+                    setStatusMessageSeverity("success");
+                    setTimeout(() => setRedirect(true), 1000) ;
+                }else{
+                    setShowStatusMessage(true);
+                    setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -139,7 +144,7 @@ const NewAsset = () => {
                         <div>
                             <label htmlFor="upload-button"
                                    style={{
-                                       backgroundColor: 'blue',
+                                       backgroundColor: '#198679',
                                        color: 'white',
                                        padding: "4px 8px 4px 8px",
                                        borderRadius: 4,
