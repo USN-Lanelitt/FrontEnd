@@ -37,7 +37,7 @@ const FriendProfile = () => {
                     <FriendProfileCard
                         user={user}
                         getChat={() => sendMessageNewChat(userId, id)}
-                        deleteFriend={() => deleteFriend(userId, id)}
+                        deleteFriend={() => deleteFriend(userId, id, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity)}
                         sendRequest={() => sendRequest(userId, id, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity)}
                     />
                  </Grid>

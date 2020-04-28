@@ -1,14 +1,10 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Avatar from "@material-ui/core/Avatar";
 import {makeStyles} from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import {Link} from "react-router-dom";
-import AssetCard from "../../feature/Assets/asset-card";
-import {Container} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     smallAvatar: {
@@ -17,14 +13,13 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const ShowUser = ({userId2})  =>{
+const ShowUser =  ({userId2}) =>  {
     const classes = useStyles();
-    const [selectedUser, setSelectedUser] = useState('');
     const [user, setUser] = useState('');
 
     useEffect(() => {
         console.log("showUser", sessionStorage.getItem('userId'));
-        axios.post('/getUser/'+ userId2)
+        axios.get('/getUser/'+ userId2)
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
@@ -35,10 +30,18 @@ const ShowUser = ({userId2})  =>{
     }, []);
 
     return (
-        <Grid container spacing={3} justify="center">
-            {user && user.id}
-        </Grid>
-    )
-}
-
+        <>
+        {user &&
+            <Box display="flex" flexDirection="row" alignItems="center">
+                <Box mr={1}>
+                    <Avatar alt="img" src={user.profileImage} className={classes.smallAvatar}/>
+                </Box>
+                <Box fontSize={15} fontWeight="fontWeightBold" m={1}>
+                    {user.firstName} {user.middleName} {user.lastName}
+                </Box>
+            </Box>
+        }
+        </>
+    );
+};
 export default ShowUser;

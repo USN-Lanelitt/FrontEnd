@@ -111,7 +111,7 @@
     "5": "Send"
   },
   "loan-to-friends": {
-    "1": "Mine utlånte eiendeler"
+    "1": "MINE UTLÅNTE EIENDELER"
   },
   "forgotpass": {
     "1": "Glemt passord?",
@@ -154,12 +154,11 @@
   },
   "chat": {
     "1": "Meldinger",
-    "2": "Chats",
-    "3": "Velg en du ønsker å chatte med",
-    "4": "Skriv en melding.."
+    "2": "Velg en du ønsker å chatte med",
+    "3": "Skriv en melding.."
   },
   "friend-all": {
-    "1": "Venner",
+    "1": "VENNER",
     "2": "Slett som venn?",
     "3": "Ønsker du å slette denne vennen?",
     "4": "Ja",
@@ -237,10 +236,10 @@
     "1": "Dato for lån:"
   },
   "loan-accepted": {
-    "1": "Mine lån"
+    "1": "MINNE LÅN"
   },
   "freind-card": {
-    "1":"Slett venn",
+    "1": "Slett venn",
     "2": "Send melding"
   }
 }

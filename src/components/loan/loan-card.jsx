@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(0.5),
     },
     image: {
-        width: "60%",
+        width: "50%",
         height: 200,
         marginRight: theme.spacing(2),
     },
