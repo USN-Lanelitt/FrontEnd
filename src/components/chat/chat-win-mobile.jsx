@@ -49,10 +49,6 @@ export default function ChatWinMobile() {
     const [user, setUser] = useState();
 
 
-    useEffect(() => {
-        showChat(userId, userId2, setSelectedChat);
-        console.log(userId2);
-    }, []);
 
     useEffect(() => {
         GetUser(userId2, setUser);

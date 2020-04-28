@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
         height: '30px',
     },
 }));
-export default function TextfieldWindow (userId2) {
+export default function TextfieldWindow ({userId2}) {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));

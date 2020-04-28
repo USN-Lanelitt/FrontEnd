@@ -76,9 +76,7 @@ export default function ChatDesktop() {
 
     useEffect(() => {
         getChatUsers(userId, setChatUsers)
-        {userId2 &&
-            showChat(userId, userId2, setSelectedChat);
-        }
+
     }, [setChatUsers, userId]);
 
 
