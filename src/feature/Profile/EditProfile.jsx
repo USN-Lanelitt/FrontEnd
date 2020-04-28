@@ -115,13 +115,10 @@ const DialogTitle = withStyles(styles)(props => {
     );
 });
 
-const user = app.auth().currentUser;
-
 const EditProfile = ({history}) => {
     const { t } = useTranslation();
     const handleUpdate = useCallback(async event => {
         event.preventDefault();
-        let credential;
         // Henter verdier som er utfylt i tekst feltene på form skjema
         const {nickname, firstname, middlename, lastname, phone, address1, address2, zipcode, city, newsletter} = event.target.elements;
         //Sette nye verdier i sessionStorage
