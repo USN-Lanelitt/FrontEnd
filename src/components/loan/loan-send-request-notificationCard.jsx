@@ -9,7 +9,8 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import {useTranslation} from "react-i18next";
 
-//her er det kort med ventende forespørsel/avist - kort - Mirsa
+
+/*her er det kort med sendt forespørsel -Mirsa */
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const LoanReplyCard = ({firstname, middlename, lastname, assetname, description, assetImages, selectedDate, selectedDate2, onDenied, onAccept}) => {
+const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, assetname, description, assetImages, selectedDate, selectedDate2}) => {
     const classes = useStyles();
     const { t } = useTranslation();
 
@@ -53,7 +54,7 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
 
                     <Box className={classes.status} display="flex" justifyContent="center">
                         <Button size="small" color="grey">
-                            Venter
+                            Sendt
                         </Button>
                     </Box>
 
@@ -79,15 +80,9 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
 
                     </Typography>
                 </Box>
-                    <Button onClick= {onAccept} size="small" color="primary">
-                        {t('loan-replay-card.1')}
-                    </Button>
-                    <Button className={classes.Button} onClick={onDenied} size="small" color="primary">
-                        {t('loan-replay-card.2')}
-                    </Button>
             </CardContent>
         </Card>
     );
 };
 
-export default LoanReplyCard;
+export default LoanSendRequestNotificationCard;

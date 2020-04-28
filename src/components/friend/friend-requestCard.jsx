@@ -32,13 +32,12 @@ const useStyles = makeStyles(theme => ({
         color: 'red',
     }
 }));
-
 const FriendRequestCard = ({id, firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
     const classes = useStyles();
     const {t} = useTranslation();
 
     return (
-        <Grid xs={12}>
+        <Grid>
             <Card className={classes.card}>
                 <CardActionArea component = {Link} to={"/FriendProfile/" + id}  style={{backgroundColor: 'transparent'}}>
                     <CardContent>

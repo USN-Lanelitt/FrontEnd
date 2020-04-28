@@ -14,6 +14,8 @@ import LoanGetAcceptedRequests from "../loan/loan-getAcceptedRequests";
 import LoanGetDeniedRequests from "../loan/loan-getDeniedRequests";
 import {Box} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
+import NotificationLoanRequest from "./notificatoin-loan-request";
+import NotificationLoanSendt from "./notification-loan-sendt";
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,6 +47,7 @@ const NotificationList = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [dataAccept, setDataAccept] = useState([]);
     const [dataDenied, setDataDeniend] = useState([]);
+    const [dataSendt, setDataSendt] =  useState([]);
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
@@ -66,7 +69,6 @@ const NotificationList = () => {
 
 // return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
-
     React.useEffect(() => {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
@@ -74,8 +76,10 @@ const NotificationList = () => {
 
         prevOpen.current = open;
 
+        getSendtRequests();
         getAcceptedRequests();
         getDeniedRequests();
+
 
         axios.get('/user/' + userId + '/friendRequests')
             .then((response) => {
@@ -99,7 +103,7 @@ const NotificationList = () => {
                 }
             })
             .catch(error => console.log(error))
-    }
+    };
 
 
     const getDeniedRequests = () => {
@@ -114,13 +118,23 @@ const NotificationList = () => {
             })
             .catch(error => console.log(error))
 
-    }
+    };
+    const getSendtRequests = () => {
+        console.log("getSendtRequests", userId, sessionStorage.getItem('userId'));
+        axios.get('/user/'+userId+'/loanSent')
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setData(response.data);
+                }
+            })
+            .catch(error => console.log(error))
+    };
 
     return (
         <div className={classes.root}>
             <div>
-
-                <Badge badgeContent={data.length + dataAccept.length + dataDenied.length} color="secondary">
+                <Badge badgeContent={data.length + dataSendt.length + dataAccept.length + dataDenied.length} color="secondary">
                     <IconButton
                         className={classes.button}
                         ref={anchorRef}
@@ -166,8 +180,11 @@ const NotificationList = () => {
                                     </Typography>
                                     <Divider variant="li"/>
                                     {data && <FriendRequestList data={data}/>}
+                                    {data && <NotificationLoanSendt data={dataSendt}/>}
                                     {data && <LoanGetAcceptedRequests data={dataAccept}/>}
                                     {data && <LoanGetDeniedRequests data={dataDenied}/>}
+
+
                                 </Box>
                             </MenuList>
                         </ClickAwayListener>

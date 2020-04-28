@@ -1,6 +1,6 @@
 import axios from "axios";
 
- export const notificationRefresh = (userId, setData) =>{
+ export const notificationRefreshFriendRequest = (userId, setData) =>{
     axios.get('/user/' + userId + '/friendRequests')
         .then((response) => {
             if (response.status === 200) {
@@ -54,3 +54,14 @@ export const notificationFriendRequest = (userId, friendId, statuss) => {
         })
         .catch(e => console.log(e));
 }
+
+export const notificationRefreshLoanSendt = (userId, setData) => {
+axios.get( '/user/' + userId + '/loanAccepted')
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setData(response.data);
+        }
+    })
+    .catch(error => console.log(error))
+};

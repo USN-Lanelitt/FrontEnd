@@ -20,7 +20,6 @@ const LoanRequests = () => {
     const [loanId, setLoanId] = useState(null);
 
     useEffect(() => {
-        console.log("", userId, sessionStorage.getItem('userId'));
         axios.get('/user/'+userId+'/loanRequest')
             .then((response) => {
                 notificationRefresh1 (userId, setData)

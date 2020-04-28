@@ -11,7 +11,7 @@ import Rating from "@material-ui/lab/Rating";
 import {getRatings} from "../rating/getRating";
 import {useTranslation} from "react-i18next";
 
-//her er det kort med ventende forespørsel/avist - kort
+//her er det kort med ventende forespørsel/avist - kort - Mirsa
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -83,11 +83,10 @@ const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loan
                         </Box>
 
                         <Box display="flex" flexDirection="column" mt={9}>
-                            <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h6">
+                            <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h4">
                                 {t('loan-card.1')}
                             </Typography>
-                            <Typography gutterBottom variant="body2" color="textPrimary" component="body1"
-                                        flexDirection="row">
+                            <Typography gutterBottom variant="body2" color="textPrimary" component="body1" flexDirection="row">
                                 {selectedDate} - {selectedDate2}
                             </Typography>
                         </Box>

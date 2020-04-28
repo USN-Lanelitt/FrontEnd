@@ -17,14 +17,13 @@ import {useTranslation} from "react-i18next";
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        maxWidth: '10ch',
+        maxWidth: '1ch',
         backgroundColor: theme.palette.background.paper,
     },
 
     list: {
         display: 'flex',
         padding: theme.spacing(2),
-
     },
 
     photo: {
@@ -37,12 +36,14 @@ const useStyles = makeStyles(theme => ({
     },
 
     button: {
-        display: 'Grid',
-        padding: theme.spacing(1),
+        display: 'grid',
+        marginRigth: '-22px',
     },
+
     accepdbt: {
         color: 'Black',
     },
+
     dividerFullWidth: {
         margin: `5px 0 0 ${theme.spacing(2)}px`,
     },
