@@ -69,16 +69,13 @@ export default function ChatDesktop() {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
-    const [userId2, setUserId2] = useState([]);
+    const [userId2, setUserId2] = useState('');
     const [chatUsers, setChatUsers] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
     const [selectedUser, setSelectedUser] = useState('');
 
     useEffect(() => {
         getChatUsers(userId, setChatUsers)
-        {userId2 &&
-            showChat(userId, userId2, setSelectedChat);
-        }
     }, [setChatUsers, userId]);
 
 
@@ -154,7 +151,6 @@ export default function ChatDesktop() {
                                 }
                             </Box>
                             <TextfieldMobile userId2={userId2}/>
-
                         </Box>
                     </Box>
                 </Paper>
