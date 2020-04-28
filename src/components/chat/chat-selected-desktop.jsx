@@ -82,9 +82,9 @@ export default function ChatSelectedDesktop() {
 
     }, []);
 
-    /*useEffect(() => {
+    useEffect(() => {
         showChat(userId, userId2, setSelectedChat);
-    }, []);*/
+    }, []);
 
     {user &&
         setSelectedUser(
