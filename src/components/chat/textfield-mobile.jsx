@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
         height: '30px',
     },
 }));
-export default function TextfieldMobile (userId2) {
+export default function TextfieldMobile ({userId2}) {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId] = useState(sessionStorage.getItem('userId'));
