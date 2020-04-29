@@ -65,3 +65,14 @@ axios.get( '/user/' + userId + '/loanAccepted')
     })
     .catch(error => console.log(error))
 };
+
+ export const getAllFriends = (userId, setData) => {
+     console.log("hello from AllFriends", userId, sessionStorage.getItem('userId'));
+     axios.get('/user/' + userId + '/friends')
+         .then(result => {
+             console.log(result.data);
+             setData(result.data);
+         })
+         .catch(e => console.log(e));
+
+}

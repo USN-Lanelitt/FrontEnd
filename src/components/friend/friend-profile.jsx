@@ -31,7 +31,7 @@ const FriendProfile = () => {
             .catch(e => console.log(e));
      },[setUser,userId]);
 
-    if (userId.length === 0) return <Progress/>;
+    if (!user) return <Progress/>;
 
     return (
         <div>

@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
@@ -65,6 +66,7 @@ const StyledBadge = withStyles(theme => ({
 
 
 const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
+    const {t} = useTranslation();
     const classes = useStyles();
     const styles = useStyles();
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
@@ -81,9 +83,9 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
                 console.log(result.data);
                 if (result.data === 1) {
                     setValue(1)
-                    setButtonText('slett venn');
+                    setButtonText( 'friend-profile.1');
                 } else {
-                    setButtonText('Legg til');
+                    setButtonText('friend-profile.3');
                 }
             })
             .catch(e => console.log(e));
@@ -133,13 +135,13 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
                     <Box m={2}>
                         <Button onClick={handleOnClick} disabled={disabled} className={classes.button} type="submit" variant="contained"
                                 color="primary">
-                            {buttonText}
+                            {t(buttonText)}
                         </Button>
                     </Box>
                     <Box m={2}>
                         <Button onClick={getChat} component={Link} to={"/chat/" + user.id} type="submit"
                                 variant="contained" color="primary">
-                            Send Melding
+                            {t('friend-profile.2')}
                         </Button>
                     </Box>
                 </Box>

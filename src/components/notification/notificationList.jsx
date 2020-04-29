@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
@@ -49,6 +49,8 @@ const NotificationList = () => {
     const [dataDenied, setDataDeniend] = useState([]);
     const [dataSendt, setDataSendt] =  useState([]);
 
+    const [count, setCount] = useState(0);
+
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
     };
@@ -65,8 +67,22 @@ const NotificationList = () => {
             event.preventDefault();
             setOpen(false);
         }
-    }
+    };
+/*
+    const handleUpdate = () => {
 
+       getSendtRequests();
+       getAcceptedRequests();
+       getDeniedRequests();
+       getFriendRequests();
+    };
+
+
+      setTimeout(() =>
+          handleUpdate(), 5000);*/
+
+
+  
 // return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
     React.useEffect(() => {
@@ -76,11 +92,15 @@ const NotificationList = () => {
 
         prevOpen.current = open;
 
-        getSendtRequests();
-        getAcceptedRequests();
-        getDeniedRequests();
 
 
+
+
+
+
+    }, [open]);
+
+    const getFriendRequests = () => {
         axios.get('/user/' + userId + '/friendRequests')
             .then((response) => {
                 if (response.status === 200) {
@@ -89,9 +109,7 @@ const NotificationList = () => {
                 }
             })
             .catch(e => console.log(e));
-
-
-    }, [open]);
+    };
 
     const getAcceptedRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
@@ -129,7 +147,16 @@ const NotificationList = () => {
                 }
             })
             .catch(error => console.log(error))
+
     };
+
+
+
+
+
+
+
+
 
     return (
         <div className={classes.root}>
@@ -142,7 +169,9 @@ const NotificationList = () => {
                         aria-haspopup="true"
                         color="inherit"
                         variant="contained"
-                        onClick={handleToggle}>
+                        onClick={handleToggle}
+
+                    >
 
                         <NotificationsIcon/>
 
