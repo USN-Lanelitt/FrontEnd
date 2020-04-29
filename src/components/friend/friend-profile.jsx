@@ -29,24 +29,24 @@ const FriendProfile = () => {
                 setUser(result.data);
             })
             .catch(e => console.log(e));
-     },[setUser,userId]);
+    }, [setUser, userId]);
 
     if (!user) return <Progress/>;
 
     return (
         <div>
-             <Grid container direction="row" justify="center" alignItems="center">
-                 <Grid>
-                     <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
-                                    onClose={setShowStatusMessage}/>
+            <Grid container direction="row" justify="center" alignItems="center">
+                <Grid>
+                    <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
+                                   onClose={setShowStatusMessage}/>
                     <FriendProfileCard
                         user={user}
                         getChat={() => sendMessageNewChat(userId, id)}
                         deleteFriend={() => deleteFriend(userId, id, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity)}
                         sendRequest={() => sendRequest(userId, id, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity)}
                     />
-                 </Grid>
-             </Grid>
+                </Grid>
+            </Grid>
             <CssBaseline/>
             <FriendAssets/>
         </div>

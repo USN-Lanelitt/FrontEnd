@@ -260,7 +260,7 @@ export default function NavBar(props) {
                             <NotificationsIcon/>
                         </Badge>
                     </IconButton>
-                    <p>Varsler</p>
+                    <p>{t('nav.6')}</p>
                 </MenuItem>
                 <MenuItem component={Link} to="/chat">
                 <IconButton aria-label="show new mails" color="inherit">
@@ -268,7 +268,7 @@ export default function NavBar(props) {
                         <MailIcon/>
                     </Badge>
                 </IconButton>
-                <p>Meldiger</p>
+                <p>{t('nav.7')}</p>
             </MenuItem></div>)}
             {!loggedIn && (
                     <MenuItem component={Link} to="/signup">
@@ -333,7 +333,7 @@ export default function NavBar(props) {
                             Lånelitt
                         </Typography>
 
-                        {/*----------Søke felt i Navbar Icon knapp--------------*/}
+                        {/*----------Søke felt i Navbar Icon knapp / laget av Mirsa--------------*/}
                     {loggedIn &&
                     <SearchFriends/>
                     }
@@ -352,7 +352,7 @@ export default function NavBar(props) {
                         </IconButton>}
 
                         {loggedIn && (<div>
-                            {/*----------Notification Icon knapp--------------*/}
+                            {/*----------Notification Icon knapp  / laget av Mirsa--------------*/}
 
                             <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent'}}>
                                 <NotificationList/>

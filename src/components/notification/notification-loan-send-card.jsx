@@ -14,8 +14,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import CardActionArea from "@material-ui/core/CardActionArea";
 
+/*Laget av Mirsa*/
 
 const useStyles = makeStyles(theme => ({
     root: {

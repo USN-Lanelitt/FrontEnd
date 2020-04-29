@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from "@material-ui/core/Grid";
 import LoanRequestNotification from "./loan-request-notification";
 
-//her er den listen i notification iconet
+/*Laget av Mirsa*/
 
 const LoanGetAcceptedRequests = ({data}) => {
 

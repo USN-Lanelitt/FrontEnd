@@ -123,7 +123,9 @@
     "2": "Notification",
     "3": "Message",
     "4": "Sign inn",
-    "5": "Sign out"
+    "5": "Sign out",
+    "6": "Notification",
+    "7": "Messenger"
   },
   "new-asset": {
     "1": "Add asset",

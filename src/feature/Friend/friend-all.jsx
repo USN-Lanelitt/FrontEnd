@@ -11,7 +11,7 @@ import {useTranslation} from "react-i18next";
 import Progress from "../../components/progress";
 import {getAllFriends} from "../Notification/notification-refresh";
 
-/*Henter alle vennene, laget av Mirsa*/
+/*Henter alle vennene, laget av Mirsa og Linda*/
 
 const useStyles = makeStyles(theme => ({
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const FriendAll = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
@@ -31,10 +31,10 @@ const FriendAll = () => {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
     useEffect(() => {
-            AllFriends();
-    },[setData, userId]);
+        AllFriends();
+    }, [setData, userId]);
 
-    function AllFriends(){
+    function AllFriends() {
         console.log("hello from AllFriends", userId, sessionStorage.getItem('userId'));
         axios.get('/user/' + userId + '/friends')
             .then(result => {
@@ -53,7 +53,7 @@ const FriendAll = () => {
         console.log("deletefriend", userId, sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/friend/' + friendId + '/delete')
             .then((response) => {
-                getAllFriends (userId, setData);
+                getAllFriends(userId, setData);
                 if (response.status === 200) {
                     console.log(response.data);
 
@@ -70,6 +70,7 @@ const FriendAll = () => {
         setShowConfirmDialog(false);
 
     }
+
     if (data.length === 0) return <Progress/>;
 
     return (
@@ -85,7 +86,7 @@ const FriendAll = () => {
 
                 <ConfirmDialog title={t('friend-all.2')}
                                message={t('friend-all.3')}
-                               onConfirm ={onDeleteFriendConfirm}
+                               onConfirm={onDeleteFriendConfirm}
                                onNotConfirm={onDeleteFriendCancel}
                                confirmButtonText={t('friend-all.4')}
                                notConfirmButtonText={t('friend-all.5')}

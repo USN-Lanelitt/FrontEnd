@@ -7,6 +7,8 @@ import axios from "axios";
 import {useParams} from "react-router";
 import {Box} from "@material-ui/core";
 
+/*Laget av Mirsa*/
+
 const useStyles = makeStyles(theme => ({
     cardGrid: {
         paddingBottom: theme.spacing(8),

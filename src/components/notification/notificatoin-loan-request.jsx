@@ -1,9 +1,6 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
-import MenuItem from "@material-ui/core/MenuItem";
 import {makeStyles} from "@material-ui/core/styles";
-import withStyles from "@material-ui/core/styles/withStyles";
 import {Box} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from '@material-ui/icons/Close';
@@ -13,6 +10,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import {useTranslation} from "react-i18next";
 
+/*Laget av Mirsa*/
 
 const useStyles = makeStyles(theme => ({
     root: {

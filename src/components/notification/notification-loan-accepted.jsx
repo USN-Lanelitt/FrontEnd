@@ -2,11 +2,9 @@ import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import NotificationLoanRequest from "./notificatoin-loan-request";
-import {
-    notificationFriendRequest,
-    notificationRefreshLoanAccepted
-} from "../../feature/Notification/notification-refresh";
-import FriendRequest from "../friend/friend-request";
+import {notificationRefreshLoanAccepted} from "../../feature/Notification/notification-refresh";
+
+/*Laget av Mirsa*/
 
 const NotificationLoanAccepted = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));

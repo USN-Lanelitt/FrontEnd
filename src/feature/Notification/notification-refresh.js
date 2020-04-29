@@ -1,5 +1,7 @@
 import axios from "axios";
 
+/*Laget av Mirsa*/
+
  export const notificationRefreshFriendRequest = (userId, setData) =>{
     axios.get('/user/' + userId + '/friendRequests')
         .then((response) => {
