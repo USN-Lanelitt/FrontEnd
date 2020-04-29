@@ -261,7 +261,7 @@ export default function NavBar(props) {
                             <NotificationsIcon/>
                         </Badge>
                     </IconButton>
-                    <p>{t('nav.6')}</p>
+                    {t('nav.6')}
                 </MenuItem>
                 <MenuItem component={Link} to="/chat">
                 <IconButton aria-label="show new mails" color="inherit">
@@ -269,7 +269,7 @@ export default function NavBar(props) {
                         <MailIcon/>
                     </Badge>
                 </IconButton>
-                <p>{t('nav.7')}</p>
+                    {t('nav.7')}
             </MenuItem></div>)}
             {!loggedIn && (
                     <MenuItem component={Link} to="/signup">
