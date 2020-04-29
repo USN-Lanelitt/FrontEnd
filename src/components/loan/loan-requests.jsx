@@ -1,18 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
-import LoanRequestNotification from "./loan-request-notification";
 import axios from "axios";
-import LoanCard from "./loan-card";
 import LoanReplyCard from "./loan-reply-card";
-import FriendRequest from "../friend/friend-request";
-import ConfirmDialog from "../profile/confirm-dialog";
-import {notificationRefresh, notificationRefresh1} from "../../feature/Notification/notification-refresh";
+import { notificationRefresh1} from "../../feature/Notification/notification-refresh";
 
-//her er den listen i notification
-
-let statuss = 0;
-let statusTittel = "";
-let statusBesk = "";
+/*her er låneforesøprsel - Mirsa*/
 
 const LoanRequests = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -35,7 +27,7 @@ const LoanRequests = () => {
         console.log("replyLoan", sessionStorage.getItem('userId'));
         axios.post('/user/'+userId+'/loanRequest/'+loanId+'/'+statuss)
             .then((response) => {
-                notificationRefresh1 (userId, setData)
+                notificationRefresh1 (userId, setData);
                 if (response.status === 200) {
                     console.log(response.data);
                 }
@@ -51,7 +43,7 @@ const LoanRequests = () => {
                         middlename={user.users.middleName}
                         lastname={user.users.lastName}
                         assetname={user.assets.assetName}
-                        assetImages={"https://source.unsplash.com/random"}
+                        assetImages={user.assets.assetImages}
                         selectedDate={user.dateStart}
                         selectedDate2={user.dateEnd}
                         onDenied={() => ReplyLoan(user.id,2)}

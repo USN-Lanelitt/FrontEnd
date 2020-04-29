@@ -50,7 +50,9 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     link: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        backgroundColor: 'transparent',
+        color: "Black"
     }
 
 }));
@@ -98,18 +100,18 @@ const SearchFriends = () => {
                     options={dataFilterd}
                     getOptionValue={option => option && option.id}
                     getOptionLabel={option => option && option.firstName}
-                    style={{width: 210, backgroundColor: 'transparent'}}
+                    style={{width: 210, backgroundColor: 'transparent', textDecoration: "none"}}
                     filterOptions={(x) => x}
                     clearOnEscape
                     renderInput={params => <TextField   {...params}
-                                                        classes={{root: classes.inputRoot, input: classes.inputInput,}}
+                                                        classes={{root: classes.inputRoot, input: classes.inputInput}}
                                                         label={t('nav.1')}
                                                         variant="filled"
                                                         onChange={handleChange}
                     />}
                     renderOption={(option => (
                         <MenuItem key={option.id} onClick={onClickFriend} value={option.id}>
-                            <Link className={classes.link} to={'/FriendProfile/' + option.id}>
+                            <Link className={classes.link} to={'/FriendProfile/' + option.id} >
                                 {`${option.firstName}  ${option.lastName}`}
                             </Link>
                         </MenuItem>

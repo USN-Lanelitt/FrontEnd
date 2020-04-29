@@ -14,24 +14,18 @@ import NotificationLoanAccepted from "../../components/notification/notification
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import LoanGetSendtRequests from "../../components/loan/loan-getSendtRequests";
 
+/*Her er den siden med notifikasjon i sidebaren - Mirsa*/
 
 
 let statuss = 0;
 let statusTittel = "";
 let statusBesk = "";
 
-//siden på mobil, (en hel side)
 
 const useStyles = makeStyles(theme => ({
-
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6),
-    },
     text: {
         padding: theme.spacing(6),
     }
-
 }));
 
 const Notification = () => {
@@ -90,7 +84,6 @@ const Notification = () => {
     }
 
     return (
-
         <React.Fragment>
             <Container>
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>

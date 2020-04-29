@@ -13,6 +13,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
+import CardActionArea from "@material-ui/core/CardActionArea";
 
 
 const useStyles = makeStyles(theme => ({
@@ -60,7 +62,7 @@ const NotificationLoanSendtCard = ({id, firstname, middlename, imageUrl, lastnam
     const { t } = useTranslation();
     return (
         <React.Fragment>
-            <StyledMenuItem>
+            <StyledMenuItem  component = {Link} to={"/Notification/"}>
                 <Divider variant="li"/>
                 <Grid className={classes.list}>
                     <Box mt={1}>
@@ -71,10 +73,9 @@ const NotificationLoanSendtCard = ({id, firstname, middlename, imageUrl, lastnam
                     <Box display='flex' flexDirection="column">
                         <Box display='flex' flexDirection="column" >
                             <ListItemText gutterBottom variant="h4" component="h7" display={"flex"}>
+                                Forespørsel sendt til
+                            </ListItemText>  <ListItemText gutterBottom variant="h4" component="h7" display={"flex"}>
                                 {firstname} {middlename} {lastname}
-                            </ListItemText>
-                            <ListItemText gutterBottom variant="h4" component="h7" display={"flex"}>
-                                Sendt
                             </ListItemText>
                         </Box>
                         <Box display='flex' flexDirection="row">

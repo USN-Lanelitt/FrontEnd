@@ -31,11 +31,6 @@ const useStyles = makeStyles(theme => ({
         color: 'red',
     },
 
-    button: {
-        display: 'Grid',
-        padding: theme.spacing(1),
-    },
-
 
 }));
 
@@ -62,7 +57,7 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     component="img"
                     alt="bilde"
                     height="200"
-                    image={"https://source.unsplash.com/random"}
+                    image={assetImages}
                 />
 
                 <Typography gutterBottom variant="h5" component="h2">
@@ -74,7 +69,7 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
 
                 </Typography>
                 <Box>
-                    <Typography gutterBottom variant="subtitle1" component="h2" paddingTop="10px">
+                    <Typography variant="subtitle1" component="h2" paddingTop="10px">
                         {selectedDate} - {selectedDate2}
 
                     </Typography>

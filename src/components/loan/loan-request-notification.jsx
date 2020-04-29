@@ -16,32 +16,9 @@ import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundColor: theme.palette.background.paper,
-        maxWidth: '40',
-        width: '100%',
-    },
-    photo: {
-        width: theme.spacing(5),
-        height: theme.spacing(5),
-    },
-
-    inline: {
-        display: 'flex',
-
-    },
-
-    list: {
-        display: 'flex',
-        padding: theme.spacing(2),
 
 
-    },
-    button: {
-        display: 'flex',
-        padding: '0',
 
-    },
 }));
 
 const StyledMenuItem = withStyles(theme => ({
@@ -57,44 +34,45 @@ const StyledMenuItem = withStyles(theme => ({
 
 const LoanRequestNotification = ({id, firstname, middlename, imageUrl, lastname, loanStatus, selectedDate, selectedDate2, reply}) => {
     const classes = useStyles();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     return (
         <React.Fragment>
-            <StyledMenuItem>
-                <Divider variant="li"/>
-                <Grid className={classes.list}>
-                    <Box mt={1}>
-                    <ListItemAvatar>
-                        <Avatar className={classes.photo} ml={2} alt="Remy Sharp" src={imageUrl}/>
-                    </ListItemAvatar>
-                    </Box>
-                    <Box display='flex' flexDirection="column">
-                        <Box display='flex' flexDirection="column" >
-                        <ListItemText gutterBottom variant="h4" component="h7" display={"flex"}>
-                            {firstname} {middlename} {lastname}
-                        </ListItemText>
-                            <ListItemText gutterBottom variant="h4" component="h7" display={"flex"}>
-                                {loanStatus} {t('loan-request-notification.1')}
-                            </ListItemText>
+
+                <StyledMenuItem>
+
+                    <Divider variant="li"/>
+                    <Grid>
+
+                            <ListItemAvatar>
+                                <Avatar ml={2} alt="Remy Sharp" src={imageUrl}/>
+                            </ListItemAvatar>
+
+                        <Box display='flex' flexDirection="column">
+                            <Box display='flex' flexDirection="column">
+                                <ListItemText gutterBottom variant="h4" component="h7" display={"flex"}>
+                                    {firstname} {middlename} {lastname}
+                                </ListItemText>
+                                <ListItemText gutterBottom variant="h4" component="h7" display={"flex"}>
+                                    {loanStatus} {t('loan-request-notification.1')}
+                                </ListItemText>
+                            </Box>
+                            <Box display='flex' flexDirection="row">
+                                <Typography gutterBottom variant="subtitle1" component="h2">
+                                    {selectedDate} - {selectedDate2}
+                                </Typography>
+                            </Box>
                         </Box>
-                        <Box display='flex' flexDirection="row">
-                            <Typography gutterBottom variant="subtitle1" component="h2">
-                                {selectedDate} - {selectedDate2}
-                            </Typography>
-                        </Box>
-                    </Box>
-                </Grid>
+                    </Grid>
+                    <Divider variant="li"/>
+                    <ListItemSecondaryAction>
+                        <Button onClick={reply}>
+                            <CloseIcon/>
+                        </Button>
+                    </ListItemSecondaryAction>
+
+
+                </StyledMenuItem>
                 <Divider variant="li"/>
-                <ListItemSecondaryAction className={classes.button}>
-                    <Button onClick={reply}>
-                        <CloseIcon/>
-                    </Button>
-                </ListItemSecondaryAction>
-
-
-            </StyledMenuItem>
-            <Divider variant="li"/>
-
         </React.Fragment>
 
 

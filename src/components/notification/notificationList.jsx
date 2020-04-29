@@ -14,9 +14,9 @@ import LoanGetAcceptedRequests from "../loan/loan-getAcceptedRequests";
 import LoanGetDeniedRequests from "../loan/loan-getDeniedRequests";
 import {Box} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
-import NotificationLoanRequest from "./notificatoin-loan-request";
 import NotificationLoanSendt from "./notification-loan-sendt";
 
+/*Her har vi notifikasjonen som ligger i bjellen, denne er laget av Mirsa*/
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -125,7 +125,7 @@ const NotificationList = () => {
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
-                    setData(response.data);
+                    setDataSendt(response.data);
                 }
             })
             .catch(error => console.log(error))
@@ -175,7 +175,7 @@ const NotificationList = () => {
                             <MenuList autoFocusItem={open} id="menu-list-grow"
                                       onKeyDown={handleListKeyDown}>
                                 <Box maxWidth="48ch">
-                                    <Typography className={classes.typo} variant="h6" align="center" color="textPrimary" gutterBottom>
+                                    <Typography className={classes.typo} variant="h6" align="center" color="textPrimary" >
                                         Varsler
                                     </Typography>
                                     <Divider variant="li"/>

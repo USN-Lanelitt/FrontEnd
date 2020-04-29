@@ -14,7 +14,6 @@ import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(theme => ({
     paper: {
-
         display: 'flex',
         flexDirection: 'row',
         maxWidth: 470,
@@ -28,16 +27,6 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(0.5),
     },
 
-    Button: {
-        color: 'red',
-    },
-
-    button: {
-        display: 'Grid',
-        padding: theme.spacing(1),
-    },
-
-
 }));
 
 const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, assetname, description, assetImages, selectedDate, selectedDate2}) => {
@@ -46,6 +35,7 @@ const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, asset
 
     return (
         <Card className={classes.paper}>
+            <Box display="flex" flexDirection="row">
             <CardContent>
                 <Grid className={classes.top}>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -63,7 +53,7 @@ const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, asset
                     component="img"
                     alt="bilde"
                     height="200"
-                    image={"https://source.unsplash.com/random"}
+                    image={assetImages}
                 />
 
                 <Typography gutterBottom variant="h5" component="h2">
@@ -81,6 +71,7 @@ const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, asset
                     </Typography>
                 </Box>
             </CardContent>
+            </Box>
         </Card>
     );
 };

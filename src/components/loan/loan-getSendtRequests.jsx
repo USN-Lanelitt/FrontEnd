@@ -2,10 +2,9 @@ import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import LoanSendRequestNotificationCard from "./loan-send-request-notificationCard";
-import {notificationRefresh1, notificationRefreshLoanSendt} from "../../feature/Notification/notification-refresh";
-import LoanReplyCard from "./loan-reply-card";
+import {notificationRefreshLoanSendt} from "../../feature/Notification/notification-refresh";
 
-/*Her er det kortet der du ser de sendte forespørsenene om lån du har sendt  i "varsel" i sidebaren. laget av Mirsa*/
+/*Her er det kortet der du ser de sendte forespørsenene om lån du har sendt  i "varsel" i sidebaren. Programmert av Mirsa*/
 
 const LoanGetSendtRequests = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -36,7 +35,7 @@ const LoanGetSendtRequests = () => {
                         lastname={loan.assets.users.lastName}
                         middlename={loan.assets.users.middleName}
                         assetname={loan.assets.assetName}
-                        assetImages={"https://source.unsplash.com/random"}
+                        assetImage={loan.assets.assetImages}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
                         refresh={() => notificationRefreshLoanSendt(userId, setData)}

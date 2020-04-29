@@ -17,6 +17,7 @@ import moment from "moment";
 import StatusMessage from "../profile/status-message";
 import {Redirect} from "react-router";
 
+/*Her har Mirsa & Nicole jobbet sammen*/
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -28,13 +29,11 @@ const useStyles = makeStyles(theme => ({
     send: {
         margin: theme.spacing(3, 0, 2),
     },
-
 }));
 const LoanRequestSend = () => {
     const { t } = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    //const [assetName, setAssetName] = useState('');
     const [textValue, setTextValue] = useState('');
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
@@ -79,12 +78,10 @@ const LoanRequestSend = () => {
 
 
     const handleDateChange = (date) => {
-
         setSelectedDate(moment(date).format("YYYY-MM-DD"));
     };
 
     const handleDateChange2 = (date) => {
-
         setSelectedDate2(moment(date).format("YYYY-MM-DD"))
     };
 
@@ -101,7 +98,7 @@ const LoanRequestSend = () => {
         <Box display="flex" justifyContent="center">
             <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
                            onClose={setShowStatusMessage}/>
-            <Box width={1 / 2} height={'100%'}>
+            <Box height={'100%'}>
                 <Card className={classes.paper}>
                     <Box borderBottom={1}>
                         <CardContent>

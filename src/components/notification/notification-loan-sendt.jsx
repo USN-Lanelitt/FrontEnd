@@ -14,8 +14,8 @@ const NotificationLoanSendt = ({data}) => {
 
                     <NotificationLoanSendtCard
                         firstname={loan.assets.users.firstName}
-                        middlename={loan.assets.users.middleName}
                         lastname={loan.assets.users.lastName}
+                        middlename={loan.assets.users.middleName}
                         imageUrl={loan.assets.users.assetImages}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
