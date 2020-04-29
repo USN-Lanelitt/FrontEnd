@@ -12,7 +12,7 @@ import {useTranslation} from "react-i18next";
 const useStyles = makeStyles(theme => ({
     heroContent: {
         backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6),
+        padding: theme.spacing(4, 0, 2),
     },
 }));
 

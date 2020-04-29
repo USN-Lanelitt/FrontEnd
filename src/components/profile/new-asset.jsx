@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import {Box} from "@material-ui/core";
@@ -18,10 +22,6 @@ import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        // display: "flex",
-        // flexDirection: "column",
-        // alignItems: "flex-start",
-        // padding: theme.spacing(2),
         [theme.breakpoints.between('xs', 'sm')]: {
             minWidth: "100%"
         },

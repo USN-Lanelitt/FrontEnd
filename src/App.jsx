@@ -1,24 +1,17 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
-import Nav from "./components/nav/Nav";
-import Home from "./feature/Home/Home";
-import Admin from "./feature/Admin/Admin";
-import Login from "./feature/Login/Login";
-import SignUp from "./feature/Register/SignUp";
-import Profile from "./feature/Profile/Profile";
-import EditProfile from "./feature/Profile/EditProfile";
+import {BrowserRouter as Router} from "react-router-dom";
 import {AuthProvider} from "./Auth";
-import PrivateRoute from "./PrivateRoute";
 import Scaffold from "./scaffold";
 import MUICookieConsent from "material-ui-cookie-consent";
 import {createMuiTheme} from "@material-ui/core/styles";
 import {red} from "@material-ui/core/colors";
 import {MuiThemeProvider} from "@material-ui/core";
+import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 
 
-function App(){
+function App() {
 
-    const theme = createMuiTheme({
+    let theme = createMuiTheme({
         palette: {
             primary: {
                 main: '#198679',
@@ -26,26 +19,27 @@ function App(){
             secondary: red
         },
     });
+    theme = responsiveFontSizes(theme);
+
     return (
         <MuiThemeProvider theme={theme}>
-        <AuthProvider>
-            <Router>
-            <div className="App">
-                <MUICookieConsent
-                    cookieName="mySiteCookieConsent"
-                    componentType="Snackbar" // default value is Snackbar
-                    message="LåneLitt bruker informasjonskapsler (cookies) på sine nettsider til bl.a.
+            <AuthProvider>
+                <Router>
+                    <div className="App">
+                        <MUICookieConsent
+                            cookieName="mySiteCookieConsent"
+                            componentType="Snackbar" // default value is Snackbar
+                            message="LåneLitt bruker informasjonskapsler (cookies) på sine nettsider til bl.a.
                     stastikk og skjemaoppdateriger. Hvis du godtar dette, kan du fortsette å bruke våre nettsider som vanlig."
 
-                />
+                        />
 
 
+                        <Scaffold/>
 
-                <Scaffold/>
-
-            </div>
-        </Router>
-        </AuthProvider>
+                    </div>
+                </Router>
+            </AuthProvider>
         </MuiThemeProvider>
     );
 }

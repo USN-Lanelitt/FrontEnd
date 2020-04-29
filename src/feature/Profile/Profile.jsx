@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,9 +11,6 @@ import Grid from "@material-ui/core/Grid";
 import Copyright from "../../components/home/Copyright";
 import MyAssetContainer from "../../components/profile/my-asset-container";
 import {useTranslation} from "react-i18next";
-import {createMuiTheme} from "@material-ui/core";
-import ThemeProvider from "@material-ui/styles/ThemeProvider";
-import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 
 const drawerWidth = 240;
 
@@ -64,8 +65,6 @@ export default function Profile() {
     const {t} = useTranslation();
     const classes = useStyles();
 
-    let theme = createMuiTheme();
-    theme = responsiveFontSizes(theme);
 
     return (
         <React.Fragment>
@@ -73,15 +72,13 @@ export default function Profile() {
 
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
-                    <ThemeProvider theme={theme}>
-                        <Typography component="h2"
-                                    variant="h2"
-                                    align="center"
-                                    color="textPrimary"
-                                    gutterBottom>
-                            {t('profile.1').toUpperCase()}
-                        </Typography>
-                    </ThemeProvider>
+                    <Typography component="h2"
+                                variant="h2"
+                                align="center"
+                                color="textPrimary"
+                                gutterBottom>
+                        {t('profile.1').toUpperCase()}
+                    </Typography>
 
                 </Container>
             </div>

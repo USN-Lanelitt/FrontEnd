@@ -1,5 +1,8 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useEffect, useState} from 'react';
-import {makeStyles} from "@material-ui/core/styles";
 import {Paper} from "@material-ui/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
@@ -18,23 +21,9 @@ import AssetReport from "./asset-report";
 import LocationOn from "@material-ui/icons/LocationOn";
 import {getRatings} from "../../components/rating/getRating";
 
-const useStyles = makeStyles(theme => ({
-    button: {
-        display: 'flex',
-        flexDirection: 'column',
-        margin: theme.spacing(1),
-    },
-    input: {
-        display: 'none',
-    },
-}));
-
 
 const AssetSite = () => {
     const {t} = useTranslation();
-    const classes = useStyles();
-    const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [assetId, setAssetId] = useState(null);
     const [asset, setAsset] = useState(null);
     const [rating, setRating] = useState(null);
     const {id} = useParams();
@@ -64,11 +53,11 @@ const AssetSite = () => {
                 <Box width={'70%'} height={1 / 4}>
                     <Carousel infiniteLoop={true}>
                         {
-                                asset.assetImages.map(image =>
-                                    <Paper>
-                                        <img src={"../AssetImages/"+image.imageUrl}/>
-                                    </Paper>
-                                )}
+                            asset.assetImages.map(image =>
+                                <Paper>
+                                    <img src={"../AssetImages/" + image.imageUrl}/>
+                                </Paper>
+                            )}
                     </Carousel>
                 </Box>
             </Box>
@@ -85,7 +74,7 @@ const AssetSite = () => {
                                 </Box>
                                 {asset.users.zipCode && asset.users.zipCode.city}
                             </Box>
-                            <Box component="fieldset" borderColor="transparent" >
+                            <Box component="fieldset" borderColor="transparent">
                                 <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                             </Box>
 
@@ -97,8 +86,10 @@ const AssetSite = () => {
                                     <Typography variant="body2"
                                                 color="textSecondary"
                                                 component="p"
-                                                style={{whiteSpace: "normal",
-                                                    wordWrap: "break-word"}}
+                                                style={{
+                                                    whiteSpace: "normal",
+                                                    wordWrap: "break-word"
+                                                }}
                                     >
                                         {asset && asset.description}
                                     </Typography>

@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useState} from 'react';
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
@@ -66,10 +70,10 @@ const AssetReport = ({userId2}) => {
             .catch(error => {
                 console.log(error)
                 setShowStatusMessage(true);
-                setStatusMessage("Ups, dette gikk ikke helt etter planen!");})
-            .
-                finally(() => setOpen(false));
-                ;
+                setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+            })
+            .finally(() => setOpen(false));
+        ;
 
     }
 

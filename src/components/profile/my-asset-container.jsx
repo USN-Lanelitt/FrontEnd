@@ -1,9 +1,11 @@
+/**
+ * Linda Loftsgarden
+ */
 import React from 'react';
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import MyAssetsList from "./my-assets-list";
 import {makeStyles} from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -40,12 +42,12 @@ const MyAssetContainer = () => {
 
     return (
         <React.Fragment>
-                <Container className={classes.cardGrid}>
-                    <hr/>
-                    <Grid container spacing={12}>
-                        <MyAssetsList/>
-                    </Grid>
-                </Container>
+            <Container className={classes.cardGrid}>
+                <hr/>
+                <Grid container spacing={12}>
+                    <MyAssetsList/>
+                </Grid>
+            </Container>
 
 
         </React.Fragment>

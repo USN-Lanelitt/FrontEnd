@@ -1,12 +1,11 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useEffect, useState} from 'react';
-import CustomUploadButton from "react-firebase-file-uploader/lib/CustomUploadButton";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import Box from "@material-ui/core/Box";
 import {makeStyles} from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import * as firebase from "firebase";
-import axios from "axios";
-import Button from "@material-ui/core/Button";
 import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(theme => ({
@@ -27,19 +26,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ImageUploader = (props) => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const classes = useStyles();
     const [isUploading, setIsUploading] = useState(false);
     const [progress, setProgress] = useState(0);
     const [url, setUrl] = useState(null);
     const [isImageLoading, setIsImageLoading] = useState(true);
-    const [file, setFile] = useState({ preview: null, raw: null })
+    const [file, setFile] = useState({preview: null, raw: null})
 
 
     useEffect(() => {
         setUrl("https://source.unsplash.com/random")
 
-    }, );
+    },);
 
     const handleUploadStart = () => {
         setIsUploading(true);
@@ -74,7 +73,8 @@ const ImageUploader = (props) => {
     }
 
     return (
-        <Box display="flex" justifyContent="space-evenly" flexDirection="column" alignItems="center" className={classes.root}>
+        <Box display="flex" justifyContent="space-evenly" flexDirection="column" alignItems="center"
+             className={classes.root}>
             <Box className={classes.media}
                  display="flex"
                  justifyContent="center"
@@ -83,9 +83,9 @@ const ImageUploader = (props) => {
             >
                 {
                     file.preview ?
-                        <img src={file.preview}  alt="Protocol illustration"
+                        <img src={file.preview} alt="Protocol illustration"
                              className={classes.media}/> :
-                        (<img src={"https://source.unsplash.com/random"}  alt="Protocol illustration"
+                        (<img src={"https://source.unsplash.com/random"} alt="Protocol illustration"
                               className={classes.media}/>)}
             </Box>
 
@@ -123,13 +123,15 @@ const ImageUploader = (props) => {
                            color: 'white',
                            padding: "4px 8px 4px 8px",
                            borderRadius: 4,
-                           textAlign: "center"    }}
+                           textAlign: "center"
+                       }}
                 >
                     {t('image-uploader.1')}
                 </label>
 
-                <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleChange} multiple="false"/>
-                <br />
+                <input type="file" id="upload-button" accept="image/*" style={{display: 'none'}} onChange={handleChange}
+                       multiple="false"/>
+                <br/>
 
             </div>
         </Box>

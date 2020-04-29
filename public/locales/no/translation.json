@@ -112,7 +112,7 @@
     "5": "Send"
   },
   "loan-to-friends": {
-    "1": "MINE UTLÅNTE EIENDELER"
+    "1": "MINE UTLÅN"
   },
   "forgotpass": {
     "1": "Glemt passord?",
@@ -240,7 +240,7 @@
     "1": "Dato for lån:"
   },
   "loan-accepted": {
-    "1": "MINNE LÅN"
+    "1": "MINE LÅN"
   },
   "freind-card": {
     "1": "Slett venn",

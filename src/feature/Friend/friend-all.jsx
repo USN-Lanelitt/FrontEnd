@@ -3,7 +3,7 @@ import FriendCard from "../../components/friend/friend-card";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
+import {createMuiTheme, makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessageNewChat from "../../components/chat/send-message-new-chat";
@@ -80,9 +80,9 @@ const FriendAll = () => {
         <React.Fragment>
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
-                    <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        {t('friend-all.1')}
-                    </Typography>
+                        <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
+                            {t('friend-all.1').toUpperCase()}
+                        </Typography>
                 </Container>
             </div>
             <Container>

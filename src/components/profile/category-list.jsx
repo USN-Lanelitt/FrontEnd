@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useState} from 'react';
 import Box from "@material-ui/core/Box";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,7 +12,6 @@ import axios from "axios";
 
 const CategoryList = ({onChange, categoryId}) => {
     const inputLabel = React.useRef(null);
-    const [value, setValue] = useState("");
     const [categories, setCategories] = useState([]);
     const [labelWidth, setLabelWidth] = React.useState(0);
 
@@ -25,12 +28,6 @@ const CategoryList = ({onChange, categoryId}) => {
         setLabelWidth(inputLabel.current.offsetWidth);
         getCategories();
     }, []);
-
-
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
-
 
 
     return (

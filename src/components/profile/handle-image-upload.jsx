@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import axios from "axios";
 
 const HandleImageUpload = (file) => {
@@ -6,7 +10,6 @@ const HandleImageUpload = (file) => {
         let data = new FormData();
         data.append('file', file.raw);
         data.append('mainImage', true);
-        //data.append('userId', sessionStorage.getItem('userId'));
 
         axios.post('/assetsImage/addImage/'+sessionStorage.getItem('userId')+'/0', data, {
             headers: {

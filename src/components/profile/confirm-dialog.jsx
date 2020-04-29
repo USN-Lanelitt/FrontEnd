@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -7,14 +11,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function ConfirmDialog({
-    title,
-    message,
-    onConfirm,
-    onNotConfirm,
-    confirmButtonText = "",
-    notConfirmButtonText = "",
-    open
-}) {
+                                          title,
+                                          message,
+                                          onConfirm,
+                                          onNotConfirm,
+                                          confirmButtonText = "",
+                                          notConfirmButtonText = "",
+                                          open
+                                      }) {
 
     return (
         <div>

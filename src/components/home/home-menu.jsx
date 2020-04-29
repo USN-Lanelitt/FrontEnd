@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useEffect, useState} from 'react';
 import CategoryCard from "../profile/category-card";
 import Grid from "@material-ui/core/Grid";

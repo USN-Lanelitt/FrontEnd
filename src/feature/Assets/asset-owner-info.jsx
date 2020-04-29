@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React from 'react';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,7 +13,6 @@ import Badge from "@material-ui/core/Badge";
 import Typography from "@material-ui/core/Typography";
 import {Link} from "react-router-dom";
 import CardActionArea from "@material-ui/core/CardActionArea";
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -67,33 +70,33 @@ const AssetOwnerInfo = ({asset, children}) => {
         <div>
             <Card className={styles.card} elevation="0">
                 <CardActionArea component={Link} to={"/friendprofile/" + asset.users.id}>
-                <CardContent>
-                    <IconButton>
-                        <StyledBadge
-                            overlap="circle"
-                            anchorOrigin={{vertical: "bottom", horizontal: "right"}}
-                            variant="dot"
-                        >
-                            <Avatar
-                                className={styles.avatar}
-                                src={"imageUrl/" + sessionStorage.getItem('profileImage')}
-                            />
-                        </StyledBadge>
-                    </IconButton>
-                    <Box display="flex" flexDirection="column" alignItems='center' p={2}>
-                        <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
-                            {asset && asset.users.firstName} {asset && asset.users.middleName} {asset && asset.users.lastName}
-                        </Typography>
+                    <CardContent>
+                        <IconButton>
+                            <StyledBadge
+                                overlap="circle"
+                                anchorOrigin={{vertical: "bottom", horizontal: "right"}}
+                                variant="dot"
+                            >
+                                <Avatar
+                                    className={styles.avatar}
+                                    src={"imageUrl/" + sessionStorage.getItem('profileImage')}
+                                />
+                            </StyledBadge>
+                        </IconButton>
+                        <Box display="flex" flexDirection="column" alignItems='center' p={2}>
+                            <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
+                                {asset && asset.users.firstName} {asset && asset.users.middleName} {asset && asset.users.lastName}
+                            </Typography>
 
-                        <Typography variant="subtitle1" component="h2" display={"inline"}>
-                            {asset && asset.users.nickname}
-                        </Typography>
+                            <Typography variant="subtitle1" component="h2" display={"inline"}>
+                                {asset && asset.users.nickname}
+                            </Typography>
 
-                       {children}
-                    </Box>
+                            {children}
+                        </Box>
 
 
-                </CardContent>
+                    </CardContent>
                 </CardActionArea>
             </Card>
 
