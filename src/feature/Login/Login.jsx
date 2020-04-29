@@ -27,11 +27,6 @@ import Copyright from '../../components/home/Copyright';
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
 import StatusMessage from "../../components/profile/status-message";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import Badge from "@material-ui/core/Badge";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import MenuItem from "@material-ui/core/MenuItem";
-import SportsHandballIcon from "@material-ui/icons/SportsHandball";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -58,7 +53,7 @@ const Login = ({ history }) => {
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
-
+    const [redirect, setRedirect] = React.useState(false);
     const handleLogin = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
@@ -76,7 +71,6 @@ const Login = ({ history }) => {
                     iCode = parseInt(res.data['code']);
                     if (typeof res.data[0] !== 'undefined') {
                         // sette all info i sessionStorage. Felter som er undefiend, sette som blank
-
                         sessionStorage.setItem('userId', res.data[0]['id']);
                         sessionStorage.setItem('profileImage', res.data[0]['profileImage']);
                         sessionStorage.setItem('firstname', res.data[0]['firstname']);
@@ -97,7 +91,6 @@ const Login = ({ history }) => {
                         if (typeof res.data[0]['address2'] === 'undefined' || res.data[0]['address2'] === null)
                             sessionStorage.setItem('address2', '');
                         sessionStorage.setItem('zipcode', res.data[0]['zipcode']);
-
                         if (typeof res.data[0]['zipcode'] === 'undefined' || res.data[0]['zipcode'] === null)
                             sessionStorage.setItem('zipcode', '');
                         sessionStorage.setItem('city', res.data[0]['city']);
@@ -146,12 +139,11 @@ const Login = ({ history }) => {
         event.preventDefault();
     };
 
-    const { currentUser } = useContext(AuthContext);
-    if (currentUser) {
-        return <Redirect to="/" />;
-    }
-
-    const menuId = 'primary-search-account-menu';
+    // -------- KUN til TESTING av nettside! (slippe å logge på på nytt ved justeringer) ----------
+    // const { currentUser } = useContext(AuthContext);
+    // if (currentUser) {
+    //     return <Redirect to="/" />;
+    // }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -201,6 +193,7 @@ const Login = ({ history }) => {
                         />
                     </FormControl>
                     <FormControlLabel
+                        disabled
                         control={<Checkbox value="remember" color="primary" />}
                         label={t('login.4')}
                     />
@@ -212,15 +205,8 @@ const Login = ({ history }) => {
                         color="primary"
                         className={classes.submit}
                     >
-                        {t('login.7')}
+                        {t('login.1')}
                     </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                {t('login.5')}
-                            </Link>
-                        </Grid>
-                    </Grid>
                 </form>
             </div>
             <Box mt={8}>

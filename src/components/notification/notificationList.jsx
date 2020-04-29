@@ -91,7 +91,7 @@ const NotificationList = () => {
 
     const getAcceptedRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
-        axios.get( '/user/' + userId + '/loanAccepted')
+        axios.get('/user/' + userId + '/loanAccepted')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);

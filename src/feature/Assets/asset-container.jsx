@@ -27,7 +27,7 @@ const AssetContainer = () => {
     const [assetType, setAssetType] = useState();
 
     useEffect(() => {
-        axios.get(  "/assets/type/" + id)
+        axios.get("/assets/type/" + id)
             .then(result => {
                 console.log('assetType:', result.data)
                 if (result.data) {
