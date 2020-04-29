@@ -9,6 +9,7 @@ import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessageNewChat from "../../components/chat/send-message-new-chat";
 import {useTranslation} from "react-i18next";
 import {Redirect} from "react-router";
+import Progress from "../../components/progress";
 
 /*Henter alle vennene, laget av Mirsa*/
 
@@ -69,6 +70,7 @@ const FriendAll = () => {
         setShowConfirmDialog(false);
 
     }
+    if (data.length === 0) return <Progress/>;
 
     return (
         <React.Fragment>

@@ -9,6 +9,9 @@ import sendMessageNewChat from "../chat/send-message-new-chat";
 import deleteFriend from "./delete-friend";
 import sendRequest from "./send-friend-request";
 import StatusMessage from "../profile/status-message";
+import Progress from "../progress";
+
+/*Mirsa og Nicole jobbet med denne siden sammen*/
 
 const FriendProfile = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -27,6 +30,8 @@ const FriendProfile = () => {
             })
             .catch(e => console.log(e));
      },[setUser,userId]);
+
+    if (userId.length === 0) return <Progress/>;
 
     return (
         <div>

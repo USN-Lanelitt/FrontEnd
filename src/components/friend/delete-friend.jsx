@@ -8,7 +8,7 @@ export default function deleteFriend(userId, userId2, setShowStatusMessage, setS
                 console.log(response.data);
             }
                 setShowStatusMessage(true);
-                setStatusMessage("Venn slettet!")
+                setStatusMessage("Venn slettet!");
                 setStatusMessageSeverity("success");
         })
         .catch(error => {

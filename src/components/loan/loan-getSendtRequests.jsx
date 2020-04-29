@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import LoanSendRequestNotificationCard from "./loan-send-request-notificationCard";
 import {notificationRefreshLoanSendt} from "../../feature/Notification/notification-refresh";
+import Box from "@material-ui/core/Box";
 
 /*Her er det kortet der du ser de sendte forespørsenene om lån du har sendt  i "varsel" i sidebaren. Programmert av Mirsa*/
 

@@ -1,6 +1,5 @@
 import axios from "axios";
-import {Box} from "@material-ui/core";
-import React, {useState} from "react";
+import React from "react";
 
 
 
@@ -13,7 +12,7 @@ export  default function sendRequest(userId, userId2, setShowStatusMessage, setS
                 console.log(response.data);
             }
                 setShowStatusMessage(true);
-                setStatusMessage("Sendt venneforespørsell!")
+                setStatusMessage("Sendt venneforespørsel!")
                 setStatusMessageSeverity("success");
         })
         .catch(e => {

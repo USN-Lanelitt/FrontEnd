@@ -168,7 +168,8 @@
     "1": "Venneforespørsler",
     "2": "Låneforespørsler",
     "3": "Godtatte låneforespørsler",
-    "4": "Avslåtte låneforespørsler"
+    "4": "Avslåtte låneforespørsler",
+    "5": "Sendte låneforespørsler"
   },
   "changePasswordForm": {
     "1": "Nåværende passord",

@@ -168,7 +168,8 @@
     "1": "Friend request",
     "2": "Loan request",
     "3": "Accepted loan requests",
-    "4": "Denied loan requests"
+    "4": "Denied loan requests",
+    "5": "Send loan requests"
   },
   "changePasswordForm": {
     "1": "Current password",

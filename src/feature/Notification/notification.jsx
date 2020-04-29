@@ -13,6 +13,7 @@ import NotificationLoanDenied from "../../components/notification/notification-l
 import NotificationLoanAccepted from "../../components/notification/notification-loan-accepted";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import LoanGetSendtRequests from "../../components/loan/loan-getSendtRequests";
+import Progress from "../../components/progress";
 
 /*Her er den siden med notifikasjon i sidebaren - Mirsa*/
 
@@ -83,6 +84,7 @@ const Notification = () => {
         setShowConfirmDialog(false);
     }
 
+
     return (
         <React.Fragment>
             <Container>
@@ -131,7 +133,7 @@ const Notification = () => {
                 <LoanRequests/>
 
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
-                Sendte låneforespørseler
+                    {t('notification.5')}
                 <Divider/>
             </Typography>
 

@@ -31,48 +31,50 @@ const useStyles = makeStyles(theme => ({
 
 const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, assetname, description, assetImages, selectedDate, selectedDate2}) => {
     const classes = useStyles();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     return (
-        <Card className={classes.paper}>
             <Box display="flex" flexDirection="row">
-            <CardContent>
-                <Grid className={classes.top}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {firstname} {middlename} {lastname}
-                    </Typography>
+            <Card className={classes.paper}>
+                <Box display="flex" flexDirection="row">
+                    <CardContent>
+                        <Grid className={classes.top}>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {firstname} {middlename} {lastname}
+                            </Typography>
 
-                    <Box className={classes.status} display="flex" justifyContent="center">
-                        <Button size="small" color="grey">
-                            Sendt
-                        </Button>
-                    </Box>
+                            <Box className={classes.status} display="flex" justifyContent="center">
+                                <Button size="small" color="grey">
+                                    Sendt
+                                </Button>
+                            </Box>
 
-                </Grid>
-                <CardMedia
-                    component="img"
-                    alt="bilde"
-                    height="200"
-                    image={assetImages}
-                />
+                        </Grid>
+                        <CardMedia
+                            component="img"
+                            alt="bilde"
+                            height="200"
+                            image={assetImages}
+                        />
 
-                <Typography gutterBottom variant="h5" component="h2">
-                    {assetname}
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {assetname}
 
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {description}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {description}
 
-                </Typography>
-                <Box>
-                    <Typography gutterBottom variant="subtitle1" component="h2" paddingTop="10px">
-                        {selectedDate} - {selectedDate2}
+                        </Typography>
+                        <Box>
+                            <Typography gutterBottom variant="subtitle1" component="h2" paddingTop="10px">
+                                {selectedDate} - {selectedDate2}
 
-                    </Typography>
+                            </Typography>
+                        </Box>
+                    </CardContent>
                 </Box>
-            </CardContent>
-            </Box>
-        </Card>
+            </Card>
+</Box>
     );
 };
 
