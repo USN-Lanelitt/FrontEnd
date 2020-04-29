@@ -8,8 +8,8 @@ import axios from "axios";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessageNewChat from "../../components/chat/send-message-new-chat";
 import {useTranslation} from "react-i18next";
-import {Redirect} from "react-router";
 import Progress from "../../components/progress";
+import {getAllFriends} from "../Notification/notification-refresh";
 
 /*Henter alle vennene, laget av Mirsa*/
 
@@ -53,9 +53,9 @@ const FriendAll = () => {
         console.log("deletefriend", userId, sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/friend/' + friendId + '/delete')
             .then((response) => {
+                getAllFriends (userId, setData);
                 if (response.status === 200) {
                     console.log(response.data);
-                    setData(response.data);
 
 
                 }
@@ -105,6 +105,7 @@ const FriendAll = () => {
                                 friendId={item.user2.id}
                                 onRemove={() => remove(item.user2.id)}
                                 getChat={() => sendMessageNewChat(userId, item.user2.id)}
+                                refresh={() => getAllFriends(userId, setData)}
 
                             />
 

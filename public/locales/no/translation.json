@@ -255,5 +255,10 @@
     "5": "Publisert",
     "6": "Publiser",
     "7": "Eiendelen er ikke lenger synlig for andre"
+  },
+  "friend-profile": {
+    "1": "slett venn",
+    "2": "Send melding",
+    "3": "Legg til"
   }
 }

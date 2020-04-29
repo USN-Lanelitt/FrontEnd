@@ -7,6 +7,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
 import {Redirect} from "react-router";
+import {adminRefrech} from "../../feature/Admin/admin-refrech";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -52,6 +53,7 @@ const LogDropdown = () => {
         axios.post('/setLevel/'+newLevel).then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
+                adminRefrech(setSelectedLevel);
             }
         })
             .catch(e => console.log(e));

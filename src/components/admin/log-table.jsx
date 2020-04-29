@@ -11,7 +11,7 @@ import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     outer: {
-        width: '900px',
+        minWidth: '700px',
         height: '500px'
     },
     inner:{
@@ -33,6 +33,7 @@ const LogTable = ({log}) => {
     const classes = useStyles();
 
     return (
+
         <TableContainer className={classes.outer} component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
@@ -49,6 +50,7 @@ const LogTable = ({log}) => {
 
             </Table>
         </TableContainer>
+
     );
 };
 

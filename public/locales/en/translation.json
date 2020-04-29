@@ -255,5 +255,10 @@
     "5": "Published",
     "6": "publish",
     "7": "Unpublished"
+  },
+  "friend-profile": {
+    "1": "Delete friend",
+    "2": "Send message",
+    "3": "Add friend"
   }
 }
