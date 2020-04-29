@@ -85,6 +85,7 @@ export default function ChatDesktop() {
         console.log(userId2);
     };
 
+    // ------ Farhad ------
    const handleSpinner = () => {
      if (!selectedChat){
          return <Progress/>
@@ -92,6 +93,7 @@ export default function ChatDesktop() {
    };
 
     if (chatUsers.length === 0) return <Progress/>;
+    // ------ Farhad ------
 
     return (
         <React.Fragment>
