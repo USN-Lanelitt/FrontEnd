@@ -133,7 +133,6 @@ const EditProfile = ({history}) => {
         sessionStorage.setItem('address', address1.value);
         sessionStorage.setItem('address2', address2.value);
         sessionStorage.setItem('zipcode', zipcode.value);
-
         sessionStorage.setItem('newsletter', newsletter.checked);
         console.log(sessionStorage.getItem('newsletter'));
 
