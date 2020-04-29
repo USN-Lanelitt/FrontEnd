@@ -40,15 +40,13 @@ const MyAssetContainer = () => {
 
     return (
         <React.Fragment>
-
-            <main>
                 <Container className={classes.cardGrid}>
                     <hr/>
                     <Grid container spacing={12}>
                         <MyAssetsList/>
                     </Grid>
                 </Container>
-            </main>
+
 
         </React.Fragment>
     );

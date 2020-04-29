@@ -77,18 +77,18 @@ const NewAsset = () => {
                 console.log("result"+result.data);
                 if(result.data){
                     setShowStatusMessage(true);
-                    setStatusMessage("Eiendelen ble opprettet!")
+                    setStatusMessage(t("new-asset.1"))
                     setStatusMessageSeverity("success");
                     setTimeout(() => setRedirect(true), 1000) ;
                 }else{
                     setShowStatusMessage(true);
-                    setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+                    setStatusMessage(t("new-asset.2"));
                 }
             })
             .catch(error => {
                 console.log(error);
                 setShowStatusMessage(true);
-                setStatusMessage("Ups, dette gikk ikke helt etter planen!");
+                setStatusMessage(t("new-asset.7"));
             })
 
         console.log("new asset", asset);
@@ -102,13 +102,13 @@ const NewAsset = () => {
                            onClose={setShowStatusMessage}/>
 
             <Card className={classes.card}>
-                <CardHeader title={t('new-asset.1')}/>
+                <CardHeader title={t('new-asset.8')}/>
 
                 <CardContent>
                     <Box mb={4} width={1}>
                         <TextField
                             value={title}
-                            label={t('new-asset.2')}
+                            label={t('new-asset.8')}
                             id="outlined-size-normal"
                             variant="outlined"
                             fullWidth

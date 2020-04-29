@@ -36,7 +36,6 @@ const AssetSearch = () => {
                 </Container>
             </div>
             <CssBaseline />
-            <main>
                 <Container className={classes.cardGrid}>
                    <Box m={5}>
                     <hr/>
@@ -45,7 +44,6 @@ const AssetSearch = () => {
                         <AssetsList searchTherm={search}/>
                     </Grid>
                 </Container>
-            </main>
         </div>
     );
 };

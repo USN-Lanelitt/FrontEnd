@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const fetchAssets = (userId, setAssets) => {
+export const fetchAssets = (userId, setAssets, setLoading) => {
+    setLoading(true);
     axios.get("/assets/getMyAsset/" + userId)
         .then(result => {
             if (result.status === 200) {
@@ -8,5 +9,6 @@ export const fetchAssets = (userId, setAssets) => {
                 setAssets(result.data);
             }
         })
-        .catch(e => console.log(e));
+        .catch(e => console.log(e))
+        .finally(() => setLoading(false));
 }

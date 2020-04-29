@@ -21,9 +21,9 @@
     "1": "Logg på",
     "2": "Brukernavn",
     "3": "Passord",
-    "4": "Husk meg",
+    "4": "Husk meg (Deaktivert grunnet bug)",
     "5": "Glemt passord",
-    "6": "Har ikke konto?",
+    "6": "Opprett konto",
     "7": "Logg ut",
     "8": "Felt merket med * må fylles ut!",
     "9": "Oi! noe gikk galt... vennligst sjekk brukernavn / passord og prøv på nytt. "
@@ -39,11 +39,12 @@
     "8": "Passord",
     "9": "Må være minst 6 tegn",
     "10": "Jeg ønsker å motta nyheter på e-post",
-    "11": "E-post finnes fra før, trykk glemt passord hvis du har glemt passordet.",
+    "11": "E-post finnes fra før",
     "12": "OPPRETT KONTO",
     "13": "Har allerede en konto? Logg på!",
     "14": "FEIL! Vennligst sjekk at feltene merket med * er fylt ut riktig.",
-    "15": "Brukervilkår må aksepteres."
+    "15": "Brukervilkår må aksepteres.",
+    "16": "Konto opprettet!"
   },
   "categories": {
     "1": "Verktøy",
@@ -130,7 +131,9 @@
     "3": "Beskrivelse",
     "4": "VELG BILDE",
     "5": "Offentlig",
-    "6": "Opprett"
+    "6": "Opprett",
+    "7": "Eiendelen ble opprettet!",
+    "8": "Ups, noe gikk galt!"
   },
   "rating-card": {
     "1": "Lagre"
@@ -245,11 +248,12 @@
     "2": "Send melding"
   },
   "my-asset-card": {
-    "1": "Eiendelen ble opprettet!",
+    "1": "Eiendelen ble publisert!",
     "2": "Ups, noe gikk galt!",
     "3": "Offentlig",
     "4": "Bare venner",
     "5": "Publisert",
-    "6": "Publiser"
+    "6": "Publiser",
+    "7": "Eiendelen er ikke lenger synlig for andre"
   }
 }

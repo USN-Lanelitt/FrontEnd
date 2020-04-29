@@ -58,6 +58,11 @@ export default function ChatWinMobile({userId2}) {
         showChat(userId, userId2, setSelectedChat);
     }, []);
 
+    const onSelected = (userId2) => {
+        showChat(userId, userId2, setSelectedChat);
+        console.log(userId2);
+    };
+
     if(redirect){
         return <Redirect to={"/chat"}/>
     }
@@ -89,7 +94,7 @@ export default function ChatWinMobile({userId2}) {
                     {/*-----------------chattevindu----------------*/}
                     <Box display="flex" alignItems="center">
                         <Box className={classes.chatWindow}>
-                            <Box className={classes.messageBox}>
+                            <Box className={classes.messageBox} onChange={onSelected(userId2)}>
                                 {selectedChat &&
                                     <ChatList selectedChat={selectedChat} user={user}/>
                                 }

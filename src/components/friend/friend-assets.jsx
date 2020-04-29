@@ -34,7 +34,6 @@ const FriendAssets = () => {
     return (
         <Container>
 
-            <main>
                 <Container className={classes.cardGrid}>
                     <Box m={5}>
 
@@ -53,7 +52,6 @@ const FriendAssets = () => {
 
                     </Grid>
                 </Container>
-            </main>
         </Container>
 
     )

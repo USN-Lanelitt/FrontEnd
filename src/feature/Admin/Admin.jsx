@@ -27,7 +27,6 @@ export default function Admin() {
     return (
         <React.Fragment>
             <CssBaseline/>
-            <main>
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -64,7 +63,6 @@ export default function Admin() {
                         <LogList/>
                     </Grid>
                 </Container>
-            </main>
         </React.Fragment>
     );
 }

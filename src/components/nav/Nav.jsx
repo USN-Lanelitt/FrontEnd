@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import clsx from "clsx";
-import {Link} from 'react-router-dom';
+import {Link, useRouteMatch} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -271,18 +271,18 @@ export default function NavBar(props) {
                 <p>Meldiger</p>
             </MenuItem></div>)}
             {!loggedIn && (
-                <MenuItem component={Link} to="/signup">
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    size="small"
-                    color="inherit"
-                >
-                    <SportsHandballIcon/>
-                    {t('login.6')}
-                </IconButton>
-                </MenuItem>
+                    <MenuItem component={Link} to="/signup">
+                        <IconButton
+                            aria-label="account of current user"
+                            aria-controls="primary-search-account-menu"
+                            aria-haspopup="true"
+                            size="small"
+                            color="inherit"
+                        >
+                            <SportsHandballIcon/>
+                            {t('login.6')}
+                        </IconButton>
+                    </MenuItem>
             )}
             {!loggedIn ?
                     <MenuItem component={Link} to="/login">
@@ -304,7 +304,6 @@ export default function NavBar(props) {
                 </MenuItem>}
         </Menu>
     );
-
 
     return (
         //------------DESKTOP / PC SKJERM NAVBAR MENY----------------
@@ -391,7 +390,7 @@ export default function NavBar(props) {
                                     <SportsHandballIcon/>
                                     {t('login.6')}
                                 </IconButton>
-                                )}
+                        )}
                         {!loggedIn ?
                                 <IconButton
                                     edge="end"

@@ -18,7 +18,7 @@ const NotificationLoanAccepted = () => {
 
     const getAcceptedLoanRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
-        axios.get( '/user/' + userId + '/loanAccepted')
+        axios.get('/user/' + userId + '/loanAccepted')
             .then((response) => {
                 notificationRefreshLoanAccepted(userId, setData);
                 if (response.status === 200) {

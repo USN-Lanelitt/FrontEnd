@@ -17,9 +17,9 @@
     "1": "Login",
     "2": "Username",
     "3": "Password",
-    "4": "Remember me",
+    "4": "Remember me (disabled due to bug)",
     "5": "Forgot password",
-    "6": "No account?",
+    "6": "Create account",
     "7": "Sign out",
     "8": "All fields must be filled out!",
     "9": "Something went wrong... Please check username and password."
@@ -39,7 +39,8 @@
     "12": "CREATE ACCOUNT",
     "13": "Already have an account? Login here!",
     "14": "ERROR! Please check required fields marked with *.",
-    "15": "You must accept Terms & Conditions."
+    "15": "You must accept Terms & Conditions.",
+    "16": "User account created!"
   },
   "categories": {
     "1": "Tools",
@@ -130,7 +131,9 @@
     "3": "Description",
     "4": "SELECT IMAGE",
     "5": "Public",
-    "6": "Create"
+    "6": "Create",
+    "7": "The asset is created!",
+    "8": "Something went wrong!"
   },
   "rating-card": {
     "1": "Save"
@@ -194,7 +197,8 @@
     "14": "Save",
     "15": "Firstname",
     "16": "Middlename",
-    "17": "Lastname"
+    "17": "Lastname",
+    "18": "Endringer lagret!"
   },
   "profile": {
     "1": "My assets"
@@ -249,6 +253,7 @@
     "3": "Public",
     "4": "Only Friends",
     "5": "Published",
-    "6": "Not published"
+    "6": "publish",
+    "7": "Unpublished"
   }
 }
