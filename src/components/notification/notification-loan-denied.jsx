@@ -35,7 +35,7 @@ const NotificationLoanDenied = () => {
                         firstname={loan.assets.users.firstName}
                         middlename={loan.assets.users.middleName}
                         lastname={loan.assets.users.lastName}
-                        imageUrl={loan.assets.users.assetImages}
+                        imageUrl={loan.assets.assetImages[0].imageUrl}
                         loanStatus={loan.statusLoan.status}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
