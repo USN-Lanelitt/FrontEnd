@@ -140,6 +140,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+// ------ Farhad ------
+// ------ Sidepanel liste ------
 export default function SidePanel() {
     const {t} = useTranslation();
     const [state, setState] = React.useState({
@@ -246,3 +248,4 @@ export default function SidePanel() {
         <Sidepanel/>
     )
 }
+

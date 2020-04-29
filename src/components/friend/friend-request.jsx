@@ -74,7 +74,7 @@ const FriendRequest = ({id, firstname, middlename, lastname, imageUrl, onDenied,
                 <Grid className={classes.list}>
 
                     <ListItemAvatar>
-                        <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
+                        <Avatar className={classes.photo} alt="Remy Sharp" src={"profileImage/"+imageUrl}/>
                     </ListItemAvatar>
 
                     <ListItemText gutterBottom variant="h4" component="h7" display={"inline"}>

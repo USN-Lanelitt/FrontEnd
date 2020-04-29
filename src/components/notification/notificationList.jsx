@@ -68,12 +68,14 @@ const NotificationList = () => {
         }
     }
 
+    // ------ Farhad Start ------
     useEffect(() => {
         const interval = setInterval(() => {
             handleUpdate();
         }, 15000);
         return () => clearInterval(interval);
     }, []);
+    // ------ Farhad Slutt ------
 
 // return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
@@ -98,13 +100,14 @@ const NotificationList = () => {
             })
             .catch(error => console.log(error))
     };
-
+    // ------ Farhad Start ------
     const handleUpdate = () => {
         getFriendsRequests();
         getSendtRequests();
         getAcceptedRequests();
         getDeniedRequests();
     };
+    // ------ Farhad Slutt ------
 
     const getFriendsRequests = () => {
         axios.get('/user/' + userId + '/friendRequests')

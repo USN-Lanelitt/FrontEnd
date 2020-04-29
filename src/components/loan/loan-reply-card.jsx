@@ -54,7 +54,7 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     component="img"
                     alt="bilde"
                     height="200"
-                    image={assetImages}
+                    image={"AssetImages/"+assetImages}
                 />
 
                 <Typography gutterBottom variant="h5" component="h2">

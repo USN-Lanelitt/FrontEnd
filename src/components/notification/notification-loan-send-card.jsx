@@ -67,7 +67,7 @@ const NotificationLoanSendtCard = ({id, firstname, middlename, imageUrl, lastnam
                 <Grid className={classes.list}>
                     <Box mt={1}>
                         <ListItemAvatar>
-                            <Avatar className={classes.photo} ml={2} alt="Remy Sharp" src={imageUrl}/>
+                            <Avatar className={classes.photo} ml={2} alt="Remy Sharp" src={"AssetImages/"+imageUrl}/>
                         </ListItemAvatar>
                     </Box>
                     <Box display='flex' flexDirection="column">
