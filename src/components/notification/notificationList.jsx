@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
@@ -15,6 +15,7 @@ import LoanGetDeniedRequests from "../loan/loan-getDeniedRequests";
 import {Box} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import NotificationLoanSendt from "./notification-loan-sendt";
+import Progress from "../progress";
 
 /*Her har vi notifikasjonen som ligger i bjellen, denne er laget av Mirsa*/
 
@@ -47,7 +48,7 @@ const NotificationList = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [dataAccept, setDataAccept] = useState([]);
     const [dataDenied, setDataDeniend] = useState([]);
-    const [dataSendt, setDataSendt] =  useState([]);
+    const [dataSendt, setDataSendt] = useState([]);
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
@@ -67,29 +68,22 @@ const NotificationList = () => {
         }
     }
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleUpdate();
+        }, 15000);
+        return () => clearInterval(interval);
+    }, []);
+
 // return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
-    React.useEffect(() => {
+    useEffect(() => {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
         }
-
         prevOpen.current = open;
 
-        getSendtRequests();
-        getAcceptedRequests();
-        getDeniedRequests();
-
-
-        axios.get('/user/' + userId + '/friendRequests')
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log(response);
-                    setData(response.data);
-                }
-            })
-            .catch(e => console.log(e));
-
+        handleUpdate();
 
     }, [open]);
 
@@ -105,6 +99,23 @@ const NotificationList = () => {
             .catch(error => console.log(error))
     };
 
+    const handleUpdate = () => {
+        getFriendsRequests();
+        getSendtRequests();
+        getAcceptedRequests();
+        getDeniedRequests();
+    };
+
+    const getFriendsRequests = () => {
+        axios.get('/user/' + userId + '/friendRequests')
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response);
+                    setData(response.data);
+                }
+            })
+            .catch(e => console.log(e));
+    };
 
     const getDeniedRequests = () => {
         console.log("getDeniedRequests", userId, sessionStorage.getItem('userId'));
@@ -121,7 +132,7 @@ const NotificationList = () => {
     };
     const getSendtRequests = () => {
         console.log("getSendtRequests", userId, sessionStorage.getItem('userId'));
-        axios.get('/user/'+userId+'/loanSent')
+        axios.get('/user/' + userId + '/loanSent')
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
@@ -134,7 +145,8 @@ const NotificationList = () => {
     return (
         <div className={classes.root}>
             <div>
-                <Badge badgeContent={data.length + dataSendt.length + dataAccept.length + dataDenied.length} color="secondary">
+                <Badge badgeContent={data.length + dataSendt.length + dataAccept.length + dataDenied.length}
+                       color="secondary">
                     <IconButton
                         className={classes.button}
                         ref={anchorRef}
@@ -170,12 +182,13 @@ const NotificationList = () => {
                         }}
                 >
                     <span className={classes.arrow} ref={setArrowRef}/>
-                    <Paper style={{maxHeight: 300, overflow:'auto'}}>
+                    <Paper style={{maxHeight: 300, overflow: 'auto'}}>
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="menu-list-grow"
                                       onKeyDown={handleListKeyDown}>
                                 <Box maxWidth="48ch">
-                                    <Typography className={classes.typo} variant="h6" align="center" color="textPrimary" >
+                                    <Typography className={classes.typo} variant="h6" align="center"
+                                                color="textPrimary">
                                         Varsler
                                     </Typography>
                                     <Divider variant="li"/>

@@ -72,7 +72,7 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
     const [done, setDone] = useState(false);
     const [value, setValue] = useState(null);
     const [disabled, setDisabled] = useState(false);
-
+    const [userExists, setUserExists] = useState(false);
 
     if(done === false && user){
         console.log("check", sessionStorage.getItem('userId'));
@@ -98,7 +98,9 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
             sendRequest()
     }
 
-
+    if (user){
+        setUserExists(true);
+    }
 
     return (
         <div>
@@ -110,10 +112,13 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
                             anchorOrigin={{vertical: "bottom", horizontal: "right"}}
                             variant="dot"
                         >
-                            <Avatar
+                            {userExists ? <Avatar
                                 className={styles.avatar}
-                                src={"imageUrl/" + sessionStorage.getItem('profileImage')}
-                            />
+                                src={"profileImage/"+ user.profileImage}
+                            /> : <Avatar
+                                className={styles.avatar}
+                                src={""}
+                            /> }
                         </StyledBadge>
                     </IconButton>
                     <Box display="flex" flexDirection="column" p={2}>
