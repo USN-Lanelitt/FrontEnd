@@ -38,11 +38,7 @@ function App(){
                     stastikk og skjemaoppdateriger. Hvis du godtar dette, kan du fortsette å bruke våre nettsider som vanlig."
 
                 />
-
-
-
                 <Scaffold/>
-
             </div>
         </Router>
         </AuthProvider>
