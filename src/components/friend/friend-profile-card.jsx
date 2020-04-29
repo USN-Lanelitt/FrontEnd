@@ -13,6 +13,9 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
+/*Kortet til profil, laget av Mirsa*/
+
+
 const useStyles = makeStyles(theme => ({
     card: {
         borderRadius: 12,

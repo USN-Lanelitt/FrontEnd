@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import NotificationLoanSendtCard from "./notification-loan-send-card";
 
 
-//her er den listen i notification iconet
+//her er den listen i notification iconet/*Laget av Mirsa*/
 
 const NotificationLoanSendt = ({data}) => {
 

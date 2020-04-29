@@ -17,7 +17,7 @@ import Divider from "@material-ui/core/Divider";
 import NotificationLoanSendt from "./notification-loan-sendt";
 import Progress from "../progress";
 
-/*Her har vi notifikasjonen som ligger i bjellen, denne er laget av Mirsa*/
+/*Her har vi notifikasjonen som ligger i bjellen, denne er laget av Mirsa & Farhad*/
 
 const useStyles = makeStyles(theme => ({
     paper: {

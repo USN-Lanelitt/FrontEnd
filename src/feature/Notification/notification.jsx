@@ -13,9 +13,8 @@ import NotificationLoanDenied from "../../components/notification/notification-l
 import NotificationLoanAccepted from "../../components/notification/notification-loan-accepted";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import LoanGetSendtRequests from "../../components/loan/loan-getSendtRequests";
-import Progress from "../../components/progress";
 
-/*Her er den siden med notifikasjon i sidebaren - Mirsa*/
+/*Her er den siden med notifikasjon i sidebaren - Mirsa & Linda*/
 
 
 let statuss = 0;

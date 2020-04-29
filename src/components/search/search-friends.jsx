@@ -10,6 +10,7 @@ import {useTranslation} from 'react-i18next';
 import {useParams} from "react-router";
 import MenuItem from "@material-ui/core/MenuItem";
 
+/*Laget av Mirsa, Linda, Nicole*/
 
 const useStyles = makeStyles((theme) => ({
 
@@ -63,7 +64,6 @@ const SearchFriends = () => {
     const [dataFilterd, setDataFilterd] = useState([]);
     const [search, setSearch] = useState();
     const classes = useStyles();
-    const [enter, setEnter] = React.useState(false);
     const {t} = useTranslation();
     const {id} = useParams();
 
@@ -111,7 +111,7 @@ const SearchFriends = () => {
                     />}
                     renderOption={(option => (
                         <MenuItem key={option.id} onClick={onClickFriend} value={option.id}>
-                            <Link className={classes.link} to={'/FriendProfile/' + option.id} >
+                            <Link className={classes.link} to={'/FriendProfile/' + option.id}>
                                 {`${option.firstName}  ${option.lastName}`}
                             </Link>
                         </MenuItem>

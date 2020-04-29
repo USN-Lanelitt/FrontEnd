@@ -13,6 +13,7 @@ import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
 
+/*Laget av Mirsa, Nicole og Linda*/
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -31,22 +32,22 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove, getChat}) => {
+const FriendCard = ({id, firstname, middlename, lastname, imageUrl, onRemove, getChat}) => {
     const classes = useStyles();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
 
     return (
         <Grid>
             <Card className={classes.card}>
-                <CardActionArea component = {Link} to={"/FriendProfile/" + id}  style={{backgroundColor: 'transparent'}}>
+                <CardActionArea component={Link} to={"/FriendProfile/" + id} style={{backgroundColor: 'transparent'}}>
                     <CardContent>
                         <Grid container justify="flex-start">
                             <CardMedia>
                                 <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                             </CardMedia>
-                            <Grid className={classes.text} >
-                                <Typography gutterBottom variant="h6" component="h2" display={"inline"} >
+                            <Grid className={classes.text}>
+                                <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
                                     {firstname} {middlename} {lastname}
                                 </Typography>
                             </Grid>
@@ -54,10 +55,10 @@ const FriendCard = ({id,firstname, middlename, lastname, imageUrl, onRemove, get
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button className={classes.Button} onClick= {onRemove} size="small" color="primary">
+                    <Button className={classes.Button} onClick={onRemove} size="small" color="primary">
                         {t('freind-card.1')}
                     </Button>
-                    <Button onClick= {getChat} component={Link} to={"/chat/" + id} size="small" color="primary">
+                    <Button onClick={getChat} component={Link} to={"/chat/" + id} size="small" color="primary">
                         {t('freind-card.2')}
                     </Button>
                 </CardActions>

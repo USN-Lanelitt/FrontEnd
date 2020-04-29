@@ -1,4 +1,5 @@
 import axios from "axios";
+/* laget av Nicole*/
 
 export default function deleteFriend(userId, userId2, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity) {
     console.log("deleteFriend", sessionStorage.getItem('userId'));

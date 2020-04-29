@@ -13,7 +13,6 @@ import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(theme => ({
     paper: {
-
         display: 'flex',
         flexDirection: 'row',
         maxWidth: 470,
@@ -30,13 +29,11 @@ const useStyles = makeStyles(theme => ({
     Button: {
         color: 'red',
     },
-
-
 }));
 
 const LoanReplyCard = ({firstname, middlename, lastname, assetname, description, assetImages, selectedDate, selectedDate2, onDenied, onAccept}) => {
     const classes = useStyles();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     return (
         <Card className={classes.paper}>
@@ -74,12 +71,12 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
 
                     </Typography>
                 </Box>
-                    <Button onClick= {onAccept} size="small" color="primary">
-                        {t('loan-replay-card.1')}
-                    </Button>
-                    <Button className={classes.Button} onClick={onDenied} size="small" color="primary">
-                        {t('loan-replay-card.2')}
-                    </Button>
+                <Button onClick={onAccept} size="small" color="primary">
+                    {t('loan-replay-card.1')}
+                </Button>
+                <Button className={classes.Button} onClick={onDenied} size="small" color="primary">
+                    {t('loan-replay-card.2')}
+                </Button>
             </CardContent>
         </Card>
     );

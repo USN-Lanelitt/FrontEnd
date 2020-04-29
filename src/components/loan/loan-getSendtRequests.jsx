@@ -15,18 +15,18 @@ const LoanGetSendtRequests = () => {
         getSendtRequests();
     }, []);
 
-        const getSendtRequests = () => {
-            console.log("", userId, sessionStorage.getItem('userId'));
-            axios.get('/user/'+userId+'/loanSent')
-                .then((response) => {
-                    notificationRefreshLoanSendt (userId, setData);
-                    if (response.status === 200) {
-                        console.log(response.data);
-                        setData(response.data);
-                    }
-                })
-                .catch(e => console.log(e));
-        };
+    const getSendtRequests = () => {
+        console.log("", userId, sessionStorage.getItem('userId'));
+        axios.get('/user/' + userId + '/loanSent')
+            .then((response) => {
+                notificationRefreshLoanSendt(userId, setData);
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setData(response.data);
+                }
+            })
+            .catch(e => console.log(e));
+    };
     return (
         <Grid>
             {data.map(loan => (

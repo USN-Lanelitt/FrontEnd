@@ -34,7 +34,7 @@ const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, asset
     const {t} = useTranslation();
 
     return (
-            <Box display="flex" flexDirection="row">
+        <Box display="flex" flexDirection="row">
             <Card className={classes.paper}>
                 <Box display="flex" flexDirection="row">
                     <CardContent>
@@ -54,7 +54,7 @@ const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, asset
                             component="img"
                             alt="bilde"
                             height="200"
-                            image={"assetImages/"+assetImages}
+                            image={"assetImages/" + assetImages}
                         />
 
                         <Typography gutterBottom variant="h5" component="h2">
@@ -74,7 +74,7 @@ const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, asset
                     </CardContent>
                 </Box>
             </Card>
-</Box>
+        </Box>
     );
 };
 

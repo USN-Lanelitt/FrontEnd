@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import LoanRequestNotification from "./loan-request-notification";
 import axios from "axios";
 
-//her er den listen i notification
+//her er den listen i notification /*Laget av Mirsa*/
 
 const LoanRequestList = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));

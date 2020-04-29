@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import {useTranslation} from "react-i18next";
 
-//her er det kort med alle eiendeler som skal lånes til andre (alle godkjente)
+//her er det kort med alle eiendeler som skal lånes til andre (alle godkjente)/*Laget av Mirsa*/
 
 const useStyles = makeStyles(theme => ({
     heroContent: {
@@ -17,14 +17,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LoanToFriends = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
     useEffect(() => {
         console.log("", userId, sessionStorage.getItem('userId'));
-        axios.get('/user/'+userId+'/loans')
+        axios.get('/user/' + userId + '/loans')
             .then((response) => {
                 if (response.status === 200) {
                     console.log("HEr kommer data");
@@ -49,7 +49,7 @@ const LoanToFriends = () => {
             </div>
             <Grid container spacing={3} justify="center">
 
-            {data.map(loan => (
+                {data.map(loan => (
                         <Grid item key={loan.id}>
                             <LoanCard
                                 firstname={loan.users.firstName}
@@ -65,7 +65,7 @@ const LoanToFriends = () => {
                         </Grid>
                     )
                 )
-            }
+                }
             </Grid>
 
         </React.Fragment>
