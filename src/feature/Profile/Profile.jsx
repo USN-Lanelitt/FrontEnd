@@ -43,7 +43,6 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(4),
     },
     cardGrid: {
-        paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
     },
     card: {
@@ -70,8 +69,7 @@ export default function Profile() {
     return (
         <React.Fragment>
             <CssBaseline/>
-            <main>
-                <hr/>
+
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1"
@@ -93,7 +91,6 @@ export default function Profile() {
                         <MyAssetContainer/>
                     </Grid>
                 </Container>
-            </main>
             <footer className={classes.footer}>
                 <Typography variant="h6" align="center" gutterBottom>
                     Lånelitt

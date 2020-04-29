@@ -27,13 +27,14 @@ const MyAssetsList = () => {
 
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    const [assets, setAssets] = useState([]);
+    const [assets, setAssets] = useState(null);
     const [assetId, setAssetId] = useState(null);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         console.log("fetchassets", sessionStorage.getItem('userId'));
-        fetchAssets(userId, setAssets);
+        fetchAssets(userId, setAssets, setLoading);
     }, [setAssets, userId]);
 
     const remove = (assetId) => {
@@ -44,7 +45,7 @@ const MyAssetsList = () => {
     function onDeleteAssetConfirm() {
         axios.delete('/assets/removeAsset/' + assetId)
             .then(result => {
-                fetchAssets(userId, setAssets);
+                fetchAssets(userId, setAssets, setLoading);
                 console.log(result);
             })
             .catch(error => console.log(error));
@@ -54,8 +55,7 @@ const MyAssetsList = () => {
     function onDeleteAssetCancel() {
         setShowConfirmDialog(false);
     }
-
-    if (assets.length === 0) return <Progress/>
+   if (loading) return <Progress/>
 
     return (
         <Container>

@@ -54,7 +54,6 @@ export default function Home() {
   return (
       <React.Fragment>
         <CssBaseline/>
-        <main>
           <div className={classes.heroContent}>
             <Container maxWidth="sm">
               <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -73,7 +72,6 @@ export default function Home() {
               <HomeMenu/>
             </Grid>
           </Container>
-        </main>
         <footer className={classes.footer}>
           <Typography variant="h6" align="center" gutterBottom>
             Lånelitt
