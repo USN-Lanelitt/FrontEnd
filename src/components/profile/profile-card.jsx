@@ -102,6 +102,7 @@ export default function ProfileCard() {
     // Oppretter variabler og setter de som blank ('')
     let [email] = useState('');
     let [id] = useState('');
+    let [nickname] = useState('');
     let [firstname] = useState('');
     let [lastname] = useState('');
     let [phone] = useState('');
@@ -113,6 +114,7 @@ export default function ProfileCard() {
         user.providerData.forEach(function (profile) {
             email = profile.email;
             id = sessionStorage.getItem('userId');
+            nickname = sessionStorage.getItem('nickname');
             firstname = sessionStorage.getItem('firstname');
             lastname = sessionStorage.getItem('lastname');
             phone = sessionStorage.getItem('phone');
@@ -135,16 +137,9 @@ export default function ProfileCard() {
                         />
                     </StyledBadge>
                 </IconButton>
-                <h3 className={styles.heading}>{firstname} {lastname}</h3>
-                <span className={styles.subheader}>{"Epost: " + email}</span>
+                <h3 className={styles.heading}>{nickname}</h3>
+                <span className={styles.subheader}>{firstname} {lastname}</span>
             </CardContent>
-            <Divider light/>
-            <Box display={"flex"}>
-                <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-                    <p className={styles.statLabel}>{"Telefon: " + phone}</p>
-                    <p className={styles.statValue}>{"Bruker ID: " + id}</p>
-                </Box>
-            </Box>
         </Card>
     );
 };

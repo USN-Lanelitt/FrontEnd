@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {withRouter} from "react-router";
+import {Redirect, withRouter} from "react-router";
 import app from "../../fire";
 import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
@@ -10,7 +10,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -95,6 +94,9 @@ const SignUp = ({history}) => {
                                 .createUserWithEmailAndPassword(email.value, password.value);
                             history.push("/login");
                             console.log(history)
+                            setShowStatusMessageEmail(true);
+                            setStatusMessage(t('register.16'));
+                            setStatusMessageSeverity("info");
                         } catch (error) {
                             setShowStatusMessageEmail(true);
                             setStatusMessage(t('register.11'));
@@ -143,7 +145,6 @@ const SignUp = ({history}) => {
     const handleMouseDownPassword = event => {
         event.preventDefault();
     };
-
 
     return (
         <Container component="main" maxWidth="xs">
