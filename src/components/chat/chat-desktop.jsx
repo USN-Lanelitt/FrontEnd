@@ -14,6 +14,7 @@ import {useTranslation} from "react-i18next";
 import getChatUsers from "./get-chats";
 import showChat from "./show-chat";
 import TextfieldMobile from "./textfield-mobile";
+import Progress from "../progress";
 
 
 const useStyles = makeStyles(theme => ({
@@ -84,6 +85,15 @@ export default function ChatDesktop() {
         console.log(userId2);
     };
 
+    // ------ Farhad ------
+   const handleSpinner = () => {
+     if (!selectedChat){
+         return <Progress/>
+     }
+   };
+
+    if (chatUsers.length === 0) return <Progress/>;
+    // ------ Farhad ------
 
     return (
         <React.Fragment>
@@ -149,6 +159,7 @@ export default function ChatDesktop() {
                                         {t('chat.2')}
                                     </Typography>
                                 }
+                                {handleSpinner()}
                             </Box>
                             <TextfieldMobile userId2={userId2}/>
                         </Box>

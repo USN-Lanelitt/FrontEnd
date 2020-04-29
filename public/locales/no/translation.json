@@ -15,7 +15,9 @@
     "2": "Varsler,",
     "3": "Meldiger",
     "4": "Logg inn",
-    "5": "Logg ut"
+    "5": "Logg ut",
+    "6": "Varsler",
+    "7": "Meldinger"
   },
   "login": {
     "1": "Logg på",
@@ -122,9 +124,6 @@
     "5": "Avbryt",
     "6": "Send"
   },
-  "nav": {
-    "1": "Søk på brukere..."
-  },
   "new-asset": {
     "1": "Legg til eiendel",
     "2": "Tittel",
@@ -171,7 +170,8 @@
     "1": "Venneforespørsler",
     "2": "Låneforespørsler",
     "3": "Godtatte låneforespørsler",
-    "4": "Avslåtte låneforespørsler"
+    "4": "Avslåtte låneforespørsler",
+    "5": "Sendte låneforespørsler"
   },
   "changePasswordForm": {
     "1": "Nåværende passord",
@@ -254,5 +254,10 @@
     "5": "Publisert",
     "6": "Publiser",
     "7": "Eiendelen er ikke lenger synlig for andre"
+  },
+  "friend-profile": {
+    "1": "slett venn",
+    "2": "Send melding",
+    "3": "Legg til"
   }
 }

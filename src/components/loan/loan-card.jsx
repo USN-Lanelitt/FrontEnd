@@ -11,7 +11,7 @@ import Rating from "@material-ui/lab/Rating";
 import {getRatings} from "../rating/getRating";
 import {useTranslation} from "react-i18next";
 
-//her er det kort med ventende forespørsel/avist - kort
+/*Laget av Mirsa med hjelp av Finn*/
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(2),
     },
     button: {
-        color: 'green',           
+        color: 'green',
 
     }
 }));
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loanStatus, selectedDate, selectedDate2, assetId}) => {
     const classes = useStyles();
     const [rating, setRating] = useState(null);
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     useEffect(() => {
         getRatings(assetId, setRating)
@@ -58,7 +58,7 @@ const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loan
                     </Typography>
 
                     <Box className={classes.status} display="flex" justifyContent="center" flexDirection="row">
-                        <Button className={classes.button}size="small" color="primary">
+                        <Button className={classes.button} size="small" color="primary">
                             {loanStatus}
                         </Button>
                     </Box>
@@ -74,16 +74,16 @@ const LoanCard = ({firstname, middlename, lastname, assetname, assetImages, loan
 
                     <Box display="flex" flexDirection="column" margin="auto">
                         <Box m={1}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {assetname}
-                        </Typography>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {assetname}
+                            </Typography>
                         </Box>
                         <Box component="fieldset" p={0} borderColor="transparent">
                             <Rating name="read-only" precision={0.5} value={rating} readOnly/>
                         </Box>
 
                         <Box display="flex" flexDirection="column" mt={9}>
-                            <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h6">
+                            <Typography gutterBottom variant="subtitle2" color="textSecondary" component="h4">
                                 {t('loan-card.1')}
                             </Typography>
                             <Typography gutterBottom variant="body2" color="textPrimary" component="body1"

@@ -1,4 +1,5 @@
 import axios from "axios";
+/* laget av Nicole*/
 
 export default function deleteFriend(userId, userId2, setShowStatusMessage, setStatusMessage, setStatusMessageSeverity) {
     console.log("deleteFriend", sessionStorage.getItem('userId'));
@@ -8,7 +9,7 @@ export default function deleteFriend(userId, userId2, setShowStatusMessage, setS
                 console.log(response.data);
             }
                 setShowStatusMessage(true);
-                setStatusMessage("Venn slettet!")
+                setStatusMessage("Venn slettet!");
                 setStatusMessageSeverity("success");
         })
         .catch(error => {

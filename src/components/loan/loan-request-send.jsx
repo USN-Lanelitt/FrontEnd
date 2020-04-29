@@ -17,6 +17,7 @@ import moment from "moment";
 import StatusMessage from "../profile/status-message";
 import {Redirect} from "react-router";
 
+/*Her har Mirsa & Nicole jobbet sammen*/
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -28,19 +29,17 @@ const useStyles = makeStyles(theme => ({
     send: {
         margin: theme.spacing(3, 0, 2),
     },
-
 }));
-const LoanRequestSend = () => {
-    const { t } = useTranslation();
+    const LoanRequestSend = () => {
+    const {t} = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
-    //const [assetName, setAssetName] = useState('');
     const [textValue, setTextValue] = useState('');
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
-    const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD") );
-    const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD") );
+    const [selectedDate, setSelectedDate] = React.useState(moment().format("YYYY-MM-DD"));
+    const [selectedDate2, setSelectedDate2] = React.useState(moment().format("YYYY-MM-DD"));
     const {id, assetId, assetName} = useParams();
     const [redirect, setRedirect] = React.useState(false);
 
@@ -58,7 +57,7 @@ const LoanRequestSend = () => {
 
     function sendRequest() {
         console.log("sendRequest", sessionStorage.getItem('userId'));
-        axios.post('/user/'+userId+'/asset/'+assetId+'/request' , {
+        axios.post('/user/' + userId + '/asset/' + assetId + '/request', {
             startDate: selectedDate,
             endDate: selectedDate2
 
@@ -79,29 +78,27 @@ const LoanRequestSend = () => {
 
 
     const handleDateChange = (date) => {
-
         setSelectedDate(moment(date).format("YYYY-MM-DD"));
     };
 
     const handleDateChange2 = (date) => {
-
         setSelectedDate2(moment(date).format("YYYY-MM-DD"))
     };
 
     const handleClick = () => {
-        sendMessage(assetName+': '+textValue);
+        sendMessage(assetName + ': ' + textValue);
         console.log(textValue);
         sendRequest();
     };
 
 
-    if (redirect) return <Redirect to={"/assetSite/" + assetId} />;
+    if (redirect) return <Redirect to={"/assetSite/" + assetId}/>;
 
     return (
         <Box display="flex" justifyContent="center">
             <StatusMessage show={showStatusMessage} message={statusMessage} severity={statusMessageSeverity}
                            onClose={setShowStatusMessage}/>
-            <Box width={1 / 2} height={'100%'}>
+            <Box height={'100%'}>
                 <Card className={classes.paper}>
                     <Box borderBottom={1}>
                         <CardContent>
@@ -110,7 +107,7 @@ const LoanRequestSend = () => {
                             </Typography>
 
                         </CardContent>
-                   </Box>
+                    </Box>
                     <Box m={4}>
                         <CardActions>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>

@@ -1,6 +1,8 @@
 import axios from "axios";
 
- export const notificationRefresh = (userId, setData) =>{
+/*Laget av Mirsa*/
+
+ export const notificationRefreshFriendRequest = (userId, setData) =>{
     axios.get('/user/' + userId + '/friendRequests')
         .then((response) => {
             if (response.status === 200) {
@@ -53,4 +55,26 @@ export const notificationFriendRequest = (userId, friendId, statuss) => {
 
         })
         .catch(e => console.log(e));
+}
+
+export const notificationRefreshLoanSendt = (userId, setData) => {
+axios.get( '/user/' + userId + '/loanAccepted')
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response.data);
+            setData(response.data);
+        }
+    })
+    .catch(error => console.log(error))
+};
+
+ export const getAllFriends = (userId, setData) => {
+     console.log("hello from AllFriends", userId, sessionStorage.getItem('userId'));
+     axios.get('/user/' + userId + '/friends')
+         .then(result => {
+             console.log(result.data);
+             setData(result.data);
+         })
+         .catch(e => console.log(e));
+
 }

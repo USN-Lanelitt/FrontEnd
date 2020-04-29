@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Card from "@material-ui/core/Card";
 import {makeStyles} from "@material-ui/core/styles";
 import {CardContent} from "@material-ui/core";
@@ -7,14 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {useTranslation} from "react-i18next";
 
-//her er det kort med ventende forespørsel/avist - kort
+//her er det kort med ventende forespørsel/avist - kort - Mirsa
 
 const useStyles = makeStyles(theme => ({
     paper: {
-
         display: 'flex',
         flexDirection: 'row',
         maxWidth: 470,
@@ -31,18 +29,11 @@ const useStyles = makeStyles(theme => ({
     Button: {
         color: 'red',
     },
-
-    button: {
-        display: 'Grid',
-        padding: theme.spacing(1),
-    },
-
-
 }));
 
-const LoanReplyCard = ({firstname, middlename, lastname, assetname, description, assetImages, loanStatus, selectedDate, selectedDate2, onDenied, onAccept}) => {
+const LoanReplyCard = ({firstname, middlename, lastname, assetname, description, assetImages, selectedDate, selectedDate2, onDenied, onAccept}) => {
     const classes = useStyles();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     return (
         <Card className={classes.paper}>
@@ -63,7 +54,7 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
                     component="img"
                     alt="bilde"
                     height="200"
-                    image={"https://source.unsplash.com/random"}
+                    image={"AssetImages/"+assetImages}
                 />
 
                 <Typography gutterBottom variant="h5" component="h2">
@@ -75,17 +66,17 @@ const LoanReplyCard = ({firstname, middlename, lastname, assetname, description,
 
                 </Typography>
                 <Box>
-                    <Typography gutterBottom variant="subtitle1" component="h2" paddingTop="10px">
+                    <Typography variant="subtitle1" component="h2" paddingTop="10px">
                         {selectedDate} - {selectedDate2}
 
                     </Typography>
                 </Box>
-                    <Button onClick= {onAccept} size="small" color="primary">
-                        {t('loan-replay-card.1')}
-                    </Button>
-                    <Button className={classes.Button} onClick={onDenied} size="small" color="primary">
-                        {t('loan-replay-card.2')}
-                    </Button>
+                <Button onClick={onAccept} size="small" color="primary">
+                    {t('loan-replay-card.1')}
+                </Button>
+                <Button className={classes.Button} onClick={onDenied} size="small" color="primary">
+                    {t('loan-replay-card.2')}
+                </Button>
             </CardContent>
         </Card>
     );

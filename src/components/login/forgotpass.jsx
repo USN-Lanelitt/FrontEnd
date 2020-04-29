@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Link from "@material-ui/core/Link";
 import {useTranslation} from "react-i18next";
 
+// ------ Farhad ------
+
 export default function ForgotPassword() {
     const { t } = useTranslation();
     const [open, setOpen] = React.useState(false);

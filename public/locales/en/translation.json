@@ -10,9 +10,6 @@
     "4": "Search",
     "5": "What do you need to borrow?"
   },
-  "nav": {
-    "1": "Search users..."
-  },
   "login": {
     "1": "Login",
     "2": "Username",
@@ -123,7 +120,9 @@
     "2": "Notification",
     "3": "Message",
     "4": "Sign inn",
-    "5": "Sign out"
+    "5": "Sign out",
+    "6": "Notification",
+    "7": "Messages"
   },
   "new-asset": {
     "1": "Add asset",
@@ -171,7 +170,8 @@
     "1": "Friend request",
     "2": "Loan request",
     "3": "Accepted loan requests",
-    "4": "Denied loan requests"
+    "4": "Denied loan requests",
+    "5": "Send loan requests"
   },
   "changePasswordForm": {
     "1": "Current password",
@@ -254,5 +254,10 @@
     "5": "Published",
     "6": "publish",
     "7": "Unpublished"
+  },
+  "friend-profile": {
+    "1": "Delete friend",
+    "2": "Send message",
+    "3": "Add friend"
   }
 }

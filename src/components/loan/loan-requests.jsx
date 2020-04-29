@@ -4,7 +4,9 @@ import axios from "axios";
 import LoanReplyCard from "./loan-reply-card";
 import {notificationRefresh1} from "../../feature/Notification/notification-refresh";
 
-//her er den listen i notification
+
+/*her er låneforesøprsel - Mirsa*/
+
 
 const LoanRequests = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -12,7 +14,6 @@ const LoanRequests = () => {
     const [loanId, setLoanId] = useState(null);
 
     useEffect(() => {
-        console.log("", userId, sessionStorage.getItem('userId'));
         axios.get('/user/' + userId + '/loanRequest')
             .then((response) => {
                 notificationRefresh1(userId, setData)
@@ -28,7 +29,7 @@ const LoanRequests = () => {
         console.log("replyLoan", sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/loanRequest/' + loanId + '/' + statuss)
             .then((response) => {
-                notificationRefresh1(userId, setData)
+                notificationRefresh1(userId, setData);
                 if (response.status === 200) {
                     console.log(response.data);
                 }
@@ -45,7 +46,7 @@ const LoanRequests = () => {
                         middlename={user.users.middleName}
                         lastname={user.users.lastName}
                         assetname={user.assets.assetName}
-                        assetImages={"https://source.unsplash.com/random"}
+                        assetImages={user.assets.assetImages}
                         selectedDate={user.dateStart}
                         selectedDate2={user.dateEnd}
                         onDenied={() => ReplyLoan(user.id, 2)}

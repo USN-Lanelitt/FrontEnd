@@ -31,15 +31,12 @@ function App() {
                             componentType="Snackbar" // default value is Snackbar
                             message="LåneLitt bruker informasjonskapsler (cookies) på sine nettsider til bl.a.
                     stastikk og skjemaoppdateriger. Hvis du godtar dette, kan du fortsette å bruke våre nettsider som vanlig."
-
-                        />
-
-
+                       />
                         <Scaffold/>
-
                     </div>
                 </Router>
             </AuthProvider>
+
         </MuiThemeProvider>
     );
 }

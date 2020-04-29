@@ -13,7 +13,7 @@ import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     outer: {
-        height: '500px'
+        minHeight: '400px'
     },
     inner:{
         height: '440px',

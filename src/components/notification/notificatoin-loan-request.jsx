@@ -10,6 +10,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import {useTranslation} from "react-i18next";
 
+/*Laget av Mirsa*/
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const NotificationLoanRequest = ({id, firstname, middlename, imageUrl, lastname, loanStatus, selectedDate, selectedDate2, reply}) => {
+const NotificationLoanRequest = ({id, firstname, middlename, lastname, imageUrl, loanStatus, selectedDate, selectedDate2, reply}) => {
     const classes = useStyles();
     const {t} = useTranslation();
 

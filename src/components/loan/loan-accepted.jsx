@@ -7,7 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import {useTranslation} from "react-i18next";
 
-//her er det kort med godkjente forespørsel (alle lånene personen har) (jeg låner denne av en vennn)
+/*Her er det kort med godkjente forespørsel Laget av Mirsa*/
+
 const useStyles = makeStyles(theme => ({
 
     heroContent: {

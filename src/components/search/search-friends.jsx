@@ -10,6 +10,7 @@ import {useTranslation} from 'react-i18next';
 import {useParams} from "react-router";
 import MenuItem from "@material-ui/core/MenuItem";
 
+/*Laget av Mirsa, Linda, Nicole*/
 
 const useStyles = makeStyles((theme) => ({
 
@@ -50,7 +51,9 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     link: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        backgroundColor: 'transparent',
+        color: "Black"
     }
 
 }));
@@ -61,7 +64,6 @@ const SearchFriends = () => {
     const [dataFilterd, setDataFilterd] = useState([]);
     const [search, setSearch] = useState();
     const classes = useStyles();
-    const [enter, setEnter] = React.useState(false);
     const {t} = useTranslation();
     const {id} = useParams();
 
@@ -98,11 +100,11 @@ const SearchFriends = () => {
                     options={dataFilterd}
                     getOptionValue={option => option && option.id}
                     getOptionLabel={option => option && option.firstName}
-                    style={{width: 210, backgroundColor: 'transparent'}}
+                    style={{width: 210, backgroundColor: 'transparent', textDecoration: "none"}}
                     filterOptions={(x) => x}
                     clearOnEscape
                     renderInput={params => <TextField   {...params}
-                                                        classes={{root: classes.inputRoot, input: classes.inputInput,}}
+                                                        classes={{root: classes.inputRoot, input: classes.inputInput}}
                                                         label={t('nav.1')}
                                                         variant="filled"
                                                         onChange={handleChange}

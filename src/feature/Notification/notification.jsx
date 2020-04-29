@@ -7,21 +7,22 @@ import FriendRequestCard from "../../components/friend/friend-requestCard";
 import Divider from "@material-ui/core/Divider";
 import axios from "axios";
 import LoanRequests from "../../components/loan/loan-requests";
-import {notificationRefresh} from "./notification-refresh";
+import {notificationRefreshFriendRequest} from "./notification-refresh";
 import {useTranslation} from "react-i18next";
 import NotificationLoanDenied from "../../components/notification/notification-loan-denied";
 import NotificationLoanAccepted from "../../components/notification/notification-loan-accepted";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
+import LoanGetSendtRequests from "../../components/loan/loan-getSendtRequests";
+
+/*Her er den siden med notifikasjon i sidebaren - Mirsa & Linda*/
 
 
 let statuss = 0;
 let statusTittel = "";
 let statusBesk = "";
 
-//siden på mobil, (en hel side)
 
 const useStyles = makeStyles(theme => ({
-
     heroContent: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(4, 0, 2),
@@ -29,7 +30,6 @@ const useStyles = makeStyles(theme => ({
     text: {
         padding: theme.spacing(6),
     }
-
 }));
 
 const Notification = () => {
@@ -74,7 +74,7 @@ const Notification = () => {
         console.log("replyrequest", userId, sessionStorage.getItem('userId'));
         axios.post('/user/' + userId + '/friendRequest/' + friendId + '/' +statuss)
             .then((response) => {
-                notificationRefresh (userId, setData)
+                notificationRefreshFriendRequest (userId, setData);
                 if (response.status === 200) {
                     console.log(response.data);
                 }
@@ -87,8 +87,8 @@ const Notification = () => {
         setShowConfirmDialog(false);
     }
 
-    return (
 
+    return (
         <React.Fragment>
             <Container>
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
@@ -118,7 +118,7 @@ const Notification = () => {
                                 friendId={item.user1.id}
                                 onDenied={() => denied(item.user1.id)}
                                 onAccept={() => accept(item.user1.id)}
-                                refresh={() => notificationRefresh(userId, setData)}
+                                refresh={() => notificationRefreshFriendRequest(userId, setData)}
                             />
                         </Grid>
                     ))}
@@ -126,20 +126,34 @@ const Notification = () => {
             </Container>
 
             <Container>
+
+
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
                     {t('notification.2')}
                     <Divider/>
                 </Typography>
+
                 <LoanRequests/>
+
+                <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
+                    {t('notification.5')}
+                <Divider/>
+            </Typography>
+
+                <LoanGetSendtRequests/>
+
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
                     {t('notification.3')}
                     <Divider/>
                 </Typography>
+
                 <NotificationLoanAccepted/>
+
                 <Typography className={classes.text} variant="h5" align="center" color="textSecondary" paragraph>
                     {t('notification.4')}
                     <Divider/>
                 </Typography>
+
                 <NotificationLoanDenied/>
 
             </Container>

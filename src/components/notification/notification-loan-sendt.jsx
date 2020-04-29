@@ -1,26 +1,26 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
-import LoanRequestNotification from "./loan-request-notification";
-
-/*Laget av Mirsa*/
+import NotificationLoanSendtCard from "./notification-loan-send-card";
 
 
-const LoanGetDeniedRequests = ({data}) => {
+//her er den listen i notification iconet/*Laget av Mirsa*/
+
+const NotificationLoanSendt = ({data}) => {
 
     return (
         <Grid container spacing={4}>
             {data.map(loan => (
                 <Grid item key={loan.id} xs={12}>
-                    <LoanRequestNotification
+
+                    <NotificationLoanSendtCard
                         firstname={loan.assets.users.firstName}
                         middlename={loan.assets.users.middleName}
                         lastname={loan.assets.users.lastName}
-                        imageUrl={loan.assets.users.assetImages}
-                        loanStatus={loan.statusLoan.status}
+                        assetname={""}
+                        description={""}
+                        imageUrl={loan.assets.users.assetImages[0].imageUrl}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
-
-
                     />
                 </Grid>
             ))}
@@ -28,4 +28,5 @@ const LoanGetDeniedRequests = ({data}) => {
     );
 };
 
-export default LoanGetDeniedRequests;
+export default NotificationLoanSendt;
+

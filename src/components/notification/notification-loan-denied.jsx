@@ -4,6 +4,7 @@ import axios from "axios";
 import NotificationLoanRequest from "./notificatoin-loan-request";
 import {notificationRefreshLoanDenien} from "../../feature/Notification/notification-refresh";
 
+/*Laget av Mirsa*/
 
 const NotificationLoanDenied = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -35,7 +36,7 @@ const NotificationLoanDenied = () => {
                         firstname={loan.assets.users.firstName}
                         middlename={loan.assets.users.middleName}
                         lastname={loan.assets.users.lastName}
-                        imageUrl={loan.assets.users.assetImages}
+                        imageUrl={loan.assets.assetImages[0].imageUrl}
                         loanStatus={loan.statusLoan.status}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}

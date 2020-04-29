@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import clsx from "clsx";
-import {Link, useRouteMatch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -31,6 +31,8 @@ import SportsHandballIcon from '@material-ui/icons/SportsHandball';
 
 
 
+// ------ Kode mal hentet fra Material UI - Appbar ------
+// ------ Justert og tilpasset til eget bruk. ------
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -152,13 +154,11 @@ export default function NavBar(props) {
             setSelectedLang(false);
         }
     });
-
+    // ------ Farhad ------
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
@@ -189,8 +189,8 @@ export default function NavBar(props) {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
-
-    {/*Sjekker om bruker er innlogget eller ikke og admin eller ikke*/}
+    // ------ Farhad ------
+    // Sjekker om bruker er innlogget eller ikke og admin eller ikke - hentet og tilpasset fra Firebase Auth docs
     const [loggedIn, setloggedIn] = useState(false);
     const isAdmin = (sessionStorage.getItem("usertype") === "admin");
     app.auth().onAuthStateChanged(function (user) {
@@ -204,8 +204,8 @@ export default function NavBar(props) {
         }
     });
 
-    {/*Meny knapp iconer som blir vist hvis bruker er logget på eller av*/
-    }
+    // ------ Farhad ------
+    // Meny knapp ikoner som blir vist eller skjult basert på om bruker er innlogget eller ikke
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
@@ -230,7 +230,8 @@ export default function NavBar(props) {
         'English',
     ];
 
-    {/*Meny knapp alternativer som blir vist hvis bruker er på mobil eller hvis skjermen er liten*/}
+    // ------ Farhad ------
+    //Meny knapp alternativer som blir vist hvis bruker er på mobil eller hvis skjermen er liten
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <Menu
@@ -260,7 +261,7 @@ export default function NavBar(props) {
                             <NotificationsIcon/>
                         </Badge>
                     </IconButton>
-                    <p>Varsler</p>
+                    {t('nav.6')}
                 </MenuItem>
                 <MenuItem component={Link} to="/chat">
                 <IconButton aria-label="show new mails" color="inherit">
@@ -268,7 +269,7 @@ export default function NavBar(props) {
                         <MailIcon/>
                     </Badge>
                 </IconButton>
-                <p>Meldiger</p>
+                    {t('nav.7')}
             </MenuItem></div>)}
             {!loggedIn && (
                     <MenuItem component={Link} to="/signup">
@@ -306,7 +307,8 @@ export default function NavBar(props) {
     );
 
     return (
-        //------------DESKTOP / PC SKJERM NAVBAR MENY----------------
+        //                  ------ Farhad ------
+        // ------------DESKTOP / PC SKJERM NAVBAR MENY----------------
         <div className={classes.grow}>
             <AppBar
                 position="static"
@@ -333,8 +335,7 @@ export default function NavBar(props) {
                             Lånelitt
                         </Typography>
 
-
-                        {/*----------Søke felt i Navbar Icon knapp--------------*/}
+                        {/*----------Søke felt i Navbar Icon knapp / laget av Mirsa--------------*/}
                     {loggedIn &&
                     <SearchFriends/>
                     }
@@ -353,7 +354,7 @@ export default function NavBar(props) {
                         </IconButton>}
 
                         {loggedIn && (<div>
-                            {/*----------Notification Icon knapp--------------*/}
+                            {/*----------Notification Icon knapp  / laget av Mirsa--------------*/}
 
                             <IconButton aria-label="show 1 new notification" color="inherit" style={{backgroundColor: 'transparent'}}>
                                 <NotificationList/>

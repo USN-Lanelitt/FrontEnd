@@ -32,22 +32,21 @@ const useStyles = makeStyles(theme => ({
         color: 'red',
     }
 }));
-
 const FriendRequestCard = ({id, firstname, middlename, lastname, imageUrl, onDenied, onAccept}) => {
     const classes = useStyles();
     const {t} = useTranslation();
 
     return (
-        <Grid xs={12}>
+        <Grid>
             <Card className={classes.card}>
-                <CardActionArea component = {Link} to={"/FriendProfile/" + id}  style={{backgroundColor: 'transparent'}}>
+                <CardActionArea component={Link} to={"/FriendProfile/" + id} style={{backgroundColor: 'transparent'}}>
                     <CardContent>
                         <Grid container zeroMinWidth justify="flex-start">
                             <CardMedia>
                                 <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
                             </CardMedia>
-                            <Grid className={classes.text} >
-                                <Typography gutterBottom variant="h6" component="h2" display={"inline"} >
+                            <Grid className={classes.text}>
+                                <Typography gutterBottom variant="h6" component="h2" display={"inline"}>
                                     {firstname} {middlename} {lastname}
                                 </Typography>
                             </Grid>

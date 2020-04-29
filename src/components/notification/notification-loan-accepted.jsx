@@ -4,6 +4,7 @@ import axios from "axios";
 import NotificationLoanRequest from "./notificatoin-loan-request";
 import {notificationRefreshLoanAccepted} from "../../feature/Notification/notification-refresh";
 
+/*Laget av Mirsa*/
 const NotificationLoanAccepted = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
@@ -16,7 +17,7 @@ const NotificationLoanAccepted = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
         axios.get('/user/' + userId + '/loanAccepted')
             .then((response) => {
-                notificationRefreshLoanAccepted(userId, setData)
+                notificationRefreshLoanAccepted(userId, setData);
                 if (response.status === 200) {
                     console.log(response.data);
                     setData(response.data);
@@ -33,7 +34,7 @@ const NotificationLoanAccepted = () => {
                         firstname={loan.assets.users.firstName}
                         middlename={loan.assets.users.middleName}
                         lastname={loan.assets.users.lastName}
-                        imageUrl={loan.assets.users.assetImages}
+                        imageUrl={loan.assets.assetImages[0].imageUrl}
                         loanStatus={loan.statusLoan.status}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}

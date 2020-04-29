@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
@@ -14,7 +14,10 @@ import LoanGetAcceptedRequests from "../loan/loan-getAcceptedRequests";
 import LoanGetDeniedRequests from "../loan/loan-getDeniedRequests";
 import {Box} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
+import NotificationLoanSendt from "./notification-loan-sendt";
+import Progress from "../progress";
 
+/*Her har vi notifikasjonen som ligger i bjellen, denne er laget av Mirsa & Farhad*/
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -45,6 +48,7 @@ const NotificationList = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId')); //min id
     const [dataAccept, setDataAccept] = useState([]);
     const [dataDenied, setDataDeniend] = useState([]);
+    const [dataSendt, setDataSendt] = useState([]);
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
@@ -64,28 +68,24 @@ const NotificationList = () => {
         }
     }
 
+    // ------ Farhad Start ------
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleUpdate();
+        }, 15000);
+        return () => clearInterval(interval);
+    }, []);
+    // ------ Farhad Slutt ------
+
 // return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
-
-    React.useEffect(() => {
+    useEffect(() => {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
         }
-
         prevOpen.current = open;
 
-        getAcceptedRequests();
-        getDeniedRequests();
-
-        axios.get('/user/' + userId + '/friendRequests')
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log(response);
-                    setData(response.data);
-                }
-            })
-            .catch(e => console.log(e));
-
+        handleUpdate();
 
     }, [open]);
 
@@ -99,8 +99,26 @@ const NotificationList = () => {
                 }
             })
             .catch(error => console.log(error))
-    }
+    };
+    // ------ Farhad Start ------
+    const handleUpdate = () => {
+        getFriendsRequests();
+        getSendtRequests();
+        getAcceptedRequests();
+        getDeniedRequests();
+    };
+    // ------ Farhad Slutt ------
 
+    const getFriendsRequests = () => {
+        axios.get('/user/' + userId + '/friendRequests')
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response);
+                    setData(response.data);
+                }
+            })
+            .catch(e => console.log(e));
+    };
 
     const getDeniedRequests = () => {
         console.log("getDeniedRequests", userId, sessionStorage.getItem('userId'));
@@ -113,13 +131,25 @@ const NotificationList = () => {
                 }
             })
             .catch(error => console.log(error))
-    }
+    };
+    const getSendtRequests = () => {
+        console.log("getSendtRequests", userId, sessionStorage.getItem('userId'));
+        axios.get('/user/' + userId + '/loanSent')
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setDataSendt(response.data);
+                }
+            })
+            .catch(error => console.log(error))
+    };
+
 
     return (
         <div className={classes.root}>
             <div>
-
-                <Badge badgeContent={data.length + dataAccept.length + dataDenied.length} color="secondary">
+                <Badge badgeContent={data.length + dataSendt.length + dataAccept.length + dataDenied.length}
+                       color="secondary">
                     <IconButton
                         className={classes.button}
                         ref={anchorRef}
@@ -162,12 +192,16 @@ const NotificationList = () => {
                                 <Box maxWidth="48ch">
                                     <Typography className={classes.typo} variant="h6" align="center" color="textPrimary"
                                                 gutterBottom>
+
                                         Varsler
                                     </Typography>
                                     <Divider variant="li"/>
                                     {data && <FriendRequestList data={data}/>}
+                                    {data && <NotificationLoanSendt data={dataSendt}/>}
                                     {data && <LoanGetAcceptedRequests data={dataAccept}/>}
                                     {data && <LoanGetDeniedRequests data={dataDenied}/>}
+
+
                                 </Box>
                             </MenuList>
                         </ClickAwayListener>

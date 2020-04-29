@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import FriendRequest from "./friend-request";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import ConfirmDialog from "../profile/confirm-dialog";
 import {notificationFriendRequest} from "../../feature/Notification/notification-refresh";
 
+/*Laget av Mirsa & Nicole*/
 
 let statuss = 0;
 let statusTittel = "";

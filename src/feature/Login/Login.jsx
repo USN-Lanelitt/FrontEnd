@@ -5,8 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -53,7 +51,6 @@ const Login = ({ history }) => {
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
-    const [redirect, setRedirect] = React.useState(false);
     const handleLogin = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
@@ -139,11 +136,16 @@ const Login = ({ history }) => {
         event.preventDefault();
     };
 
-    // -------- KUN til TESTING av nettside! (slippe å logge på på nytt ved justeringer) ----------
-    // const { currentUser } = useContext(AuthContext);
+    // -------- Sender bruker til login side hvis bruker logger ut ----------
+    const { currentUser } = useContext(AuthContext);
     // if (currentUser) {
-    //     return <Redirect to="/" />;
+    //     return <Redirect to="/login"/>;
     // }
+    // -------- KUN til TESTING av nettside! (slippe å logge på på nytt ved justeringer) ----------
+    if (currentUser) {
+         return <Redirect to="/"/>;
+    }
+
 
     return (
         <Container component="main" maxWidth="xs">
