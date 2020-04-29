@@ -54,7 +54,7 @@ const LoanSendRequestNotificationCard = ({firstname, middlename, lastname, asset
                             component="img"
                             alt="bilde"
                             height="200"
-                            image={assetImages}
+                            image={"assetImages/"+assetImages}
                         />
 
                         <Typography gutterBottom variant="h5" component="h2">

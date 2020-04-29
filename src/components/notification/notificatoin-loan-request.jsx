@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const NotificationLoanRequest = ({id, firstname, middlename, imageUrl, lastname, loanStatus, selectedDate, selectedDate2, reply}) => {
+const NotificationLoanRequest = ({id, firstname, middlename, lastname, imageUrl, loanStatus, selectedDate, selectedDate2, reply}) => {
     const classes = useStyles();
     const { t } = useTranslation();
 
