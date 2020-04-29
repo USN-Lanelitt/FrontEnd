@@ -79,7 +79,7 @@ const FriendProfileCard = ({user, getChat, deleteFriend, sendRequest}) => {
                 console.log(result.data);
                 if (result.data === 1) {
                     setValue(1)
-                    setButtonText('slett venn');
+                    setButtonText('Slett venn');
                 } else {
                     setButtonText('Legg til');
                 }

@@ -33,10 +33,11 @@ const LoanGetSendtRequests = () => {
                 <Grid item key={loan}>
                     <LoanSendRequestNotificationCard
                         firstname={loan.assets.users.firstName}
-                        lastname={loan.assets.users.lastName}
                         middlename={loan.assets.users.middleName}
+                        lastname={loan.assets.users.lastName}
                         assetname={loan.assets.assetName}
-                        assetImage={loan.assets.assetImages}
+                        description={""}
+                        assetImages={loan.assets.assetImages[0].imageUrl}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
                         refresh={() => notificationRefreshLoanSendt(userId, setData)}
