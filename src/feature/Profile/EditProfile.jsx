@@ -266,8 +266,10 @@ const EditProfile = ({history}) => {
                                                     file.preview ?
                                                         <img src={file.preview}  alt="Protocol illustration"
                                                              className={classes.media}/> :
-                                                        (<img src={"https://source.unsplash.com/random"}  alt="Protocol illustration"
-                                                              className={classes.media}/>)}
+                                                        (<Avatar
+                                                    src={"profileImages/"+sessionStorage.getItem('profileImage')}
+                                                    className={classes.media}
+                                                    />)}
                                             </Box>
 
                                             <div>

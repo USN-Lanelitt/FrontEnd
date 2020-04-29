@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import cx from 'clsx';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
 import {useFadedShadowStyles} from '@mui-treasury/styles/shadow/faded';
 import {useGutterBorderedGridStyles} from '@mui-treasury/styles/grid/gutterBordered';
 import {grey} from "@material-ui/core/colors";

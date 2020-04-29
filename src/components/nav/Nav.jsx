@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import clsx from "clsx";
-import {Link, useRouteMatch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -28,6 +28,7 @@ import SearchFriends from "../search/search-friends";
 import { useTranslation } from 'react-i18next';
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import SportsHandballIcon from '@material-ui/icons/SportsHandball';
+
 
 
 
@@ -158,7 +159,6 @@ export default function NavBar(props) {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
@@ -332,7 +332,6 @@ export default function NavBar(props) {
                         <Typography className={classes.title} variant="h5" noWrap component={Link} to="/" style={{textDecoration: "none", color: "white"}}>
                             Lånelitt
                         </Typography>
-
 
                         {/*----------Søke felt i Navbar Icon knapp--------------*/}
                     {loggedIn &&
