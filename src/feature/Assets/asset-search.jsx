@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useState} from 'react';
 import AssetsList from "./assets-search-list";
 import {makeStyles} from "@material-ui/core/styles";

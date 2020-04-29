@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useEffect, useState} from 'react';
 import {Container} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -10,8 +14,6 @@ import {Link} from "react-router-dom";
 import ConfirmDialog from "./confirm-dialog";
 import {fetchAssets} from "./asset-repository";
 import Progress from "../progress";
-
-        
 
 
 const useStyles = makeStyles(theme => ({
@@ -55,7 +57,8 @@ const MyAssetsList = () => {
     function onDeleteAssetCancel() {
         setShowConfirmDialog(false);
     }
-   if (loading) return <Progress/>
+
+    if (loading) return <Progress/>
 
     return (
         <Container>
@@ -76,11 +79,12 @@ const MyAssetsList = () => {
 
                                               imageUrl={
                                                   asset.assetImages.length > 0 ?
-                                                      "AssetImages/"+asset.assetImages[0].imageUrl :
+                                                      "AssetImages/" + asset.assetImages[0].imageUrl :
                                                       ""
                                               }
                                               onRemove={() => remove(asset.id)}
-                                              refresh={() => fetchAssets(userId, setAssets)}
+                                              refresh={() => fetchAssets(userId, setAssets, () => {
+                                              })}
 
                                 />
                             </Grid>

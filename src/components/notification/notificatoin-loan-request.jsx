@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
     photo: {
         width: theme.spacing(7),
         height: theme.spacing(7),
+        marginRight: theme.spacing(2)
     },
 
     inline: {
@@ -49,33 +50,33 @@ const useStyles = makeStyles(theme => ({
 
 const NotificationLoanRequest = ({id, firstname, middlename, lastname, imageUrl, loanStatus, selectedDate, selectedDate2, reply}) => {
     const classes = useStyles();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     return (
         <Card>
-
             <CardContent>
                 <Grid className={classes.top} zeroMinWidth justify="flex-start">
 
-                        <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
-                        <Box display="flex" flexDirection="column">
-                            <Typography gutterBottom variant="h5" component="h2" display={"inline"}>
-                                {firstname} {middlename} {lastname} {loanStatus}  {t('notification-loan-request.1')}
-                            </Typography>
-                            <Typography gutterBottom variant="subtitle1" component="h2">
-                                {selectedDate} - {selectedDate2}
-                            </Typography>
-                        </Box>
-                        <Box className={classes.status} display="flex" justifyContent="center" flexDirection="row">
-                            <Button className={classes.button} onClick={reply}>
-                                <CloseIcon/>
-                            </Button>
+                    <Avatar className={classes.photo} alt="Remy Sharp" src={imageUrl}/>
+                    <Box display="flex" flexDirection="column">
+                        <Typography gutterBottom variant="h5" component="h2" display={"inline"}>
+                            {firstname} {middlename} {lastname} {loanStatus} {t('notification-loan-request.1')}
+                        </Typography>
+                        <Typography gutterBottom variant="subtitle1" component="h2">
+                            {selectedDate} - {selectedDate2}
+                        </Typography>
+                    </Box>
+                    <Box className={classes.status} display="flex" justifyContent="center" flexDirection="row">
+                        <Button className={classes.button} onClick={reply}>
+                            <CloseIcon/>
+                        </Button>
 
-                        </Box>
+                    </Box>
 
                 </Grid>
             </CardContent>
         </Card>
+
     );
 };
 

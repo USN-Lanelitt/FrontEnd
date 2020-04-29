@@ -23,6 +23,10 @@ let statusBesk = "";
 
 
 const useStyles = makeStyles(theme => ({
+    heroContent: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(4, 0, 2),
+    },
     text: {
         padding: theme.spacing(6),
     }
@@ -102,7 +106,7 @@ const Notification = () => {
                            open={showConfirmDialog}
             />
             <Container>
-                <Grid container spacing={4}>
+                <Grid container spacing={4} justify="center">
                     {data.map(item => (
                         <Grid item key={item}>
                             <FriendRequestCard

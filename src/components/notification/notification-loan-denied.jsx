@@ -28,7 +28,7 @@ const NotificationLoanDenied = () => {
     };
 
     return (
-        <Grid container spacing={4} >
+        <Grid container spacing={4} direction="column" alignItems="center" >
             {data.map(loan => (
                 <Grid item key={loan.id} xs={12}>
 

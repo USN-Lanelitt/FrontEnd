@@ -3,7 +3,7 @@ import FriendCard from "../../components/friend/friend-card";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
+import {createMuiTheme, makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessageNewChat from "../../components/chat/send-message-new-chat";
@@ -11,13 +11,14 @@ import {useTranslation} from "react-i18next";
 import Progress from "../../components/progress";
 import {getAllFriends} from "../Notification/notification-refresh";
 
+
 /*Henter alle vennene, laget av Mirsa og Linda*/
 
 const useStyles = makeStyles(theme => ({
 
     heroContent: {
         backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(5, 0, 4),
+        padding: theme.spacing(4, 0, 2),
     },
 
 }));
@@ -29,6 +30,7 @@ const FriendAll = () => {
     const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         AllFriends();
@@ -36,12 +38,15 @@ const FriendAll = () => {
 
     function AllFriends() {
         console.log("hello from AllFriends", userId, sessionStorage.getItem('userId'));
+        setLoading(true);
         axios.get('/user/' + userId + '/friends')
             .then(result => {
                 console.log(result.data);
                 setData(result.data);
             })
-            .catch(e => console.log(e));
+            .catch(e => console.log(e))
+            .finally(() => setLoading(false));
+
     }
 
     const remove = (friendId) => {
@@ -71,15 +76,16 @@ const FriendAll = () => {
 
     }
 
-    if (data.length === 0) return <Progress/>;
+    if (loading) return <Progress/>
+
 
     return (
         <React.Fragment>
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
-                    <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        {t('friend-all.1')}
-                    </Typography>
+                        <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
+                            {t('friend-all.1').toUpperCase()}
+                        </Typography>
                 </Container>
             </div>
             <Container>

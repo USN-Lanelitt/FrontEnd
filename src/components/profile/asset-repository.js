@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import axios from "axios";
 
 export const fetchAssets = (userId, setAssets, setLoading) => {

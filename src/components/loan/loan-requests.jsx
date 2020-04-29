@@ -4,7 +4,9 @@ import axios from "axios";
 import LoanReplyCard from "./loan-reply-card";
 import {notificationRefresh1} from "../../feature/Notification/notification-refresh";
 
+
 /*her er låneforesøprsel - Mirsa*/
+
 
 const LoanRequests = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
@@ -36,7 +38,7 @@ const LoanRequests = () => {
     }
 
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={4} justify="center">
             {data.map(user => (
                 <Grid item key={user.id}>
                     <LoanReplyCard

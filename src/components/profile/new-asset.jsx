@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import {Box} from "@material-ui/core";
@@ -14,15 +18,10 @@ import CategoryList from "./category-list";
 import StatusMessage from "./status-message";
 import {Redirect} from "react-router";
 import {useTranslation} from "react-i18next";
-import Progress from "../progress";
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        // display: "flex",
-        // flexDirection: "column",
-        // alignItems: "flex-start",
-        // padding: theme.spacing(2),
         [theme.breakpoints.between('xs', 'sm')]: {
             minWidth: "100%"
         },
@@ -40,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const NewAsset = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const classes = useStyles();
     const [redirect, setRedirect] = React.useState(false);
     const [title, setTitle] = useState("");
@@ -50,7 +49,7 @@ const NewAsset = () => {
     const [showStatusMessage, setShowStatusMessage] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [statusMessageSeverity, setStatusMessageSeverity] = useState("info");
-    const [file, setFile] = useState({ preview: null, raw: null });
+    const [file, setFile] = useState({preview: null, raw: null});
 
     const handleChange = (e) => {
         setFile({
@@ -65,29 +64,29 @@ const NewAsset = () => {
         asset.append('file', file.raw);
         asset.append('mainImage', true);
         asset.append('assetName', title);
-        asset.append('description',description);
+        asset.append('description', description);
         asset.append('userId', sessionStorage.getItem('userId'));
-        asset.append('condition',"1");
+        asset.append('condition', "1");
         asset.append('public', isPublic);
         asset.append('typeId', category);
 
         axios.post('/assets/addAsset', asset)
             .then(result => {
-                console.log("result"+result.data);
-                if(result.data){
+                console.log("result" + result.data);
+                if (result.data) {
                     setShowStatusMessage(true);
-                    setStatusMessage(t("new-asset.1"))
+                    setStatusMessage(t("new-asset.7"))
                     setStatusMessageSeverity("success");
-                    setTimeout(() => setRedirect(true), 1000) ;
-                }else{
+                    setTimeout(() => setRedirect(true), 1000);
+                } else {
                     setShowStatusMessage(true);
-                    setStatusMessage(t("new-asset.2"));
+                    setStatusMessage(t("new-asset.7"));
                 }
             })
             .catch(error => {
                 console.log(error);
                 setShowStatusMessage(true);
-                setStatusMessage(t("new-asset.7"));
+                setStatusMessage(t("new-asset.8"));
             })
 
         console.log("new asset", asset);
@@ -101,13 +100,13 @@ const NewAsset = () => {
                            onClose={setShowStatusMessage}/>
 
             <Card className={classes.card}>
-                <CardHeader title={t('new-asset.8')}/>
+                <CardHeader title={t('new-asset.1')}/>
 
                 <CardContent>
                     <Box mb={4} width={1}>
                         <TextField
                             value={title}
-                            label={t('new-asset.8')}
+                            label={t('new-asset.2')}
                             id="outlined-size-normal"
                             variant="outlined"
                             fullWidth
@@ -127,16 +126,17 @@ const NewAsset = () => {
                             fullWidth
                         />
                     </Box>
-                    <Box display="flex" justifyContent="space-evenly" flexDirection="column" alignItems="center" className={classes.root}>
+                    <Box display="flex" justifyContent="space-evenly" flexDirection="column" alignItems="center"
+                         className={classes.root}>
                         <Box className={classes.media}
                              display="flex"
                              mb={4}
                         >
                             {
                                 file.preview ?
-                                    <img src={file.preview}  alt="Protocol illustration"
+                                    <img src={file.preview} alt="Protocol illustration"
                                          className={classes.media}/> :
-                                    (<img src={"/DefaultAssetImage.png"}  alt="Protocol illustration"
+                                    (<img src={"/DefaultAssetImage.png"} alt="Protocol illustration"
                                           className={classes.media}/>)}
                         </Box>
 
@@ -147,16 +147,18 @@ const NewAsset = () => {
                                        color: 'white',
                                        padding: "4px 8px 4px 8px",
                                        borderRadius: 4,
-                                       textAlign: "center" }}
+                                       textAlign: "center"
+                                   }}
                             >
                                 {t('new-asset.4')}
                             </label>
 
-                            <input type="file" id="upload-button" accept="image/*" style={{ display: 'none' }} onChange={handleChange} multiple="false"/>
+                            <input type="file" id="upload-button" accept="image/*" style={{display: 'none'}}
+                                   onChange={handleChange} multiple="false"/>
 
                         </div>
                     </Box>
-                   <FormControlLabel
+                    <FormControlLabel
                         control={
                             <Checkbox
                                 checked={isPublic}
@@ -169,7 +171,7 @@ const NewAsset = () => {
                 </CardContent>
                 <CardActions>
                     <Button component={Link} to={"/my/assets"}>Avbryt</Button>
-                    <Button onClick={()=>{
+                    <Button onClick={() => {
                         save();
                     }}
                     >

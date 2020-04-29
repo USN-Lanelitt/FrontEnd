@@ -131,7 +131,6 @@ const NotificationList = () => {
                 }
             })
             .catch(error => console.log(error))
-
     };
     const getSendtRequests = () => {
         console.log("getSendtRequests", userId, sessionStorage.getItem('userId'));
@@ -144,6 +143,7 @@ const NotificationList = () => {
             })
             .catch(error => console.log(error))
     };
+
 
     return (
         <div className={classes.root}>
@@ -190,8 +190,9 @@ const NotificationList = () => {
                             <MenuList autoFocusItem={open} id="menu-list-grow"
                                       onKeyDown={handleListKeyDown}>
                                 <Box maxWidth="48ch">
-                                    <Typography className={classes.typo} variant="h6" align="center"
-                                                color="textPrimary">
+                                    <Typography className={classes.typo} variant="h6" align="center" color="textPrimary"
+                                                gutterBottom>
+
                                         Varsler
                                     </Typography>
                                     <Divider variant="li"/>

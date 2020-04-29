@@ -1,3 +1,7 @@
+/**
+ * Linda Loftsgarden
+ */
+
 import React, {useState} from 'react';
 import cx from 'clsx';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
@@ -131,7 +135,7 @@ export default function ProfileCard() {
                     >
                         <Avatar
                             className={styles.avatar}
-                            src={"profileImages/"+sessionStorage.getItem('profileImage')}
+                            src={"profileImages/" + sessionStorage.getItem('profileImage')}
                         />
                     </StyledBadge>
                 </IconButton>

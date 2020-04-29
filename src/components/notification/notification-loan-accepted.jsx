@@ -5,14 +5,13 @@ import NotificationLoanRequest from "./notificatoin-loan-request";
 import {notificationRefreshLoanAccepted} from "../../feature/Notification/notification-refresh";
 
 /*Laget av Mirsa*/
-
 const NotificationLoanAccepted = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         getAcceptedLoanRequests();
-   }, []);
+    }, []);
 
     const getAcceptedLoanRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
@@ -28,10 +27,9 @@ const NotificationLoanAccepted = () => {
     };
 
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={4} direction="column" alignItems="center">
             {data.map(loan => (
                 <Grid item key={loan.id} xs={12}>
-
                     <NotificationLoanRequest
                         firstname={loan.assets.users.firstName}
                         middlename={loan.assets.users.middleName}
