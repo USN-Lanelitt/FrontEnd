@@ -2,13 +2,14 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import {createMuiTheme, makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyright from '../../components/home/Copyright';
 import HomeMenu from "../../components/home/home-menu";
 import AssetSearchTextfield from "../../components/home/AssetSearchTextfield";
-
 import { useTranslation } from 'react-i18next';
+import ThemeProvider from "@material-ui/styles/ThemeProvider/ThemeProvider";
+import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 
 
 const useStyles = makeStyles(theme => ({
@@ -47,6 +48,8 @@ const useStyles = makeStyles(theme => ({
 export default function Home() {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
+  let theme = createMuiTheme();
+  theme = responsiveFontSizes(theme);
 
   function handleClick(lang) {
     i18n.changeLanguage(lang);
@@ -56,9 +59,15 @@ export default function Home() {
         <CssBaseline/>
           <div className={classes.heroContent}>
             <Container maxWidth="sm">
-              <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
+              <ThemeProvider theme={theme}>
+              <Typography
+                  component="h2"
+                  variant="h2"
+                  align="center"
+                  color="textPrimary" gutterBottom>
                 LÅNELITT
               </Typography>
+              </ThemeProvider>
             </Container>
           </div>
 

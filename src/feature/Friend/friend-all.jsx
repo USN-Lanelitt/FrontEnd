@@ -8,7 +8,7 @@ import axios from "axios";
 import ConfirmDialog from "../../components/profile/confirm-dialog";
 import sendMessageNewChat from "../../components/chat/send-message-new-chat";
 import {useTranslation} from "react-i18next";
-import {Redirect} from "react-router";
+import Progress from "../../components/progress";
 
 /*Henter alle vennene, laget av Mirsa*/
 
@@ -16,31 +16,35 @@ const useStyles = makeStyles(theme => ({
 
     heroContent: {
         backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(5, 0, 4),
+        padding: theme.spacing(4, 0, 2),
     },
 
 }));
 
 const FriendAll = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const classes = useStyles();
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
     const [friendId, setFriendId] = useState(null);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-            AllFriends();
-    },[setData, userId]);
+        AllFriends();
+    }, [setData, userId]);
 
-    function AllFriends(){
+    function AllFriends() {
         console.log("hello from AllFriends", userId, sessionStorage.getItem('userId'));
+        setLoading(true);
         axios.get('/user/' + userId + '/friends')
             .then(result => {
                 console.log(result.data);
                 setData(result.data);
             })
-            .catch(e => console.log(e));
+            .catch(e => console.log(e))
+            .finally(() => setLoading(false));
+
     }
 
     const remove = (friendId) => {
@@ -70,6 +74,8 @@ const FriendAll = () => {
 
     }
 
+    if (loading) return <Progress/>
+
     return (
         <React.Fragment>
             <div className={classes.heroContent}>
@@ -83,7 +89,7 @@ const FriendAll = () => {
 
                 <ConfirmDialog title={t('friend-all.2')}
                                message={t('friend-all.3')}
-                               onConfirm ={onDeleteFriendConfirm}
+                               onConfirm={onDeleteFriendConfirm}
                                onNotConfirm={onDeleteFriendCancel}
                                confirmButtonText={t('friend-all.4')}
                                notConfirmButtonText={t('friend-all.5')}

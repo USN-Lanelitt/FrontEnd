@@ -80,7 +80,7 @@ const MyAssetsList = () => {
                                                       ""
                                               }
                                               onRemove={() => remove(asset.id)}
-                                              refresh={() => fetchAssets(userId, setAssets)}
+                                              refresh={() => fetchAssets(userId, setAssets, () =>{})}
 
                                 />
                             </Grid>

@@ -2,19 +2,15 @@ import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import NotificationLoanRequest from "./notificatoin-loan-request";
-import {
-    notificationFriendRequest,
-    notificationRefreshLoanAccepted
-} from "../../feature/Notification/notification-refresh";
-import FriendRequest from "../friend/friend-request";
+import {notificationRefreshLoanAccepted} from "../../feature/Notification/notification-refresh";
 
 const NotificationLoanAccepted = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
     const [data, setData] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         getAcceptedLoanRequests();
-   }, []);
+    }, []);
 
     const getAcceptedLoanRequests = () => {
         console.log("getAcceptedRequests", userId, sessionStorage.getItem('userId'));
@@ -30,10 +26,9 @@ const NotificationLoanAccepted = () => {
     };
 
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={4} direction="column" alignItems="center">
             {data.map(loan => (
                 <Grid item key={loan.id} xs={12}>
-
                     <NotificationLoanRequest
                         firstname={loan.assets.users.firstName}
                         middlename={loan.assets.users.middleName}

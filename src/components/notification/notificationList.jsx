@@ -113,7 +113,6 @@ const NotificationList = () => {
                 }
             })
             .catch(error => console.log(error))
-
     }
 
     return (
@@ -156,12 +155,13 @@ const NotificationList = () => {
                         }}
                 >
                     <span className={classes.arrow} ref={setArrowRef}/>
-                    <Paper style={{maxHeight: 300, overflow:'auto'}}>
+                    <Paper style={{maxHeight: 300, overflow: 'auto'}}>
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="menu-list-grow"
                                       onKeyDown={handleListKeyDown}>
                                 <Box maxWidth="48ch">
-                                    <Typography className={classes.typo} variant="h6" align="center" color="textPrimary" gutterBottom>
+                                    <Typography className={classes.typo} variant="h6" align="center" color="textPrimary"
+                                                gutterBottom>
                                         Varsler
                                     </Typography>
                                     <Divider variant="li"/>

@@ -8,6 +8,7 @@ import Progress from "../progress";
 const HomeMenu = () => {
 
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const images = [
         "https://source.unsplash.com/D3nouOYbALc",
@@ -23,6 +24,7 @@ const HomeMenu = () => {
 
 
     const getCategories = () => {
+        setLoading(true);
         axios.get("/assets/AllTypes")
             .then(result => {
                 const assetTypes = result.data;
@@ -31,14 +33,15 @@ const HomeMenu = () => {
                 }
                 setCategories(assetTypes);
             })
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
+            .finally(() => setLoading(false));
     };
 
     useEffect(() => {
         getCategories();
     }, [])
 
-    if (categories.length === 0) return <Progress/>
+    if (loading) return <Progress/>
 
     return (
         <Container>
