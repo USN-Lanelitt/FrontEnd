@@ -138,13 +138,13 @@ const Login = ({ history }) => {
 
     // -------- Sender bruker til login side hvis bruker logger ut ----------
     const { currentUser } = useContext(AuthContext);
-    if (currentUser) {
-        return <Redirect to="/login"/>;
-    }
-    // -------- KUN til TESTING av nettside! (slippe å logge på på nytt ved justeringer) ----------
     // if (currentUser) {
-    //     return <Redirect to="/"/>;
+    //     return <Redirect to="/login"/>;
     // }
+    // -------- KUN til TESTING av nettside! (slippe å logge på på nytt ved justeringer) ----------
+    if (currentUser) {
+         return <Redirect to="/"/>;
+    }
 
 
     return (
