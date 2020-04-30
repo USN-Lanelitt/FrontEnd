@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import {useEffect, useState} from "react";
 
 const CheckWinSize = () => {

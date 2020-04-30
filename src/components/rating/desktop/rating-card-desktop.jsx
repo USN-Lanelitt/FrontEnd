@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden med hjelp av John*/
+
 import React, {useEffect, useState} from 'react';
 import Card from "@material-ui/core/Card";
 import {makeStyles} from "@material-ui/core/styles";
@@ -14,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         padding:3,
         height: 260,
         width: 680,
-        backgroundColor:'#e8f5e9',
+        backgroundColor:'#c8e6c9',
     },
     assetCard: {
         padding: 15,

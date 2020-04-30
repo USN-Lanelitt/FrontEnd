@@ -1,5 +1,5 @@
 /**
- * Linda Loftsgarden
+ * John-Berge
  */
 
 import React, {useState} from 'react';

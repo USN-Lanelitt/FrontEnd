@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import axios from "axios";
 
 function editUser(id, nickname, firstname, middlename, lastname, usertype, active) {

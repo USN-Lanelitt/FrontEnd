@@ -1,6 +1,7 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useState} from "react";
 import axios from "axios";
-import ReportAmount from "./raport-amount";
 
 const UserAmount  = () => {
     const [userId, setId] = useState(sessionStorage.getItem('userId'));
