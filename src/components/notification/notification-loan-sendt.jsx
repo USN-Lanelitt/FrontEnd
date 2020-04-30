@@ -13,12 +13,11 @@ const NotificationLoanSendt = ({data}) => {
                 <Grid item key={loan.id} xs={12}>
 
                     <NotificationLoanSendtCard
+                        id={loan.id}
                         firstname={loan.assets.users.firstName}
                         middlename={loan.assets.users.middleName}
+                        imageUrl={loan.assets.users.imageUrl}
                         lastname={loan.assets.users.lastName}
-                        assetname={""}
-                        description={""}
-                        imageUrl={loan.assets.users.assetImages[0].imageUrl}
                         selectedDate={loan.dateStart}
                         selectedDate2={loan.dateEnd}
                     />
