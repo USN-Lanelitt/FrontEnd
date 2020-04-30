@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useState} from 'react';
 import ConfirmDialog from "./confirm-dialog";
 

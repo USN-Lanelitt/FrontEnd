@@ -1,3 +1,5 @@
+/*Nicole og Mirsa har jobbet med denne siden sammen*/
+
 import axios from "axios";
 
 export const adminRefrech = (setSelectedLevel) =>{

@@ -29,8 +29,6 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         margin: '0',
-
-
     },
     button: {
         padding: '0',
@@ -77,7 +75,6 @@ const NotificationList = () => {
     }, []);
     // ------ Farhad Slutt ------
 
-// return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
@@ -113,6 +110,7 @@ const NotificationList = () => {
         axios.get('/user/' + userId + '/friendRequests')
             .then((response) => {
                 if (response.status === 200) {
+                    console.log('friendrequest');
                     console.log(response);
                     setData(response.data);
                 }

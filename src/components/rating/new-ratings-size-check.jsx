@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React from "react";
 import CheckWinSize from "../div/check-win-size";
 import NewRatingsMobile from "./mobile/new-ratings-mobile";

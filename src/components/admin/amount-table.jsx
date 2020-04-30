@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React from "react";
 import AssetAmount from "./asset-amount";
 import ReportAmount from "./raport-amount";
@@ -9,7 +11,6 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles({
     table: {

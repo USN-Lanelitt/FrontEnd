@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import { useState } from "react";
 
 const useInput = initialValue => {

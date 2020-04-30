@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -16,18 +18,10 @@ import CheckWinSize from "../../components/div/check-win-size";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles(theme => ({
-    buttons: {
-        marginRight: theme.spacing(2),
-    },
-}));
 
 export default function Ratings() {
     const { t } = useTranslation();
     const {pageNr} = useParams();
-    const classes = useStyles();
     const [show, setShow] = React.useState();
     const [value, setValue] = React.useState(pageNr);
     const { width } = CheckWinSize()
@@ -87,9 +81,7 @@ export default function Ratings() {
                             NYE
                         </Button>
                     </ButtonGroup>
-
             }
-
 
             <Container maxWidth="sm">
                 {width > breakpoint

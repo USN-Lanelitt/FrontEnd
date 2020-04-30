@@ -1,5 +1,6 @@
-import axios from "axios";
+/*Nicole har jobbet med denne siden*/
 
+import axios from "axios";
 
 export default function setRating(userId, loanId, newRating, comment) {
     console.log("rateAsset", sessionStorage.getItem('userId'));

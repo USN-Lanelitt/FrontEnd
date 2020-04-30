@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import axios from "axios";
 
 function newUser(nickname, firstname, middlename, lastname, address, address2, zipCode, phone, email, usertype, active, newsSubscription, userterms) {

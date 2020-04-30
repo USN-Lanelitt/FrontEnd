@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React from 'react';
 import ChatUsersMobile from "../../components/chat/chat-users-mobile";
 import ChatDesktop from "../../components/chat/chat-desktop";

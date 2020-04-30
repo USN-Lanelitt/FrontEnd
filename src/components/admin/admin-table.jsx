@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from "axios";
 import editUser from "./edit-user";
-import { useTranslation } from 'react-i18next';
 
 const AdminTable = () => {
     const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
@@ -41,6 +40,8 @@ const AdminTable = () => {
 
     return (
         <div >
+
+            {/*Tabell er hentet ferdiglagd fra Material-ui*/}
             <MaterialTable
                 title='User administration'
                 columns={state.columns}

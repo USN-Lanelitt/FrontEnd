@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden sammen med John*/
+
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -61,7 +63,6 @@ const LogDropdown = () => {
 
     const handleChange = (event) => {
         setLevel(event.target.value);
-        //setRedirect(true);
     };
 
     if (redirect) return <Redirect to="/admin"/>;

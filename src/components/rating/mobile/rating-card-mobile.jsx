@@ -1,3 +1,5 @@
+/*Nicole har jobbet med denne siden*/
+
 import React, {useEffect, useState} from 'react';
 import Card from "@material-ui/core/Card";
 import {makeStyles} from "@material-ui/core/styles";

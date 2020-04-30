@@ -1,4 +1,4 @@
-/*Nicole har jobbet med denne siden*/
+/*Nicole har jobbet med denne siden med fra John og Farhad*/
 
 import React, {useEffect, useState} from 'react';
 import Container from "@material-ui/core/Container";
@@ -15,6 +15,8 @@ import getChatUsers from "./get-chats";
 import showChat from "./show-chat";
 import TextfieldMobile from "./textfield-mobile";
 import Progress from "../progress";
+import CheckWinSize from "../div/check-win-size";
+import {useParams} from "react-router";
 
 
 const useStyles = makeStyles(theme => ({
@@ -74,6 +76,7 @@ export default function ChatDesktop() {
     const [chatUsers, setChatUsers] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
     const [selectedUser, setSelectedUser] = useState('');
+
 
     useEffect(() => {
         getChatUsers(userId, setChatUsers)
